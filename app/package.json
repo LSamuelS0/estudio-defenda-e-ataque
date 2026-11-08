@@ -19,10 +19,27 @@
   "build": {
     "appId": "com.lsamuels.estudio-defenda-e-ataque",
     "productName": "Estúdio Defenda e Ataque",
-    "directories": { "output": "../dist" },
-    "files": ["**/*", "!testes/**"],
-    "win": { "icon": "icone.png", "artifactName": "Estudio-Defenda-e-Ataque-${version}-${arch}-${target}.${ext}" },
-    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "createDesktopShortcut": true, "shortcutName": "Estúdio Defenda e Ataque", "language": "1046" },
-    "portable": { "artifactName": "Estudio-Defenda-e-Ataque-${version}-portatil.exe" }
+    "directories": {
+      "output": "../dist"
+    },
+    "files": [
+      "**/*",
+      "!testes/**"
+    ],
+    "win": {
+      "icon": "icone.png",
+      "executableName": "Estudio Defenda e Ataque"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Estúdio Defenda e Ataque",
+      "language": "1046",
+      "artifactName": "Estudio-Defenda-e-Ataque-${version}-instalador.${ext}"
+    },
+    "portable": {
+      "artifactName": "Estudio-Defenda-e-Ataque-${version}-portatil.exe"
+    }
   }
 }

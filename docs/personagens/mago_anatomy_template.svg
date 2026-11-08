@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="960" viewBox="0 0 640 960">
+  <title>Mapa esquemático de anotações anatômicas - Mago-base</title>
+  <desc>Template vetorial editável, sem medidas calibradas. Substituir a silhueta esquemática pela arte aprovada antes de registrar landmarks.</desc>
+  <defs><style>
+    .bg{fill:#101827}.grid{stroke:#334155;stroke-width:1;opacity:.55}.sil{fill:#26364a;stroke:#cbd5e1;stroke-width:4}
+    .joint{fill:#fbbf24;stroke:#111827;stroke-width:3}.bone{stroke:#38bdf8;stroke-width:7;stroke-linecap:round}
+    .region{fill:none;stroke:#a78bfa;stroke-width:2;stroke-dasharray:7 5}.label{fill:#e2e8f0;font:16px sans-serif}
+    .small{fill:#94a3b8;font:12px sans-serif}.box{fill:#172337;stroke:#475569;stroke-width:1}
+  </style></defs>
+  <rect class="bg" width="640" height="960"/>
+  <g class="grid">
+    <path d="M80 80H560M80 160H560M80 240H560M80 320H560M80 400H560M80 480H560M80 560H560M80 640H560M80 720H560M80 800H560M80 880H560"/>
+    <path d="M120 60V900M200 60V900M280 60V900M360 60V900M440 60V900M520 60V900"/>
+  </g>
+  <text x="32" y="34" class="label">MAGO-BASE / TEMPLATE DE INSPEÇÃO</text>
+  <text x="32" y="54" class="small">Esquemático. Não usar como escala, anatomia final ou coordenadas de produção.</text>
+  <circle class="sil" cx="320" cy="165" r="68"/>
+  <path class="sil" d="M270 238 Q320 220 370 238 L405 440 Q370 485 320 485 Q270 485 235 440Z"/>
+  <path class="sil" d="M250 250 Q212 270 198 355 L172 505 Q170 532 192 535 Q214 536 223 510 L260 385Z"/>
+  <path class="sil" d="M390 250 Q428 270 442 355 L468 505 Q470 532 448 535 Q426 536 417 510 L380 385Z"/>
+  <path class="sil" d="M270 470 Q320 500 370 470 L365 560 L325 575 L280 560Z"/>
+  <path class="sil" d="M282 555 L320 560 L305 730 L292 850 Q278 874 250 865 L263 735Z"/>
+  <path class="sil" d="M322 560 L360 555 L377 735 L390 850 Q362 874 348 865 L335 730Z"/>
+  <path class="sil" d="M250 840 Q277 830 295 853 L288 890 L220 890 Q207 878 220 862Z"/>
+  <path class="sil" d="M350 853 Q368 830 390 840 L420 862 Q433 878 420 890 L352 890Z"/>
+  <g class="bone"><path d="M320 228V480M320 490V555M260 270L205 360L198 500M380 270L435 360L442 500M300 560L280 730L270 850M340 560L360 730L370 850"/></g>
+  <g>
+    <circle class="joint" cx="320" cy="230" r="9"/><circle class="joint" cx="260" cy="270" r="9"/><circle class="joint" cx="380" cy="270" r="9"/>
+    <circle class="joint" cx="205" cy="360" r="9"/><circle class="joint" cx="435" cy="360" r="9"/><circle class="joint" cx="198" cy="500" r="9"/><circle class="joint" cx="442" cy="500" r="9"/>
+    <circle class="joint" cx="320" cy="490" r="9"/><circle class="joint" cx="320" cy="555" r="9"/><circle class="joint" cx="280" cy="730" r="9"/><circle class="joint" cx="360" cy="730" r="9"/>
+    <circle class="joint" cx="270" cy="850" r="9"/><circle class="joint" cx="370" cy="850" r="9"/>
+  </g>
+  <g class="region">
+    <ellipse cx="320" cy="165" rx="72" ry="72"/><path d="M230 238 Q320 205 410 238 L390 470 Q320 500 250 470Z"/>
+    <path d="M250 470 Q320 490 390 470 L370 565 Q320 585 270 565Z"/>
+    <path d="M265 560 Q300 570 316 565 L300 860 L248 860Z"/><path d="M324 565 Q340 570 375 560 L392 860 L340 860Z"/>
+  </g>
+  <rect class="box" x="24" y="906" width="592" height="38" rx="6"/>
+  <circle class="joint" cx="44" cy="925" r="6"/><text x="58" y="930" class="small">landmark/junta</text>
+  <path class="bone" d="M190 925H220"/><text x="230" y="930" class="small">eixo ósseo aproximado</text>
+  <path class="region" d="M405 925H435"/><text x="445" y="930" class="small">região a redesenhar</text>
+</svg>

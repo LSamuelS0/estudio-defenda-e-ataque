@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.1.0",
+  "asset_id": "mago_base",
+  "status": "template_not_calibrated",
+  "coordinate_system": {"space": "normalized_0_to_1_per_direction", "origin": "top_left", "reference_image_size_px": null},
+  "directions": {
+    "front": {"reference_image": null, "landmarks": {}},
+    "back": {"reference_image": null, "landmarks": {}},
+    "left": {"reference_image": null, "landmarks": {}},
+    "right": {"reference_image": null, "landmarks": {}}
+  },
+  "landmark_definitions": {
+    "head_top": "topmost point of the head silhouette",
+    "neck_base": "center at the base of the neck",
+    "shoulder_left": "character-left shoulder joint",
+    "shoulder_right": "character-right shoulder joint",
+    "elbow_left": "character-left elbow joint",
+    "elbow_right": "character-right elbow joint",
+    "wrist_left": "character-left wrist joint",
+    "wrist_right": "character-right wrist joint",
+    "chest_center": "center of the chest region",
+    "waist_center": "center of the waist",
+    "hip_center": "center of the pelvis",
+    "knee_left": "character-left knee joint",
+    "knee_right": "character-right knee joint",
+    "ankle_left": "character-left ankle joint",
+    "ankle_right": "character-right ankle joint",
+    "foot_contact_left": "support/contact point of character-left foot",
+    "foot_contact_right": "support/contact point of character-right foot"
+  },
+  "regions": {
+    "head": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "torso": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "upper_arm_left": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "upper_arm_right": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "forearm_left": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "forearm_right": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "hand_left": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "hand_right": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "pelvis": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "thigh_left": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "thigh_right": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "lower_leg_left": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "lower_leg_right": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "foot_left": {"material_profile": "flexible", "polygon_by_direction": {}},
+    "foot_right": {"material_profile": "flexible", "polygon_by_direction": {}}
+  },
+  "joints": [
+    {"id": "neck", "parent": "root", "landmark": "neck_base"},
+    {"id": "torso", "parent": "root", "landmark": "chest_center"},
+    {"id": "upper_arm_left", "parent": "torso", "landmark": "shoulder_left"},
+    {"id": "upper_arm_right", "parent": "torso", "landmark": "shoulder_right"},
+    {"id": "forearm_left", "parent": "upper_arm_left", "landmark": "elbow_left"},
+    {"id": "forearm_right", "parent": "upper_arm_right", "landmark": "elbow_right"},
+    {"id": "hand_left", "parent": "forearm_left", "landmark": "wrist_left"},
+    {"id": "hand_right", "parent": "forearm_right", "landmark": "wrist_right"},
+    {"id": "pelvis", "parent": "root", "landmark": "hip_center"},
+    {"id": "thigh_left", "parent": "pelvis", "landmark": "knee_left"},
+    {"id": "thigh_right", "parent": "pelvis", "landmark": "knee_right"},
+    {"id": "lower_leg_left", "parent": "thigh_left", "landmark": "ankle_left"},
+    {"id": "lower_leg_right", "parent": "thigh_right", "landmark": "ankle_right"},
+    {"id": "foot_left", "parent": "lower_leg_left", "landmark": "foot_contact_left"},
+    {"id": "foot_right", "parent": "lower_leg_right", "landmark": "foot_contact_right"}
+  ],
+  "equipment_material_profiles": {
+    "body": {"deformation": "flexible", "preserve_volume": true},
+    "cloth": {"deformation": "moderate_or_secondary_motion", "preserve_volume": true},
+    "rigid_armor": {"deformation": "low", "preserve_volume": true, "prefer": ["anchors", "pivots", "segmented_plates", "drawn_corrections"]}
+  },
+  "review": {"calibrated_on_approved_art": false, "reviewed_by_artist": false, "approved_for_production": false}
+}

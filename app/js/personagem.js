@@ -287,6 +287,8 @@
         const a = await carregar(base, d); const L = (await landmarksDe(base, d))[0];
         const r = await Tarefas.rodar('gesto', { bases: a.quadros.map(bytesDe), landmarks: L, segmentos: g.segmentos, ordemPeca: d === 'costas' ? 'atras' : 'frente' });
         regrasOk = regrasOk && r.regra.ok;
+        // skill: toda animação (inclusive teste) passa pela conferência; reprovada não é salva
+        if (!r.aprovado) { const ruins = r.conferencia.filter(x => !x.ok).map(x => x.nome + ' (' + x.texto + ')').join('; '); throw new Error('REPROVADO em ' + Comum.DIRECOES[d] + ': ' + ruins + '. Nada foi salvo.'); }
         const qs = r.quadros.map(q => ImagemWeb.bytesParaCanvas(q.w, q.h, q.bytes)); const arq = p.id + '_' + nome + '_' + d + '.png';
         arquivos[arq] = await ImagemWeb.canvasParaPNG(ImagemWeb.juntarFolha(qs));
         meta.direcoes[d] = { arquivo: arq, ponta_cajado_px: (a.pontos || []).map((pt, k) => pt && r.pontos[k] ? [+(pt[0] + r.pontos[k][0]).toFixed(1), +(pt[1] + r.pontos[k][1]).toFixed(1)] : pt) };

@@ -950,6 +950,17 @@
     return { camada, resto };
   }
   /** Deforma a imagem com pontos de controle (campo suave, peso pelo inverso da distância). */
+  /** Esticamento máximo do campo (variação do deslocamento por pixel). > 0,35 = malha arrastando ("borracha"). */
+  function esticamento(im, pontos) {
+    const W = im.w, H = im.h; const campo = (x, y) => { let sx = 0, sy = 0, sw = 0; for (const p of pontos) { const d2 = (x - p.x) ** 2 + (y - p.y) ** 2; const wgt = 1 / ((d2 + 16) * (d2 + 16)); sx += p.dx * wgt; sy += p.dy * wgt; sw += wgt; } return [sx / sw, sy / sw]; };
+    let pior = 0;
+    for (let y = 2; y < H - 2; y += 3) for (let x = 2; x < W - 2; x += 3) {
+      if (im.d[(y * W + x) * 4 + 3] < 0.3) continue;
+      const a = campo(x, y), b = campo(x + 2, y), c = campo(x, y + 2);
+      pior = Math.max(pior, Math.hypot(b[0] - a[0], b[1] - a[1]) / 2, Math.hypot(c[0] - a[0], c[1] - a[1]) / 2);
+    }
+    return pior;
+  }
   function deformar(im, pontos) {
     const W = im.w, H = im.h; const out = criar(W, H);
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -980,23 +991,30 @@
     const camadas = bases.map(b => { const mask = op.pecaRigida === false ? new Uint8Array(b.w * b.h) : mascaraRigida(b, mao); return separarCamada(b, mask); });
     const fixos = ['head_top', 'head_center', 'neck_base', 'chest_center', 'hip_center', 'knee_left', 'knee_right', 'ankle_left', 'ankle_right', 'foot_contact_left', 'foot_contact_right'];
     const atraso = op.atrasoRoupa == null ? 2 : op.atrasoRoupa, forca = op.forcaRoupa == null ? 0.35 : op.forcaRoupa;
-    const quadros = [];
+    const quadros = []; let piorG = 0;
     trilha.forEach((t, k) => {
       const tr = trilha[(k - atraso + trilha.length) % trilha.length]; // roupa chega depois (continuação)
       const pts = [];
       for (const n of fixos) if (P[n]) pts.push({ x: P[n][0], y: P[n][1], dx: 0, dy: 0 });
       pts.push({ x: mao[0], y: mao[1], dx: t.x, dy: t.y });
       for (const n of ['wrist_left', 'wrist_right']) if (P[n] && Math.hypot(P[n][0] - mao[0], P[n][1] - mao[1]) < 40) pts.push({ x: P[n][0], y: P[n][1], dx: t.x * 0.85, dy: t.y * 0.85 });
-      for (const n of ['elbow_left', 'elbow_right']) if (P[n] && Math.hypot(P[n][0] - mao[0], P[n][1] - mao[1]) < 70) pts.push({ x: P[n][0], y: P[n][1], dx: t.x * 0.45, dy: t.y * 0.45 });
+      for (const n of ['elbow_left', 'elbow_right']) if (P[n] && Math.hypot(P[n][0] - mao[0], P[n][1] - mao[1]) < 70) pts.push({ x: P[n][0], y: P[n][1], dx: t.x * 0.6, dy: t.y * 0.6 });
+      // ombro do lado da mão acompanha um pouco: o braço gira, não estica (regra: malha não arrasta)
+      const ombro = ['shoulder_left', 'shoulder_right'].filter(n => P[n]).sort((a, b) => Math.hypot(P[a][0] - mao[0], P[a][1] - mao[1]) - Math.hypot(P[b][0] - mao[0], P[b][1] - mao[1]))[0];
+      if (ombro) pts.push({ x: P[ombro][0], y: P[ombro][1], dx: t.x * 0.45, dy: t.y * 0.45 });
       if (P.waist_center) pts.push({ x: P.waist_center[0] + (mao[0] - P.waist_center[0]) * 0.6, y: P.waist_center[1] + 18, dx: tr.x * forca, dy: tr.y * forca * 0.3 });
       const { camada, resto } = camadas[k % camadas.length];
+      if (k % 5 === 0) piorG = Math.max(piorG, esticamento(resto, pts));
       const corpo = deformar(resto, pts);
       const peca = transformarRigido(camada, mao, t.x, t.y, t.g);
       const q = criar(base.w, base.h);
       if (op.ordemPeca === 'atras') { colar(q, peca, 0, 0); colar(q, corpo, 0, 0); } else { colar(q, corpo, 0, 0); colar(q, peca, 0, 0); }
       quadros.push(suavizar(limparFranja(q)));
     });
-    return { quadros, trilha, regra: conferirTrilha(trilha), pontos: trilha.map(t => [t.x, t.y]) };
+    const regra = conferirTrilha(trilha); const conf = conferir(quadros);
+    conf.push({ id: 'malha', nome: 'Sem malha arrastada', valor: piorG, meta: 'esticamento < 0,35 (tecido: deformação moderada)', ok: piorG < 0.35, texto: 'esticamento ' + piorG.toFixed(2) });
+    conf.push({ id: 'nao_volta', nome: 'Movimento não volta na etapa', valor: regra.quadros.length, meta: '0 quadros voltando', ok: regra.ok, texto: regra.ok ? 'ok' : regra.quadros.length + ' quadro(s) voltando' });
+    return { quadros, trilha, regra, conferencia: conf, aprovado: conf.every(r => r.ok), pontos: trilha.map(t => [t.x, t.y]) };
   }
   /**
    * Caminhada procedural a partir de UMA pose de descanso (regra das etapas):
@@ -1034,7 +1052,7 @@
     quadrosTrilha.unshift(quadrosTrilha.pop());
     const mao = P.hand_main; const mask = mascaraRigida(base, mao); const { camada, resto } = separarCamada(base, mask);
     const bases = op.bases && op.bases.length ? op.bases.map(b => separarCamada(b, mascaraRigida(b, mao))) : [{ camada, resto }];
-    const quadros = [];
+    const quadros = []; let piorEstica = 0;
     quadrosTrilha.forEach((t, k) => {
       const t2 = quadrosTrilha[(k - 2 + total) % total]; // capa atrasada 2 quadros
       const dxp = v => v * sentido;
@@ -1059,22 +1077,25 @@
       const mdx = lado ? dxp(t.m) : 0, mdy = t.q + (lado ? 0 : Math.abs(t.m) * 0.3);
       pts.push({ x: mao[0], y: mao[1], dx: mdx, dy: mdy });
       const { camada: cam, resto: res } = bases[k % bases.length];
+      if (k % 5 === 0) piorEstica = Math.max(piorEstica, esticamento(res, pts));
       const corpo = deformar(res, pts); const peca = transformarRigido(cam, mao, mdx, mdy, lado ? -t.m / A.braco * 3 * sentido : 0);
       const q = criar(base.w, base.h);
       if (op.vista === 'costas') { colar(q, peca, 0, 0); colar(q, corpo, 0, 0); } else { colar(q, corpo, 0, 0); colar(q, peca, 0, 0); }
       quadros.push(suavizar(limparFranja(q)));
     });
-    return { quadros, trilha: quadrosTrilha };
+    // regra da skill: malha não pode arrastar (pé grudado, bota esticada). Reprova sozinho.
+    const conf = conferir(quadros); conf.push({ id: 'malha', nome: 'Sem malha arrastada', valor: piorEstica, meta: 'esticamento < 0,35 (tecido: deformação moderada)', ok: piorEstica < 0.35, texto: 'esticamento ' + piorEstica.toFixed(2) });
+    return { quadros, trilha: quadrosTrilha, conferencia: conf, aprovado: conf.every(r => r.ok) };
   }
 
   // gestos prontos (30 quadros = 5 segmentos de 6), deslocamentos em px do quadro do jogo
   const GESTOS = {
     mao_frente_tras: { nome: 'Mão vai à frente, volta, vai atrás (calmo)', segmentos: [
-      { quadros: 6, ate: [6, -3], giro: -4 }, { quadros: 6, ate: [0, 0], giro: 0 }, { quadros: 6, ate: [-5, 2], giro: 3 },
+      { quadros: 6, ate: [5, -2], giro: -4 }, { quadros: 6, ate: [0, 0], giro: 0 }, { quadros: 6, ate: [-4, 2], giro: 3 },
       { quadros: 6, ate: [0, 0], giro: 0 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
     cajado_erguer: { nome: 'Ergue o cajado (confiante)', segmentos: [
-      { quadros: 6, ate: [1, 2], giro: 2 }, { quadros: 6, ate: [-2, -10], giro: -6 }, { quadros: 6, ate: [-2, -12], giro: -7 },
-      { quadros: 6, ate: [0, -4], giro: -2 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
+      { quadros: 6, ate: [1, 1], giro: 2 }, { quadros: 6, ate: [-1, -5], giro: -5 }, { quadros: 6, ate: [-1, -6], giro: -6 },
+      { quadros: 6, ate: [0, -2], giro: -2 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
     respiro_cansado: { nome: 'Cajado pesa (cansado)', segmentos: [
       { quadros: 6, ate: [0, 3], giro: 3 }, { quadros: 6, ate: [1, 5], giro: 5 }, { quadros: 6, ate: [1, 5], giro: 5 },
       { quadros: 6, ate: [0, 2], giro: 2 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
@@ -1210,7 +1231,7 @@
     rotular, dilatar, erodir, fechar, preencherBuracos, maiorComponente, gauss,
     removerFundo, separarQuadros, medir, limparPapel, limparFranja, montarFolha, suavizar, bordasDuras,
     gerarIdle, quadroMaisNeutro, conferir, fluxo, intervalo, interpolarCiclo, proporLandmarks, posicionarItem, comporQuadro, separarPecas,
-    trilhaSegmentos, conferirTrilha, mascaraRigida, separarCamada, deformar, transformarRigido, animarSegmentos, andarProcedural, GESTOS,
+    trilhaSegmentos, conferirTrilha, mascaraRigida, separarCamada, deformar, transformarRigido, animarSegmentos, andarProcedural, esticamento, GESTOS,
     jsonGodot, adivinharDirecao, produzir,
   };
 });

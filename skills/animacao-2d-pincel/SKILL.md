@@ -26,6 +26,7 @@ Base: 12 princípios da animação (Thomas & Johnston, *The Illusion of Life*), 
 | Loop sem emenda | salto último→primeiro ≤ 1,6× o salto médio |
 | Ritmo sem tranco: nenhum pico isolado (aceleração/desaceleração suave é permitida) | nenhum salto ≥ 2,5× a média dos dois vizinhos |
 | Volume estável | personagem < 15% de variação de área; efeito contínuo < 45% |
+| Malha não arrasta (deformação procedural): nada estica como borracha, pé não gruda puxando a imagem | esticamento do campo < 0,35 |
 | Efeito apoia, não compete | efeito de ambiente discreto; brilho no chão ±5% no máximo |
 
 Conferir sempre em **fundo escuro e em fundo claro** (o claro denuncia franja branca, o escuro denuncia frestas de papel).
@@ -178,6 +179,8 @@ Antes: identificar personagem e arquétipo; ver vistas, sprites e animações re
 
 Nunca: alegar precisão anatômica sem revisar landmarks; dizer que equipamento acompanha animação sem testar; deformar armadura rígida como tecido; ocultar região inteira se a cobertura é parcial; desenhar item sobre o corpo sem máscara; equipar slot já pintado no desenho; misturar escalas; reaproveitar animação humanoide em criatura sem adaptar; declarar integração com o Godot sem importar e rodar; entregar arte com branco solto.
 
+**Toda animação passa pela skill antes de ser mostrada — inclusive teste, comparação ou protótipo.** Releia os 12 princípios (seção 3) e as regras de ouro (seção 2) antes de gerar; rode a conferência; o que reprovar é marcado **REPROVADO** com o motivo e não é apresentado como opção. Contato do pé sem deslizar e **malha sem arrastar** (pé grudado puxando a imagem, bota esticada) são reprovação automática.
+
 Conflito entre regras: segurança e integridade do projeto primeiro; depois a direção de arte desta skill; registrar a divergência.
 
 ## 14. Lições aprendidas (atualizar sempre)
@@ -190,6 +193,7 @@ Conflito entre regras: segurança e integridade do projeto primeiro; depois a di
 - 08/11 — **Sombra no chão** saiu do sprite (fica para o jogo); a sombra de frente era cinza médio sob os pés e precisou de critério próprio.
 - 08/11 — **Franja clara na borda**: pixel claro e cinza na faixa de 2 px da borda é papel; recebe a cor do miolo (o contorno de tinta) ou some.
 - 08/11 — **Gesto procedural**: medir "ritmo" pelo pico isolado, não pelo maior salto — slow in/out é desejado.
+- 08/11 — **Caminhada só por deformação de uma pose pintada** reprovou: pé gruda e a malha arrasta (bota estica). Eu mostrei sem rodar a conferência — erro. Agora o Estúdio mede o esticamento e reprova sozinho; perna procedural exige corpo em peças (coxa, canela, bota) girando em quadril e joelho.
 - 08/11 — Nome do app com acento no cabeçalho HTTP quebrou o Electron (User-Agent): manter textos técnicos (cabeçalhos, nomes de executável) sem acento.
 
 ## 15. Arquivos de apoio (nesta pasta)

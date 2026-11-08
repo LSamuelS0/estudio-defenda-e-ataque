@@ -49,3 +49,11 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/*.exe
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          name: Estúdio Defenda e Ataque ${{ github.ref_name }}
+          body: |
+            Como instalar no Windows:
+            - **Instalador**: baixe `Estudio-Defenda-e-Ataque-...-instalador.exe`, abra e siga os passos (cria atalho na área de trabalho).
+            - **Sem instalar**: baixe `Estudio-Defenda-e-Ataque-...-portatil.exe` e abra direto.
+            - Se o Windows avisar "aplicativo não reconhecido": clique em **Mais informações → Executar assim mesmo** (o programa não é assinado).
+            Seus personagens ficam em Documentos › Estúdio Defenda e Ataque › personagens.

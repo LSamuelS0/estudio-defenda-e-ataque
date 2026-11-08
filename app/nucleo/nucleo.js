@@ -177,7 +177,7 @@
    */
   function removerFundo(im, op = {}) {
     const w = im.w, h = im.h, N = w * h;
-    const o = { tolerancia: 0.16, borda: 0.38, sombraChao: true, ...op };
+    const o = { tolerancia: 0.16, borda: 0.38, sombraChao: false, ...op };
     const out = criar(w, h); out.d.set(im.d);
     if (temTransparencia(im)) {
       // já vem recortada: só garante que pixel transparente não tenha cor de papel
@@ -226,7 +226,13 @@
       const p = i * 4;
       if (fundo[i]) { out.d[p + 3] = 0; continue; }
       const s = hsv(im, i); const y = (i / w) | 0;
-      if (o.sombraChao && bgClaro && s.sat < 0.12 && s.mx > 0.55 && s.mx < Math.max(bg[0], bg[1], bg[2]) - 0.03 && y > ymax - alturaFig * 0.16) {
+      // sombra do chão (cinza claro perto do pé): padrão é TIRAR — a sombra é desenhada pelo jogo
+      if (bgClaro && s.sat < 0.12 && s.mx > 0.55 && s.mx < Math.max(bg[0], bg[1], bg[2]) - 0.03 && y > ymax - alturaFig * 0.16) {
+        if (o.sombraChao !== true) { out.d[p + 3] = 0; continue; }
+      }
+      // miolo mais escuro da sombra (cinza sem cor bem no pé, abaixo das solas)
+      if (o.sombraChao !== true && bgClaro && s.sat < 0.14 && s.mx > 0.28 && y > ymax - alturaFig * 0.035) { out.d[p + 3] = 0; continue; }
+      if (false) {
         out.d[p] = 0.09; out.d[p + 1] = 0.08; out.d[p + 2] = 0.07;
         out.d[p + 3] = Math.min(0.45, Math.max(0.15, (0.95 - s.mx) * 1.4));
         continue;

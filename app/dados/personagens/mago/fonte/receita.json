@@ -17,9 +17,9 @@
     1.0
   ],
   "gerarIdle": true,
-  "quadrosCiclo": 24,
+  "quadrosCiclo": 30,
   "duracaoCiclo": 1.0,
   "distanciaCiclo": 120,
-  "quadrosIdle": 24,
-  "duracaoIdle": 2.4
+  "quadrosIdle": 30,
+  "duracaoIdle": 3.0
 }

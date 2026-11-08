@@ -5,7 +5,7 @@
  * Imagem de trabalho: { w, h, d: Float32Array(w*h*4) } com RGBA de 0 a 1 (alfa reto, não pré-multiplicado).
  * Máscara: Uint8Array(w*h) com 0/1.
  *
- * Regras seguidas (skills/animacao-2d-pincel e skills/character-equipment-replacement):
+ * Regras seguidas (skill única skills/animacao-2d-pincel):
  *  - nenhum fundo branco, papel ou franja clara;
  *  - borda macia (sem serrilhado), redução com alfa pré-multiplicado;
  *  - âncora firme: quadros alinhados pelo pé (pivô) e pelo eixo da cabeça;
@@ -436,23 +436,41 @@
       if (out.d[i * 4 + 3] < 0.05) continue; const s = hsv(out, i); const y = (i / w) | 0;
       if (s.mx > 0.82 && s.sat < 0.12 && perFora[i] && y > yCab) out.d[i * 4 + 3] = 0;
     }
-    // frestas de papel presas entre cajado e manto: manchas quase brancas (>= 12 px) fora da cabeça
-    // e longe de brilhos coloridos (o miolo claro do cristal fica)
+    // frestas de papel presas entre cajado e manto: manchas quase brancas fora da cabeça.
+    // Ficam só as que são "miolo de brilho": a borda em volta é colorida (o cristal azul), não tinta escura.
     const cor = new Uint8Array(N), claro = new Uint8Array(N);
     for (let i = 0; i < N; i++) {
       if (out.d[i * 4 + 3] < 0.05) continue; const s = hsv(out, i);
       if (s.sat > 0.3 && s.mx > 0.35) cor[i] = 1;
-      if (s.mx > 0.8 && s.sat < 0.1 && ((i / w) | 0) > yCab) claro[i] = 1;
+      if (s.mx > 0.78 && s.sat < 0.12) claro[i] = 1;
     }
-    const pertoCor = dilatar(cor, w, h, 5);
-    for (let i = 0; i < N; i++) if (pertoCor[i]) claro[i] = 0;
     const rc = rotular(claro, w, h);
     const tirar = new Uint8Array(N);
-    for (let i = 0; i < N; i++) if (rc.lab[i] && rc.areas[rc.lab[i]] >= (op.minFresta || 12)) tirar[i] = 1;
-    const volta = dilatar(tirar, w, h, 1);
+    for (let k = 1; k <= rc.n; k++) {
+      if (rc.areas[k] < (op.minFresta || 3)) continue;
+      const c = rc.caixas[k]; const x0 = Math.max(0, c.x0 - 3), y0 = Math.max(0, c.y0 - 3), x1 = Math.min(w - 1, c.x1 + 3), y1 = Math.min(h - 1, c.y1 + 3);
+      let n = 0, colorido = 0, escuro = 0;
+      for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+        const q = y * w + x; if (rc.lab[q] === k || out.d[q * 4 + 3] < 0.05) continue;
+        // só a vizinhança imediata (até 3 px) da mancha
+        let perto = false; for (let dy = -3; dy <= 3 && !perto; dy++) for (let dx = -3; dx <= 3; dx++) { const yy = y + dy, xx = x + dx; if (yy >= 0 && xx >= 0 && yy < h && xx < w && rc.lab[yy * w + xx] === k) { perto = true; break; } }
+        if (!perto) continue; n++; if (cor[q]) colorido++; if (Math.max(out.d[q * 4], out.d[q * 4 + 1], out.d[q * 4 + 2]) < 0.25) escuro++;
+      }
+      if (op.depurar) op.depurar.push({ k, area: rc.areas[k], yrel: +((c.y0 - med.topo) / med.alt).toFixed(2), cor: +(colorido / n).toFixed(2), esc: +(escuro / n).toFixed(2), x: c.x0, y: c.y0 });
+      const yrel = (c.y0 - med.topo) / med.alt, limiteArea = 0.0028 * med.alt * med.alt;
+      const larg = c.x1 - c.x0 + 1, alt = c.y1 - c.y0 + 1, alongado = Math.max(larg, alt) / Math.max(1, Math.min(larg, alt));
+      const cf = n ? colorido / n : 0;
+      // miolo de brilho (cristal): cercado de cor, ou bem no alto com alguma cor em volta
+      if ((cf > 0.45 || (cf > 0.25 && yrel < 0.15)) && rc.areas[k] < limiteArea) continue;
+      // olho: pequeno, pouco alongado, na faixa do rosto
+      if (yrel > 0.08 && yrel < 0.34 && rc.areas[k] < limiteArea && alongado < 2.8 && cf < 0.2) continue;
+      for (let y = c.y0; y <= c.y1; y++) for (let x = c.x0; x <= c.x1; x++) if (rc.lab[y * w + x] === k) tirar[y * w + x] = 1;
+    }
+    // a franja clara em volta da fresta (mistura de papel com tinta) sai junto
+    const volta = dilatar(tirar, w, h, 2);
     for (let i = 0; i < N; i++) {
       if (tirar[i]) { out.d[i * 4 + 3] = 0; continue; }
-      if (volta[i] && !pertoCor[i]) { const s = hsv(out, i); if (s.mx > 0.6 && s.sat < 0.15) out.d[i * 4 + 3] = 0; }
+      if (volta[i] && !cor[i]) { const s = hsv(out, i); if (s.mx > 0.55 && s.sat < 0.16) out.d[i * 4 + 3] = 0; }
     }
     return out;
   }
@@ -562,6 +580,85 @@
       if (x1 - x0 < bw) { bw = x1 - x0; best = k; }
     });
     return best;
+  }
+
+  // ---------------------------------------------------------------- 8b. mais quadros: intervalos por fluxo óptico
+  // Para cada par de quadros desenhados, estima para onde cada pedaço do desenho andou (fluxo, do grosso para o fino)
+  // e cria quadros intermediários deformando os dois desenhos até o meio do caminho e misturando.
+  // Não é um desenho novo: é um "intervalo" automático. Funciona bem em passos pequenos; poses muito diferentes pedem quadro desenhado.
+  function _cinza(im, f) {
+    const w = Math.max(1, Math.round(im.w / f)), h = Math.max(1, Math.round(im.h / f)); const r = redimensionar(im, w, h); const g = new Float32Array(w * h);
+    for (let i = 0; i < w * h; i++) { const a = r.d[i * 4 + 3]; g[i] = (0.3 * r.d[i * 4] + 0.59 * r.d[i * 4 + 1] + 0.11 * r.d[i * 4 + 2]) * a * 0.6 + a * 0.4; }
+    return { w, h, g };
+  }
+  function fluxo(A, B, op = {}) {
+    const niveis = op.niveis || [8, 4, 2, 1]; let fx = null, fy = null, pw = 0, ph = 0;
+    for (const f of niveis) {
+      const a = _cinza(A, f), b = _cinza(B, f); const w = a.w, h = a.h;
+      const nx = new Float32Array(w * h), ny = new Float32Array(w * h);
+      if (fx) for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const sx = Math.min(pw - 1, Math.floor(x * pw / w)), sy = Math.min(ph - 1, Math.floor(y * ph / h)); nx[y * w + x] = fx[sy * pw + sx] * w / pw; ny[y * w + x] = fy[sy * pw + sx] * h / ph; }
+      const R = op.raio || 3, P = 2; const ox = new Float32Array(w * h), oy = new Float32Array(w * h);
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const i = y * w + x; const bx = Math.round(nx[i]), by = Math.round(ny[i]);
+        // pixels vazios nos dois quadros não precisam de fluxo
+        let tem = 0; for (let dy = -P; dy <= P; dy++) for (let dx = -P; dx <= P; dx++) { const yy = y + dy, xx = x + dx; if (yy >= 0 && xx >= 0 && yy < h && xx < w) tem += a.g[yy * w + xx]; }
+        if (tem < 0.05) { ox[i] = nx[i]; oy[i] = ny[i]; continue; }
+        let melhor = Infinity, mx = bx, my = by;
+        for (let sy = -R; sy <= R; sy++) for (let sx = -R; sx <= R; sx++) {
+          const ux = bx + sx, uy = by + sy; let sad = 0;
+          for (let dy = -P; dy <= P; dy++) for (let dx = -P; dx <= P; dx++) {
+            const ya = y + dy, xa = x + dx; if (ya < 0 || xa < 0 || ya >= h || xa >= w) continue;
+            const yb = ya + uy, xb = xa + ux; const vb = (yb < 0 || xb < 0 || yb >= h || xb >= w) ? 0 : b.g[yb * w + xb];
+            sad += Math.abs(a.g[ya * w + xa] - vb);
+          }
+          sad += 0.002 * (sx * sx + sy * sy); // prefere o caminho mais curto (suave)
+          if (sad < melhor) { melhor = sad; mx = ux; my = uy; }
+        }
+        ox[i] = mx; oy[i] = my;
+      }
+      fx = gauss(ox, w, h, 1.2); fy = gauss(oy, w, h, 1.2); pw = w; ph = h;
+    }
+    // sobe o fluxo para a resolução cheia
+    const W = A.w, H = A.h; const FX = new Float32Array(W * H), FY = new Float32Array(W * H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const gx = Math.min(pw - 1.001, Math.max(0, (x + 0.5) * pw / W - 0.5)), gy = Math.min(ph - 1.001, Math.max(0, (y + 0.5) * ph / H - 0.5));
+      const x0 = Math.floor(gx), y0 = Math.floor(gy), tx = gx - x0, ty = gy - y0; const k = (xx, yy) => yy * pw + xx;
+      const bil = F => (F[k(x0, y0)] * (1 - tx) + F[k(x0 + 1, y0)] * tx) * (1 - ty) + (F[k(x0, y0 + 1)] * (1 - tx) + F[k(x0 + 1, y0 + 1)] * tx) * ty;
+      FX[y * W + x] = bil(fx) * W / pw; FY[y * W + x] = bil(fy) * H / ph;
+    }
+    return { fx: FX, fy: FY };
+  }
+  function intervalo(A, B, fAB, fBA, t) {
+    const W = A.w, H = A.h; const out = criar(W, H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = y * W + x;
+      const a = amostrarRGBA(A, x - t * fAB.fx[i], y - t * fAB.fy[i]);
+      const b = amostrarRGBA(B, x - (1 - t) * fBA.fx[i], y - (1 - t) * fBA.fy[i]);
+      // mistura puxada para o desenho mais perto no tempo: menos "fantasma" duplo nos intervalos
+      let wb = t * t / (t * t + (1 - t) * (1 - t));
+      // onde os dois desenhos discordam (perna que some atrás da outra, cajado que cruza), não mistura:
+      // usa só o desenho mais perto no tempo, para não aparecer contorno duplo
+      const dif = Math.abs(a[3] - b[3]) + (a[3] > 0.3 && b[3] > 0.3 ? (Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]) + Math.abs(a[2] - b[2])) / 3 : 0);
+      if (dif > 0.35) wb = t <= 0.5 ? 0 : 1;
+      const wa = 1 - wb;
+      const al = a[3] * wa + b[3] * wb; const o = i * 4;
+      if (al < 0.004) continue;
+      for (let c = 0; c < 3; c++) out.d[o + c] = (a[c] * a[3] * wa + b[c] * b[3] * wb) / al;
+      out.d[o + 3] = al;
+    }
+    return out;
+  }
+  /** Multiplica os quadros de um ciclo em loop: fator 2 -> 6 vira 12; fator 4 -> 24; fator 5 -> 30. */
+  function interpolarCiclo(quadros, fator, op = {}) {
+    if (fator <= 1) return quadros.slice();
+    const n = quadros.length; const out = [];
+    for (let k = 0; k < n; k++) {
+      const A = quadros[k], B = quadros[(k + 1) % n]; out.push(A);
+      if (op.loop === false && k === n - 1) break;
+      const fAB = fluxo(A, B, op), fBA = fluxo(B, A, op);
+      for (let j = 1; j < fator; j++) out.push(suavizar(intervalo(A, B, fAB, fBA, j / fator)));
+    }
+    return out;
   }
 
   // ---------------------------------------------------------------- 9. conferência pelas regras das skills
@@ -799,22 +896,44 @@
     dirs.forEach((d, i) => {
       prog('Alinhando e suavizando: ' + d, 0.3 + i / dirs.length * 0.4);
       const f = montarFolha(recortes[d], { ...o, escala: escalaPorDir[d], largura: W, altura: H, pivo });
-      res.andar[d] = { folha: f.folha, quadros: f.quadros, pontos: f.pontos, arquivo: o.nome + '_' + (o.nomeAnim || 'andar') + '_' + d + '.png' };
-      res.conferencia['andar_' + d] = conferir(f.quadros);
+      let quadros = f.quadros, pontos = f.pontos, folha = f.folha;
+      // mais quadros por ciclo (12/24/30): intervalos automáticos entre os quadros desenhados
+      const fator = o.quadrosCiclo ? Math.max(1, Math.round(o.quadrosCiclo / f.quadros.length)) : 1;
+      if (fator > 1) {
+        prog('Criando intervalos (' + f.quadros.length * fator + ' quadros): ' + d, 0.3 + (i + 0.5) / dirs.length * 0.4);
+        quadros = interpolarCiclo(f.quadros, fator);
+        pontos = []; const n0 = f.pontos.length;
+        for (let k = 0; k < n0; k++) for (let j = 0; j < fator; j++) {
+          const a = f.pontos[k], b = f.pontos[(k + 1) % n0], t = j / fator;
+          pontos.push(a && b ? [+(a[0] + (b[0] - a[0]) * t).toFixed(1), +(a[1] + (b[1] - a[1]) * t).toFixed(1)] : a);
+        }
+        folha = criar(W * quadros.length, H); quadros.forEach((q, k) => colar(folha, q, k * W, 0));
+      }
+      res.andar[d] = { folha, quadros, pontos, desenhados: f.quadros.length, arquivo: o.nome + '_' + (o.nomeAnim || 'andar') + '_' + d + '.png' };
+      res.conferencia['andar_' + d] = conferir(quadros);
     });
     res.largura = W; res.altura = H; res.pivo = pivo;
-    res.jsonAndar = jsonGodot({ quadros: res.andar[dirs[0]].quadros.length, largura: W, altura: H, pivo, escalaJogo: o.escalaJogo, fpsRef: o.fps, modelo: o.nome, direcoes: res.andar });
+    const nAndar = res.andar[dirs[0]].quadros.length, nDesenhados = res.andar[dirs[0]].desenhados;
+    // ritmo: com intervalos, o ciclo dura "duracaoCiclo" segundos (padrão 1 s); sem eles, usa o fps pedido
+    const fpsAndar = nAndar > nDesenhados ? +(nAndar / (o.duracaoCiclo || 1)).toFixed(3) : o.fps;
+    res.jsonAndar = jsonGodot({ quadros: nAndar, largura: W, altura: H, pivo, escalaJogo: o.escalaJogo, fpsRef: fpsAndar, modelo: o.nome, direcoes: res.andar });
+    res.jsonAndar.quadros_desenhados = nDesenhados;
+    // distância andada em um ciclo completo (o jogo avança 1 quadro a cada distancia_ciclo_px / quadros)
+    res.jsonAndar.distancia_ciclo_px = o.distanciaCiclo || 120;
     // 4) idle respirando a partir do quadro mais "de pé" de cada direção (ou da imagem de corpo inteiro)
     if (o.gerarIdle) {
       dirs.forEach((d, i) => {
         prog('Gerando idle: ' + d, 0.7 + i / dirs.length * 0.28);
-        let base, k = (o.quadroIdle && o.quadroIdle[d] != null) ? o.quadroIdle[d] : quadroMaisNeutro(res.andar[d].quadros);
-        let pt = res.andar[d].pontos[k];
+        // só quadros desenhados servem de base (os intervalos automáticos não)
+        const passo = res.andar[d].quadros.length / res.andar[d].desenhados;
+        const desenhados = res.andar[d].quadros.filter((_, j) => j % passo === 0);
+        let base, k = (o.quadroIdle && o.quadroIdle[d] != null) ? o.quadroIdle[d] : quadroMaisNeutro(desenhados);
+        let pt = res.andar[d].pontos[k * passo];
         if (o.corpoInteiro && o.corpoInteiro[d]) {
           const ci = o.corpoInteiro[d]; const sem = removerFundo(ci, o).imagem;
           const f = montarFolha([sem], { ...o, escala: undefined, alturaCorpo: o.alturaCorpo, largura: W, altura: H, pivo });
           base = f.quadros[0]; pt = f.pontos[0];
-        } else base = res.andar[d].quadros[k];
+        } else base = desenhados[k];
         const idle = gerarIdle(base, { pivo, pontos: pt || null, quadros: o.quadrosIdle || 12, duracao: o.duracaoIdle || 2.2 });
         res.idle[d] = { folha: idle.folha, quadros: idle.quadros, pontos: idle.pontos, arquivo: o.nome + '_' + (o.nomeIdle || 'parado') + '_' + d + '.png', base: k };
         res.conferencia['parado_' + d] = conferir(idle.quadros);
@@ -831,7 +950,7 @@
     criar, deBytes, paraBytes, recortar, colar, redimensionar,
     rotular, dilatar, erodir, fechar, preencherBuracos, maiorComponente, gauss,
     removerFundo, separarQuadros, medir, limparPapel, montarFolha, suavizar, bordasDuras,
-    gerarIdle, quadroMaisNeutro, conferir, proporLandmarks, posicionarItem, comporQuadro, separarPecas,
+    gerarIdle, quadroMaisNeutro, conferir, fluxo, intervalo, interpolarCiclo, proporLandmarks, posicionarItem, comporQuadro, separarPecas,
     jsonGodot, adivinharDirecao, produzir,
   };
 });

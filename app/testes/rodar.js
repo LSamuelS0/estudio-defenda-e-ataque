@@ -49,7 +49,7 @@ if (fs.existsSync(receita)) {
   teste('Linha de produção: mago v2 (4 direções + idle)', () => { res = N.produzir(folhas, rc); });
   if (res) {
     teste('Mesmo quadro e pivô em todas as direções', () => {
-      for (const d in res.andar) { assert.strictEqual(res.andar[d].quadros.length, 6, d); res.andar[d].quadros.forEach(q => { assert.strictEqual(q.w, res.largura); assert.strictEqual(q.h, res.altura); }); }
+      for (const d in res.andar) { assert.strictEqual(res.andar[d].quadros.length, rc.quadrosCiclo || 6, d); res.andar[d].quadros.forEach(q => { assert.strictEqual(q.w, res.largura); assert.strictEqual(q.h, res.altura); }); }
     });
     teste('Conferência das skills: todas as regras passam', () => {
       const ruins = []; for (const k in res.conferencia) for (const r of res.conferencia[k]) if (!r.ok) ruins.push(k + ': ' + r.nome + ' (' + r.texto + ')');
@@ -60,13 +60,19 @@ if (fs.existsSync(receita)) {
         for (const c of ['quadros', 'colunas', 'largura_quadro', 'altura_quadro', 'pivo_px', 'escala_jogo', 'direcoes']) assert.ok(c in j, 'falta ' + c);
         for (const d of N.DIRECOES) { assert.ok(j.direcoes[d], 'falta direção ' + d); assert.strictEqual(j.direcoes[d].ponta_cajado_px.length, j.quadros, 'ponta do cajado por quadro'); }
       }
-      assert.ok(res.jsonIdle.fps > 4 && res.jsonIdle.fps < 8, 'idle lento (personagem 6–12 fps de desenho, respiração ~5,5)');
+      assert.ok(res.jsonIdle.duracao_s >= 2 && res.jsonIdle.duracao_s <= 3, 'idle lento: respiração de 2 a 3 s');
+      assert.ok(res.jsonAndar.distancia_ciclo_px > 0 && res.jsonAndar.quadros_desenhados === 6, 'andar informa distância do ciclo e quadros desenhados');
     });
     teste('Rig: proposta tem todos os pontos e pé no chão', () => {
       const L = N.proporLandmarks(res.andar.frente.quadros[0], { corDestaque: rc.corDestaque });
       for (const n of N.LANDMARKS) assert.ok(L[n], 'falta ' + n);
       assert.ok(Math.abs(L.foot_contact_left[1] - res.pivo[1]) <= 6, 'pé perto do pivô');
       assert.ok(L.head_top[1] < L.neck_base[1] && L.neck_base[1] < L.hip_center[1] && L.hip_center[1] < L.knee_left[1], 'ordem de cima para baixo');
+    });
+    teste('Intervalos automáticos: sem branco, pé firme e quadros desenhados preservados', () => {
+      const q = res.andar.frente.quadros, passo = q.length / 6;
+      assert.ok(passo >= 1 && Number.isInteger(passo));
+      const conf = N.conferir(q); for (const r of conf) assert.ok(r.ok, r.nome + ': ' + r.texto);
     });
     teste('Equipamento rígido acompanha a âncora', () => {
       const item = N.criar(10, 40); for (let i = 0; i < 400; i++) item.d.set([0.6, 0.4, 0.2, 1], i * 4);

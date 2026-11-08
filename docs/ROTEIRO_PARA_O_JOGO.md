@@ -15,10 +15,11 @@ Documento vivo: atualizado a cada conversa. É a lista do que precisa ir para o 
 
 ### 1.1 Mago v2 (capuz escuro, cristal azul) — andar e parado
 - **Situação:** pronto no Estúdio. Gerado pela linha de produção em `app/dados/personagens/mago/`.
-- **Arquivos:** `mago_andar.json`, `mago_andar_{frente,costas,esquerda,direita}.png` (6 quadros), `mago_parado.json`, `mago_parado_{...}.png` (12 quadros, 2,2 s, respiração + brilho do cristal).
+- **Arquivos:** `mago_andar.json`, `mago_andar_{frente,costas,esquerda,direita}.png` (24 quadros: 6 desenhados + intervalos automáticos), `mago_parado.json`, `mago_parado_{...}.png` (24 quadros, 2,4 s, respiração + brilho do cristal). Frestas brancas entre cajado e capuz/manto removidas (08/11).
 - **Medidas:** quadro 274×278, pivô (137, 262) no pé, `escala_jogo` 0,5. Ponta do cajado por quadro em `ponta_cajado_px`.
 - **Conferência:** 7/7 regras ✔ nas 8 folhas (serrilhado 0%, pé firme, loop, ritmo, sem fundo branco, volume).
 - **No jogo:** copiar para `art/mago/` (o Estúdio faz isso em "Enviar para o jogo" e guarda `.bak` do antigo). Jogador e bot usam o mesmo arquivo.
+- **Mudança necessária no `mago.gd` (agora 24 quadros por ciclo):** trocar a constante `PASSO_PX := 20.0` por `distancia_ciclo_px / quadros` lido do JSON (120 / 24 = 5 px por quadro). Sem isso o mago "patina" 4× mais devagar nas pernas. O idle já usa o `fps` do JSON.
 - **Conferir no Godot:** `mago.gd` lê largura/altura/pivô do JSON — confirmar que o tamanho novo (274×278, antes 220×290) não muda o tamanho na tela; conferir se o projétil sai da ponta do cajado em todas as direções.
 - **Atenção:** a imagem de corpo inteiro (`fonte/mago_corpo_inteiro.png`) tem o cajado do lado oposto ao da caminhada de frente e manto mais claro. Por isso o idle de frente usa o quadro mais "de pé" da caminhada, e não essa imagem.
 
@@ -56,7 +57,8 @@ Documento vivo: atualizado a cada conversa. É a lista do que precisa ir para o 
 - 08/11: tudo o que vai para o jogo passa antes pelo Estúdio (linha de produção + conferência). Nada de colar arte direto na pasta do jogo.
 - 08/11: o Estúdio vira programa do Windows (Electron), offline, com tudo numa branch só (`estudio-app`) até ficar organizado.
 - 08/11: a casca visual é a "Central v2" do ChatGPT (Heróis/Monstros → tela única do personagem com Visualização, Edição, Adição, Inventário).
-- 08/11: as duas skills (`animacao-2d-pincel` e `character-equipment-replacement`) são as regras de qualidade; o Estúdio confere as regras sozinho.
+- 08/11: as skills foram unidas numa **skill única** (`skills/animacao-2d-pincel`), sempre atualizada; o Estúdio confere as regras sozinho.
+- 08/11: animações com **24 quadros por ciclo** (6 ficava rápido e travado); idle com 24 quadros em 2,4 s.
 - 08/11: skin roxa só depois do Estúdio funcionando no computador.
 
 ## 5. Entregues

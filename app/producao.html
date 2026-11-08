@@ -48,11 +48,13 @@
       <label class="campo">Quadros por folha<input type="number" id="f-quadros" min="0" max="32" value="0" title="0 = descobrir sozinho"></label>
       <label class="campo">Altura do corpo na folha (px)<input type="number" id="f-altura" min="40" max="800" value="240"></label>
       <label class="campo">Escala no jogo<input type="number" id="f-escala" min="0.05" max="4" step="0.05" value="0.5"></label>
-      <label class="campo">FPS da animação<input type="number" id="f-fps" min="1" max="30" value="10"></label>
+      <label class="campo">Quadros por ciclo<select id="f-ciclo"><option value="0">Só os desenhados</option><option value="12">12 (suave)</option><option value="24" selected>24 (bem suave)</option><option value="30">30 (máximo)</option></select></label>
+      <label class="campo">Duração de um ciclo (s)<input type="number" id="f-duracao" min="0.3" max="4" step="0.1" value="1"></label>
+      <label class="campo">FPS (só os desenhados)<input type="number" id="f-fps" min="1" max="30" value="10"></label>
       <label class="campo"><span><input type="checkbox" id="f-destaque" checked> Ponto de destaque (ponta do cajado)</span><input type="color" id="f-cor" value="#4d8cff"></label>
-      <label class="campo"><span><input type="checkbox" id="f-idle" checked> Gerar idle (respiração)</span><input type="number" id="f-idle-q" min="6" max="24" value="12" title="quadros do idle"></label>
+      <label class="campo"><span><input type="checkbox" id="f-idle" checked> Gerar idle (respiração)</span><input type="number" id="f-idle-q" min="6" max="30" value="24" title="quadros do idle"></label>
     </div>
-    <p class="mudo" style="margin-top:8px">Quadros por folha = 0 descobre sozinho. As 4 direções sempre saem com o mesmo tamanho de quadro e o mesmo pivô (no pé).</p>
+    <p class="mudo" style="margin-top:8px">Quadros por folha = 0 descobre sozinho. "Quadros por ciclo" cria intervalos automáticos entre os quadros desenhados (fluxo óptico): o passo fica mais suave sem acelerar. Nada substitui um quadro desenhado em pose muito diferente — confira os intervalos com a casca de cebola. As 4 direções saem com o mesmo quadro e o mesmo pivô (no pé).</p>
     <div class="linha-botoes"><button class="botao primario" id="b-produzir" disabled>Produzir</button><span class="mudo" id="progresso-txt"></span></div>
     <div class="barra-progresso" style="margin-top:10px"><i id="progresso"></i></div>
   </section>

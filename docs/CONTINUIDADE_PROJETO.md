@@ -10,7 +10,7 @@ Atualizado em 08/11/2026 (branch `estudio-app`). Leia junto com o [Roteiro para 
 - Ferramentas antigas preservadas em `app/ferramentas/`, agora sem depender de internet (JSZip local, sem Google Fonts).
 
 ## O que veio de cada IA
-- **ChatGPT**: skill de equipamentos (`skills/character-equipment-replacement`), "Central v2" (casca Heróis/Monstros → tela única com Visualização/Edição/Adição/Inventário; documentos em `docs/central-v2/`), pranchas do corpo-base e mapa anatômico (`docs/referencias/mago/`).
+- **ChatGPT**: skill de equipamentos (hoje unida na skill única `skills/animacao-2d-pincel`), "Central v2" (casca Heróis/Monstros → tela única com Visualização/Edição/Adição/Inventário; documentos em `docs/central-v2/`), pranchas do corpo-base e mapa anatômico (`docs/referencias/mago/`).
 - **Claude**: skill de animação (`skills/animacao-2d-pincel`), Estúdio original (slimes, mago, efeitos, movimento, biblioteca), motor e aplicativo novo.
 
 ## Decisões

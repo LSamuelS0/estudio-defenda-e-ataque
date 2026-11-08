@@ -176,8 +176,12 @@
   }
   let itemSel = null;
   function listaItens() {
-    $('#eq-lista').innerHTML = p.equipamentos.length ? p.equipamentos.map((it, i) => `<div class="regra ${it === itemSel ? 'ok' : ''}"><input type="checkbox" data-eq="${i}" ${it.equipado !== false ? 'checked' : ''} title="Equipado"><div style="flex:1;cursor:pointer" data-abrir="${i}"><b>${esc(it.name)}</b><span>${esc(Comum.SLOTS[it.slot] || it.slot)} · âncora ${esc(N.NOMES_LANDMARK[(it.anchors || [])[0]] || '—')}</span></div><span class="selo">${esc(it.validation_status)}</span></div>`).join('') : '<p class="mudo">Nenhum item ainda. Adicione uma imagem ou recorte peças na aba Adição.</p>';
-    $('#eq-lista').querySelectorAll('[data-eq]').forEach(c => c.onchange = () => { p.equipamentos[+c.dataset.eq].equipado = c.checked; atualizarEquip(); });
+    $('#eq-lista').innerHTML = p.equipamentos.length ? p.equipamentos.map((it, i) => `<div class="regra ${it === itemSel ? 'ok' : ''}"><input type="checkbox" data-eq="${i}" ${it.equipado !== false ? 'checked' : ''} title="Equipado"><div style="flex:1;cursor:pointer" data-abrir="${i}"><b>${esc(it.name)}</b><span>${jaDesenhado(it.slot) ? '⚠ já desenhado no corpo · ' : ''}${esc(Comum.SLOTS[it.slot] || it.slot)} · âncora ${esc(N.NOMES_LANDMARK[(it.anchors || [])[0]] || '—')}</span></div><span class="selo">${esc(it.validation_status)}</span></div>`).join('') : '<p class="mudo">Nenhum item ainda. Adicione uma imagem ou recorte peças na aba Adição.</p>';
+    $('#eq-lista').querySelectorAll('[data-eq]').forEach(c => c.onchange = () => {
+      const it = p.equipamentos[+c.dataset.eq];
+      if (c.checked && jaDesenhado(it.slot) && !confirm('"' + (Comum.SLOTS[it.slot] || it.slot) + '" já está desenhado no corpo deste personagem. Equipar vai mostrar a peça duplicada. Equipar mesmo assim (só para teste)?')) { c.checked = false; return; }
+      it.equipado = c.checked; atualizarEquip();
+    });
     $('#eq-lista').querySelectorAll('[data-abrir]').forEach(d => d.onclick = () => abrirItem(p.equipamentos[+d.dataset.abrir]));
   }
   $('#eq-slot').innerHTML = (p.slots || Object.keys(Comum.SLOTS)).map(s => `<option value="${s}">${esc(Comum.SLOTS[s] || s)}</option>`).join('');
@@ -215,6 +219,9 @@
     if (!itemSel) return; p.equipamentos = p.equipamentos.filter(x => x !== itemSel); itemSel = null; $('#eq-editor').hidden = true;
     await salvar({}, 'Item removido'); atualizarEquip();
   };
+  // slots que já vêm pintados no desenho do personagem (ex.: o mago v2 já tem capuz, manto e cajado):
+  // equipar outro item ali duplica a peça (dois cajados). Regra: só equipar nesses slots num corpo-base sem a peça.
+  const jaDesenhado = slot => (p.slotsNoDesenho || []).includes(slot);
   async function novoItem(nome, canvasItem, slot) {
     const iid = Comum.slug(nome) + '_' + Date.now().toString(36); const arq = 'equipamentos/' + iid + '.png';
     const a = await carregar(sel.anim, sel.dir); const L = (await landmarksDe(sel.anim, sel.dir))[0];
@@ -223,8 +230,9 @@
       id: iid, name: nome, slot: slot || 'main_hand', compatible_archetypes: [p.arquetipo || 'humanoid_biped'], coverage_regions: [],
       anchors: ['hand_main'], draw_order: 'front_of_body', deformation_profile: 'rigid_low_deform',
       directional_assets: { frente: arq }, ajustes: { frente: { pega: [Math.round(canvasItem.width / 2), Math.round(canvasItem.height * 0.55)], angulo: 0, escala: +Math.min(1.5, (corpo * 0.9) / canvasItem.height).toFixed(2), ordem: 'frente' } },
-      ocultarCorpo: false, equipado: true, validation_status: 'draft',
+      ocultarCorpo: false, equipado: !jaDesenhado(slot || 'main_hand'), validation_status: 'draft',
     };
+    if (jaDesenhado(it.slot)) $('#eq-fb').textContent = 'Atenção: "' + (Comum.SLOTS[it.slot] || it.slot) + '" já está desenhado no corpo de ' + p.nome + '. O item foi guardado desligado para não aparecer duplicado.';
     p.equipamentos.push(it); imgItens[arq] = canvasItem;
     await salvar({ [arq]: await ImagemWeb.canvasParaPNG(canvasItem) }, 'Item novo: ' + nome);
     return it;

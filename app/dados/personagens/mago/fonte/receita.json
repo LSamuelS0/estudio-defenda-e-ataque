@@ -11,6 +11,15 @@
   "escalaJogo": 0.5,
   "fps": 10,
   "quadrosPorFolha": 6,
-  "corDestaque": [0.3, 0.55, 1.0],
-  "gerarIdle": true
+  "corDestaque": [
+    0.3,
+    0.55,
+    1.0
+  ],
+  "gerarIdle": true,
+  "quadrosCiclo": 24,
+  "duracaoCiclo": 1.0,
+  "distanciaCiclo": 120,
+  "quadrosIdle": 24,
+  "duracaoIdle": 2.4
 }

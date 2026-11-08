@@ -60,7 +60,8 @@
     const dados = { folhas: {}, opcoes: {
       nome: idPers, nomeAnim: Comum.slug($('#f-anim').value) || 'andar', alturaCorpo: +$('#f-altura').value, escalaJogo: +$('#f-escala').value, fps: +$('#f-fps').value,
       quadrosPorFolha: +$('#f-quadros').value || undefined, corDestaque: $('#f-destaque').checked ? hexParaCor($('#f-cor').value) : undefined,
-      gerarIdle: $('#f-idle').checked, quadrosIdle: +$('#f-idle-q').value } };
+      gerarIdle: $('#f-idle').checked, quadrosIdle: +$('#f-idle-q').value, duracaoIdle: +(+$('#f-idle-q').value * 0.1).toFixed(2),
+      quadrosCiclo: +$('#f-ciclo').value || undefined, duracaoCiclo: +$('#f-duracao').value || 1, distanciaCiclo: 120 } };
     const t0 = performance.now();
     try {
       $('#progresso-txt').textContent = 'Lendo as folhas…';
@@ -86,7 +87,7 @@
       const fw = resultado.largura, n = r.folha.w / fw; const folha = ImagemWeb.bytesParaCanvas(r.folha.w, r.folha.h, r.folha.bytes);
       const qs = []; for (let k = 0; k < n; k++) { const c = ImagemWeb.canvas(fw, r.folha.h); c.getContext('2d').drawImage(folha, k * fw, 0, fw, r.folha.h, 0, 0, fw, r.folha.h); qs.push(c); }
       const palco = new Palco(div.querySelector('canvas'), { fundo: 'grama' });
-      palco.definir({ quadros: qs, fps: grupo === 'andar' ? op.fps : (resultado.jsonIdle.fps || 5.5), pivo: resultado.pivo, pontos: r.pontos });
+      palco.definir({ quadros: qs, fps: grupo === 'andar' ? (resultado.jsonAndar.fps_ref || op.fps) : (resultado.jsonIdle.fps || 5.5), pivo: resultado.pivo, pontos: r.pontos });
       r._quadrosCanvas = qs; r._folhaCanvas = folha;
     }
     $('#s-resultado').scrollIntoView({ behavior: 'smooth' });

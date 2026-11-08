@@ -1,24 +1,17 @@
 # Skills do Estúdio Defenda e Ataque
 
-Esta pasta reúne instruções portáteis para agentes de IA que colaboram no projeto. Antes de executar uma tarefa coberta por uma skill, leia o documento correspondente e siga suas regras.
+Instruções portáteis para qualquer IA que trabalhe no projeto. Antes de mexer em arte, animação, equipamento ou efeito, leia a skill e siga as regras.
 
 ## Catálogo
 
 | Skill | Finalidade | Arquivo |
 |---|---|---|
-| Substituição inteligente de roupas e equipamentos 2D | Mapear regiões corporais, aplicar máscaras, posicionar equipamentos, preservar volumes e adaptar peças às animações | [character-equipment-replacement/SKILL.md](character-equipment-replacement/SKILL.md) |
-| Animação 2D de personagens e efeitos em pincel | Princípios da animação (12 princípios), física simplificada dos efeitos, receitas de fogo/fumaça/brilho/raio/líquido, regras de traço macio sem serrilhado e sem fundo branco, processo e conferência | [animacao-2d-pincel/SKILL.md](animacao-2d-pincel/SKILL.md) |
+| Arte, animação e equipamentos 2D em pincel (skill única) | 12 princípios, quadros/fps, efeitos e receitas, corpo-base e rig, equipamentos (slots, máscaras, âncoras, ordem, materiais), arquétipos, formato Godot, conferência, Estúdio e lições aprendidas | [animacao-2d-pincel/SKILL.md](animacao-2d-pincel/SKILL.md) |
 
-## Convenções para novas skills
+Em 08/11/2026 as antigas `animacao-2d-pincel`, `regras-animacao-efeitos.md` e `character-equipment-replacement` foram unidas nesta skill única (o histórico está no Git).
 
-- Cada skill deve ficar em sua própria subpasta: `skills/<nome-da-skill>/`.
-- O arquivo principal deve se chamar `SKILL.md` e conter metadados `name` e `description` no início.
-- Incluir referências auxiliares (JSON Schema, exemplos, checklists) na mesma subpasta.
-- Escrever regras operacionais, pré-requisitos, fluxo de trabalho, validação e limitações.
-- Diferenciar claramente conceitos, protótipos e recursos testados.
-- Atualizar este catálogo sempre que uma nova skill for adicionada.
-- Não sobrescrever uma skill existente sem revisar seu histórico e preservar compatibilidade.
-
-## Instrução geral para agentes
-
-Ao trabalhar neste repositório, verifique primeiro se existe uma skill aplicável em `skills/`. Leia-a antes de editar arquivos ou criar recursos. Se duas skills parecerem conflitar, preserve as regras de segurança e integridade do projeto e documente a divergência antes de prosseguir.
+## Convenções
+- Uma pasta por skill: `skills/<nome>/SKILL.md` com `name` e `description` no início; arquivos de apoio na mesma pasta.
+- A skill é viva: lição nova entra em "Lições aprendidas" com data; se virar regra, sobe para a seção certa.
+- Diferenciar conceito, protótipo e recurso pronto para produção.
+- Atualizar este catálogo quando uma skill mudar.

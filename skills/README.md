@@ -7,6 +7,7 @@ Esta pasta reúne instruções portáteis para agentes de IA que colaboram no pr
 | Skill | Finalidade | Arquivo |
 |---|---|---|
 | Substituição inteligente de roupas e equipamentos 2D | Mapear regiões corporais, aplicar máscaras, posicionar equipamentos, preservar volumes e adaptar peças às animações | [character-equipment-replacement/SKILL.md](character-equipment-replacement/SKILL.md) |
+| Animação 2D de personagens e efeitos em pincel | Princípios da animação (12 princípios), física simplificada dos efeitos, receitas de fogo/fumaça/brilho/raio/líquido, regras de traço macio sem serrilhado e sem fundo branco, processo e conferência | [animacao-2d-pincel/SKILL.md](animacao-2d-pincel/SKILL.md) |
 
 ## Convenções para novas skills
 

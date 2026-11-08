@@ -998,6 +998,75 @@
     });
     return { quadros, trilha, regra: conferirTrilha(trilha), pontos: trilha.map(t => [t.x, t.y]) };
   }
+  /**
+   * Caminhada procedural a partir de UMA pose de descanso (regra das etapas):
+   * cada passo = 3 etapas (contato -> descida -> passagem -> contato do outro pé); ciclo = 2 passos = 6 etapas.
+   * 30 quadros -> 6 etapas de 5; 24 quadros -> 6 etapas de 4. Cada quadro parte do anterior (acumulativo).
+   * Camadas: pés/pernas -> quadril sobe e desce -> mãos balançam ao contrário das pernas (cajado rígido na mão)
+   * -> capa com atraso (continuação). Vista lateral: pés vão à frente/atrás; frente/costas: pés sobem e descem.
+   */
+  function andarProcedural(base, P, op = {}) {
+    const total = op.quadros || 30, porEtapa = total / 6; const lado = op.vista === 'esquerda' || op.vista === 'direita';
+    const sentido = op.vista === 'esquerda' ? -1 : 1;
+    const alt = (P.foot_contact_left[1] + P.foot_contact_right[1]) / 2 - P.head_top[1];
+    const A = { passo: (op.passo || (lado ? 0.09 : 0.02)) * alt, ergue: (op.ergue || (lado ? 0.045 : 0.035)) * alt, bob: (op.bob || 0.014) * alt, braco: (op.braco || (lado ? 0.05 : 0.015)) * alt };
+    // poses-chave do ciclo (a = pé esquerdo, b = pé direito): [dx, dy] de cada pé, dy do quadril, dx da mão
+    const P0 = { a: [A.passo, 0], b: [-A.passo, 0], q: 0, m: -A.braco };          // contato: esquerdo na frente
+    const P1 = { a: [A.passo * 0.3, 0], b: [-A.passo * 0.6, -A.ergue * 0.6], q: A.bob, m: -A.braco * 0.4 }; // descida (peso no esquerdo)
+    const P2 = { a: [-A.passo * 0.2, 0], b: [A.passo * 0.1, -A.ergue], q: -A.bob, m: 0 };      // passagem (direito no ar)
+    const P3 = { a: [-A.passo, 0], b: [A.passo, 0], q: 0, m: A.braco };            // contato: direito na frente
+    const P4 = { a: [-A.passo * 0.6, -A.ergue * 0.6], b: [A.passo * 0.3, 0], q: A.bob, m: A.braco * 0.4 };
+    const P5 = { a: [A.passo * 0.1, -A.ergue], b: [-A.passo * 0.2, 0], q: -A.bob, m: 0 };
+    const chaves = [P0, P1, P2, P3, P4, P5, P0];
+    // trilha acumulativa por canal (cada quadro = anterior + pedaço novo, com slow in/out por etapa)
+    const canais = ['ax', 'ay', 'bx', 'by', 'q', 'm']; const val = c => k => ({ ax: k.a[0], ay: k.a[1], bx: k.b[0], by: k.b[1], q: k.q, m: k.m })[c];
+    const quadrosTrilha = []; let atual = Object.fromEntries(canais.map(c => [c, val(c)(P0)]));
+    for (let e = 0; e < 6; e++) {
+      const ini = chaves[e], fim = chaves[e + 1]; let feito = 0;
+      for (let k = 1; k <= porEtapa; k++) {
+        // passos andam em velocidade quase constante (linear com leve suavização), o resto com slow in/out
+        const alvo = 0.5 * (k / porEtapa) + 0.5 * suave(k / porEtapa); const passo = alvo - feito; feito = alvo;
+        const novo = {}; for (const c of canais) novo[c] = atual[c] + (val(c)(fim) - val(c)(ini)) * passo;
+        atual = novo; quadrosTrilha.push({ ...atual, etapa: e });
+      }
+    }
+    // o último quadro é o P0 de novo: gira para o loop começar no contato sem repetir quadro
+    quadrosTrilha.unshift(quadrosTrilha.pop());
+    const mao = P.hand_main; const mask = mascaraRigida(base, mao); const { camada, resto } = separarCamada(base, mask);
+    const bases = op.bases && op.bases.length ? op.bases.map(b => separarCamada(b, mascaraRigida(b, mao))) : [{ camada, resto }];
+    const quadros = [];
+    quadrosTrilha.forEach((t, k) => {
+      const t2 = quadrosTrilha[(k - 2 + total) % total]; // capa atrasada 2 quadros
+      const dxp = v => v * sentido;
+      const pts = [];
+      // cabeça e tronco: só o sobe-desce do quadril
+      for (const n of ['head_top', 'head_center', 'neck_base', 'shoulder_left', 'shoulder_right', 'chest_center', 'waist_center', 'hip_center']) if (P[n]) pts.push({ x: P[n][0], y: P[n][1], dx: 0, dy: t.q });
+      // pés e tornozelos (lado: frente/trás; frente/costas: só sobem)
+      const pes = [['foot_contact_left', 'ankle_left', 'knee_left', t.ax, t.ay], ['foot_contact_right', 'ankle_right', 'knee_right', t.bx, t.by]];
+      for (const [pe, tz, jo, dx, dy] of pes) {
+        const fx = lado ? dxp(dx) : 0, fy = lado ? dy : dy + (op.vista === 'costas' ? -1 : 1) * dx * 0.25;
+        if (P[pe]) pts.push({ x: P[pe][0], y: P[pe][1], dx: fx, dy: fy });
+        if (P[tz]) pts.push({ x: P[tz][0], y: P[tz][1], dx: fx, dy: fy * 0.9 });
+        if (P[jo]) pts.push({ x: P[jo][0], y: P[jo][1], dx: fx * 0.5, dy: (fy + t.q) * 0.5 });
+      }
+      // capa: barra atrasada balança ao contrário do quadril (continuação)
+      if (P.hip_center && P.knee_left && P.knee_right) {
+        const hy = (P.knee_left[1] + P.knee_right[1]) / 2; const meio = P.hip_center[0];
+        const sway = lado ? -dxp((t2.ax + t2.bx) * 0.5) * 0.6 - dxp(A.passo) * 0.15 : (t2.ax - t2.bx) * 0.12;
+        for (const off of [-0.45, 0.45]) pts.push({ x: meio + off * Math.abs(P.knee_right[0] - P.knee_left[0]) * 2.2, y: hy, dx: sway, dy: t2.q * 0.6 });
+      }
+      // mão (e cajado rígido) balança ao contrário das pernas
+      const mdx = lado ? dxp(t.m) : 0, mdy = t.q + (lado ? 0 : Math.abs(t.m) * 0.3);
+      pts.push({ x: mao[0], y: mao[1], dx: mdx, dy: mdy });
+      const { camada: cam, resto: res } = bases[k % bases.length];
+      const corpo = deformar(res, pts); const peca = transformarRigido(cam, mao, mdx, mdy, lado ? -t.m / A.braco * 3 * sentido : 0);
+      const q = criar(base.w, base.h);
+      if (op.vista === 'costas') { colar(q, peca, 0, 0); colar(q, corpo, 0, 0); } else { colar(q, corpo, 0, 0); colar(q, peca, 0, 0); }
+      quadros.push(suavizar(limparFranja(q)));
+    });
+    return { quadros, trilha: quadrosTrilha };
+  }
+
   // gestos prontos (30 quadros = 5 segmentos de 6), deslocamentos em px do quadro do jogo
   const GESTOS = {
     mao_frente_tras: { nome: 'Mão vai à frente, volta, vai atrás (calmo)', segmentos: [
@@ -1141,7 +1210,7 @@
     rotular, dilatar, erodir, fechar, preencherBuracos, maiorComponente, gauss,
     removerFundo, separarQuadros, medir, limparPapel, limparFranja, montarFolha, suavizar, bordasDuras,
     gerarIdle, quadroMaisNeutro, conferir, fluxo, intervalo, interpolarCiclo, proporLandmarks, posicionarItem, comporQuadro, separarPecas,
-    trilhaSegmentos, conferirTrilha, mascaraRigida, separarCamada, deformar, transformarRigido, animarSegmentos, GESTOS,
+    trilhaSegmentos, conferirTrilha, mascaraRigida, separarCamada, deformar, transformarRigido, animarSegmentos, andarProcedural, GESTOS,
     jsonGodot, adivinharDirecao, produzir,
   };
 });

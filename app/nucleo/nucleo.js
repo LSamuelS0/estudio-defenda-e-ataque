@@ -231,7 +231,7 @@
         if (o.sombraChao !== true) { out.d[p + 3] = 0; continue; }
       }
       // miolo mais escuro da sombra (cinza sem cor bem no pé, abaixo das solas)
-      if (o.sombraChao !== true && bgClaro && s.sat < 0.14 && s.mx > 0.28 && y > ymax - alturaFig * 0.035) { out.d[p + 3] = 0; continue; }
+      if (o.sombraChao !== true && bgClaro && s.sat < 0.14 && s.mx > 0.38 && y > ymax - alturaFig * 0.12) { out.d[p + 3] = 0; continue; }
       if (false) {
         out.d[p] = 0.09; out.d[p + 1] = 0.08; out.d[p + 2] = 0.07;
         out.d[p + 3] = Math.min(0.45, Math.max(0.15, (0.95 - s.mx) * 1.4));
@@ -422,6 +422,31 @@
     return out;
   }
 
+  // ---------------------------------------------------------------- 5b. franja clara na borda
+  /**
+   * Arte com contorno de tinta não tem pixel claro e sem cor na borda: isso é papel misturado.
+   * Na faixa de 2 px junto ao transparente, pixel claro e cinza recebe a cor do miolo mais perto
+   * (ou some, se for só papel). Brilhos coloridos (cristal) ficam.
+   */
+  function limparFranja(im, op = {}) {
+    const w = im.w, h = im.h, N = w * h; const out = criar(w, h); out.d.set(im.d);
+    const transp = new Uint8Array(N); for (let i = 0; i < N; i++) transp[i] = im.d[i * 4 + 3] < 0.05 ? 1 : 0;
+    const faixa = dilatar(transp, w, h, op.largura || 2);
+    const miolo = new Uint8Array(N); const longe = dilatar(transp, w, h, (op.largura || 2) + 1);
+    for (let i = 0; i < N; i++) if (!longe[i] && im.d[i * 4 + 3] > 0.9) miolo[i] = 1;
+    const prox = maisProximo(miolo, w, h);
+    for (let i = 0; i < N; i++) {
+      if (transp[i] || !faixa[i]) continue; const s = hsv(im, i);
+      if (s.mx < 0.55 || s.sat > 0.18) continue;
+      const j = prox[i];
+      if (j < 0 || Math.hypot((j % w) - (i % w), ((j / w) | 0) - ((i / w) | 0)) > 6) { out.d[i * 4 + 3] = 0; continue; }
+      for (let c = 0; c < 3; c++) out.d[i * 4 + c] = im.d[j * 4 + c];
+      // borda clara e semitransparente era só papel: fica mais transparente
+      if (im.d[i * 4 + 3] < 0.9) out.d[i * 4 + 3] = im.d[i * 4 + 3] * 0.6;
+    }
+    return out;
+  }
+
   // ---------------------------------------------------------------- 6. tirar resto de papel e franja depois do recorte
   function limparPapel(im, med, op = {}) {
     const w = im.w, h = im.h, N = w * h; const out = criar(w, h); out.d.set(im.d);
@@ -430,7 +455,8 @@
     const r = rotular(vis, w, h); const perto = dilatar(med.corpo, w, h, 3); const manter = new Set();
     for (let i = 0; i < N; i++) if (perto[i] && r.lab[i]) manter.add(r.lab[i]);
     // a sombra no chão (escura translúcida) fica, se estiver perto do pé
-    for (let k = 1; k <= r.n; k++) { const c = r.caixas[k]; if (c.y0 > med.pe - med.alt * 0.12 && c.y1 < med.pe + med.alt * 0.12) manter.add(k); }
+    // (a sombra no chão não é mais guardada: o jogo desenha a sombra. Só fica se pedirem sombraChao)
+    if (op.sombraChao) for (let k = 1; k <= r.n; k++) { const c = r.caixas[k]; if (c.y0 > med.pe - med.alt * 0.12 && c.y1 < med.pe + med.alt * 0.12) manter.add(k); }
     for (let i = 0; i < N; i++) if (!manter.has(r.lab[i])) out.d[i * 4 + 3] = 0;
     // brancos de papel encostados no fundo (fora da cabeça) saem; olhos dentro do capuz ficam
     const transp = new Uint8Array(N); for (let i = 0; i < N; i++) transp[i] = out.d[i * 4 + 3] < 0.05 ? 1 : 0;
@@ -493,7 +519,7 @@
     const alts = meds.filter(Boolean).map(m => m.alt).sort((p, q) => p - q);
     const esc = o.escala || o.alturaCorpo / alts[alts.length >> 1];
     const reduzidos = quadros.map((q, k) => {
-      const lim = limparPapel(q, meds[k]);
+      const lim = limparPapel(q, meds[k], o);
       const nw = Math.max(1, Math.round(q.w * esc)), nh = Math.max(1, Math.round(q.h * esc));
       return redimensionar(lim, nw, nh);
     });
@@ -513,7 +539,7 @@
     reduzidos.forEach((r, k) => {
       const m = meds[k]; const ox = Math.round(PX - ref(k) * esc), oy = Math.round(PY - m.pe * esc);
       let q = criar(W, H); colar(q, r, ox, oy);
-      if (o.suavizar) q = suavizar(q);
+      if (o.suavizar) q = suavizar(limparFranja(q));
       finais.push(q); colar(folha, q, k * W, 0);
       pontos.push(m.destaque ? [+(m.destaque[0] * esc + ox - PX).toFixed(1), +(m.destaque[1] * esc + oy - PY).toFixed(1)] : null);
     });
@@ -692,8 +718,11 @@
       res.push({ id: 'emenda', nome: 'Loop sem emenda', valor: r, meta: '≤ 1,6× o salto médio', ok: r <= 1.6, texto: r.toFixed(2) + '× o salto médio' });
       const mov = saltos.concat([emenda]); const mx = Math.max(...mov), mn = Math.min(...mov);
       res.push({ id: 'movimento', nome: 'Sempre em movimento', valor: mn, meta: 'nenhum quadro repetido', ok: mn > 1e-4, texto: mn > 1e-4 ? 'todos os quadros mudam' : 'há quadros iguais (parece congelado)' });
+      // tranco = pico ISOLADO: um salto muito maior que os dois vizinhos (aceleração/desaceleração suave não conta)
       const ordenados = mov.slice().sort((a, b) => a - b); const med = ordenados[ordenados.length >> 1] || 1e-9;
-      res.push({ id: 'ritmo', nome: 'Ritmo sem tranco', valor: mx / med, meta: 'maior salto ≤ 3× o típico', ok: mx / med <= 3, texto: 'maior salto ' + (mx / med).toFixed(2) + '× o típico' });
+      let pior = 0; const n = mov.length;
+      for (let k = 0; k < n; k++) { const viz = (mov[(k - 1 + n) % n] + mov[(k + 1) % n]) / 2; if (mov[k] > med) pior = Math.max(pior, mov[k] / Math.max(viz, med * 0.25, 1e-9)); }
+      res.push({ id: 'ritmo', nome: 'Ritmo sem tranco', valor: pior, meta: 'nenhum salto ≥ 2,5× os vizinhos', ok: pior < 2.5, texto: 'maior pico ' + pior.toFixed(2) + '× os vizinhos' + (mx / med > 3 ? ' (variação suave de velocidade ok)' : '') });
     }
     // fundo branco: branco opaco encostado no transparente, e buracos brancos grandes
     let franja = 0, borda = 0, buracos = 0;
@@ -827,6 +856,161 @@
     return out;
   }
 
+  // ---------------------------------------------------------------- 11c. animação procedural por segmentos
+  /*
+   * Regra do projeto (Lucas, 08/11): o ciclo é dividido em segmentos (ex.: 30 quadros = 5 x 6).
+   * Cada segmento tem uma pose de chegada (chave). Dentro do segmento a parte anda com aceleração e
+   * desaceleração (slow in / slow out) e cada quadro PARTE DO QUADRO ANTERIOR, somando só o pedaço novo
+   * do movimento — então a mão nunca "volta" no meio do segmento.
+   * Camadas: mão (+ cajado rígido preso nela) -> braço (deformação suave) -> roupa (atraso, continuação).
+   */
+  const suave = t => t * t * (3 - 2 * t); // aceleração e desaceleração
+  /**
+   * Monta a trilha acumulativa: para cada quadro, o deslocamento total da parte.
+   * segmentos: [{ quadros: 6, ate: [dx, dy], giro: graus }]  ("ate" = posição de chegada em relação ao descanso)
+   */
+  function trilhaSegmentos(segmentos) {
+    const trilha = []; let atual = { x: 0, y: 0, g: 0 };
+    for (const seg of segmentos) {
+      const ini = { ...atual }; const fim = { x: seg.ate[0], y: seg.ate[1], g: seg.giro || 0 };
+      let feito = 0; // fração já percorrida neste segmento
+      for (let k = 1; k <= seg.quadros; k++) {
+        const alvo = suave(k / seg.quadros); const passo = alvo - feito; feito = alvo;
+        // quadro novo = quadro anterior + só o movimento novo
+        atual = { x: atual.x + (fim.x - ini.x) * passo, y: atual.y + (fim.y - ini.y) * passo, g: atual.g + (fim.g - ini.g) * passo };
+        trilha.push({ x: +atual.x.toFixed(3), y: +atual.y.toFixed(3), g: +atual.g.toFixed(3), segmento: segmentos.indexOf(seg) });
+      }
+    }
+    return trilha;
+  }
+  /** Confere a regra "não volta": dentro de cada segmento o movimento anda sempre no mesmo sentido. */
+  function conferirTrilha(trilha) {
+    const ruins = [];
+    for (let k = 1; k < trilha.length; k++) {
+      const a = trilha[k - 1], b = trilha[k]; if (a.segmento !== b.segmento) continue;
+      const c = trilha[k + 1]; if (!c || c.segmento !== b.segmento) continue;
+      const d1 = [b.x - a.x, b.y - a.y], d2 = [c.x - b.x, c.y - b.y];
+      if (d1[0] * d2[0] + d1[1] * d2[1] < -1e-6) ruins.push(k);
+    }
+    return { ok: !ruins.length, quadros: ruins };
+  }
+  /** Peça rígida por cor (ex.: cajado de madeira + cristal + a mão que segura): maior pedaço ligado à âncora. */
+  function mascaraRigida(im, ancora, op = {}) {
+    const w = im.w, h = im.h, N = w * h; const m = new Uint8Array(N);
+    const ehMadeira = (r, g, b, mx, sat) => sat > 0.12 && mx > 0.14 && r >= g && g >= b * 0.9 && r - b > 0.04; // marrom / pele
+    for (let i = 0; i < N; i++) {
+      if (im.d[i * 4 + 3] < 0.4) continue; const r = im.d[i * 4], g = im.d[i * 4 + 1], b = im.d[i * 4 + 2];
+      const mx = Math.max(r, g, b), mn = Math.min(r, g, b), sat = (mx - mn) / Math.max(mx, 1e-3);
+      if (ehMadeira(r, g, b, mx, sat) || (b > r + 0.08 && sat > 0.25)) m[i] = 1;
+    }
+    const f = fechar(m, w, h, 2); const r = rotular(f, w, h);
+    // pedaço que passa mais perto da âncora
+    let melhor = 0, dm = Infinity; const [ax, ay] = ancora;
+    for (let i = 0; i < N; i++) if (r.lab[i]) { const d = Math.hypot(i % w - ax, ((i / w) | 0) - ay); if (d < dm && r.areas[r.lab[i]] > (op.minArea || 60)) { dm = d; melhor = r.lab[i]; } }
+    const out = new Uint8Array(N); if (!melhor || dm > (op.raio || 18)) return out;
+    for (let i = 0; i < N; i++) if (r.lab[i] === melhor && m[i]) out[i] = 1;
+    // peça comprida (cajado, lança, espada): acha o eixo e segue a haste inteira, inclusive a parte escura
+    // e o contorno de tinta, até o desenho acabar — para não sobrar pedaço do cajado no lugar antigo
+    let sx = 0, sy = 0, n = 0; for (let i = 0; i < N; i++) if (out[i]) { sx += i % w; sy += (i / w) | 0; n++; }
+    if (n > 20) {
+      const cx = sx / n, cy = sy / n; let xx = 0, yy = 0, xy = 0;
+      for (let i = 0; i < N; i++) if (out[i]) { const dx = i % w - cx, dy = ((i / w) | 0) - cy; xx += dx * dx; yy += dy * dy; xy += dx * dy; }
+      const tr = xx + yy, det = xx * yy - xy * xy, l1 = tr / 2 + Math.sqrt(Math.max(0, tr * tr / 4 - det)), l2 = tr - l1;
+      if (l1 > 16 * Math.max(l2, 1)) {
+        let ux = xy, uy = l1 - xx; const nn = Math.hypot(ux, uy) || 1; ux /= nn; uy /= nn; if (Math.abs(ux) < 1e-6 && Math.abs(uy) < 1e-6) { ux = 0; uy = 1; }
+        const meia = Math.max(2.5, Math.sqrt(l2 / n) * 1.6 + 1.5);
+        for (const sentido of [1, -1]) {
+          let vazio = 0;
+          for (let t = 0; vazio < 6 && t < Math.max(w, h); t++) {
+            const px = cx + ux * t * sentido, py = cy + uy * t * sentido; if (px < 0 || py < 0 || px >= w || py >= h) break;
+            let achou = false;
+            for (let k = -Math.ceil(meia); k <= Math.ceil(meia); k++) {
+              const qx = Math.round(px - uy * k), qy = Math.round(py + ux * k); if (qx < 0 || qy < 0 || qx >= w || qy >= h) continue;
+              const q = qy * w + qx; if (im.d[q * 4 + 3] > 0.3) { out[q] = 1; achou = true; }
+            }
+            vazio = achou ? 0 : vazio + 1;
+          }
+        }
+      }
+    }
+    return dilatar(out, w, h, 1);
+  }
+  /** Tira a peça rígida e tapa o buraco por dentro do corpo com a cor dos vizinhos (para a peça poder andar). */
+  function separarCamada(im, mascara) {
+    const w = im.w, h = im.h, N = w * h; const camada = criar(w, h), resto = criar(w, h); resto.d.set(im.d);
+    for (let i = 0; i < N; i++) if (mascara[i]) { for (let c = 0; c < 4; c++) camada.d[i * 4 + c] = im.d[i * 4 + c]; resto.d[i * 4 + 3] = 0; }
+    // buraco por dentro do corpo: tem corpo dos dois lados (horizontal ou vertical) -> preenche
+    const fonte = new Uint8Array(N); for (let i = 0; i < N; i++) fonte[i] = !mascara[i] && im.d[i * 4 + 3] > 0.8 ? 1 : 0;
+    const prox = maisProximo(fonte, w, h);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = y * w + x; if (!mascara[i]) continue;
+      const lado = (dx, dy) => { for (let k = 1; k < 14; k++) { const xx = x + dx * k, yy = y + dy * k; if (xx < 0 || yy < 0 || xx >= w || yy >= h) return false; const j = yy * w + xx; if (!mascara[j]) return im.d[j * 4 + 3] > 0.5; } return false; };
+      if ((lado(-1, 0) && lado(1, 0)) || (lado(0, -1) && lado(0, 1))) { const j = prox[i]; if (j >= 0) { for (let c = 0; c < 3; c++) resto.d[i * 4 + c] = im.d[j * 4 + c]; resto.d[i * 4 + 3] = 1; } }
+    }
+    return { camada, resto };
+  }
+  /** Deforma a imagem com pontos de controle (campo suave, peso pelo inverso da distância). */
+  function deformar(im, pontos) {
+    const W = im.w, H = im.h; const out = criar(W, H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      let sx = 0, sy = 0, sw = 0;
+      for (const p of pontos) { const d2 = (x - p.x) ** 2 + (y - p.y) ** 2; const wgt = 1 / ((d2 + 16) * (d2 + 16)); sx += p.dx * wgt; sy += p.dy * wgt; sw += wgt; }
+      const v = amostrarRGBA(im, x - sx / sw, y - sy / sw); const i = (y * W + x) * 4; out.d[i] = v[0]; out.d[i + 1] = v[1]; out.d[i + 2] = v[2]; out.d[i + 3] = v[3];
+    }
+    return out;
+  }
+  function transformarRigido(im, piv, dx, dy, graus) {
+    const W = im.w, H = im.h; const out = criar(W, H); const a = -graus * Math.PI / 180, cs = Math.cos(a), sn = Math.sin(a);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const ux = x - piv[0] - dx, uy = y - piv[1] - dy;
+      const v = amostrarRGBA(im, ux * cs - uy * sn + piv[0], ux * sn + uy * cs + piv[1]); const i = (y * W + x) * 4;
+      out.d[i] = v[0]; out.d[i + 1] = v[1]; out.d[i + 2] = v[2]; out.d[i + 3] = v[3];
+    }
+    return out;
+  }
+  /**
+   * Gera os quadros do gesto a partir de UM quadro de descanso e seus landmarks.
+   * op: { segmentos, mao: 'hand_main', pecaRigida: true, atrasoRoupa: 2, forcaRoupa: 0.35, ordemPeca: 'frente' }
+   */
+  function animarSegmentos(base, P, op = {}) {
+    const segmentos = op.segmentos || GESTOS.mao_frente_tras.segmentos;
+    const trilha = trilhaSegmentos(segmentos); const mao = P[op.mao || 'hand_main'];
+    // "bases": quadros de descanso que já respiram (idle). O gesto anda POR CIMA deles: nada fica congelado.
+    const bases = op.bases && op.bases.length ? op.bases : [base];
+    const camadas = bases.map(b => { const mask = op.pecaRigida === false ? new Uint8Array(b.w * b.h) : mascaraRigida(b, mao); return separarCamada(b, mask); });
+    const fixos = ['head_top', 'head_center', 'neck_base', 'chest_center', 'hip_center', 'knee_left', 'knee_right', 'ankle_left', 'ankle_right', 'foot_contact_left', 'foot_contact_right'];
+    const atraso = op.atrasoRoupa == null ? 2 : op.atrasoRoupa, forca = op.forcaRoupa == null ? 0.35 : op.forcaRoupa;
+    const quadros = [];
+    trilha.forEach((t, k) => {
+      const tr = trilha[(k - atraso + trilha.length) % trilha.length]; // roupa chega depois (continuação)
+      const pts = [];
+      for (const n of fixos) if (P[n]) pts.push({ x: P[n][0], y: P[n][1], dx: 0, dy: 0 });
+      pts.push({ x: mao[0], y: mao[1], dx: t.x, dy: t.y });
+      for (const n of ['wrist_left', 'wrist_right']) if (P[n] && Math.hypot(P[n][0] - mao[0], P[n][1] - mao[1]) < 40) pts.push({ x: P[n][0], y: P[n][1], dx: t.x * 0.85, dy: t.y * 0.85 });
+      for (const n of ['elbow_left', 'elbow_right']) if (P[n] && Math.hypot(P[n][0] - mao[0], P[n][1] - mao[1]) < 70) pts.push({ x: P[n][0], y: P[n][1], dx: t.x * 0.45, dy: t.y * 0.45 });
+      if (P.waist_center) pts.push({ x: P.waist_center[0] + (mao[0] - P.waist_center[0]) * 0.6, y: P.waist_center[1] + 18, dx: tr.x * forca, dy: tr.y * forca * 0.3 });
+      const { camada, resto } = camadas[k % camadas.length];
+      const corpo = deformar(resto, pts);
+      const peca = transformarRigido(camada, mao, t.x, t.y, t.g);
+      const q = criar(base.w, base.h);
+      if (op.ordemPeca === 'atras') { colar(q, peca, 0, 0); colar(q, corpo, 0, 0); } else { colar(q, corpo, 0, 0); colar(q, peca, 0, 0); }
+      quadros.push(suavizar(limparFranja(q)));
+    });
+    return { quadros, trilha, regra: conferirTrilha(trilha), pontos: trilha.map(t => [t.x, t.y]) };
+  }
+  // gestos prontos (30 quadros = 5 segmentos de 6), deslocamentos em px do quadro do jogo
+  const GESTOS = {
+    mao_frente_tras: { nome: 'Mão vai à frente, volta, vai atrás (calmo)', segmentos: [
+      { quadros: 6, ate: [6, -3], giro: -4 }, { quadros: 6, ate: [0, 0], giro: 0 }, { quadros: 6, ate: [-5, 2], giro: 3 },
+      { quadros: 6, ate: [0, 0], giro: 0 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
+    cajado_erguer: { nome: 'Ergue o cajado (confiante)', segmentos: [
+      { quadros: 6, ate: [1, 2], giro: 2 }, { quadros: 6, ate: [-2, -10], giro: -6 }, { quadros: 6, ate: [-2, -12], giro: -7 },
+      { quadros: 6, ate: [0, -4], giro: -2 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
+    respiro_cansado: { nome: 'Cajado pesa (cansado)', segmentos: [
+      { quadros: 6, ate: [0, 3], giro: 3 }, { quadros: 6, ate: [1, 5], giro: 5 }, { quadros: 6, ate: [1, 5], giro: 5 },
+      { quadros: 6, ate: [0, 2], giro: 2 }, { quadros: 6, ate: [0, 0], giro: 0 }] },
+  };
+
   // ---------------------------------------------------------------- 11b. recortar peças de uma folha de itens
   /** Separa cada peça (capuz, calça, bota, cajado…) de uma folha desenhada: tira o fundo e recorta cada desenho grande. */
   function separarPecas(im, op = {}) {
@@ -955,8 +1139,9 @@
     VERSAO, DIRECOES, LANDMARKS, NOMES_LANDMARK, HIERARQUIA,
     criar, deBytes, paraBytes, recortar, colar, redimensionar,
     rotular, dilatar, erodir, fechar, preencherBuracos, maiorComponente, gauss,
-    removerFundo, separarQuadros, medir, limparPapel, montarFolha, suavizar, bordasDuras,
+    removerFundo, separarQuadros, medir, limparPapel, limparFranja, montarFolha, suavizar, bordasDuras,
     gerarIdle, quadroMaisNeutro, conferir, fluxo, intervalo, interpolarCiclo, proporLandmarks, posicionarItem, comporQuadro, separarPecas,
+    trilhaSegmentos, conferirTrilha, mascaraRigida, separarCamada, deformar, transformarRigido, animarSegmentos, GESTOS,
     jsonGodot, adivinharDirecao, produzir,
   };
 });

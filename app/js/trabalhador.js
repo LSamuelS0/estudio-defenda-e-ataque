@@ -42,6 +42,12 @@ self.onmessage = (ev) => {
     } else if (tipo === 'pecas') {
       const pecas = N.separarPecas(paraImagem(dados.imagem)).map(pc => empacotar(pc.imagem));
       self.postMessage({ id, resultado: pecas }, pecas.map(o => o.bytes.buffer));
+    } else if (tipo === 'gesto') {
+      // animação procedural por segmentos por cima do idle (cada quadro parte do anterior)
+      const bases = dados.bases.map(paraImagem);
+      const r = N.animarSegmentos(bases[0], dados.landmarks, { segmentos: dados.segmentos, bases, ordemPeca: dados.ordemPeca });
+      const out = r.quadros.map(empacotar);
+      self.postMessage({ id, resultado: { quadros: out, regra: r.regra, conferencia: N.conferir(r.quadros), pontos: r.pontos } }, out.map(o => o.bytes.buffer));
     } else if (tipo === 'suavizar') {
       const out = dados.quadros.map(q => empacotar(N.suavizar(paraImagem(q))));
       self.postMessage({ id, resultado: out }, out.map(o => o.bytes.buffer));

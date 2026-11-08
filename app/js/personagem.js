@@ -275,6 +275,30 @@
     });
     ev.target.value = '';
   };
+  $('#ad-gesto').innerHTML = Object.entries(N.GESTOS).map(([k, g]) => `<option value="${k}">${esc(g.nome)}</option>`).join('');
+  $('#ad-gesto-b').onclick = async () => {
+    const chave = $('#ad-gesto').value, g = N.GESTOS[chave]; const b = $('#ad-gesto-b'); b.disabled = true;
+    try {
+      const base = p.animacoes.parado ? 'parado' : Object.keys(p.animacoes)[0];
+      const meta0 = (await carregar(base, 'frente')).meta; const meta = JSON.parse(JSON.stringify(meta0)); meta.direcoes = {}; const arquivos = {};
+      const nome = 'gesto_' + chave; let regrasOk = true;
+      for (const d of Object.keys(meta0.direcoes)) {
+        $('#ad-fb').textContent = 'Gerando ' + g.nome + ' · ' + Comum.DIRECOES[d] + '…';
+        const a = await carregar(base, d); const L = (await landmarksDe(base, d))[0];
+        const r = await Tarefas.rodar('gesto', { bases: a.quadros.map(bytesDe), landmarks: L, segmentos: g.segmentos, ordemPeca: d === 'costas' ? 'atras' : 'frente' });
+        regrasOk = regrasOk && r.regra.ok;
+        const qs = r.quadros.map(q => ImagemWeb.bytesParaCanvas(q.w, q.h, q.bytes)); const arq = p.id + '_' + nome + '_' + d + '.png';
+        arquivos[arq] = await ImagemWeb.canvasParaPNG(ImagemWeb.juntarFolha(qs));
+        meta.direcoes[d] = { arquivo: arq, ponta_cajado_px: (a.pontos || []).map((pt, k) => pt && r.pontos[k] ? [+(pt[0] + r.pontos[k][0]).toFixed(1), +(pt[1] + r.pontos[k][1]).toFixed(1)] : pt) };
+      }
+      meta.quadros = meta.colunas = 30; meta.fps = 15; meta.duracao_s = 2; meta.procedural = { gesto: chave, segmentos: g.segmentos, regra_nao_volta: regrasOk };
+      arquivos[p.id + '_' + nome + '.json'] = JSON.stringify(meta, null, 1); p.animacoes[nome] = p.id + '_' + nome + '.json';
+      await salvar(arquivos, 'Gesto procedural: ' + g.nome);
+      $('#ad-fb').textContent = 'Pronto ✔ "' + nome + '" (30 quadros, 4 direções' + (regrasOk ? ', regra "não volta" ok' : '') + '). Veja na aba Visualização.';
+      montarControles($('#ctl-ver'), palcoVer);
+    } catch (e) { $('#ad-fb').textContent = 'Erro: ' + e.message; console.error(e); }
+    b.disabled = false;
+  };
   $('#ad-hab-b').onclick = async () => { const n = $('#ad-hab').value.trim(); if (!n) return; p.habilidades.push({ id: Comum.slug(n), nome: n }); $('#ad-hab').value = ''; await salvar({}, 'Habilidade: ' + n); $('#ad-fb').textContent = 'Habilidade adicionada ✔'; };
   $('#ad-drop-b').onclick = async () => { const n = $('#ad-drop').value.trim(); if (!n) return; p.drops.push({ id: Comum.slug(n), nome: n }); $('#ad-drop').value = ''; await salvar({}, 'Drop: ' + n); $('#ad-fb').textContent = 'Drop adicionado ✔'; };
 

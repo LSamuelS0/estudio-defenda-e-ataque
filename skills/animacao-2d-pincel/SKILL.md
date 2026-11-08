@@ -22,8 +22,9 @@ Base: 12 princípios da animação (Thomas & Johnston, *The Illusion of Life*), 
 | Firme no lugar: a âncora (pé, base da chama, centro do projétil) não desliza | deriva < 2% da largura do quadro |
 | Sem serrilhado: borda com 1–2 px de transição de alfa; desenhar em 2× e reduzir com suavização alta | bordas duras < 25% da borda |
 | Nenhum fundo branco: sem papel, xadrez desenhado, franja clara, **frestas de papel** entre partes (cajado/manto, braço/corpo) | franja clara < 2%; zero manchas brancas soltas |
+| **Sem sombra no chão no sprite**: a sombra é desenhada pelo jogo | nenhum cinza solto sob os pés |
 | Loop sem emenda | salto último→primeiro ≤ 1,6× o salto médio |
-| Ritmo sem tranco | maior salto ≤ 3× o típico |
+| Ritmo sem tranco: nenhum pico isolado (aceleração/desaceleração suave é permitida) | nenhum salto ≥ 2,5× a média dos dois vizinhos |
 | Volume estável | personagem < 15% de variação de área; efeito contínuo < 45% |
 | Efeito apoia, não compete | efeito de ambiente discreto; brilho no chão ±5% no máximo |
 
@@ -45,16 +46,22 @@ Conferir sempre em **fundo escuro e em fundo claro** (o claro denuncia franja br
 | Volume | Sombra no chão, luz de um lado, nada de lados gêmeos (simetria perfeita). |
 | Apelo | Formas simples e redondas, rosto expressivo, contorno de tinta. |
 
-## 4. Quadros, fps e ritmo (decisão de 08/11/2026)
-- **6 quadros por ciclo ficam rápidos e travados.** Padrão do projeto: **24 quadros por ciclo de caminhada** (12 no mínimo, 30 no máximo), ciclo de **~1 s**.
-- Quadros **desenhados** (poses-chave): 6–8 por ciclo, com contato, passagem e extremos. Os demais são **intervalos**.
-- Intervalos podem ser automáticos (Estúdio: fluxo óptico entre quadros desenhados), mas:
-  - conferir cada intervalo com casca de cebola; onde a pose muda muito (perna que cruza, cajado que gira), **desenhar o quadro** em vez de confiar no automático;
-  - nunca usar mistura simples (crossfade) em personagem: gera contorno duplo ("fantasma");
-  - o intervalo não pode trazer de volta branco, nem borrar olhos e cristal.
-- Idle (respiração): **24 quadros em ~2,4 s** (≈10 fps), loop perfeito, pé fixo.
-- Caminhada no jogo é guiada pela distância: o JSON informa `distancia_ciclo_px` (padrão 120) e o jogo avança 1 quadro a cada `distancia_ciclo_px / quadros`. Se o passo parecer apressado, aumentar a distância do ciclo — não cortar quadros.
-- Partículas e efeitos de pincel: 24 fps. Efeito de ambiente desenhado: fps baixo + crossfade entre quadros desenhados (efeito pode, personagem não).
+## 4. Quadros, fps e ritmo (decisões de 08/11/2026)
+- **Padrão do projeto: 30 quadros por ciclo** (o mais fluido nos testes). 6 quadros ficam rápidos e travados; 12 é o mínimo aceitável.
+- Caminhada: ciclo de ~1 s. Quadros **desenhados** (poses-chave): 6–8 por ciclo (contato, passagem, extremos); o resto são **intervalos**.
+- Intervalos automáticos (Estúdio: fluxo óptico) só entre poses parecidas; onde a pose muda muito (perna que cruza, cajado que gira), **desenhar o quadro**. Nunca mistura simples (crossfade) em personagem: dá contorno duplo.
+- Idle (respiração): 30 quadros em ~3 s, loop perfeito, pé fixo.
+- Caminhada no jogo é guiada pela distância: o JSON traz `distancia_ciclo_px` (padrão 120) e o jogo avança 1 quadro a cada `distancia_ciclo_px / quadros` (120/30 = 4 px).
+- Partículas e efeitos de pincel: 24–30 fps. Efeito de ambiente desenhado: fps baixo + crossfade entre quadros desenhados (efeito pode, personagem não).
+
+### 4.1 Animação procedural por etapas (regra do Lucas)
+- Divida o ciclo em **etapas iguais**: 30 quadros = **5 etapas de 6**. Ex.: 1–6 mão vai à frente; 7–12 volta ao meio; 13–18 vai para trás; 19–24 volta; 25–30 descansa.
+- Cada etapa tem **pose de chegada (chave)**; dentro dela o movimento acelera e freia (slow in / slow out).
+- **Cada quadro parte do quadro anterior** e soma só o pedaço novo do movimento. Dentro de uma etapa a parte anda sempre no mesmo sentido — **nunca volta** (a mão não pode ir e voltar de repente). O Estúdio confere isso (`conferirTrilha`).
+- **Camadas, nesta ordem**: mão → peça rígida presa nela (cajado anda e gira junto, sem entortar) → braço (deformação suave: punho ~85%, cotovelo ~45% do movimento) → roupa com **atraso** de 1–2 quadros (continuação).
+- O gesto roda **por cima do idle** (o corpo continua respirando), então nada fica congelado na etapa de descanso.
+- Escolha o gesto pelo **sentimento**: calmo (pequeno, lento), confiante (ergue o cajado), cansado (o cajado pesa). Estúdio: aba Adição → "Gesto por etapas" (`animarSegmentos`, gestos em `GESTOS`).
+- Ao tirar a peça rígida do lugar, o buraco por dentro do corpo é tapado com a cor do vizinho; a haste inteira (inclusive contorno de tinta) sai junto — **não pode sobrar pedaço do cajado no lugar antigo**.
 
 ## 5. Efeitos — física simplificada
 - Ciclo de energia: **antecipação → ação/pico → dissipação**. Nada surge ou some de uma vez.
@@ -133,7 +140,7 @@ Identificar o arquétipo antes de escolher animações; nunca forçar rig humano
 | Ent | passos pesados, idle de galhos | galho, golpe no chão (antecipação longa) | casca, folhas |
 | Dragão | walk, decolagem, voo, pouso | mordida, garra, cauda, sopro | rig próprio |
 
-Referência inicial de quadros (ajustar ao peso e ao estilo): idle 24 (2–3 s) · caminhada 24/ciclo · corrida 24/ciclo · ataque 7–8 desenhados · conjuração 10 · magia em área 12 · impacto 4 · morte 8.
+Referência inicial de quadros (ajustar ao peso e ao estilo): idle 30 (~3 s) · caminhada 30/ciclo · corrida 30/ciclo · gesto 30 (5 etapas de 6) · ataque 7–8 desenhados · conjuração 10 · magia em área 12 · impacto 4 · morte 8.
 
 ## 9. Direções, arquivos e formato para o Godot
 - Direções: `frente`, `costas`, `esquerda`, `direita` (no Godot). Nomes: `<personagem>_<animacao>_<direcao>.png` + `<personagem>_<animacao>.json`.
@@ -179,6 +186,10 @@ Conflito entre regras: segurança e integridade do projeto primeiro; depois a di
 - 08/11 — **Cajado duplicado**: equipar um cajado num mago que já tem cajado desenhado. Regra 7.3.
 - 08/11 — **6 quadros por ciclo** ficaram rápidos e travados; padrão agora é 24 por ciclo (seção 4).
 - 08/11 — Intervalo automático com mistura simples cria "fantasma"; onde os dois desenhos discordam, usar só o desenho mais perto no tempo.
+- 08/11 — **30 quadros** escolhidos como padrão depois de comparar 6/12/24/30 em vídeo.
+- 08/11 — **Sombra no chão** saiu do sprite (fica para o jogo); a sombra de frente era cinza médio sob os pés e precisou de critério próprio.
+- 08/11 — **Franja clara na borda**: pixel claro e cinza na faixa de 2 px da borda é papel; recebe a cor do miolo (o contorno de tinta) ou some.
+- 08/11 — **Gesto procedural**: medir "ritmo" pelo pico isolado, não pelo maior salto — slow in/out é desejado.
 - 08/11 — Nome do app com acento no cabeçalho HTTP quebrou o Electron (User-Agent): manter textos técnicos (cabeçalhos, nomes de executável) sem acento.
 
 ## 15. Arquivos de apoio (nesta pasta)

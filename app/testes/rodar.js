@@ -86,6 +86,12 @@ if (fs.existsSync(receita)) {
   }
 }
 
+teste('Procedural: trilha por segmentos nunca volta dentro do segmento', () => {
+  for (const k in N.GESTOS) { const t = N.trilhaSegmentos(N.GESTOS[k].segmentos); assert.strictEqual(t.length, 30, k); assert.ok(N.conferirTrilha(t).ok, k); }
+  const ruim = [{ quadros: 3, ate: [5, 0] }]; const t = N.trilhaSegmentos(ruim); t[1].x = 0; // quadro que "volta"
+  assert.ok(!N.conferirTrilha(t).ok, 'deveria acusar o quadro que volta');
+});
+
 const pranchaPecas = path.join(RAIZ, 'docs/referencias/mago/02_pecas_equipamento_mago.png');
 if (fs.existsSync(pranchaPecas)) teste('Recortar peças: prancha de equipamentos vira 5 itens', () => {
   const pecas = N.separarPecas(ler(pranchaPecas)); assert.strictEqual(pecas.length, 5);

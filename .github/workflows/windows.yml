@@ -1,0 +1,51 @@
+name: Aplicativo Windows
+
+# Gera o instalador (.exe) e a versão portátil do Estúdio para Windows.
+# Baixe em: Actions -> "Aplicativo Windows" -> execução mais recente -> Artifacts.
+# Ao criar uma tag v1.2.3, também publica uma Release com os arquivos.
+on:
+  push:
+    branches: [estudio-app, main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Testes do núcleo
+        run: node app/testes/rodar.js
+      - name: Instalar Electron
+        working-directory: app
+        run: npm install --no-audit --no-fund
+      - name: Montar instalador e portátil
+        working-directory: app
+        run: npx electron-builder --win nsis portable --x64 --publish never
+      - name: Teste de fumaça do aplicativo montado
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem dist/win-unpacked -Filter *.exe | Select-Object -First 1
+          $env:ESTUDIO_AUTOTESTE = "$PWD/autoteste.json"
+          $p = Start-Process -FilePath $exe.FullName -PassThru
+          if (-not $p.WaitForExit(120000)) { $p.Kill(); throw "o aplicativo não terminou o autoteste" }
+          Get-Content autoteste.json
+          if ($p.ExitCode -ne 0) { throw "autoteste falhou" }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Estudio-Defenda-e-Ataque-Windows
+          path: |
+            dist/*.exe
+          if-no-files-found: error
+      - name: Publicar release (só em tags)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.exe

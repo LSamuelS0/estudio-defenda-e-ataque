@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Linha de produção · Estúdio Defenda e Ataque</title>
+<link rel="stylesheet" href="css/estudio.css">
+</head>
+<body>
+<main class="pagina">
+  <section class="boas-vindas" style="padding-bottom:10px">
+    <div class="olho">Linha de produção automática</div>
+    <h1 id="titulo">Da folha desenhada ao jogo</h1>
+    <p>Arraste as folhas de animação (uma por direção, em fundo branco ou transparente). O Estúdio tira o fundo, separa os quadros, alinha pelo pé, deixa todas as direções na mesma escala, suaviza a borda, gera o idle respirando e confere tudo pelas regras das skills.</p>
+  </section>
+
+  <div class="etapas" id="etapas">
+    <div class="etapa ativa" data-e="1"><b>1 · Personagem</b>nome e tipo</div>
+    <div class="etapa" data-e="2"><b>2 · Folhas</b>uma por direção</div>
+    <div class="etapa" data-e="3"><b>3 · Ajustes</b>tamanho, fps, idle</div>
+    <div class="etapa" data-e="4"><b>4 · Resultado</b>conferir e salvar</div>
+  </div>
+
+  <section class="cartao" id="s-personagem">
+    <div class="campos">
+      <label class="campo">Nome do personagem<input type="text" id="f-nome" placeholder="Ex.: Mago roxo"></label>
+      <label class="campo">Categoria<select id="f-cat"><option value="heroi">Herói / humanoide</option><option value="monstro">Monstro / criatura</option></select></label>
+      <label class="campo">Espécie<input type="text" id="f-especie" placeholder="mago, slime, ent…"></label>
+      <label class="campo">Arquétipo (skill de equipamentos)<select id="f-arq">
+        <option value="mago_cajado">Mago com cajado</option><option value="humanoid_biped">Humanoide bípede</option><option value="armadura_pesada">Armadura pesada</option>
+        <option value="capa_manto">Capa ou manto</option><option value="slime">Slime / amorfo</option><option value="quadrupede">Quadrúpede</option><option value="ent">Ent</option><option value="dragao">Dragão</option></select></label>
+      <label class="campo">Nome da animação<input type="text" id="f-anim" value="andar"></label>
+    </div>
+    <p class="mudo" id="f-existente" hidden></p>
+  </section>
+
+  <section class="secao" style="padding-top:22px">
+    <div class="soltar" id="soltar" tabindex="0" role="button">
+      <b>Arraste as folhas aqui</b> ou clique para escolher<br>
+      <span class="mudo">PNG ou JPG · o nome do arquivo com frente/costas/esquerda/direita (ou front/back/left/right) já escolhe a direção</span>
+      <input type="file" id="f-arquivos" accept="image/*" multiple hidden>
+    </div>
+    <div class="folhas" id="folhas"></div>
+  </section>
+
+  <section class="secao cartao" style="margin-top:22px">
+    <h3>Ajustes</h3>
+    <div class="campos">
+      <label class="campo">Quadros por folha<input type="number" id="f-quadros" min="0" max="32" value="0" title="0 = descobrir sozinho"></label>
+      <label class="campo">Altura do corpo na folha (px)<input type="number" id="f-altura" min="40" max="800" value="240"></label>
+      <label class="campo">Escala no jogo<input type="number" id="f-escala" min="0.05" max="4" step="0.05" value="0.5"></label>
+      <label class="campo">FPS da animação<input type="number" id="f-fps" min="1" max="30" value="10"></label>
+      <label class="campo"><span><input type="checkbox" id="f-destaque" checked> Ponto de destaque (ponta do cajado)</span><input type="color" id="f-cor" value="#4d8cff"></label>
+      <label class="campo"><span><input type="checkbox" id="f-idle" checked> Gerar idle (respiração)</span><input type="number" id="f-idle-q" min="6" max="24" value="12" title="quadros do idle"></label>
+    </div>
+    <p class="mudo" style="margin-top:8px">Quadros por folha = 0 descobre sozinho. As 4 direções sempre saem com o mesmo tamanho de quadro e o mesmo pivô (no pé).</p>
+    <div class="linha-botoes"><button class="botao primario" id="b-produzir" disabled>Produzir</button><span class="mudo" id="progresso-txt"></span></div>
+    <div class="barra-progresso" style="margin-top:10px"><i id="progresso"></i></div>
+  </section>
+
+  <section class="secao" id="s-resultado" hidden>
+    <div class="cabecalho"><div><div class="olho">Resultado</div><h2>Conferir</h2></div>
+      <div class="linha-botoes"><button class="botao primario" id="b-salvar">Salvar no Estúdio</button><button class="botao" id="b-jogo">Enviar para o jogo</button><button class="botao" id="b-zip">Baixar .zip</button></div></div>
+    <p class="feedback" id="fb"></p>
+    <div class="aviso" id="avisos" hidden></div>
+    <div class="direcoes-resultado" id="resultado"></div>
+  </section>
+</main>
+<script src="vendor/jszip.min.js"></script>
+<script src="nucleo/nucleo.js"></script>
+<script src="js/comum.js"></script>
+<script src="js/imagem-web.js"></script>
+<script src="js/armazem.js"></script>
+<script src="js/tarefas.js"></script>
+<script src="js/palco.js"></script>
+<script src="js/producao.js"></script>
+</body>
+</html>

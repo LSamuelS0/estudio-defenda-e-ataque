@@ -50,7 +50,7 @@ Base: os 12 princípios da animação (Thomas & Johnston, *The Illusion of Life*
 1. **Referência e esboço** (sketches) → escolher a forma que conversa com a arte do jogo.
 2. **Quadro-guia** (style frame): cor, contorno, transparência.
 3. **Poses-chave**, depois intervalos; checar com **casca de cebola** (anterior/próximo).
-4. **Conferir na Biblioteca do Estúdio** (`tools/estudio/index.html` → Biblioteca): serrilhado, firmeza, emenda, ritmo, fundo branco, volume.
+4. **Conferir no Estúdio** (aplicativo em `app/`: Linha de produção ou tela do personagem; ou `node app/cli/estudio.js conferir`): serrilhado, firmeza, emenda, ritmo, fundo branco, volume. A Biblioteca antiga está em `app/ferramentas/biblioteca.html`.
 5. **Exportar** pelo Estúdio (2× com suavização) para `efeitos/` ou `slimes/`, testar no jogo e ajustar o tempo.
 
 ## F. Números de referência

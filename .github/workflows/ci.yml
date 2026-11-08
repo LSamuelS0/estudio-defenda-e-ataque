@@ -1,0 +1,20 @@
+name: Conferência
+
+# Roda os testes do núcleo (linha de produção + regras das skills) a cada envio.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Sintaxe de todos os scripts
+        run: for f in $(git ls-files 'app/*.js' | grep -v '^app/vendor/'); do node --check "$f" || exit 1; done
+      - name: Testes do núcleo
+        run: node app/testes/rodar.js

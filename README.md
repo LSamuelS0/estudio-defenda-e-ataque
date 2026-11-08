@@ -1,24 +1,51 @@
 # Estúdio Defenda e Ataque
 
-Projeto de um editor integrado para criação de jogos 2D, começando por fluxos de produção de personagens, equipamentos, animações e efeitos.
+Programa de Windows para criar os personagens, animações, equipamentos e efeitos do jogo **Defenda e Ataque** (Godot 4). Funciona sem internet.
 
-## Estado atual
+O que ele faz sozinho:
 
-O repositório contém a biblioteca de skills e seus contratos de trabalho. A aplicação do editor ainda precisa ser localizada ou adicionada: os caminhos verificados não incluem o código do aplicativo nem `tools/estudio/index.html`, citado na skill de animação. Consulte [Continuidade do projeto](docs/CONTINUIDADE_PROJETO.md) para o estado verificado e [Plano do editor](docs/PLANO_EDITOR_PROFISSIONAL.md) para as próximas etapas.
+- **Linha de produção**: você arrasta as folhas desenhadas (uma por direção) e ele tira o fundo branco, separa os quadros, alinha pelo pé, deixa as 4 direções na mesma escala, suaviza a borda, gera o idle respirando e exporta PNG + JSON no formato que o jogo lê.
+- **Conferência automática** pelas regras das skills: sem serrilhado, pé firme, loop sem emenda, sempre em movimento, ritmo, nenhum fundo branco, volume estável.
+- **Rig**: propõe os pontos do corpo (cabeça, pescoço, ombros, cotovelos, punhos, tronco, cintura, quadril, joelhos, tornozelos, pés) em cada quadro; você corrige arrastando.
+- **Equipamentos**: recorta as peças de uma prancha, prende cada item a um ponto do rig (slot, âncora, ponto de pega, ordem de desenho, ocultar o corpo embaixo) e mostra o item acompanhando a animação.
+- **Enviar para o jogo**: grava direto em `art/<personagem>/` na pasta do jogo e guarda o arquivo antigo como `.bak`.
+- As ferramentas anteriores (Slimes, Mago por esqueleto, Efeitos em pincel, Movimento, Biblioteca) continuam dentro, em **Ferramentas**.
+
+## Como baixar e abrir (Windows)
+
+1. No GitHub, abra **Actions → Aplicativo Windows**, clique na execução mais recente e baixe **Estudio-Defenda-e-Ataque-Windows** em *Artifacts*.
+2. Dentro do .zip há duas opções:
+   - `Estudio-Defenda-e-Ataque-…-nsis.exe`: instalador (cria atalho na área de trabalho);
+   - `Estudio-Defenda-e-Ataque-…-portatil.exe`: abre direto, sem instalar.
+3. Na primeira vez o Windows pode avisar "aplicativo não reconhecido" (não é assinado): clique em **Mais informações → Executar assim mesmo**.
+
+Os personagens ficam em **Documentos › Estúdio Defenda e Ataque › personagens** (uma pasta por personagem, com folhas, JSON e histórico).
 
 ## Estrutura
 
-- `skills/`: instruções portáteis para criação de assets e colaboração de IA.
-- `docs/`: decisões de produto, continuidade, roadmap e contratos de personagem.
-- `docs/personagens/`: templates para referência, rig e inspeção do Mago-base.
+| Pasta | O que tem |
+|---|---|
+| `app/` | O aplicativo (Electron). `index.html` Personagens, `personagem.html` tela do personagem, `producao.html` linha de produção, `guia.html` |
+| `app/nucleo/` | **Motor sem dependências** (tirar fundo, separar quadros, alinhar, suavizar, idle, conferência, rig, equipamentos). Roda igual no app e na linha de comando |
+| `app/cli/` | Linha de comando para outras IAs e automação |
+| `app/dados/personagens/` | Personagens que vêm com o app (hoje: o mago v2, com as folhas originais em `fonte/`) |
+| `app/ferramentas/` | Ferramentas anteriores do Estúdio |
+| `app/testes/` | Testes automáticos (rodam no GitHub a cada envio) |
+| `skills/` | Regras de qualidade para qualquer IA: animação em pincel e substituição de equipamentos |
+| `docs/` | Roteiro para o jogo, arquitetura, referências visuais (pranchas do mago) |
 
-## Fluxo de contribuição
+## Para desenvolvedores e IAs
 
-- `main` é a linha estável.
-- `develop` recebe trabalho integrado.
-- Desenvolva em uma branch temática e abra Pull Request para `develop`.
-- Não declare templates como assets calibrados nem integração como concluída sem validar os arquivos no aplicativo/engine.
+```bash
+node app/testes/rodar.js                                            # testes do núcleo
+node app/cli/estudio.js produzir app/dados/personagens/mago/fonte/receita.json
+node app/cli/estudio.js conferir folha.png 274 278 6
+cd app && npm install && npm start                                  # abrir o app (precisa de Node 20+)
+cd app && npm run montar:windows                                    # instalador (no Windows)
+```
 
-## Skills
+Antes de mexer em arte, equipamento ou animação, leia a skill aplicável em [`skills/`](skills/README.md) e o [Roteiro para o jogo](docs/ROTEIRO_PARA_O_JOGO.md).
 
-Leia [o catálogo de skills](skills/README.md) e siga a skill aplicável antes de alterar arte, equipamento ou animação.
+## Fluxo de branches
+
+O trabalho atual está todo na branch `estudio-app`. Quando estiver aprovado, ela é mesclada em `main` (versão estável) e as branches antigas já mescladas podem ser apagadas.

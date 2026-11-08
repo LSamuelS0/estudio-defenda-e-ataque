@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personagem · Estúdio Defenda e Ataque</title>
+<link rel="stylesheet" href="css/estudio.css">
+</head>
+<body>
+<main class="pagina">
+  <div class="migalha">ESTÚDIO / <span id="migalha-cat">PERSONAGEM</span></div>
+  <section class="cabeca-personagem">
+    <div><div class="olho" id="p-tipo">—</div><h1 id="p-nome">Carregando…</h1><p class="mudo" id="p-desc"></p></div>
+    <div class="linha-botoes">
+      <span class="selo" id="p-status"></span>
+      <button class="botao" id="b-pasta" hidden>Abrir pasta</button>
+      <button class="botao primario" id="b-jogo">Enviar para o jogo</button>
+    </div>
+  </section>
+
+  <div class="abas" role="tablist">
+    <button class="aba" role="tab" data-aba="ver" aria-selected="true">01 · Visualização <small>SÓ OLHAR</small></button>
+    <button class="aba" role="tab" data-aba="rig" aria-selected="false">02 · Edição: rig <small>PONTOS DO CORPO</small></button>
+    <button class="aba" role="tab" data-aba="equip" aria-selected="false">03 · Edição: equipamentos <small>SLOTS E ÂNCORAS</small></button>
+    <button class="aba" role="tab" data-aba="adicao" aria-selected="false">04 · Adição <small>NOVOS RECURSOS</small></button>
+    <button class="aba" role="tab" data-aba="inv" aria-selected="false">05 · Inventário e drops <small>RESUMO</small></button>
+  </div>
+
+  <!-- 01 VISUALIZAÇÃO -->
+  <section class="painel" id="painel-ver">
+    <div class="dois">
+      <div class="palco-caixa">
+        <canvas class="palco" id="palco-ver"></canvas>
+        <div class="controles" id="ctl-ver"></div>
+      </div>
+      <aside class="lateral">
+        <div class="cartao"><h3>Conferência pelas skills</h3><div class="lista" id="conf-ver"><p class="mudo">Calculando…</p></div></div>
+        <div class="cartao"><h3>Ficha técnica</h3><table class="tabela" id="ficha-ver"></table></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 02 RIG -->
+  <section class="painel" id="painel-rig" hidden>
+    <p class="mudo">O Estúdio propõe os pontos do corpo em cada quadro a partir da silhueta. Arraste um ponto para corrigir; pontos corrigidos ficam verdes. Guia de proporção da prancha: cabeça 15%, tronco 30%, braços 25%, pernas 30% (o mago encapuzado tem cabeça maior).</p>
+    <div class="dois">
+      <div class="palco-caixa">
+        <canvas class="palco" id="palco-rig"></canvas>
+        <div class="controles" id="ctl-rig"></div>
+      </div>
+      <aside class="lateral">
+        <div class="cartao">
+          <h3>Pontos deste quadro</h3>
+          <div class="linha-botoes" style="margin-top:0">
+            <button class="botao pequeno" id="rig-propor">Propor de novo (todos os quadros)</button>
+            <button class="botao pequeno" id="rig-copiar">Copiar correção para todos</button>
+          </div>
+          <div id="rig-lista" class="lista" style="margin-top:10px;max-height:300px;overflow:auto"></div>
+          <div class="linha-botoes"><button class="botao primario" id="rig-salvar">Salvar rig</button><span class="feedback" id="rig-fb"></span></div>
+        </div>
+        <div class="cartao"><h3>Hierarquia</h3><div id="rig-arvore" class="mono"></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 03 EQUIPAMENTOS -->
+  <section class="painel" id="painel-equip" hidden>
+    <p class="mudo">Cada item fica preso a um ponto do rig (âncora) e só gira e se move (rígido) — regra da skill de equipamentos. "Ocultar o corpo" esconde só o que o item cobre: o desenho original nunca é apagado.</p>
+    <div class="dois">
+      <div class="palco-caixa">
+        <canvas class="palco" id="palco-equip"></canvas>
+        <div class="controles" id="ctl-equip"></div>
+      </div>
+      <aside class="lateral">
+        <div class="cartao">
+          <div class="cabecalho" style="margin:0"><h3>Itens</h3><label class="botao pequeno">＋ Adicionar imagem<input type="file" id="eq-arquivo" accept="image/png,image/webp,image/jpeg" hidden></label></div>
+          <div id="eq-lista" class="lista"></div>
+        </div>
+        <div class="cartao" id="eq-editor" hidden>
+          <h3 id="eq-titulo">Item</h3>
+          <div class="campos" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+            <label class="campo">Nome<input type="text" id="eq-nome"></label>
+            <label class="campo">Slot<select id="eq-slot"></select></label>
+            <label class="campo">Âncora (ponto do rig)<select id="eq-ancora"></select></label>
+            <label class="campo">Girar seguindo<select id="eq-mira"></select></label>
+            <label class="campo">Material<select id="eq-perfil"></select></label>
+            <label class="campo">Ordem nesta direção<select id="eq-ordem"><option value="frente">Na frente do corpo</option><option value="atras">Atrás do corpo</option></select></label>
+            <label class="campo">Escala <span id="eq-escala-v"></span><input type="range" id="eq-escala" min="0.05" max="1.5" step="0.01"></label>
+            <label class="campo">Ângulo <span id="eq-angulo-v"></span><input type="range" id="eq-angulo" min="-180" max="180" step="1"></label>
+          </div>
+          <label class="campo" style="margin-top:10px"><span><input type="checkbox" id="eq-ocultar"> Ocultar o corpo embaixo do item</span></label>
+          <p class="mudo" style="margin-top:10px">Ponto de pega: clique na imagem do item onde a mão/âncora segura.</p>
+          <canvas id="eq-pega" style="width:100%;height:200px;background:#0c0e13;border-radius:8px;cursor:crosshair"></canvas>
+          <div class="linha-botoes">
+            <button class="botao primario" id="eq-salvar">Salvar item</button>
+            <button class="botao" id="eq-remover">Remover</button>
+            <span class="feedback" id="eq-fb"></span>
+          </div>
+        </div>
+        <div class="cartao"><h3>Conferência com itens</h3><div class="lista" id="conf-equip"><p class="mudo">Ligue "Ver com itens".</p></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 04 ADIÇÃO -->
+  <section class="painel" id="painel-adicao" hidden>
+    <div class="grade">
+      <a class="cartao personagem" id="ad-anim" href="#"><div><span class="tipo">ANIMAÇÃO</span><h3>Nova animação a partir de folhas</h3><p class="mudo">Arraste as folhas desenhadas (4 direções). O Estúdio tira o fundo, separa, alinha, suaviza, confere e salva neste personagem.</p></div></a>
+      <label class="cartao personagem" style="cursor:pointer"><div><span class="tipo">EQUIPAMENTOS</span><h3>Recortar peças de uma prancha</h3><p class="mudo">Uma imagem com várias roupas/armas: cada peça vira um item separado, sem fundo.</p></div><input type="file" id="ad-pecas" accept="image/*" hidden></label>
+      <div class="cartao"><span class="tipo olho">HABILIDADE</span><h3>Nova habilidade</h3><div class="linha-botoes"><input type="text" id="ad-hab" placeholder="Ex.: Raio arcano"><button class="botao pequeno" id="ad-hab-b">Adicionar</button></div></div>
+      <div class="cartao"><span class="tipo olho">DROP</span><h3>Novo item de drop</h3><div class="linha-botoes"><input type="text" id="ad-drop" placeholder="Ex.: Gema azul"><button class="botao pequeno" id="ad-drop-b">Adicionar</button></div></div>
+    </div>
+    <div id="ad-resultado" class="folhas"></div>
+    <p class="feedback" id="ad-fb"></p>
+  </section>
+
+  <!-- 05 INVENTÁRIO -->
+  <section class="painel" id="painel-inv" hidden>
+    <div class="grade" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr))">
+      <div class="cartao"><h3>Slots de equipamento</h3><div class="slots" id="inv-slots"></div></div>
+      <div class="cartao"><h3>Habilidades</h3><div class="lista" id="inv-hab"></div></div>
+      <div class="cartao"><h3>Drops</h3><div class="lista" id="inv-drop"></div></div>
+      <div class="cartao"><h3>Histórico</h3><div class="lista mono" id="inv-hist"></div></div>
+    </div>
+  </section>
+</main>
+<script src="vendor/jszip.min.js"></script>
+<script src="nucleo/nucleo.js"></script>
+<script src="js/comum.js"></script>
+<script src="js/imagem-web.js"></script>
+<script src="js/armazem.js"></script>
+<script src="js/tarefas.js"></script>
+<script src="js/palco.js"></script>
+<script src="js/personagem.js"></script>
+</body>
+</html>

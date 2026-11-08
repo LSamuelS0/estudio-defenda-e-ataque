@@ -1,0 +1,192 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Estúdio Defenda e Ataque</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+
+<style>
+/* Layout: barra fina de oficina no topo (nome + abas), a ferramenta ocupa todo o resto da tela. Guia em coluna de leitura. */
+:root{
+  --bg:#e7e9ea; --panel:#f6f7f7; --line:#cfd5d7; --ink:#1b2326; --muted:#5d6a6f;
+  --accent:#1d6c75; --accent-ink:#ffffff; --gold:#b98a1c; --chip:#dfe6e7;
+  --f-display:"Chakra Petch",ui-sans-serif,system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13181b; --panel:#1b2226; --line:#2d383d; --ink:#e4ecee; --muted:#93a3a9;
+  --accent:#58c2cc; --accent-ink:#06282c; --gold:#e3b84f; --chip:#24302f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#13181b; --panel:#1b2226; --line:#2d383d; --ink:#e4ecee; --muted:#93a3a9;
+  --accent:#58c2cc; --accent-ink:#06282c; --gold:#e3b84f; --chip:#24302f; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);display:flex;flex-direction:column;overflow:hidden}
+.barra{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding-block:8px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background:var(--panel);border-bottom:1px solid var(--line)}
+.marca{display:flex;align-items:baseline;gap:10px;min-width:0}
+.marca h1{font-family:var(--f-display);font-weight:700;font-size:1.15rem;letter-spacing:.02em;margin:0;white-space:nowrap}
+.marca span{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);white-space:nowrap}
+nav{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+nav a{font-family:var(--f-display);font-weight:600;font-size:.86rem;letter-spacing:.04em;text-decoration:none;color:var(--ink);
+  padding:7px 14px;border-radius:5px;border:1px solid var(--line);background:var(--bg)}
+nav a:hover{border-color:var(--accent)}
+nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav a[aria-current="page"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav a small{font-family:var(--f-mono);font-weight:400;font-size:.7rem;opacity:.75;margin-left:6px}
+main{flex:1;min-height:0;position:relative}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+.guia{position:absolute;inset:0;overflow-y:auto;padding-block:28px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.guia > div{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.guia h2{font-family:var(--f-display);font-weight:700;font-size:1.35rem;margin:0;text-wrap:balance}
+.guia h3{font-family:var(--f-display);font-weight:600;font-size:1rem;letter-spacing:.03em;margin:0 0 8px}
+.guia p,.guia li{line-height:1.6;font-size:.95rem;margin:0}
+.guia ol,.guia ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.secao{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+code,.mono{font-family:var(--f-mono);font-size:.85em;background:var(--chip);padding:1px 5px;border-radius:3px}
+.tabela{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);font-weight:600;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-family:var(--f-mono);white-space:nowrap}
+.lead{color:var(--muted)}
+@media (max-width:620px){.marca span{display:none} nav{margin-left:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="barra">
+  <div class="marca"><a href="../index.html" style="color:inherit;text-decoration:none;font-family:var(--f-mono);font-size:.8rem;margin-right:10px">← Estúdio</a><h1>Ferramentas</h1><span>animações e efeitos para o jogo · Godot 4</span></div>
+  <nav aria-label="Ferramentas">
+    <a href="#slimes" id="ab-slimes">Slimes<small>5 elementos</small></a>
+    <a href="#mago" id="ab-mago">Mago<small>esqueleto</small></a>
+    <a href="#efeitos" id="ab-efeitos">Efeitos<small>pincel</small></a>
+    <a href="#movimento" id="ab-movimento">Movimento<small>estudo</small></a>
+    <a href="#biblioteca" id="ab-biblioteca">Biblioteca<small>análise</small></a>
+    <a href="#guia" id="ab-guia">Guia</a>
+  </nav>
+</header>
+<main>
+  <iframe id="fr-slimes" title="Slimes Elementais" src="slimes.html"></iframe>
+  <iframe id="fr-mago" title="Animador do Mago" hidden></iframe>
+  <iframe id="fr-efeitos" title="Efeitos em Pincel" hidden></iframe>
+  <iframe id="fr-movimento" title="Estudo de Movimento" hidden></iframe>
+  <iframe id="fr-biblioteca" title="Biblioteca de Animações" hidden></iframe>
+  <section class="guia" id="guia" hidden>
+    <div>
+      <h2>Como levar uma animação para o jogo</h2>
+      <p class="lead">As duas ferramentas desenham os personagens por código e exportam spritesheet + JSON. O jogo lê esses arquivos direto da pasta do projeto.</p>
+
+      <div class="secao">
+        <h3>Slimes (comum, água, fogo, terra, ar)</h3>
+        <ol>
+          <li>Escolha o elemento e confira as animações no palco (pulo ou rastejar, bote, castelo, morte, voo).</li>
+          <li>Deixe <b>Quadros: Todos (fluido)</b>, <b>FPS: 24</b> e <b>Altura: 128 px</b>. É a configuração que o jogo usa hoje.</li>
+          <li>Clique em <b>Pacote do slime (.zip)</b>. Ele traz as 4 animações (5 no ar) já com os nomes que o jogo procura.</li>
+          <li>Descompacte dentro de <code>D:\Meu jogo\Defenda e Ataque!\slimes\</code>, substituindo a pasta do elemento.</li>
+          <li>Abra o Godot: ele importa as imagens novas sozinho. Aperte F5.</li>
+        </ol>
+      </div>
+
+      <div class="secao">
+        <h3>O que vai em cada pasta de slime</h3>
+        <div class="tabela"><table>
+          <thead><tr><th>Arquivo</th><th>Uso no jogo</th></tr></thead>
+          <tbody>
+            <tr><td>andar</td><td>Locomoção em loop. O slime anda mais nos quadros em que o desenho avança.</td></tr>
+            <tr><td>ataque_heroi</td><td>Bote no mago (ou cuspe, no de terra). O golpe acerta no quadro de dano.</td></tr>
+            <tr><td>ataque_castelo</td><td>Ataque em loop, parado na frente do castelo.</td></tr>
+            <tr><td>morte</td><td>Toca inteira; a explosão de efeitos sai no evento "explosao".</td></tr>
+            <tr><td>voo</td><td>Só o de ar: altura do voo e as 3 rajadas vêm do JSON.</td></tr>
+            <tr><td>pedra, rajada, foguinho</td><td>Peças separadas (terra, ar e fogo). Não saem da ferramenta: mantenha as que já estão nas pastas.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="secao">
+        <h3>Correções já aplicadas nesta versão</h3>
+        <ul>
+          <li>Área de desenho maior e recorte no espaço que cada animação usa: o pulo, o bote e a poça da morte não cortam mais.</li>
+          <li>No bote o herói não é mais uma parede: o gel avança com a frente redonda. Contra o castelo continua achatando na muralha.</li>
+          <li>O JSON traz <code>escala_jogo</code>: o jogo mantém o slime do mesmo tamanho, qualquer que seja o recorte.</li>
+        </ul>
+      </div>
+
+      <div class="secao">
+        <h3>Efeitos em pincel (projéteis das 5 magias)</h3>
+        <ol>
+          <li>Na aba <b>Efeitos</b>, ajuste tamanho, chamas, cauda, respingos, brasas, fumaça e turbulência. <b>Voando</b> mostra a bola no tamanho do jogo.</li>
+          <li><b>Sortear</b> troca a variação sem mudar o estilo; <b>Voltar ao padrão do jogo</b> restaura a versão que está no jogo.</li>
+          <li>Escolha o efeito no topo: bola de fogo, orbe arcano, bola d'água, lâmina de ar ou pedra de terra.</li>
+          <li>Clique em <b>Pacote (.zip)</b> e descompacte na pasta do jogo: ele cria <code>efeitos\&lt;nome&gt;.png</code> e <code>.json</code> (bola_de_fogo, orbe_arcano, bola_de_agua, lamina_de_ar, pedra_de_terra).</li>
+          <li>O jogo gira a bola na direção do tiro e usa o pivô do JSON (centro da bola). Se os arquivos sumirem, volta a bolinha antiga.</li>
+        </ol>
+      </div>
+
+      <div class="secao">
+        <h3>Movimento (estudo da caminhada)</h3>
+        <p>A aba <b>Movimento</b> mostra a caminhada do mago nas 4 direções, recortada das referências desenhadas, com casca de cebola, as medidas (chão, eixo do capuz, caminho do cristal) e as regras que aprendemos para os próximos sprites. <b>Baixar folhas</b> traz <code>art\mago\</code> pronto para o jogo.</p>
+      </div>
+
+      <div class="secao">
+        <h3>Biblioteca (todas as animações do jogo)</h3>
+        <ol>
+          <li>Na aba <b>Biblioteca</b>, clique em <b>Abrir pasta do jogo</b> e escolha <code>D:\Meu jogo\Defenda e Ataque!</code> (ou arraste a pasta). Ela acha sozinha as folhas do mago, dos 5 slimes e de todos os efeitos (fogueira e pó mágico incluídos).</li>
+          <li>Toque, pare e passe quadro a quadro. <b>Casca de cebola</b> mostra o quadro anterior (vermelho) e o próximo (verde); <b>Trajetória</b> desenha o caminho do centro (tem que formar arcos); o gráfico de <b>Espaçamento</b> mostra se acelera e desacelera aos poucos.</li>
+          <li>O painel <b>Conferência pelas regras</b> mede: serrilhado, firmeza (âncora), emenda do loop, ritmo sem tranco, fundo branco e volume.</li>
+          <li><b>Baixar folha com bordas suavizadas</b> tira o serrilhado só da borda e baixa o .png com o mesmo nome, pronto para substituir no jogo.</li>
+        </ol>
+      </div>
+
+      <div class="secao">
+        <h3>Regras de animação e efeitos do projeto</h3>
+        <ul>
+          <li><b>Sempre em movimento:</b> nada fica parado; até o idle respira e o efeito contínuo ondula.</li>
+          <li><b>Firme no lugar:</b> o movimento acontece dentro do desenho; a base (pé, base da chama) não desliza.</li>
+          <li><b>Sem serrilhado:</b> pinceladas macias, bordas com 1–2 px de transição; exporte com suavização (o Estúdio desenha em 2× e reduz).</li>
+          <li><b>Antecipação → ação → dissipação:</b> efeito de impacto junta energia, estoura e se desfaz aos poucos; nada some de uma vez.</li>
+          <li><b>Aceleração e desaceleração:</b> partículas saem rápidas e freiam (arrasto); fumaça e poeira sobem devagar.</li>
+          <li><b>Arcos:</b> trajetórias curvas (turbulência, gravidade); linha reta só para raio e golpe seco.</li>
+          <li><b>Ação secundária:</b> brasas, faíscas, poeirinha e fumaça acompanham o efeito principal sem competir com ele.</li>
+          <li><b>Loop sem emenda</b> e <b>timing coerente</b>: 6–12 fps para desenhos à mão, 24 fps para partículas de pincel.</li>
+        </ul>
+      </div>
+
+      <div class="secao">
+        <h3>Mago</h3>
+        <p>Animador por esqueleto: roupas e peças presas aos ossos, chaves por quadro e curvas. As animações ficam salvas no Estúdio (todos que abrem esta página veem as mesmas). Exporte a spritesheet + JSON da animação ou o personagem completo em <code>.json</code>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+// Abas pelo endereco (#slimes, #mago, #efeitos, #guia). Mago e Efeitos so carregam quando a aba e aberta pela primeira vez.
+const abas = ["slimes", "mago", "efeitos", "movimento", "biblioteca", "guia"];
+function mostrar(nome) {
+  if (!abas.includes(nome)) nome = "slimes";
+  for (const a of abas) {
+    document.getElementById("ab-" + a).setAttribute("aria-current", a === nome ? "page" : "false");
+  }
+  document.getElementById("fr-slimes").hidden = nome !== "slimes";
+  const mago = document.getElementById("fr-mago");
+  if (nome === "mago" && !mago.getAttribute("src")) mago.setAttribute("src", "mago.html");
+  mago.hidden = nome !== "mago";
+  const fx = document.getElementById("fr-efeitos");
+  if (nome === "efeitos" && !fx.getAttribute("src")) fx.setAttribute("src", "efeitos.html");
+  fx.hidden = nome !== "efeitos";
+  const mv = document.getElementById("fr-movimento");
+  if (nome === "movimento" && !mv.getAttribute("src")) mv.setAttribute("src", "movimento.html");
+  mv.hidden = nome !== "movimento";
+  const bib = document.getElementById("fr-biblioteca");
+  if (nome === "biblioteca" && !bib.getAttribute("src")) bib.setAttribute("src", "biblioteca.html");
+  bib.hidden = nome !== "biblioteca";
+  document.getElementById("guia").hidden = nome !== "guia";
+  try { localStorage.setItem("estudio.aba", nome); } catch (e) {}
+}
+let inicial = location.hash.slice(1);
+if (!inicial) { try { inicial = localStorage.getItem("estudio.aba") || ""; } catch (e) {} }
+mostrar(inicial);
+window.addEventListener("hashchange", () => mostrar(location.hash.slice(1)));
+</script>
+
+</body></html>

@@ -1,0 +1,26 @@
+{
+ "id": "mago",
+ "nome": "Mago",
+ "categoria": "heroi",
+ "especie": "mago",
+ "arquetipo": "mago_cajado",
+ "descricao": "Herói inicial: capuz escuro encantado, olhos brancos, cajado com cristal azul. Usado pelo jogador e pelo bot.",
+ "status": "No jogo",
+ "pastaJogo": "art/mago",
+ "slots": ["head", "neck", "shoulders", "chest", "back", "hands", "waist", "legs", "feet", "main_hand", "off_hand", "accessories"],
+ "animacoes": { "andar": "mago_andar.json", "parado": "mago_parado.json" },
+ "fonte": { "receita": "fonte/receita.json", "corpoInteiro": "fonte/mago_corpo_inteiro.png", "retrato": "fonte/mago_retrato_moeda.png" },
+ "rig": {},
+ "revisado": {},
+ "equipamentos": [],
+ "habilidades": [
+  { "id": "bola_de_fogo", "nome": "Bola de fogo", "efeito": "efeitos/bola_de_fogo" },
+  { "id": "orbe_arcano", "nome": "Orbe arcano", "efeito": "efeitos/orbe_arcano" },
+  { "id": "bola_de_agua", "nome": "Bola d'água", "efeito": "efeitos/bola_de_agua" },
+  { "id": "lamina_de_ar", "nome": "Lâmina de ar", "efeito": "efeitos/lamina_de_ar" },
+  { "id": "pedra_de_terra", "nome": "Pedra de terra", "efeito": "efeitos/pedra_de_terra" }
+ ],
+ "drops": [],
+ "arquivos": ["mago_andar.json", "mago_parado.json", "mago_andar_frente.png", "mago_andar_costas.png", "mago_andar_esquerda.png", "mago_andar_direita.png", "mago_parado_frente.png", "mago_parado_costas.png", "mago_parado_esquerda.png", "mago_parado_direita.png", "fonte/receita.json", "fonte/mago_frente.png", "fonte/mago_costas.png", "fonte/mago_esquerda.png", "fonte/mago_direita.png", "fonte/mago_corpo_inteiro.png", "fonte/mago_retrato_moeda.png"],
+ "historico": [{ "data": "2026-11-08T19:50:00Z", "acao": "Mago v2 produzido pela linha de produção a partir das 4 folhas de caminhada" }]
+}

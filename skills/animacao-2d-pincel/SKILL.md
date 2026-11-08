@@ -50,7 +50,7 @@ Estilo: desenho à mão, contorno de tinta escura, cores chapadas, efeitos em pi
 2. Quadro-guia: cor, contorno, transparência.
 3. Poses-chave, depois intervalos; conferir com casca de cebola (anterior em vermelho, próximo em verde).
 4. Exportar spritesheet + JSON (quadros, colunas, largura/altura do quadro, fps, pivo_px, loop ou faixas acender/loop/apagar, unico para rajadas).
-5. Conferir: serrilhado, firmeza, emenda, ritmo (gráfico de velocidade do centro sem picos isolados), fundo branco, volume. No projeto Defenda e Ataque, usar a aba **Biblioteca** do Estúdio (`tools/estudio/index.html`).
+5. Conferir: serrilhado, firmeza, emenda, ritmo (gráfico de velocidade do centro sem picos isolados), fundo branco, volume. No projeto Defenda e Ataque, a **Linha de produção** e a tela do personagem do Estúdio (`app/`) conferem tudo isso sozinhas; sem tela, use `node app/cli/estudio.js conferir folha.png LQ AQ quadros`. A aba **Biblioteca** antiga fica em `app/ferramentas/biblioteca.html`.
 6. Recortes de referência com fundo preto: alinhar todos os quadros pelo mesmo ponto de apoio e travar a base antes de exportar.
 
 ## Técnicas que funcionam

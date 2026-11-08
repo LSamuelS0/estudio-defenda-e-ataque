@@ -1,45 +1,34 @@
 # Continuidade do Estúdio Defenda e Ataque
 
-Data de referência: 8 de novembro de 2026
+Atualizado em 08/11/2026 (branch `estudio-app`). Leia junto com o [Roteiro para o jogo](ROTEIRO_PARA_O_JOGO.md).
 
-## Objetivo
-Transformar o Estúdio Defenda e Ataque em software profissional para criação de jogos, com fluxos confiáveis de produção de arte 2D, personagens modulares, animação, efeitos, organização de assets, preview e exportação.
+## Estado real (verificado)
+- **O aplicativo está no repositório** em `app/` (antes só existia dentro de um .zip). É um programa Electron para Windows, offline.
+- **Motor** (`app/nucleo/nucleo.js`, sem dependências): tirar fundo, separar quadros, medir, alinhar pelo pé, reduzir com alfa pré-multiplicado, suavizar borda, gerar idle, conferir regras, propor rig, posicionar item rígido, compor corpo + itens, recortar peças, gerar JSON do jogo.
+- **Testado**: 10 testes automáticos (`app/testes/rodar.js`); teste de fumaça do app real (`ESTUDIO_AUTOTESTE`) abre as telas, confere o mago (7/7 regras), propõe 19 pontos do rig e salva no disco.
+- **Mago v2** produzido pela linha de produção a partir das 4 folhas: 8 folhas (andar + parado) passam em todas as regras.
+- Ferramentas antigas preservadas em `app/ferramentas/`, agora sem depender de internet (JSZip local, sem Google Fonts).
 
-## Decisões da conversa móvel
-- O Mago-base, derivado da imagem enviada no chat, será a primeira referência.
-- Corpo-base inicial sem cajado, capa/capuz e armadura; manter o short de referência.
-- Produzir vistas front, back, left e right, mantendo escala e proporções.
-- O primeiro ciclo de caminhada terá 8 quadros por direção, fundo transparente, loop contínuo e ponto de apoio consistente. Oito quadros é referência inicial, não requisito imutável.
-- Criar inspeção vetorial para landmarks, articulações e regiões corporais; revisar as sugestões de IA sobre a arte real.
-- Equipamentos modulares declaram slots, regiões cobertas, máscara, âncoras/pivôs, ordem de desenho e compatibilidade.
-- Corpo flexível; tecido com deformação moderada/secundária; armadura rígida com baixa deformação e volume preservado.
-- Skills novas ficam em `skills/<skill>/SKILL.md`, com auxiliares e registro no catálogo.
-- Fluxo combinado: `main` estável, `develop` para integração e branches temáticas com PRs.
+## O que veio de cada IA
+- **ChatGPT**: skill de equipamentos (`skills/character-equipment-replacement`), "Central v2" (casca Heróis/Monstros → tela única com Visualização/Edição/Adição/Inventário; documentos em `docs/central-v2/`), pranchas do corpo-base e mapa anatômico (`docs/referencias/mago/`).
+- **Claude**: skill de animação (`skills/animacao-2d-pincel`), Estúdio original (slimes, mago, efeitos, movimento, biblioteca), motor e aplicativo novo.
 
-## Estado verificado no GitHub
-Repositório: [LSamuelS0/estudio-defenda-e-ataque](https://github.com/LSamuelS0/estudio-defenda-e-ataque)
+## Decisões
+- Uma branch só (`estudio-app`) até ficar organizado; depois mesclar em `main`.
+- Visual da Central v2; funcionalidade real ligada nela.
+- Arte vem de fora (ChatGPT/artista); o Estúdio automatiza o resto. Geração de imagem por API pode entrar depois.
+- Skin roxa só depois do app rodando no computador do Lucas.
 
-- `skills/character-equipment-replacement/` e `skills/animacao-2d-pincel/` existem em `develop`.
-- PR #1 e PR #2 estão fechados e marcados como mesclados em `develop`.
-- O README da `main` era apenas o título do projeto antes desta proposta de documentação.
-- A consulta não encontrou o código do editor nem `tools/estudio/index.html`, mencionado na skill de animação. A aplicação precisa ser localizada ou adicionada ao repositório.
-- A pasta aberta no computador é um projeto Godot de Sobrevivência na Grécia Antiga, não um checkout Git; não foi considerada o código-fonte do Estúdio.
-
-## Referências existentes
-- `skills/character-equipment-replacement/SKILL.md`: anatomia, slots, máscaras, âncoras, sorting e materiais.
-- `skills/character-equipment-replacement/equipment_resource.schema.json`: contrato de equipamento.
-- `skills/animacao-2d-pincel/SKILL.md` e `regras-animacao-efeitos.md`: princípios de animação, critérios e efeitos.
-
-Essas regras são documentação de produção e não provam que o aplicativo já implemente essas funções.
+## Limites conhecidos (não esconder)
+- O rig é proposto pela silhueta: bom para âncoras grandes (mão, quadril, pés); cotovelos e punhos precisam de revisão à mão.
+- Equipamento hoje é **rígido** (só gira e move). Tecido com atraso (capa) ainda não existe; segue a skill: item rígido testado primeiro.
+- O corpo-base sem roupa (pranchas) é conceito: falta ter folhas de animação reais para o sistema de roupas valer de verdade.
+- O executável não é assinado: o Windows mostra aviso na primeira vez.
+- `docs/personagens/*.json|svg` (ChatGPT) continuam como templates não calibrados; o rig calibrado de cada personagem fica no `personagem.json` dele.
 
 ## Próximos passos
-1. Localizar o checkout do editor e auditar stack, execução e módulos existentes.
-2. Documentar arquitetura, formatos de projeto e estado real do produto.
-3. Recuperar e aprovar a arte original do Mago-base.
-4. Fixar resolução/célula do quadro e calibrar landmarks nas quatro vistas.
-5. Produzir e revisar a caminhada sem deslizamento ou mudança de proporção.
-6. Testar um item rígido com máscara e âncoras antes de generalizar o sistema.
-7. Importar e reproduzir o resultado no engine alvo.
-
-## Limite dos templates
-O SVG e JSONs em `docs/personagens/` são templates esquemáticos. Não contêm coordenadas calibradas nem sprites finais. A conversa compartilhada não disponibiliza aqui a imagem de origem como arquivo de produção. Não declarar asset aprovado, rig preciso ou integração testada até validar a arte e o engine.
+1. Lucas instala o app (Actions → Aplicativo Windows) e testa com o mago.
+2. Levar o mago v2 para o jogo seguindo o Roteiro (seção 1.1).
+3. Folhas reais do corpo-base → primeiro item rígido (cajado) testado nas 4 direções.
+4. Animações que faltam: corrida, ataque com cajado, conjuração, magia em área, dano, morte.
+5. Skin roxa pela linha de produção.

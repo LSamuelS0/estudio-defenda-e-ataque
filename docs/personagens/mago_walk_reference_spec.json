@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.1.0",
+  "asset_id": "mago_base_walk",
+  "status": "specification_only",
+  "character": {
+    "name": "Mago-base",
+    "archetype": "humanoid_biped",
+    "reference_required": true,
+    "base_state": "sem_cajado_sem_capa_sem_armadura_short_de_referencia"
+  },
+  "directions": ["front", "back", "left", "right"],
+  "animation": {
+    "name": "walk",
+    "frames_per_direction": 8,
+    "fps_target": null,
+    "loop": true,
+    "transparent_background": true,
+    "consistent_scale": true,
+    "shared_frame_dimensions": true,
+    "support_anchor": "foot_contact_or_ground_baseline",
+    "phase_plan": ["contact_left", "down_left", "passing_left", "up_left", "contact_right", "down_right", "passing_right", "up_right"]
+  },
+  "files": {
+    "front": "mago_walk_front.png",
+    "back": "mago_walk_back.png",
+    "left": "mago_walk_left.png",
+    "right": "mago_walk_right.png"
+  },
+  "frame_size_px": null,
+  "pivot_px": null,
+  "landmarks_file": "mago_rig_template.json",
+  "validation": {
+    "anatomy_reviewed": false,
+    "proportions_match_reference": false,
+    "foot_slide_checked": false,
+    "loop_checked": false,
+    "transparent_edges_checked": false,
+    "imported_into_target_engine": false
+  },
+  "notes": [
+    "Eight frames per direction is an initial target, not a final engine constraint.",
+    "Do not mirror views until asymmetry, lighting, hand dominance, and costume details are reviewed.",
+    "Set frame size, pivot, and FPS only after the source art and target constraints are available."
+  ]
+}

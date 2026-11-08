@@ -53,10 +53,11 @@ Documento vivo: atualizado a cada conversa. É a lista do que precisa ir para o 
 6. Marcar aqui como entregue, com a data.
 
 ## 4. Decisões registradas
+- 08/11: tudo o que vai para o jogo passa antes pelo Estúdio (linha de produção + conferência). Nada de colar arte direto na pasta do jogo.
 - 08/11: o Estúdio vira programa do Windows (Electron), offline, com tudo numa branch só (`estudio-app`) até ficar organizado.
 - 08/11: a casca visual é a "Central v2" do ChatGPT (Heróis/Monstros → tela única do personagem com Visualização, Edição, Adição, Inventário).
 - 08/11: as duas skills (`animacao-2d-pincel` e `character-equipment-replacement`) são as regras de qualidade; o Estúdio confere as regras sozinho.
 - 08/11: skin roxa só depois do Estúdio funcionando no computador.
 
 ## 5. Entregues
-- (nada ainda nesta fase)
+- 08/11: **Estúdio 1.0.0-beta** (programa do Windows). Branch `estudio-app`; instalador e portátil gerados pelo GitHub Actions ("Aplicativo Windows") e testados num Windows de verdade (autoteste ok). Ainda não levou nada para o jogo.

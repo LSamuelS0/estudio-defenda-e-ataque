@@ -226,7 +226,7 @@ Contrato JSON de referência (adapte ao modelo real do editor; não alegue integ
 }
 ```
 
-Perfis aceitos no schema recebido: `flexible`, `moderate`, `rigid_low_deform`, `rigid_preserve_volume`, `cloth_secondary_motion`, `custom`. Estados: `draft`, `needs_review`, `validated`, `production`. Direções opcionais: `front`, `back`, `left`, `right`. O schema original exige `id`, `name`, `slot`, `coverage_regions`, `anchors`, `deformation_profile` e `validation_status`; propriedades extras são permitidas.
+Perfis aceitos no schema recebido: `flexible`, `moderate`, `rigid_low_deform`, `rigid_preserve_volume`, `cloth_secondary_motion`, `custom`. Estados: `draft`, `needs_review`, `validated`, `production`. Direções opcionais: `front`, `back`, `left`, `right`; o objeto de direções não aceita outras chaves. `animation_overrides` e `occlusion_rules` são listas de strings. O schema original exige `id`, `name`, `slot`, `coverage_regions`, `anchors`, `deformation_profile` e `validation_status`; propriedades extras no recurso principal são permitidas.
 
 Metadados de animação/spritesheet: ação, direção, quadro(s), colunas, largura e altura da célula, FPS, pivô em pixels, margens, loop ou faixas como acender/loop/apagar, `single` para rajada única, eventos por quadro e versão. Usar nomenclatura consistente em vez de inferir parâmetros pelo nome do arquivo.
 
@@ -245,7 +245,7 @@ Revisar no tamanho real do jogo e sobre fundos claros e escuros. Procurar fundo 
 
 ## 12. Suavização de bordas em spritesheets
 
-O helper original `suavizar_bordas.py` usa NumPy, Pillow e SciPy. Ele mede a fração de pixels quase opacos na borda de cada quadro e corrige apenas degraus duros, alisando o alfa com desfoque Gaussiano leve (`sigma=0.85`) e curva smoothstep. A região macia/interior deve permanecer inalterada; pixels que ganham alfa recebem a cor opaca mais próxima para reduzir franjas.
+O helper original `suavizar_bordas.py` usa NumPy, Pillow e SciPy. Para medir, considera visível alfa acima de 8, detecta borda visível adjacente a transparência e calcula, em média por quadro, a fração desses pixels com alfa acima de 235. Para corrigir, alisa o alfa com desfoque Gaussiano leve (`sigma=0.85`) e curva smoothstep; limita a alteração a degraus de alfa maior que 0,9 adjacentes a alfa menor que 0,05 e uma vizinhança de até dois pixels. A região macia/interior deve permanecer inalterada; pixels que ganham alfa recebem a cor opaca mais próxima para reduzir franjas.
 
 Executar sempre em uma cópia e fornecer largura/altura corretas do quadro, número de colunas e número de quadros. Conferir a imagem corrigida em fundo escuro e claro e comparar com o original. Não usar a saída sem inspeção: o processamento pode não ser adequado para pixel art deliberada, bordas estilizadas, frames incompletos ou spritesheets com layout diferente.
 
@@ -293,7 +293,16 @@ Usar termos sem ambiguidade:
 
 Antes de terminar, informar o que mudou, quais critérios foram conferidos, quais testes não foram executados e o que permanece conceitual ou pendente. Nunca dizer que está no GitHub/engine sem verificar o destino.
 
-## 15. Regra final
+## 15. Continuidade do Estúdio
+
+- Repositório de referência: `LSamuelS0/estudio-defenda-e-ataque` (privado).
+- A organização combinada usa `main` como versão estável e `develop` para integração; confira a branch antes de afirmar onde está um arquivo. A biblioteca de skills e os PRs originais #1 e #2 foram integrados em `develop`.
+- A skill unificada é a referência canônica para novos prompts. O catálogo fica em `skills/README.md`; skills novas devem ter sua própria pasta e `SKILL.md`.
+- Os materiais citam `tools/estudio/index.html` e a aba Biblioteca, mas confirme que o código está disponível no checkout antes de depender dele. Se o aplicativo não estiver no repositório, documente a lacuna em vez de inventar comportamento.
+- O projeto de jogo usa Godot; a versão de engine é a que estiver declarada no projeto inspecionado.
+- A conversa compartilhada menciona um menu desenhado à mão sem trazer detalhes suficientes no trecho disponível. Não inferir aparência ou comportamento do menu sem referência adicional.
+
+## 16. Regra final
 
 O corpo pode flexionar; o tecido acompanha; a armadura rígida preserva volume; máscaras escondem somente o que está coberto; animações e efeitos comunicam peso e intenção. A montagem técnica não deve quebrar a identidade do personagem nem ficar visível ao jogador.
 

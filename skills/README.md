@@ -6,19 +6,19 @@ Esta pasta reúne instruções portáteis para agentes de IA que colaboram no pr
 
 | Skill | Finalidade | Arquivo |
 |---|---|---|
-| Substituição inteligente de roupas e equipamentos 2D | Mapear regiões corporais, aplicar máscaras, posicionar equipamentos, preservar volumes e adaptar peças às animações | [character-equipment-replacement/SKILL.md](character-equipment-replacement/SKILL.md) |
-| Animação 2D de personagens e efeitos em pincel | Princípios da animação (12 princípios), física simplificada dos efeitos, receitas de fogo/fumaça/brilho/raio/líquido, regras de traço macio sem serrilhado e sem fundo branco, processo e conferência | [animacao-2d-pincel/SKILL.md](animacao-2d-pincel/SKILL.md) |
+| Skill de animação | Referência única para animações 2D, personagens, equipamentos modulares, efeitos em pincel, inspeção anatômica, exportação e revisão de spritesheets | [skill-de-animacao/SKILL.md](skill-de-animacao/SKILL.md) |
+
+A skill consolidada reúne o conteúdo que antes estava separado entre substituição de equipamentos e animação/efeitos. Os documentos de origem permanecem no repositório para rastreabilidade; use a skill acima como fonte canônica ao preparar prompts ou executar trabalho novo.
 
 ## Convenções para novas skills
 
-- Cada skill deve ficar em sua própria subpasta: `skills/<nome-da-skill>/`.
-- O arquivo principal deve se chamar `SKILL.md` e conter metadados `name` e `description` no início.
-- Incluir referências auxiliares (JSON Schema, exemplos, checklists) na mesma subpasta.
-- Escrever regras operacionais, pré-requisitos, fluxo de trabalho, validação e limitações.
-- Diferenciar claramente conceitos, protótipos e recursos testados.
-- Atualizar este catálogo sempre que uma nova skill for adicionada.
-- Não sobrescrever uma skill existente sem revisar seu histórico e preservar compatibilidade.
+- Cada skill fica em sua própria subpasta: `skills/<nome-da-skill>/`.
+- O arquivo principal se chama `SKILL.md` e contém metadados `name` e `description` no início.
+- Adicione referências auxiliares apenas quando forem necessárias para executar a skill.
+- Diferencie claramente conceitos, protótipos e recursos testados.
+- Atualize este catálogo quando uma nova skill for adicionada.
+- Revise histórico e preserve compatibilidade antes de alterar uma skill existente.
 
 ## Instrução geral para agentes
 
-Ao trabalhar neste repositório, verifique primeiro se existe uma skill aplicável em `skills/`. Leia-a antes de editar arquivos ou criar recursos. Se duas skills parecerem conflitar, preserve as regras de segurança e integridade do projeto e documente a divergência antes de prosseguir.
+Ao trabalhar neste repositório, verifique se há uma skill aplicável em `skills/` e leia-a antes de editar arquivos ou criar recursos. Se regras parecerem conflitantes, preserve a integridade dos assets e do projeto e documente a decisão.

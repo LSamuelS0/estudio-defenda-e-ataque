@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estúdio Defenda e Ataque</title>
+<link rel="stylesheet" href="css/estudio.css">
+</head>
+<body>
+<main class="pagina">
+  <section class="boas-vindas">
+    <div class="olho">Gerenciador de personagens</div>
+    <h1>O que vamos criar hoje?</h1>
+    <p>Heróis e monstros usam o mesmo núcleo: visualizar, ajustar o rig, equipar, gerar animações e mandar para o jogo. Personagem novo começa na <a href="producao.html">linha de produção</a>.</p>
+  </section>
+
+  <section class="categorias">
+    <a class="cartao cartao-categoria" href="#herois"><div class="arte">♙</div><div><span class="olho">Personagens jogáveis</span><h2>Heróis e feiticeiros</h2><p class="mudo">Magos e futuros humanoides, com equipamentos por slot.</p></div></a>
+    <a class="cartao cartao-categoria monstros" href="#monstros"><div class="arte">♟</div><div><span class="olho">Criaturas e inimigos</span><h2>Monstros e criaturas</h2><p class="mudo">Slimes elementais hoje; ents e dragões no futuro.</p></div></a>
+  </section>
+
+  <section class="secao" id="herois">
+    <div class="cabecalho"><div><div class="olho">Categoria 01</div><h2>Heróis e feiticeiros</h2></div><span class="mudo" id="n-herois">—</span></div>
+    <div class="grade" id="lista-herois"></div>
+  </section>
+  <section class="secao" id="monstros">
+    <div class="cabecalho"><div><div class="olho">Categoria 02</div><h2>Monstros e criaturas</h2></div><span class="mudo" id="n-monstros">—</span></div>
+    <div class="grade" id="lista-monstros"></div>
+  </section>
+
+  <section class="secao">
+    <div class="cabecalho"><div><div class="olho">Onde ficam os arquivos</div><h2>Projeto</h2></div></div>
+    <div class="cartao" id="projeto-info"><p class="mudo">Carregando…</p></div>
+  </section>
+</main>
+<script src="vendor/jszip.min.js"></script>
+<script src="nucleo/nucleo.js"></script>
+<script src="js/comum.js"></script>
+<script src="js/imagem-web.js"></script>
+<script src="js/armazem.js"></script>
+<script src="js/inicio.js"></script>
+</body>
+</html>

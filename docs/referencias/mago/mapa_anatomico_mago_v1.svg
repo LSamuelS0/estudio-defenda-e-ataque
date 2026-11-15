@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+<defs>
+ <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#bda98d" stroke-width=".7" opacity=".28"/></pattern>
+ <style>
+ .bg{fill:#eee1cc}.panel{fill:#f7eddd;stroke:#80694e;stroke-width:2}.title{font: bold 27px Georgia,serif;fill:#3e2a1c}.label{font:18px Georgia,serif;fill:#463426}.small{font:14px Georgia,serif;fill:#584532}.bone{fill:none;stroke:#675b4b;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}.body{fill:#d9a98b;stroke:#4b352b;stroke-width:4;stroke-linejoin:round}.joint{fill:#f4f0e8;stroke:#2873a8;stroke-width:4}.anchor{fill:#2873a8;stroke:#e8f2f7;stroke-width:2}.zone{fill:#d3a54e;fill-opacity:.23;stroke:#b77d2c;stroke-width:2;stroke-dasharray:7 5}.rule{stroke:#9a8060;stroke-width:1.5;stroke-dasharray:5 5}
+ </style>
+</defs>
+<rect width="1400" height="1000" class="bg"/><rect width="1400" height="1000" fill="url(#grid)"/>
+<text x="700" y="48" text-anchor="middle" class="title" font-size="34">MAPA ANATÔMICO VETORIAL — MAGO-BASE</text>
+<text x="700" y="76" text-anchor="middle" class="small">Versão 0.1 • esquema inicial de articulações, âncoras e regiões de equipamento</text>
+<rect x="35" y="105" width="620" height="830" rx="18" class="panel"/><rect x="680" y="105" width="685" height="830" rx="18" class="panel"/>
+<text x="345" y="145" text-anchor="middle" class="title">Vista frontal — mapa de articulações</text>
+<!-- body silhouette: intentionally schematic and editable -->
+<!-- head -->
+<path class="body" d="M278 205 Q275 163 345 163 Q415 163 412 205 L402 263 Q389 292 345 295 Q301 292 288 263Z"/>
+<!-- neck --> <path class="body" d="M320 280 L370 280 L378 325 L312 325Z"/>
+<!-- torso --> <path class="body" d="M312 310 Q275 310 244 334 L220 405 Q232 451 260 486 L278 560 Q345 588 412 560 L430 486 Q458 451 470 405 L446 334 Q415 310 378 310 L370 325 L320 325Z"/>
+<!-- arms -->
+<path class="body" d="M246 338 Q214 341 203 382 L180 465 Q169 497 188 514 Q207 524 219 499 L246 426 L273 374Z"/>
+<path class="body" d="M444 338 Q476 341 487 382 L510 465 Q521 497 502 514 Q483 524 471 499 L444 426 L417 374Z"/>
+<!-- hands --> <path class="body" d="M184 500 Q160 515 167 546 Q181 566 205 551 L220 516Z"/><path class="body" d="M506 500 Q530 515 523 546 Q509 566 485 551 L470 516Z"/>
+<!-- hips --> <path class="body" d="M278 548 Q345 570 412 548 L423 610 Q345 636 267 610Z"/>
+<!-- legs -->
+<path class="body" d="M278 604 Q315 612 337 615 L326 748 L309 846 Q293 872 268 858 Q255 846 264 820 L273 742 L254 625Z"/>
+<path class="body" d="M353 615 Q375 612 412 604 L436 625 L417 742 L426 820 Q435 846 422 858 Q397 872 381 846 L364 748Z"/>
+<!-- feet --> <path class="body" d="M267 842 Q242 853 238 875 Q246 891 305 886 L315 864Z"/><path class="body" d="M421 842 Q446 853 450 875 Q442 891 383 886 L373 864Z"/>
+<!-- equipment coverage zones -->
+<ellipse class="zone" cx="345" cy="410" rx="118" ry="112"/><ellipse class="zone" cx="345" cy="575" rx="80" ry="48"/><path class="zone" d="M196 365 Q220 334 250 355 L224 510 Q192 526 177 495Z"/><path class="zone" d="M494 365 Q470 334 440 355 L466 510 Q498 526 513 495Z"/><path class="zone" d="M263 615 L336 625 L316 850 L260 850Z"/><path class="zone" d="M354 625 L427 615 L430 850 L374 850Z"/>
+<!-- skeleton lines -->
+<path class="bone" d="M345 250 L345 335 L345 420 L345 555 L345 600 M245 350 L205 405 L195 495 M445 350 L485 405 L495 495 M345 600 L294 635 L286 740 L285 850 M345 600 L396 635 L404 740 L405 850"/>
+<!-- anchors -->
+<g><circle class="joint" cx="345" cy="250" r="10"/><circle class="joint" cx="295" cy="330" r="10"/><circle class="joint" cx="395" cy="330" r="10"/><circle class="joint" cx="245" cy="350" r="10"/><circle class="joint" cx="445" cy="350" r="10"/><circle class="joint" cx="205" cy="405" r="9"/><circle class="joint" cx="485" cy="405" r="9"/><circle class="joint" cx="195" cy="495" r="9"/><circle class="joint" cx="495" cy="495" r="9"/><circle class="joint" cx="345" cy="420" r="10"/><circle class="joint" cx="345" cy="575" r="10"/><circle class="joint" cx="294" cy="635" r="10"/><circle class="joint" cx="396" cy="635" r="10"/><circle class="joint" cx="286" cy="740" r="9"/><circle class="joint" cx="404" cy="740" r="9"/><circle class="joint" cx="285" cy="850" r="9"/><circle class="joint" cx="405" cy="850" r="9"/></g>
+<!-- labels -->
+<g class="small"><path class="rule" d="M355 250H550"/><text x="560" y="255">Cabeça / eixo central</text><path class="rule" d="M405 330H550"/><text x="560" y="335">Ombros / clavícula</text><path class="rule" d="M495 405H550"/><text x="560" y="410">Cotovelos</text><path class="rule" d="M505 495H550"/><text x="560" y="500">Punhos</text><path class="rule" d="M355 420H550"/><text x="560" y="425">Tórax / tronco</text><path class="rule" d="M355 575H550"/><text x="560" y="580">Quadril / cintura</text><path class="rule" d="M414 740H550"/><text x="560" y="745">Joelhos</text><path class="rule" d="M415 850H550"/><text x="560" y="855">Tornozelos</text></g>
+<!-- right panel -->
+<text x="1022" y="145" text-anchor="middle" class="title">Estrutura lógica e regras de montagem</text>
+<g class="label"><rect x="720" y="175" width="285" height="52" rx="10" fill="#e8d6b9" stroke="#8b7457"/><text x="862" y="208" text-anchor="middle">Raiz / personagem</text>
+<path d="M862 227V255 M862 255H790V285 M862 255H1135V285" fill="none" stroke="#8b7457" stroke-width="3"/>
+<rect x="720" y="285" width="140" height="48" rx="8" fill="#e8d6b9" stroke="#8b7457"/><text x="790" y="315" text-anchor="middle">Tronco</text>
+<rect x="1065" y="285" width="140" height="48" rx="8" fill="#e8d6b9" stroke="#8b7457"/><text x="1135" y="315" text-anchor="middle">Cabeça</text>
+<path d="M790 333V360 M790 360H740V390 M790 360H840V390 M1135 333V390" fill="none" stroke="#8b7457" stroke-width="3"/>
+<rect x="700" y="390" width="130" height="48" rx="8" fill="#d9e5ed" stroke="#5d7d93"/><text x="765" y="420" text-anchor="middle">Braços</text>
+<rect x="845" y="390" width="130" height="48" rx="8" fill="#d9e5ed" stroke="#5d7d93"/><text x="910" y="420" text-anchor="middle">Quadril</text>
+<rect x="1065" y="390" width="140" height="48" rx="8" fill="#d9e5ed" stroke="#5d7d93"/><text x="1135" y="420" text-anchor="middle">Face / cabelo</text>
+<path d="M765 438V470 M910 438V470" fill="none" stroke="#8b7457" stroke-width="3"/>
+<rect x="700" y="470" width="130" height="48" rx="8" fill="#d9e5ed" stroke="#5d7d93"/><text x="765" y="500" text-anchor="middle">Antebraços</text>
+<rect x="845" y="470" width="130" height="48" rx="8" fill="#d9e5ed" stroke="#5d7d93"/><text x="910" y="500" text-anchor="middle">Pernas</text></g>
+<text x="720" y="570" class="title" font-size="22">Regras de equipamento</text>
+<g class="small"><circle cx="735" cy="610" r="6" fill="#b77d2c"/><text x="755" y="615">Equipamento define área de cobertura e máscara.</text><circle cx="735" cy="650" r="6" fill="#b77d2c"/><text x="755" y="655">Armadura usa deformação menor que tecido/corpo.</text><circle cx="735" cy="690" r="6" fill="#b77d2c"/><text x="755" y="695">Âncoras acompanham o esqueleto; malha corrige curvas.</text><circle cx="735" cy="730" r="6" fill="#b77d2c"/><text x="755" y="735">Ordem de desenho controla frente, trás e sobreposição.</text><circle cx="735" cy="770" r="6" fill="#b77d2c"/><text x="755" y="775">Testar em cada direção e em poses extremas.</text></g>
+<rect x="720" y="815" width="590" height="75" rx="12" fill="#efe0c7" stroke="#9b805e" stroke-width="1.5"/><text x="1015" y="845" text-anchor="middle" class="label">Importante: este SVG é um mapa esquemático inicial.</text><text x="1015" y="870" text-anchor="middle" class="small">As coordenadas finais serão calibradas com as sprites reais do mago.</text>
+<text x="700" y="970" text-anchor="middle" class="small">Estúdio Defenda e Ataque • mapa vetorial editável • 1400 × 1000</text>
+</svg>

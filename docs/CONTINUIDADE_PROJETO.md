@@ -1,6 +1,6 @@
 # Continuidade do Estúdio Defenda e Ataque
 
-Atualizado em 08/11/2026 (branch `estudio-app`). Leia junto com o [Roteiro para o jogo](ROTEIRO_PARA_O_JOGO.md).
+Atualizado em 15/11/2026 (branch `main`). Leia junto com o [Roteiro para o jogo](ROTEIRO_PARA_O_JOGO.md).
 
 ## Estado real (verificado)
 - **O aplicativo está no repositório** em `app/` (antes só existia dentro de um .zip). É um programa Electron para Windows, offline.
@@ -10,11 +10,11 @@ Atualizado em 08/11/2026 (branch `estudio-app`). Leia junto com o [Roteiro para 
 - Ferramentas antigas preservadas em `app/ferramentas/`, agora sem depender de internet (JSZip local, sem Google Fonts).
 
 ## O que veio de cada IA
-- **ChatGPT**: skill de equipamentos (hoje unida na skill única `skills/animacao-2d-pincel`), "Central v2" (casca Heróis/Monstros → tela única com Visualização/Edição/Adição/Inventário; documentos em `docs/central-v2/`), pranchas do corpo-base e mapa anatômico (`docs/referencias/mago/`).
-- **Claude**: skill de animação (`skills/animacao-2d-pincel`), Estúdio original (slimes, mago, efeitos, movimento, biblioteca), motor e aplicativo novo.
+- **ChatGPT**: skill de equipamentos modulares, hoje incorporada à skill canônica `skills/skill-de-animacao/SKILL.md`, "Central v2" (casca Heróis/Monstros → tela única com Visualização/Edição/Adição/Inventário; documentos em `docs/central-v2/`), pranchas do corpo-base e mapa anatômico (`docs/referencias/mago/`).
+- **Claude**: materiais originais de animação e efeitos, incorporados à skill canônica `skills/skill-de-animacao/SKILL.md`, Estúdio original (slimes, mago, efeitos, movimento, biblioteca), motor e aplicativo novo.
 
 ## Decisões
-- Uma branch só (`estudio-app`) até ficar organizado; depois mesclar em `main`.
+- Em 15/11/2026, o aplicativo, a documentação atualizada e a skill canônica foram consolidados na branch `main`. Novas tarefas devem usar branches temáticas e Pull Requests revisados e testados antes de integrar na `main`.
 - Visual da Central v2; funcionalidade real ligada nela.
 - Arte vem de fora (ChatGPT/artista); o Estúdio automatiza o resto. Geração de imagem por API pode entrar depois.
 - Skin roxa só depois do app rodando no computador do Lucas.

@@ -31,7 +31,7 @@ Os personagens ficam em **Documentos › Estúdio Defenda e Ataque › personage
 | `app/dados/personagens/` | Personagens que vêm com o app (hoje: o mago v2, com as folhas originais em `fonte/`) |
 | `app/ferramentas/` | Ferramentas anteriores do Estúdio |
 | `app/testes/` | Testes automáticos (rodam no GitHub a cada envio) |
-| `skills/` | Regras de qualidade para qualquer IA: animação em pincel e substituição de equipamentos |
+| `skills/` | Regras canônicas para animação 2D, equipamentos modulares e efeitos; materiais de origem preservados para rastreabilidade |
 | `docs/` | Roteiro para o jogo, arquitetura, referências visuais (pranchas do mago) |
 
 ## Para desenvolvedores e IAs
@@ -48,4 +48,4 @@ Antes de mexer em arte, equipamento ou animação, leia a skill aplicável em [`
 
 ## Fluxo de branches
 
-O trabalho atual está todo na branch `estudio-app`. Quando estiver aprovado, ela é mesclada em `main` (versão estável) e as branches antigas já mescladas podem ser apagadas.
+A branch `main` contém a versão consolidada e executável do Estúdio. Para novas tarefas, use branches temáticas e Pull Requests revisados e testados antes de integrar na `main`, que permanece como versão estável.

@@ -99,7 +99,8 @@
   const confCache = {};
   async function atualizarVer() {
     const a = await carregar(sel.anim, sel.dir);
-    palcoVer.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: a.pontos, landmarks: palcoVer.mostrarMalha ? await landmarksDe(sel.anim, sel.dir) : null }); sincVer();
+    const quadrosVer = emStudio && p.equipamentos.some(it => it.equipado !== false) ? await comporAnimacao(sel.anim, sel.dir) : a.quadros;
+    palcoVer.definir({ quadros: quadrosVer, fps: a.fps, pivo: a.meta.pivo_px, pontos: a.pontos, landmarks: palcoVer.mostrarMalha ? await landmarksDe(sel.anim, sel.dir) : null }); sincVer();
     const m = a.meta;
     $('#ficha-ver').innerHTML = [['Animação', sel.anim + ' · ' + Comum.DIRECOES[sel.dir]], ['Quadros', m.quadros], ['Quadro (px)', m.largura_quadro + ' × ' + m.altura_quadro], ['Pivô (pé)', m.pivo_px.join(', ')], ['Escala no jogo', m.escala_jogo], ['FPS', m.fps || m.fps_ref || '—'], ['Arquivo', m.direcoes[sel.dir] ? m.direcoes[sel.dir].arquivo : '—'], ['Gerado por', m.gerado_por || '—']]
       .map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('');
@@ -220,7 +221,7 @@
     g.beginPath(); g.moveTo(ox + px * e - 10 * dpr, oy + py * e); g.lineTo(ox + px * e + 10 * dpr, oy + py * e); g.moveTo(ox + px * e, oy + py * e - 10 * dpr); g.lineTo(ox + px * e, oy + py * e + 10 * dpr); g.stroke();
     c.onclick = ev => { const r = c.getBoundingClientRect(); const x = ((ev.clientX - r.left) * dpr - ox) / e, y = ((ev.clientY - r.top) * dpr - oy) / e; ajuste(it, sel.dir).pega = [Math.round(x), Math.round(y)]; desenharPega(); atualizarEquipDepois(); };
   }
-  let tEq = 0; function atualizarEquipDepois() { clearTimeout(tEq); tEq = setTimeout(atualizarEquip, 180); }
+  let tEq = 0; function atualizarEquipDepois() { clearTimeout(tEq); tEq = setTimeout(() => { atualizarEquip(); if (emStudio) atualizarVer(); }, 180); }
   function lerEditor() {
     const it = itemSel; if (!it) return; const aj = ajuste(it, sel.dir);
     it.name = $('#eq-nome').value.trim() || it.name; it.slot = $('#eq-slot').value; it.anchors = [$('#eq-ancora').value].concat($('#eq-mira').value ? [$('#eq-mira').value] : []);

@@ -223,7 +223,7 @@
     $('#eq-lista').querySelectorAll('[data-eq]').forEach(c => c.onchange = () => {
       const it = p.equipamentos[+c.dataset.eq];
       if (c.checked && jaDesenhado(it.slot) && !confirm('"' + (Comum.SLOTS[it.slot] || it.slot) + '" já está desenhado no corpo deste personagem. Equipar vai mostrar a peça duplicada. Equipar mesmo assim (só para teste)?')) { c.checked = false; return; }
-      it.equipado = c.checked; window.__studioDirty = true; atualizarEquip(); if (emStudio) atualizarVer();
+      it.equipado = c.checked; window.__studioDirty = true; if(!c.checked&&itemSel===it){itemSel=null;$('#eq-editor').hidden=true} atualizarEquip(); if (emStudio) atualizarVer();
     });
     $('#eq-lista').querySelectorAll('[data-abrir]').forEach(d => d.onclick = () => selecionarCamada(p.equipamentos[+d.dataset.abrir]));
   }

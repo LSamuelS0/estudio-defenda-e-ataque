@@ -116,7 +116,7 @@
     const end=()=>{desenhando=false;pan=null;drag=null;if(modoInk==='pan')ink.style.cursor='grab'};ink.addEventListener('pointerup',end);ink.addEventListener('pointercancel',end);new ResizeObserver(ajustarInk).observe(base);ajustarInk();
   }
   window.__studioFrameNumber = () => palcoVer.k + 1;
-  const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, aoMudarQuadro: () => { window.__studioInk?.redraw(); if (itemSel) abrirItem(itemSel); }, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:palcoVer.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
+  const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, aoMudarQuadro: () => { window.__studioInk?.redraw(); if (emStudio && palcoRig.quadros.length && palcoRig.k !== palcoVer.k) palcoRig.irPara(palcoVer.k); if (itemSel) abrirItem(itemSel); }, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:palcoVer.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
   const confCache = {};
   async function atualizarVer() {
     const a = await carregar(sel.anim, sel.dir);
@@ -133,7 +133,7 @@
 
   // ------------------------------------------------ 02 rig
   const palcoRig = new Palco($('#palco-rig')); palcoRig.editavel = true; palcoRig.tocando = false;
-  const sincRig = montarControles($('#ctl-rig'), palcoRig, { aoMudarQuadro: () => listaRig() });
+  const sincRig = montarControles($('#ctl-rig'), palcoRig, { aoMudarQuadro: () => { listaRig(); if (emStudio && palcoVer.k !== palcoRig.k) palcoVer.irPara(palcoRig.k); } });
   const propostas = {};
   async function landmarksDe(anim, dir) {
     p.rig[anim] = p.rig[anim] || {};
@@ -147,7 +147,7 @@
     const a = await carregar(sel.anim, sel.dir);
     const L = await landmarksDe(sel.anim, sel.dir);
     palcoRig.revisados = revisados();
-    palcoRig.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: L }); sincRig(); listaRig();
+    palcoRig.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: L }); if (emStudio && palcoVer.quadros.length && palcoRig.k !== palcoVer.k) palcoRig.irPara(palcoVer.k); sincRig(); listaRig();
     $('#rig-arvore').innerHTML = N.HIERARQUIA.map(h => { let d = 0, x = h; while (x.pai) { d++; x = N.HIERARQUIA.find(y => y.id === x.pai); } return `<button type="button" class="studio-rig-node" data-bone="${esc(h.id)}" style="padding-left:${d * 12 + 6}px" aria-selected="${palcoVer.selecionado === h.id}">${d ? '└ ' : '● '}${esc(h.nome)}</button>`; }).join('');
     $('#rig-arvore').querySelectorAll('[data-bone]').forEach(b => b.onclick = () => { palcoVer.selecionado=b.dataset.bone; window.__studioSetTool?.('rig'); palcoVer.desenhar(); window.__studioInk?.redraw(); });
   }
@@ -230,9 +230,9 @@
   $('#eq-mira').innerHTML = '<option value="">Não girar (fica reto)</option>' + N.LANDMARKS.map(l => `<option value="${l}">${esc(N.NOMES_LANDMARK[l])}</option>`).join('');
   $('#eq-perfil').innerHTML = Object.entries(Comum.PERFIS).map(([k, v]) => `<option value="${k}">${esc(v)}</option>`).join('');
   async function abrirItem(it) {
-    itemSel = it; $('#eq-editor').hidden = false; $('#eq-titulo').textContent = it.name; const aj = ajuste(it, sel.dir);
+    itemSel = it; $('#eq-editor').hidden = false; $('#eq-titulo').textContent = it.name; const aj = poseQuadroLido(it, sel.dir, palcoVer.k);
     $('#eq-nome').value = it.name; $('#eq-slot').value = it.slot; $('#eq-ancora').value = (it.anchors || [])[0] || 'hand_main'; $('#eq-mira').value = (it.anchors || [])[1] || '';
-    $('#eq-perfil').value = it.deformation_profile; $('#eq-ordem').value = aj.ordem; $('#eq-escala').value = aj.escala; $('#eq-angulo').value = aj.angulo; $('#eq-ocultar').checked = !!it.ocultarCorpo;
+    $('#eq-perfil').value = it.deformation_profile; $('#eq-ordem').value = aj.ordem; $('#eq-escala').value = aj.escala; $('#eq-angulo').value = aj.angulo; $('#eq-x').value=aj.offsetX||0; $('#eq-y').value=aj.offsetY||0; $('#eq-ocultar').checked = !!it.ocultarCorpo;
     $('#eq-escala-v').textContent = (+aj.escala).toFixed(2); $('#eq-angulo-v').textContent = aj.angulo + '°';
     desenharPega(); listaItens();
   }
@@ -247,14 +247,14 @@
   }
   let tEq = 0; function atualizarEquipDepois() { clearTimeout(tEq); tEq = setTimeout(() => { atualizarEquip(); if (emStudio) atualizarVer(); }, 180); }
   function lerEditor() {
-    const it = itemSel; if (!it) return; const aj = ajuste(it, sel.dir);
+    const it = itemSel; if (!it) return; const aj = poseQuadro(it, sel.dir, palcoVer.k);
     it.name = $('#eq-nome').value.trim() || it.name; it.slot = $('#eq-slot').value; it.anchors = [$('#eq-ancora').value].concat($('#eq-mira').value ? [$('#eq-mira').value] : []);
-    it.deformation_profile = $('#eq-perfil').value; aj.ordem = $('#eq-ordem').value; aj.escala = +$('#eq-escala').value; aj.angulo = +$('#eq-angulo').value; it.ocultarCorpo = $('#eq-ocultar').checked;
+    it.deformation_profile = $('#eq-perfil').value; aj.ordem = $('#eq-ordem').value; aj.escala = +$('#eq-escala').value; aj.angulo = +$('#eq-angulo').value; aj.offsetX = +$('#eq-x').value || 0; aj.offsetY = +$('#eq-y').value || 0; it.ocultarCorpo = $('#eq-ocultar').checked;
     it.draw_order = aj.ordem === 'atras' ? 'behind_body' : 'front_of_body';
     $('#eq-escala-v').textContent = aj.escala.toFixed(2); $('#eq-angulo-v').textContent = aj.angulo + '°';
     atualizarEquipDepois();
   }
-  ['#eq-nome', '#eq-slot', '#eq-ancora', '#eq-mira', '#eq-perfil', '#eq-ordem', '#eq-escala', '#eq-angulo', '#eq-ocultar'].forEach(s => $(s).addEventListener('input', lerEditor));
+  ['#eq-nome', '#eq-slot', '#eq-ancora', '#eq-mira', '#eq-perfil', '#eq-ordem', '#eq-escala', '#eq-angulo', '#eq-x', '#eq-y', '#eq-ocultar'].forEach(s => $(s).addEventListener('input', lerEditor));
   $('#eq-salvar').onclick = async () => { lerEditor(); await salvar({}, 'Item ajustado: ' + itemSel.name); $('#eq-fb').textContent = 'Salvo ✔'; listaItens(); };
   $('#eq-remover').onclick = async () => {
     if (!itemSel) return; p.equipamentos = p.equipamentos.filter(x => x !== itemSel); itemSel = null; $('#eq-editor').hidden = true;

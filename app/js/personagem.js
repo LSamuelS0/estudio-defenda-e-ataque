@@ -217,13 +217,13 @@
     if (verComItens && p.equipamentos.length) { const r = await Tarefas.rodar('conferir', { quadros: quadros.map(bytesDe) }); if (meu === pedidoEq) mostrarConferencia($('#conf-equip'), r); }
   }
   function listaItens() {
-    $('#eq-lista').innerHTML = p.equipamentos.length ? p.equipamentos.map((it, i) => `<div class="regra ${it === itemSel ? 'ok' : ''}"><input type="checkbox" data-eq="${i}" ${it.equipado !== false ? 'checked' : ''} title="Equipado"><div style="flex:1;cursor:pointer" data-abrir="${i}"><b>${esc(it.name)}</b><span>${jaDesenhado(it.slot) ? '⚠ já desenhado no corpo · ' : ''}${esc(Comum.SLOTS[it.slot] || it.slot)} · âncora ${esc(N.NOMES_LANDMARK[(it.anchors || [])[0]] || '—')}</span></div><span class="selo">${esc(it.validation_status)}</span></div>`).join('') : '<p class="mudo">Nenhum item ainda. Adicione uma imagem ou recorte peças na aba Adição.</p>';
+    $('#eq-lista').innerHTML = p.equipamentos.length ? p.equipamentos.map((it, i) => `<div class="studio-layer-row" aria-selected="${it === itemSel}"><input type="checkbox" data-eq="${i}" ${it.equipado !== false ? 'checked' : ''} title="Mostrar ou ocultar camada"><button type="button" data-abrir="${i}"><b>${esc(it.name)}</b><small>${esc(Comum.SLOTS[it.slot] || it.slot)} · ${esc(N.NOMES_LANDMARK[(it.anchors || [])[0]] || 'sem âncora')}</small></button><span class="selo">${esc(it.validation_status || 'rascunho')}</span></div>`).join('') : '<p class="mudo">Nenhuma camada de equipamento adicionada.</p>';
     $('#eq-lista').querySelectorAll('[data-eq]').forEach(c => c.onchange = () => {
       const it = p.equipamentos[+c.dataset.eq];
       if (c.checked && jaDesenhado(it.slot) && !confirm('"' + (Comum.SLOTS[it.slot] || it.slot) + '" já está desenhado no corpo deste personagem. Equipar vai mostrar a peça duplicada. Equipar mesmo assim (só para teste)?')) { c.checked = false; return; }
-      it.equipado = c.checked; atualizarEquip();
+      it.equipado = c.checked; window.__studioDirty = true; atualizarEquip(); if (emStudio) atualizarVer();
     });
-    $('#eq-lista').querySelectorAll('[data-abrir]').forEach(d => d.onclick = () => abrirItem(p.equipamentos[+d.dataset.abrir]));
+    $('#eq-lista').querySelectorAll('[data-abrir]').forEach(d => d.onclick = () => selecionarCamada(p.equipamentos[+d.dataset.abrir]));
   }
   $('#eq-slot').innerHTML = (p.slots || Object.keys(Comum.SLOTS)).map(s => `<option value="${s}">${esc(Comum.SLOTS[s] || s)}</option>`).join('');
   $('#eq-ancora').innerHTML = N.LANDMARKS.map(l => `<option value="${l}">${esc(N.NOMES_LANDMARK[l])}</option>`).join('');
@@ -236,6 +236,11 @@
     $('#eq-escala-v').textContent = (+aj.escala).toFixed(2); $('#eq-angulo-v').textContent = aj.angulo + '°';
     desenharPega(); listaItens();
   }
+  async function selecionarCamada(it) {
+    itemSel=it; abrirItem(it);
+    if(emStudio){const a=await carregar(sel.anim,sel.dir),L=await landmarksDe(sel.anim,sel.dir);palcoVer.landmarks=L;palcoVer.pivo=a.meta.pivo_px;palcoVer.desenhar();window.__studioInk?.redraw();}
+  }
+  window.__studioSelectLayer = id => { const it=p.equipamentos.find(x=>x.id===id); if(it) selecionarCamada(it); };
   async function desenharPega() {
     const it = itemSel; if (!it) return; const c = $('#eq-pega'); const img = await imagemItem(it, sel.dir); if (!img) return;
     const dpr = devicePixelRatio || 1; c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr; const g = c.getContext('2d');
@@ -282,7 +287,7 @@
     const f = ev.target.files[0]; if (!f) return; $('#eq-fb').textContent = 'Tirando o fundo…';
     const im = await ImagemWeb.paraNucleo(f); const r = await Tarefas.rodar('semFundo', { imagem: im });
     const it = await novoItem(f.name.replace(/\.[^.]+$/, ''), ImagemWeb.bytesParaCanvas(r.w, r.h, r.bytes));
-    ev.target.value = ''; abrirItem(it); atualizarEquip();
+    ev.target.value = ''; selecionarCamada(it); atualizarEquip(); if (emStudio) atualizarVer();
   };
   async function exportarEquipado() {
     const nome = sel.anim + '_equipado'; const meta0 = (await carregar(sel.anim, 'frente')).meta; const arquivos = {}; const meta = JSON.parse(JSON.stringify(meta0)); meta.direcoes = {};

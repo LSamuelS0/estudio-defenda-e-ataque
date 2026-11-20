@@ -30,7 +30,10 @@ self.onmessage = (ev) => {
       // compõe todos os quadros com os itens equipados
       const qs = dados.quadros.map(paraImagem);
       const itens = dados.itens.map(it => ({ ...it, imagem: paraImagem(it.imagem) }));
-      const out = qs.map((q, k) => empacotar(N.comporQuadro(q, dados.landmarks[k], itens)));
+      const out = qs.map((q, k) => {
+        const doQuadro = itens.map(it => it.poses && it.poses[k] ? { ...it, ...it.poses[k] } : it);
+        return empacotar(N.comporQuadro(q, dados.landmarks[k], doQuadro, { corpoVisivel: dados.corpoVisivel !== false }));
+      });
       self.postMessage({ id, resultado: out }, out.map(o => o.bytes.buffer));
     } else if (tipo === 'semFundo') {
       const im = N.removerFundo(paraImagem(dados.imagem), { sombraChao: false }).imagem;

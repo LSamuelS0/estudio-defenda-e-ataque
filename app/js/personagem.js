@@ -33,7 +33,8 @@
     atualizar();
   }
   document.querySelectorAll('.aba').forEach(b => b.onclick = () => selecionarAba(b.dataset.aba));
-  selecionarAba(abaAtual);
+  document.querySelectorAll('.aba').forEach(b => b.setAttribute('aria-selected', b.dataset.aba === abaAtual ? 'true' : 'false'));
+  paineis.forEach(n => $('#painel-' + n).hidden = n !== abaAtual);
 
   // ------------------------------------------------ animações
   async function carregar(anim, dir) {

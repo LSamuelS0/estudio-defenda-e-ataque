@@ -23,7 +23,9 @@
   if (Armazem.desktop) { $('#b-pasta').hidden = false; $('#b-pasta').onclick = () => window.estudioDesktop.dados.abrirPasta('personagens/' + p.id); }
   async function salvar(arquivos, acao) { p = await Armazem.salvar(p, arquivos, acao); ab = await Armazem.abrir(p.id); window.__studioDirty = false; return p; }
   window.__studioDirty = false;
+  p.anotacoes = p.anotacoes || [];
   window.__studioSave = async () => { await salvar({}, 'Workspace salvo'); return true; };
+  window.__studioSetTool = (modo, cor) => { if (!emStudio || !window.__studioInk) return; window.__studioInk.setTool(modo, cor); };
   document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
   document.addEventListener('change', e => { if (e.target.closest('#eq-editor') || e.target.id === 'eq-arquivo') window.__studioDirty = true; }, true);
   $('#palco-rig')?.addEventListener('pointerdown', () => { window.__studioDirty = true; });
@@ -95,6 +97,17 @@
 
   // ------------------------------------------------ 01 visualização
   const palcoVer = new Palco($('#palco-ver'));
+  if (emStudio) {
+    const base=$('#palco-ver'), host=base.parentElement, ink=document.createElement('canvas'); ink.className='studio-ink'; ink.setAttribute('aria-label','Camada de anotações'); host.insertBefore(ink,$('#ctl-ver'));
+    const ctx=ink.getContext('2d'); let modoInk='select', corInk='#e4be70', desenhando=false, tx=0, ty=0, pan=null;
+    function ajustarInk(){const d=window.devicePixelRatio||1;ink.width=Math.max(1,Math.round(base.clientWidth*d));ink.height=Math.max(1,Math.round(base.clientHeight*d));ink.style.width=base.clientWidth+'px';ink.style.height=base.clientHeight+'px';desenharInk()}
+    function desenharInk(){const d=window.devicePixelRatio||1;ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,ink.width/d,ink.height/d);for(const marca of p.anotacoes){const pts=marca.pontos||[];if(pts.length<1)continue;ctx.strokeStyle=marca.cor||'#e4be70';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(pts[0][0]*base.clientWidth,pts[0][1]*base.clientHeight);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0]*base.clientWidth,pts[i][1]*base.clientHeight);if(pts.length===1){ctx.arc(pts[0][0]*base.clientWidth,pts[0][1]*base.clientHeight,1.5,0,Math.PI*2);ctx.fill()}else ctx.stroke()}}
+    window.__studioInk={setTool(m,c){modoInk=m;corInk=c||corInk;ink.style.pointerEvents=m==='paint'||m==='pan'?'auto':'none';ink.style.cursor=m==='paint'?'crosshair':m==='pan'?'grab':'default'},redraw:desenharInk};
+    const ponto=e=>{const r=ink.getBoundingClientRect();return[(e.clientX-r.left)/Math.max(1,base.clientWidth),(e.clientY-r.top)/Math.max(1,base.clientHeight)]};
+    ink.addEventListener('pointerdown',e=>{if(modoInk==='paint'){desenhando=true;ink.setPointerCapture(e.pointerId);p.anotacoes.push({cor:corInk,pontos:[ponto(e)]});window.__studioDirty=true;desenharInk()}else if(modoInk==='pan'){pan=[e.clientX-tx,e.clientY-ty];ink.setPointerCapture(e.pointerId);ink.style.cursor='grabbing'}});
+    ink.addEventListener('pointermove',e=>{if(desenhando){p.anotacoes[p.anotacoes.length-1].pontos.push(ponto(e));desenharInk()}else if(pan){tx=e.clientX-pan[0];ty=e.clientY-pan[1];const tr='translate('+tx+'px,'+ty+'px)';base.style.transform=tr;ink.style.transform=tr}});
+    const end=()=>{desenhando=false;pan=null;if(modoInk==='pan')ink.style.cursor='grab'};ink.addEventListener('pointerup',end);ink.addEventListener('pointercancel',end);new ResizeObserver(ajustarInk).observe(base);ajustarInk();
+  }
   const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:a.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
   const confCache = {};
   async function atualizarVer() {

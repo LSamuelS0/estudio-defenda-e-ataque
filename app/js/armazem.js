@@ -56,17 +56,28 @@ window.Armazem = (() => {
     }
     const arquivos = await listarUsuario('personagens');
     for (const rel of arquivos.filter(r => /^personagens\/[^/]+\/personagem\.json$/.test(r))) {
-      try { const p = JSON.parse(new TextDecoder().decode(await lerUsuario(rel))); lista.set(p.id, { ...p, origem: 'usuario' }); } catch { /* corrompido: ignora */ }
+      try {
+        const p = JSON.parse(new TextDecoder().decode(await lerUsuario(rel)));
+        const doApp = lista.get(p.id); if (doApp && (doApp.versaoBase || 0) > (p.versaoBase || 0)) continue; // cópia de uma versão antiga
+        lista.set(p.id, { ...p, origem: 'usuario' });
+      } catch { /* corrompido: ignora */ }
     }
     return [...lista.values()];
   }
   async function abrir(id) {
-    const doUsuario = await lerUsuario('personagens/' + id + '/personagem.json');
+    let doUsuario = await lerUsuario('personagens/' + id + '/personagem.json');
+    if (doUsuario) {
+      // o app trouxe uma versão nova da base (ex.: Mago v3): a cópia salva antes no navegador/pasta fica de lado
+      try {
+        const r = await fetch(BASE_APP + 'personagens/' + id + '/personagem.json');
+        if (r.ok) { const app = await r.json(); const u = JSON.parse(new TextDecoder().decode(doUsuario)); if ((app.versaoBase || 0) > (u.versaoBase || 0)) doUsuario = null; }
+      } catch { /* sem cópia no app */ }
+    }
     let p, origem;
     if (doUsuario) { p = JSON.parse(new TextDecoder().decode(doUsuario)); origem = 'usuario'; }
     else { const r = await fetch(BASE_APP + 'personagens/' + id + '/personagem.json'); if (!r.ok) throw new Error('Personagem não encontrado: ' + id); p = await r.json(); origem = 'app'; }
     const url = async nome => {
-      const doU = await lerUsuario('personagens/' + id + '/' + nome);
+      const doU = origem === 'usuario' ? await lerUsuario('personagens/' + id + '/' + nome) : null;
       if (doU) return urlUsuario('personagens/' + id + '/' + nome);
       return BASE_APP + 'personagens/' + id + '/' + nome;
     };
@@ -79,7 +90,8 @@ window.Armazem = (() => {
     for (const nome in arquivos) await gravarUsuario('personagens/' + p.id + '/' + nome, arquivos[nome]);
     // arquivos que só existem no app (ex.: folhas originais) são copiados na primeira gravação
     const atual = await lerUsuario('personagens/' + p.id + '/personagem.json');
-    if (!atual) {
+    let antiga = false; try { antiga = !!atual && (JSON.parse(new TextDecoder().decode(atual)).versaoBase || 0) < (p.versaoBase || 0); } catch { antiga = true; }
+    if (!atual || antiga) {
       for (const nome of p.arquivos || []) {
         if (arquivos[nome]) continue;
         try { const r = await fetch(BASE_APP + 'personagens/' + p.id + '/' + nome); if (r.ok) await gravarUsuario('personagens/' + p.id + '/' + nome, new Uint8Array(await r.arrayBuffer())); } catch { /* ok */ }

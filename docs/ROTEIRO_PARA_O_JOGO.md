@@ -13,15 +13,11 @@ Documento vivo: atualizado a cada conversa. É a lista do que precisa ir para o 
 
 ## 1. Fila de entregas para o jogo (em ordem)
 
-### 1.1 Mago v2 (capuz escuro, cristal azul) — andar e parado
-- **Situação:** pronto no Estúdio. Gerado pela linha de produção em `app/dados/personagens/mago/`.
-- **Arquivos:** `mago_andar.json`, `mago_andar_{frente,costas,esquerda,direita}.png` (24 quadros: 6 desenhados + intervalos automáticos), `mago_parado.json`, `mago_parado_{...}.png` (24 quadros, 2,4 s, respiração + brilho do cristal). Frestas brancas entre cajado e capuz/manto removidas (08/11).
-- **Medidas:** quadro 274×278, pivô (137, 262) no pé, `escala_jogo` 0,5. Ponta do cajado por quadro em `ponta_cajado_px`.
-- **Conferência:** 7/7 regras ✔ nas 8 folhas (serrilhado 0%, pé firme, loop, ritmo, sem fundo branco, volume).
-- **No jogo:** copiar para `art/mago/` (o Estúdio faz isso em "Enviar para o jogo" e guarda `.bak` do antigo). Jogador e bot usam o mesmo arquivo.
-- **Mudança necessária no `mago.gd` (agora 24 quadros por ciclo):** trocar a constante `PASSO_PX := 20.0` por `distancia_ciclo_px / quadros` lido do JSON (120 / 24 = 5 px por quadro). Sem isso o mago "patina" 4× mais devagar nas pernas. O idle já usa o `fps` do JSON.
-- **Conferir no Godot:** `mago.gd` lê largura/altura/pivô do JSON — confirmar que o tamanho novo (274×278, antes 220×290) não muda o tamanho na tela; conferir se o projétil sai da ponta do cajado em todas as direções.
-- **Atenção:** a imagem de corpo inteiro (`fonte/mago_corpo_inteiro.png`) tem o cajado do lado oposto ao da caminhada de frente e manto mais claro. Por isso o idle de frente usa o quadro mais "de pé" da caminhada, e não essa imagem.
+### 1.1 Mago v3 — corpo base por camadas (em produção desde 20/11)
+- **Situação:** o Mago v2 (desenhado já vestido) saiu do Estúdio. O Mago agora é o **corpo base nu** (Camada 0), recortado de `docs/referencias/mago_v3/01_guia_referencia_corpo_nu.png`, e será vestido por camadas a partir de `02_folha_equipamento_mago_das_sombras.png`: manto com capuz, calça, botas e cajado.
+- **Arquivos hoje:** só `mago_parado.json` + `mago_parado_{frente,costas,esquerda,direita}.png` (30 quadros, 3 s, respiração). Quadro 240×330, pivô (120, 316), `escala_jogo` 0,5. Ainda não há caminhada: falta a folha da caminhada nas 4 direções.
+- **Rig:** frente vem do Mapa Corporal da referência (19 pontos, mão da arma = lado direito da tela); costas e laterais usam a proposta automática.
+- **No jogo:** não enviar para `art/mago/` até o mago vestido e a caminhada estarem prontos (o `mago.gd` espera `mago_andar.json`). As folhas do v2 ficaram em `app/testes/fixtures/mago_v2/` só como material de teste do núcleo.
 
 ### 1.2 Página do herói e moeda
 - **Pendente.** Trocar a silhueta de `painel_heroi.png` pelo mago de corpo inteiro e colocar o rosto (`fonte/mago_retrato_moeda.png`) dentro de `medalha_ativa.png` (hoje é a silhueta do chapéu de mago).

@@ -91,7 +91,7 @@
   const confCache = {};
   async function atualizarVer() {
     const a = await carregar(sel.anim, sel.dir);
-    palcoVer.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: a.pontos, landmarks: null }); sincVer();
+    palcoVer.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: a.pontos, landmarks: palcoVer.mostrarMalha ? await landmarksDe(sel.anim, sel.dir) : null }); sincVer();
     const m = a.meta;
     $('#ficha-ver').innerHTML = [['Animação', sel.anim + ' · ' + Comum.DIRECOES[sel.dir]], ['Quadros', m.quadros], ['Quadro (px)', m.largura_quadro + ' × ' + m.altura_quadro], ['Pivô (pé)', m.pivo_px.join(', ')], ['Escala no jogo', m.escala_jogo], ['FPS', m.fps || m.fps_ref || '—'], ['Arquivo', m.direcoes[sel.dir] ? m.direcoes[sel.dir].arquivo : '—'], ['Gerado por', m.gerado_por || '—']]
       .map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('');

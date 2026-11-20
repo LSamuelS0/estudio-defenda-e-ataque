@@ -10,7 +10,11 @@ https://lsamuels0.github.io/estudio-defenda-e-ataque/app/
 
 ## Áreas
 
-- **Personagens:** bancada com catálogo por tipo e elemento, visualização e linha do tempo ao centro, rig e equipamentos no inspetor. Os Slimes abrem diretamente no visualizador próprio.
+- **Personagens (Bancada):** layout no estilo Blender. À esquerda, a lista de personagens (recolhível). No centro, a barra de ferramentas (Selecionar, Malha, Roupa, Rig, Visão, Anotar), o palco e a linha do tempo. À direita, três hierarquias que recolhem e maximizam:
+  - **Camadas:** 0 corpo base (nu) · 1 luvas · 2 peitoral · 3 calça · 4 botas · 5 capacete · 6 armas. Cada camada guarda o seu conjunto de peças, com uma peça ativa por vez e um olho para mostrar ou ocultar a camada. A camada maior é desenhada por cima.
+  - **Rig:** hierarquia de ossos; selecionar, arrastar no palco ou digitar X/Y por quadro.
+  - **Efeitos:** efeitos ligados ao personagem, com o ponto do corpo onde nascem e uma prévia leve.
+  O painel está completo para heróis. Os Slimes ainda abrem o visualizador próprio e recebem o mesmo painel numa próxima etapa. Atalhos: Q, M, G, R, V e N para as ferramentas, espaço para tocar e setas para trocar de quadro.
 - **Movimento:** seleção de personagem para revisão dos ciclos disponíveis.
 - **Produção:** abre o workspace de personagem com rig e equipamentos/camadas.
 - **Efeitos:** mantém o estúdio dedicado a efeitos e magias.

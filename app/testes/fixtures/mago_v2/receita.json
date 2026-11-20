@@ -1,0 +1,25 @@
+{
+  "nome": "mago",
+  "saida": "..",
+  "folhas": {
+    "frente": "mago_frente.png",
+    "costas": "mago_costas.png",
+    "esquerda": "mago_esquerda.png",
+    "direita": "mago_direita.png"
+  },
+  "alturaCorpo": 240,
+  "escalaJogo": 0.5,
+  "fps": 10,
+  "quadrosPorFolha": 6,
+  "corDestaque": [
+    0.3,
+    0.55,
+    1.0
+  ],
+  "gerarIdle": true,
+  "quadrosCiclo": 30,
+  "duracaoCiclo": 1.0,
+  "distanciaCiclo": 120,
+  "quadrosIdle": 30,
+  "duracaoIdle": 3.0
+}

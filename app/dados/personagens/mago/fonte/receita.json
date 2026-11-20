@@ -1,25 +1,18 @@
 {
-  "nome": "mago",
-  "saida": "..",
-  "folhas": {
-    "frente": "mago_frente.png",
-    "costas": "mago_costas.png",
-    "esquerda": "mago_esquerda.png",
-    "direita": "mago_direita.png"
-  },
-  "alturaCorpo": 240,
-  "escalaJogo": 0.5,
-  "fps": 10,
-  "quadrosPorFolha": 6,
-  "corDestaque": [
-    0.3,
-    0.55,
-    1.0
-  ],
-  "gerarIdle": true,
-  "quadrosCiclo": 30,
-  "duracaoCiclo": 1.0,
-  "distanciaCiclo": 120,
-  "quadrosIdle": 30,
-  "duracaoIdle": 3.0
+ "nome": "mago",
+ "saida": "..",
+ "folhas": {
+  "frente": "mago_nu_frente.png",
+  "costas": "mago_nu_costas.png",
+  "esquerda": "mago_nu_esquerda.png",
+  "direita": "mago_nu_direita.png"
+ },
+ "alturaCorpo": 240,
+ "escalaJogo": 0.5,
+ "fps": 10,
+ "quadrosPorFolha": 1,
+ "gerarIdle": true,
+ "quadrosIdle": 30,
+ "duracaoIdle": 3.0,
+ "observacao": "Corpo base (nu) recortado das Vistas de Referência. A saída da linha de produção foi ampliada para 240×330 (pivô 120,316) para caber manto e cajado."
 }

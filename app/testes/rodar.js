@@ -41,7 +41,7 @@ teste('Suavizar: tira o serrilhado de um quadrado duro', () => {
   assert.ok(N.bordasDuras(im) > 0.9); assert.ok(N.bordasDuras(N.suavizar(im)) < 0.25);
 });
 
-const receita = path.join(RAIZ, 'app/dados/personagens/mago/fonte/receita.json');
+const receita = path.join(RAIZ, 'app/testes/fixtures/mago_v2/receita.json');
 if (fs.existsSync(receita)) {
   const rc = JSON.parse(fs.readFileSync(receita, 'utf8')); const base = path.dirname(receita);
   const folhas = {}; for (const d in rc.folhas) folhas[d] = ler(path.join(base, rc.folhas[d]));

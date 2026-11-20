@@ -27,7 +27,7 @@
   function identificar(url) {
     const caminho = url.pathname.toLowerCase();
     if (caminho.endsWith("/visao-geral.html")) return "visao";
-    if (caminho.endsWith("/inicio.html") || caminho.endsWith("/personagem.html")) return "personagens";
+    if (caminho.endsWith("/studio.html") || caminho.endsWith("/inicio.html") || caminho.endsWith("/personagem.html")) return "personagens";
     if (caminho.endsWith("/producao.html")) return "producao";
     if (caminho.endsWith("/movimento.html")) return "movimento";
     if (caminho.endsWith("/efeitos.html")) return "efeitos";

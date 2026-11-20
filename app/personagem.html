@@ -58,7 +58,7 @@
           <div id="rig-lista" class="lista" style="margin-top:10px;max-height:300px;overflow:auto"></div>
           <div class="linha-botoes"><button class="botao primario" id="rig-salvar">Salvar rig</button><span class="feedback" id="rig-fb"></span></div>
         </div>
-        <div class="cartao"><h3>Hierarquia</h3><div id="rig-arvore" class="mono"></div></div>
+        <div class="cartao"><h3>Hierarquia do corpo</h3><label class="studio-layer-root"><input id="studio-body-visible" type="checkbox" checked> Personagem base</label><div id="rig-arvore" class="mono"></div><small id="studio-body-note" class="mudo"></small></div>
       </aside>
     </div>
   </section>
@@ -73,7 +73,7 @@
       </div>
       <aside class="lateral">
         <div class="cartao">
-          <div class="cabecalho" style="margin:0"><h3>Itens</h3><label class="botao pequeno">＋ Adicionar imagem<input type="file" id="eq-arquivo" accept="image/png,image/webp,image/jpeg" hidden></label></div>
+          <div class="cabecalho" style="margin:0"><h3>Camadas e equipamentos</h3><label class="botao pequeno">＋ Adicionar imagem<input type="file" id="eq-arquivo" accept="image/png,image/webp,image/jpeg" hidden></label></div>
           <div id="eq-lista" class="lista"></div>
         </div>
         <div class="cartao" id="eq-editor" hidden>
@@ -84,8 +84,8 @@
             <label class="campo">Âncora (ponto do rig)<select id="eq-ancora"></select></label>
             <label class="campo">Girar seguindo<select id="eq-mira"></select></label>
             <label class="campo">Material<select id="eq-perfil"></select></label>
-            <label class="campo">Ordem nesta direção<select id="eq-ordem"><option value="frente">Na frente do corpo</option><option value="atras">Atrás do corpo</option></select></label>
-            <label class="campo">Escala <span id="eq-escala-v"></span><input type="range" id="eq-escala" min="0.05" max="1.5" step="0.01"></label>
+            <label class="campo">Ordem Z<select id="eq-ordem"><option value="frente">Na frente do corpo</option><option value="atras">Atrás do corpo</option></select></label>
+            <label class="campo">Posição X (quadro)<input type="number" id="eq-x" step="1" value="0"></label><label class="campo">Posição Y (quadro)<input type="number" id="eq-y" step="1" value="0"></label><label class="campo">Escala <span id="eq-escala-v"></span><input type="range" id="eq-escala" min="0.05" max="1.5" step="0.01"></label>
             <label class="campo">Ângulo <span id="eq-angulo-v"></span><input type="range" id="eq-angulo" min="-180" max="180" step="1"></label>
           </div>
           <label class="campo" style="margin-top:10px"><span><input type="checkbox" id="eq-ocultar"> Ocultar o corpo embaixo do item</span></label>

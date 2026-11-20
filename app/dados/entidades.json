@@ -1,11 +1,53 @@
 {
   "versao": 1,
-  "personagens": ["mago"],
+  "personagens": [
+    "mago"
+  ],
   "atalhos": [
-    { "id": "slime-comum", "nome": "Slime comum", "categoria": "monstro", "especie": "slime", "descricao": "Gerado por código no gerador de slimes (pulo, bote, castelo, morte).", "ferramenta": "ferramentas/index.html#slimes", "cor": "#8ebd87" },
-    { "id": "slime-agua", "nome": "Slime de água", "categoria": "monstro", "especie": "slime", "descricao": "Variante elemental de água.", "ferramenta": "ferramentas/index.html#slimes", "cor": "#7fb6e6" },
-    { "id": "slime-fogo", "nome": "Slime de fogo", "categoria": "monstro", "especie": "slime", "descricao": "Variante elemental de fogo.", "ferramenta": "ferramentas/index.html#slimes", "cor": "#dba36d" },
-    { "id": "slime-terra", "nome": "Slime de terra", "categoria": "monstro", "especie": "slime", "descricao": "Cospe pedras; variante de terra.", "ferramenta": "ferramentas/index.html#slimes", "cor": "#b08d63" },
-    { "id": "slime-ar", "nome": "Slime de ar", "categoria": "monstro", "especie": "slime", "descricao": "Voa e solta rajadas.", "ferramenta": "ferramentas/index.html#slimes", "cor": "#a9e0e6" }
+    {
+      "id": "slime-comum",
+      "nome": "Slime comum",
+      "categoria": "monstro",
+      "especie": "slime",
+      "descricao": "Gerado por código no gerador de slimes (pulo, bote, castelo, morte).",
+      "ferramenta": "ferramentas/slimes.html",
+      "cor": "#8ebd87"
+    },
+    {
+      "id": "slime-agua",
+      "nome": "Slime de água",
+      "categoria": "monstro",
+      "especie": "slime",
+      "descricao": "Variante elemental de água.",
+      "ferramenta": "ferramentas/slimes.html",
+      "cor": "#7fb6e6"
+    },
+    {
+      "id": "slime-fogo",
+      "nome": "Slime de fogo",
+      "categoria": "monstro",
+      "especie": "slime",
+      "descricao": "Variante elemental de fogo.",
+      "ferramenta": "ferramentas/slimes.html",
+      "cor": "#dba36d"
+    },
+    {
+      "id": "slime-terra",
+      "nome": "Slime de terra",
+      "categoria": "monstro",
+      "especie": "slime",
+      "descricao": "Cospe pedras; variante de terra.",
+      "ferramenta": "ferramentas/slimes.html",
+      "cor": "#b08d63"
+    },
+    {
+      "id": "slime-ar",
+      "nome": "Slime de ar",
+      "categoria": "monstro",
+      "especie": "slime",
+      "descricao": "Voa e solta rajadas.",
+      "ferramenta": "ferramentas/slimes.html",
+      "cor": "#a9e0e6"
+    }
   ]
 }

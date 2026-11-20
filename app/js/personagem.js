@@ -27,6 +27,7 @@
   document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
   document.addEventListener('change', e => { if (e.target.closest('#eq-editor') || e.target.id === 'eq-arquivo') window.__studioDirty = true; }, true);
   $('#palco-rig')?.addEventListener('pointerdown', () => { window.__studioDirty = true; });
+  document.addEventListener('click', e => { if (e.target.closest('#rig-propor, #rig-copiar')) window.__studioDirty = true; }, true);
   window.addEventListener('beforeunload', e => { if (emStudio && window.__studioDirty) { e.preventDefault(); e.returnValue = ''; } });
 
   // ------------------------------------------------ abas

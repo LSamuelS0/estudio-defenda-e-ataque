@@ -31,7 +31,7 @@ self.onmessage = (ev) => {
       const qs = dados.quadros.map(paraImagem);
       const itens = dados.itens.map(it => ({ ...it, imagem: paraImagem(it.imagem) }));
       const out = qs.map((q, k) => {
-        const doQuadro = itens.map(it => it.poses && it.poses[k] ? { ...it, ...it.poses[k] } : it);
+        const doQuadro = itens.map(it => { const pose=it.poses && it.poses[k]; return pose ? { ...it, ...pose, anguloExtra: pose.angulo != null ? pose.angulo : it.anguloExtra } : it; });
         return empacotar(N.comporQuadro(q, dados.landmarks[k], doQuadro, { corpoVisivel: dados.corpoVisivel !== false }));
       });
       self.postMessage({ id, resultado: out }, out.map(o => o.bytes.buffer));

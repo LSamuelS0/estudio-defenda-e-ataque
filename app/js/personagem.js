@@ -1,6 +1,7 @@
 /* Área de trabalho do personagem: Visualização, Rig, Equipamentos, Adição e Inventário. */
 (async () => {
-  Comum.topo('inicio');
+  const emStudio = new URLSearchParams(location.search).get('studio') === '1';
+  if (emStudio) document.body.classList.add('studio-mode'); else Comum.topo('inicio');
   const { esc } = Comum; const N = EstudioNucleo;
   const $ = s => document.querySelector(s);
   const id = new URLSearchParams(location.search).get('id');
@@ -20,7 +21,13 @@
   }
   cabecalho();
   if (Armazem.desktop) { $('#b-pasta').hidden = false; $('#b-pasta').onclick = () => window.estudioDesktop.dados.abrirPasta('personagens/' + p.id); }
-  async function salvar(arquivos, acao) { p = await Armazem.salvar(p, arquivos, acao); ab = await Armazem.abrir(p.id); return p; }
+  async function salvar(arquivos, acao) { p = await Armazem.salvar(p, arquivos, acao); ab = await Armazem.abrir(p.id); window.__studioDirty = false; return p; }
+  window.__studioDirty = false;
+  window.__studioSave = async () => { await salvar({}, 'Workspace salvo'); return true; };
+  document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
+  document.addEventListener('change', e => { if (e.target.closest('#eq-editor') || e.target.id === 'eq-arquivo') window.__studioDirty = true; }, true);
+  $('#palco-rig')?.addEventListener('pointerdown', () => { window.__studioDirty = true; });
+  window.addEventListener('beforeunload', e => { if (emStudio && window.__studioDirty) { e.preventDefault(); e.returnValue = ''; } });
 
   // ------------------------------------------------ abas
   const paineis = ['ver', 'rig', 'equip', 'adicao', 'inv'];

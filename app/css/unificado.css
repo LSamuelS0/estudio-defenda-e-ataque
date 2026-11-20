@@ -45,3 +45,6 @@ a{color:var(--ui-accent)}
 .lbl,.olho,.tipo{letter-spacing:.08em}
 .legend,.legenda{font-size:.78rem!important;line-height:1.45}
 .secao,.section,.panel{scroll-margin-bottom:90px}
+
+/* Linha do tempo compartilhada do visualizador de personagens */
+.linha-quadros{display:grid;grid-template-columns:auto minmax(120px,1fr) auto;gap:10px;align-items:center;width:100%;padding:8px 10px;border:1px solid var(--linha,#343a48);border-radius:10px;background:var(--painel,#191c25);font-size:.78rem}.linha-quadros input{width:100%;accent-color:var(--ouro,#c9a96e)}.linha-quadros output{font-variant-numeric:tabular-nums;color:var(--texto-secundario,#a8adbb)}.tira-quadros{display:flex;gap:5px;max-width:100%;overflow-x:auto;padding:4px 1px 8px}.mini-quadro{min-width:34px;height:30px;border:1px solid var(--linha,#343a48);border-radius:7px;background:var(--painel,#191c25);color:inherit;cursor:pointer;font:600 .72rem ui-monospace,monospace}.mini-quadro[aria-current=true]{background:var(--ouro,#c9a96e);border-color:var(--ouro,#c9a96e);color:#171717}@media(max-width:600px){.linha-quadros{grid-template-columns:1fr auto}.linha-quadros span{grid-column:1/-1}}

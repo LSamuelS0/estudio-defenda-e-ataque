@@ -151,7 +151,7 @@
     palcoRig.revisados = revisados();
     palcoRig.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: L }); if (emStudio && palcoVer.quadros.length && palcoRig.k !== palcoVer.k) palcoRig.irPara(palcoVer.k); sincRig(); listaRig();
     $('#rig-arvore').innerHTML = N.HIERARQUIA.map(h => { let d = 0, x = h; while (x.pai) { d++; x = N.HIERARQUIA.find(y => y.id === x.pai); } return `<button type="button" class="studio-rig-node" data-bone="${esc(h.id)}" style="padding-left:${d * 12 + 6}px" aria-selected="${palcoVer.selecionado === h.id}">${d ? '└ ' : '● '}${esc(h.nome)}</button>`; }).join('');
-    $('#rig-arvore').querySelectorAll('[data-bone]').forEach(b => b.onclick = () => { palcoVer.selecionado=b.dataset.bone; window.__studioSetTool?.('rig'); palcoVer.desenhar(); window.__studioInk?.redraw(); });
+    $('#rig-arvore').querySelectorAll('[data-bone]').forEach(b => b.onclick = () => { palcoVer.selecionado=b.dataset.bone; window.__studioSetTool?.('rig'); $('#rig-arvore').querySelectorAll('[data-bone]').forEach(x=>x.setAttribute('aria-selected',x.dataset.bone===b.dataset.bone)); palcoVer.desenhar(); window.__studioInk?.redraw(); });
   }
   function listaRig() {
     const L = palcoRig.landmarks && palcoRig.landmarks[palcoRig.k]; if (!L) return; const rv = revisados();

@@ -6,7 +6,7 @@ Programa de Windows para criar os personagens, animações, equipamentos e efeit
 
 Abra o [Estúdio HTML no GitHub Pages](https://lsamuels0.github.io/estudio-defenda-e-ataque/app/) para testar a versão web. Os projetos criados no navegador ficam armazenados localmente neste navegador.
 
-O site está publicado a partir da branch `main`; por isso, o endereço inclui `/app/`, onde está o arquivo `index.html`.
+O site está publicado a partir da branch `main`; por isso, o endereço inclui `/app/`, onde está o ponto de entrada. A barra fixa inferior mantém o acesso a personagens, produção, revisão de animações, efeitos, ferramentas e skills. As telas carregadas no palco compartilham a mesma paleta, tipografia e legenda.
 
 O que ele faz sozinho:
 

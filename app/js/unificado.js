@@ -1,17 +1,15 @@
 (() => {
   const rotas = {
     visao: { arquivo: "visao-geral.html", titulo: "Visão geral" },
-    personagens: { arquivo: "inicio.html", titulo: "Personagens" },
-    producao: { arquivo: "producao.html", titulo: "Linha de produção" },
-    animacoes: { arquivo: "ferramentas/biblioteca.html", titulo: "Animações" },
-    efeitos: { arquivo: "ferramentas/efeitos.html", titulo: "Efeitos" },
-    ferramentas: { arquivo: "ferramentas/index.html", titulo: "Ferramentas" },
-    guia: { arquivo: "guia.html", titulo: "Guia e skills" },
+    personagens: { arquivo: "inicio.html", titulo: "Heróis e criaturas" },
+    movimento: { arquivo: "movimento.html", titulo: "Movimento" },
+    producao: { arquivo: "producao.html", titulo: "Produção de personagem" },
+    efeitos: { arquivo: "ferramentas/efeitos.html", titulo: "Estúdio de efeitos" },
   };
   const palco = document.getElementById("estudio-palco");
   const titulo = document.getElementById("estudio-titulo");
   const botoes = [...document.querySelectorAll("[data-rota]")];
-  const nomes = { visao: "Visão geral", personagens: "Personagens", producao: "Linha de produção", animacoes: "Animações", efeitos: "Efeitos", ferramentas: "Ferramentas", guia: "Guia e skills" };
+  const nomes = { visao: "Visão geral", personagens: "Heróis e criaturas", movimento: "Movimento", producao: "Produção de personagem", efeitos: "Estúdio de efeitos" };
   let atual = "";
 
   function selecionar(nome, historico = true) {
@@ -31,10 +29,8 @@
     if (caminho.endsWith("/visao-geral.html")) return "visao";
     if (caminho.endsWith("/inicio.html") || caminho.endsWith("/personagem.html")) return "personagens";
     if (caminho.endsWith("/producao.html")) return "producao";
-    if (caminho.endsWith("/biblioteca.html")) return "animacoes";
+    if (caminho.endsWith("/movimento.html")) return "movimento";
     if (caminho.endsWith("/efeitos.html")) return "efeitos";
-    if (caminho.endsWith("/guia.html")) return "guia";
-    if (caminho.endsWith("/ferramentas/index.html")) return "ferramentas";
     return "visao";
   }
 

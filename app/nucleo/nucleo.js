@@ -845,6 +845,7 @@
     for (const it of atras) colar(out, colocados.get(it), 0, 0);
     // corpo com máscara dos itens que cobrem (ocultar)
     const corpoM = criar(W, H); corpoM.d.set(corpo.d);
+    if (op.corpoVisivel === false) for (let i = 3; i < corpoM.d.length; i += 4) corpoM.d[i] = 0;
     for (const it of frente) {
       if (!it.mascara) continue; const pos = colocados.get(it);
       const cob = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) cob[i] = pos.d[i * 4 + 3] > 0.6 ? 1 : 0;

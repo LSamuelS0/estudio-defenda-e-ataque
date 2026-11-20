@@ -1,0 +1,41 @@
+/* Sistema visual compartilhado. O shell injeta esta folha nas telas carregadas no palco. */
+:root{
+  --ui-bg:#11131a;
+  --ui-panel:#1a1d27;
+  --ui-panel-raised:#202431;
+  --ui-line:#303647;
+  --ui-text:#eee9df;
+  --ui-muted:#a6a6b0;
+  --ui-accent:#c9a96e;
+  --ui-accent-ink:#1b1608;
+  --ui-good:#8ebd87;
+  --ui-warn:#e07a6e;
+  --ui-info:#7fb6e6;
+  --ui-font:"Segoe UI",system-ui,-apple-system,sans-serif;
+  --ui-radius:12px;
+  color-scheme:dark;
+}
+html,body{background:var(--ui-bg)!important;color:var(--ui-text)!important;font-family:var(--ui-font)!important}
+body{font-size:14px!important;line-height:1.5!important}
+*,*::before,*::after{font-family:var(--ui-font)!important}
+h1,h2,h3,h4,h5,h6{font-family:var(--ui-font)!important;color:var(--ui-text)}
+button,select,input,textarea{font-family:var(--ui-font)!important;color:var(--ui-text)}
+code,pre,kbd,samp,.mono,.tc{font-family:Consolas,"Cascadia Mono",ui-monospace,monospace!important}
+.topo{display:none!important}
+.cartao,.card,.panel,.pane,.slot,.regra,.palco-caixa,.stage,.stagebox,.box,.cardbox{
+  border-color:var(--ui-line)!important;border-radius:var(--ui-radius)!important
+}
+.cartao,.card,.panel,.pane,.box,.cardbox{background-color:var(--ui-panel)!important;color:var(--ui-text)!important}
+input,select,textarea{background-color:var(--ui-bg)!important;border-color:var(--ui-line)!important;color:var(--ui-text)!important}
+button,.btn,.botao,.chip{border-color:var(--ui-line)!important;border-radius:8px!important}
+button:hover,.btn:hover,.botao:hover,.chip:hover{border-color:var(--ui-accent)!important}
+button[aria-selected=true],button[aria-pressed=true],.btn.on,.btn.primary,.botao.primario,.chip[aria-pressed=true]{
+  background:var(--ui-accent)!important;border-color:var(--ui-accent)!important;color:var(--ui-accent-ink)!important
+}
+a{color:var(--ui-accent)}
+:focus-visible{outline-color:var(--ui-accent)!important}
+.crumb,.legenda,.legend,.caption,.mudo,.note,.subtitulo,.lbl,.tipo,.olho,.selo,.tc{font-family:var(--ui-font)!important}
+.crumb,.legenda,.legend,.caption,.mudo,.note,.subtitulo,.lbl{color:var(--ui-muted)!important}
+.lbl,.olho,.tipo{letter-spacing:.08em}
+.legend,.legenda{font-size:.78rem!important;line-height:1.45}
+.secao,.section,.panel{scroll-margin-bottom:90px}

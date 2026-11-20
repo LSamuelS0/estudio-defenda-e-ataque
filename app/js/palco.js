@@ -6,7 +6,7 @@ window.Palco = class Palco {
   constructor(canvas, op = {}) {
     this.c = canvas; this.g = canvas.getContext('2d');
     this.quadros = []; this.k = 0; this.fps = op.fps || 10; this.tocando = true; this.zoom = op.zoom || 0;
-    this.fundo = op.fundo || 'escuro'; this.cebola = false; this.mostrarPivo = true; this.mostrarPontos = true;
+    this.fundo = op.fundo || 'escuro'; this.cebola = false; this.mostrarPivo = true; this.mostrarPontos = true; this.silhueta = false; this.mostrarMalha = false; this.mostrarTrajetoria = false; this._silhuetas = new WeakMap();
     this.pivo = [0, 0]; this.pontos = null; this.landmarks = null; this.editavel = false; this.selecionado = null;
     this.aoMudarQuadro = null; this.aoMoverLandmark = null; this.ultimo = 0;
     this._loop = this._loop.bind(this); requestAnimationFrame(this._loop);
@@ -50,14 +50,21 @@ window.Palco = class Palco {
         g.globalAlpha = 0.35; g.drawImage(t, ox, oy, img.width * e, img.height * e); g.globalAlpha = 1;
       }
     }
-    g.drawImage(q, ox, oy, q.width * e, q.height * e);
+    if (this.mostrarTrajetoria && this.quadros.length > 1) {
+      const centros = this.quadros.map(img => { const tmp=document.createElement('canvas'); tmp.width=img.width; tmp.height=img.height; const c=tmp.getContext('2d',{willReadFrequently:true}); c.drawImage(img,0,0); const dat=c.getImageData(0,0,img.width,img.height).data; let x0=img.width,y0=img.height,x1=0,y1=0,tem=false; for(let y=0;y<img.height;y+=2) for(let x=0;x<img.width;x+=2) if(dat[(y*img.width+x)*4+3]>20){tem=true;x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)} return tem?[ox+(x0+x1)*e/2,oy+(y0+y1)*e/2]:null; });
+      g.strokeStyle='rgba(201,169,110,.8)';g.lineWidth=1.5;g.beginPath();let iniciou=false;centros.forEach(pt=>{if(!pt)return;if(!iniciou){g.moveTo(pt[0],pt[1]);iniciou=true}else g.lineTo(pt[0],pt[1])});g.stroke();
+    }
+    if (this.silhueta) {
+      let sil=this._silhuetas.get(q); if(!sil){sil=document.createElement('canvas');sil.width=q.width;sil.height=q.height;const sg=sil.getContext('2d');sg.drawImage(q,0,0);sg.globalCompositeOperation='source-in';sg.fillStyle='#c9a96e';sg.fillRect(0,0,q.width,q.height);this._silhuetas.set(q,sil)}
+      g.drawImage(sil,ox,oy,q.width*e,q.height*e);
+    } else g.drawImage(q, ox, oy, q.width * e, q.height * e);
     if (this.mostrarPivo) {
       const px = ox + this.pivo[0] * e, py = oy + this.pivo[1] * e; g.strokeStyle = '#c9a96e'; g.lineWidth = 1.5;
       g.beginPath(); g.moveTo(px - 8, py); g.lineTo(px + 8, py); g.moveTo(px, py - 8); g.lineTo(px, py + 8); g.stroke();
     }
     const pt = this.pontos && this.pontos[this.k];
     if (this.mostrarPontos && pt) { g.strokeStyle = '#7fc3ff'; g.beginPath(); g.arc(ox + (this.pivo[0] + pt[0]) * e, oy + (this.pivo[1] + pt[1]) * e, 6, 0, 7); g.stroke(); }
-    const L = this.landmarks && this.landmarks[this.k];
+    const L = (this.mostrarMalha || this.editavel) && this.landmarks && this.landmarks[this.k];
     if (L) {
       const ligar = [['head_top', 'head_center'], ['head_center', 'neck_base'], ['neck_base', 'shoulder_left'], ['neck_base', 'shoulder_right'], ['neck_base', 'chest_center'], ['chest_center', 'waist_center'], ['waist_center', 'hip_center'], ['hip_center', 'knee_left'], ['hip_center', 'knee_right'], ['knee_left', 'foot_contact_left'], ['knee_right', 'foot_contact_right'], ['shoulder_right', 'hand_main']];
       g.strokeStyle = 'rgba(157,139,208,.7)'; g.lineWidth = 1.5; g.beginPath();

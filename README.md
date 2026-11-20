@@ -6,7 +6,7 @@ Programa de Windows para criar os personagens, animações, equipamentos e efeit
 
 Abra o [Estúdio HTML no GitHub Pages](https://lsamuels0.github.io/estudio-defenda-e-ataque/app/) para testar a versão web. Os projetos criados no navegador ficam armazenados localmente neste navegador.
 
-O site está publicado a partir da branch `main`; por isso, o endereço inclui `/app/`, onde está o ponto de entrada. A barra fixa inferior mantém o acesso a personagens, produção, revisão de animações, efeitos, ferramentas e skills. As telas carregadas no palco compartilham a mesma paleta, tipografia e legenda.
+O site está publicado a partir da branch `main`; por isso, o endereço inclui `/app/`, onde está o ponto de entrada. A barra fixa inferior mantém o acesso à visão geral, personagens, produção, revisão de animações, efeitos, ferramentas e skills. As telas carregadas no palco compartilham a mesma paleta, tipografia e legenda.
 
 O que ele faz sozinho:
 
@@ -31,7 +31,7 @@ Os personagens ficam em **Documentos › Estúdio Defenda e Ataque › personage
 
 | Pasta | O que tem |
 |---|---|
-| `app/` | O aplicativo (Electron). `index.html` Personagens, `personagem.html` tela do personagem, `producao.html` linha de produção, `guia.html` |
+| `app/` | O aplicativo (Electron). `index.html` shell unificado, `visao-geral.html` painel geral, `inicio.html` personagens, `personagem.html` tela do personagem e `producao.html` linha de produção |
 | `app/nucleo/` | **Motor sem dependências** (tirar fundo, separar quadros, alinhar, suavizar, idle, conferência, rig, equipamentos). Roda igual no app e na linha de comando |
 | `app/cli/` | Linha de comando para outras IAs e automação |
 | `app/dados/personagens/` | Personagens que vêm com o app (hoje: o mago v2, com as folhas originais em `fonte/`) |

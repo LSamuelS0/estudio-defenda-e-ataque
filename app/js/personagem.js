@@ -26,7 +26,7 @@
   async function salvar(arquivos, acao) { p = await Armazem.salvar(p, arquivos, acao); ab = await Armazem.abrir(p.id); window.__studioDirty = false; return p; }
   window.__studioDirty = false;
   window.__studioSave = async () => { await salvar({}, 'Workspace salvo'); return true; };
-  window.__studioSetTool = (modo, cor) => { if (!emStudio) return; studioTool = modo; window.__studioApplyTool?.(modo, cor); };
+  window.__studioSetTool = (modo, cor) => { if (!emStudio) return; studioTool = modo; window.__studioApplyTool?.(modo, cor); try { parent.postMessage({type:'studio-tool',mode:modo},location.origin); } catch {} };
   window.__studioSaveFrame = async () => { await salvar({}, 'Quadro ' + ((document.querySelector('#palco-ver') && window.__studioFrameNumber ? window.__studioFrameNumber() : 1)) + ' salvo'); return true; };
   if (emStudio) { $('#studio-body-visible').checked = bodyVisible; $('#studio-body-note').textContent = p.id === 'mago' ? 'Mago: imagem-base achatada. O corpo não pode ser separado em peças nesta versão.' : 'O corpo-base está em uma imagem; a hierarquia controla os pontos do rig.'; $('#studio-body-visible').onchange = () => { bodyVisible = $('#studio-body-visible').checked; p.studioBodyVisible = bodyVisible; window.__studioDirty = true; atualizarVer(); }; }
   document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
@@ -388,5 +388,6 @@
       else if (abaAtual === 'inv') atualizarInv();
     } catch (e) { console.error(e); }
   }
-  atualizar();
+  await atualizar();
+  if (emStudio) { try { parent.postMessage({type:'studio-ready'}, location.origin); } catch {} }
 })().catch(e => { console.error(e); document.getElementById('p-nome').textContent = e.message; });

@@ -1,5 +1,6 @@
 (() => {
   const rotas = {
+    visao: { arquivo: "visao-geral.html", titulo: "Visão geral" },
     personagens: { arquivo: "inicio.html", titulo: "Personagens" },
     producao: { arquivo: "producao.html", titulo: "Linha de produção" },
     animacoes: { arquivo: "ferramentas/biblioteca.html", titulo: "Animações" },
@@ -10,11 +11,11 @@
   const palco = document.getElementById("estudio-palco");
   const titulo = document.getElementById("estudio-titulo");
   const botoes = [...document.querySelectorAll("[data-rota]")];
-  const nomes = { personagens: "Personagens", producao: "Linha de produção", animacoes: "Animações", efeitos: "Efeitos", ferramentas: "Ferramentas", guia: "Guia e skills" };
+  const nomes = { visao: "Visão geral", personagens: "Personagens", producao: "Linha de produção", animacoes: "Animações", efeitos: "Efeitos", ferramentas: "Ferramentas", guia: "Guia e skills" };
   let atual = "";
 
   function selecionar(nome, historico = true) {
-    if (!rotas[nome]) nome = "personagens";
+    if (!rotas[nome]) nome = "visao";
     atual = nome;
     palco.src = rotas[nome].arquivo;
     titulo.textContent = rotas[nome].titulo;
@@ -27,12 +28,13 @@
 
   function identificar(url) {
     const caminho = url.pathname.toLowerCase();
+    if (caminho.endsWith("/visao-geral.html")) return "visao";
     if (caminho.endsWith("/producao.html")) return "producao";
     if (caminho.endsWith("/biblioteca.html")) return "animacoes";
     if (caminho.endsWith("/efeitos.html")) return "efeitos";
     if (caminho.endsWith("/guia.html")) return "guia";
     if (caminho.endsWith("/ferramentas/index.html")) return "ferramentas";
-    return "personagens";
+    return "visao";
   }
 
   palco.addEventListener("load", () => {
@@ -60,6 +62,7 @@
 
   botoes.forEach(b => b.addEventListener("click", () => selecionar(b.dataset.rota)));
   window.addEventListener("popstate", () => selecionar(location.hash.slice(1), false));
-  const inicial = rotas[location.hash.slice(1)] ? location.hash.slice(1) : "personagens";
+  window.addEventListener("hashchange", () => selecionar(location.hash.slice(1), false));
+  const inicial = rotas[location.hash.slice(1)] ? location.hash.slice(1) : "visao";
   selecionar(inicial, !location.hash);
 })();

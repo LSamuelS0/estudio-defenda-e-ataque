@@ -1,7 +1,7 @@
 (() => {
   const rotas = {
     visao: { arquivo: "visao-geral.html", titulo: "Visão geral" },
-    personagens: { arquivo: "inicio.html", titulo: "Heróis e criaturas" },
+    personagens: { arquivo: "studio.html", titulo: "Estúdio de personagens" },
     movimento: { arquivo: "movimento.html", titulo: "Movimento" },
     producao: { arquivo: "producao.html", titulo: "Produção de personagem" },
     efeitos: { arquivo: "ferramentas/efeitos.html", titulo: "Estúdio de efeitos" },

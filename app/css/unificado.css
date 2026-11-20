@@ -13,6 +13,12 @@
   --ui-info:#7fb6e6;
   --ui-font:"Segoe UI",system-ui,-apple-system,sans-serif;
   --ui-radius:12px;
+  /* Aliases usados pelas ferramentas antigas para preservar a mesma paleta. */
+  --bg:var(--ui-bg);--panel:var(--ui-panel);--panel2:var(--ui-panel-raised);--line:var(--ui-line);
+  --ink:var(--ui-text);--text:var(--ui-text);--muted:var(--ui-muted);--accent:var(--ui-accent);
+  --accent-ink:var(--ui-accent-ink);--gold:var(--ui-accent);--warn:var(--ui-warn);
+  --ok:var(--ui-good);--green:var(--ui-good);--blue:var(--ui-info);
+  --f-body:var(--ui-font);--f-display:var(--ui-font);--sans:var(--ui-font);
   color-scheme:dark;
 }
 html,body{background:var(--ui-bg)!important;color:var(--ui-text)!important;font-family:var(--ui-font)!important}

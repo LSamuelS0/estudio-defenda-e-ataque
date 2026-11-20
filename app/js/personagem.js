@@ -48,7 +48,7 @@
     alvo.innerHTML = `
       <select data-c="anim" title="Animação">${anims.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join('')}</select>
       <div class="grupo">${N.DIRECOES.map(d => `<button class="chip" data-dir="${d}">${Comum.DIRECOES[d]}</button>`).join('')}</div>
-      <div class="grupo"><button class="chip" data-c="ant" title="Quadro anterior">◀</button><button class="chip" data-c="play">❚❚</button><button class="chip" data-c="prox" title="Próximo quadro">▶</button><span class="mono" data-c="q">1/1</span></div>
+      <div class="grupo"><button class="chip" data-c="ant" title="Quadro anterior">◀</button><button class="chip" data-c="play">❚❚</button><button class="chip" data-c="prox" title="Próximo quadro">▶</button><span class="mono" data-c="q">1/1</span></div><label class="linha-quadros"><span>Quadros</span><input type="range" data-c="scrub" min="0" max="0" value="0"><output data-c="qout">1 / 1</output></label><div class="tira-quadros" data-c="frames" aria-label="Quadros da animação"></div>
       <label class="grupo mudo">fps <input type="number" data-c="fps" min="1" max="30" style="width:58px"></label>
       <div class="grupo">${['escuro', 'grama', 'xadrez', 'claro'].map(f => `<button class="chip" data-fundo="${f}">${f}</button>`).join('')}</div>
       <button class="chip" data-c="cebola">casca de cebola</button>
@@ -58,6 +58,7 @@
     alvo.querySelector('[data-c=ant]').onclick = () => { palco.tocando = false; palco.irPara(palco.k - 1); sinc(); };
     alvo.querySelector('[data-c=prox]').onclick = () => { palco.tocando = false; palco.irPara(palco.k + 1); sinc(); };
     alvo.querySelector('[data-c=play]').onclick = () => { palco.tocando = !palco.tocando; sinc(); };
+    const scrub = alvo.querySelector('[data-c=scrub]'); scrub.oninput = () => { palco.tocando = false; palco.irPara(+scrub.value); sinc(); };
     const fps = alvo.querySelector('[data-c=fps]'); fps.onchange = () => { palco.fps = Math.max(1, +fps.value || 10); };
     alvo.querySelectorAll('[data-fundo]').forEach(b => b.onclick = () => { palco.fundo = b.dataset.fundo; palco.desenhar(); sinc(); });
     alvo.querySelector('[data-c=cebola]').onclick = () => { palco.cebola = !palco.cebola; palco.desenhar(); sinc(); };
@@ -68,8 +69,9 @@
       alvo.querySelector('[data-c=cebola]').setAttribute('aria-pressed', palco.cebola);
       alvo.querySelector('[data-c=play]').textContent = palco.tocando ? '❚❚' : '►';
       alvo.querySelector('[data-c=q]').textContent = (palco.k + 1) + '/' + palco.quadros.length;
+      const range = alvo.querySelector('[data-c=scrub]'); if (range) { range.max = Math.max(0, palco.quadros.length - 1); range.value = palco.k; alvo.querySelector('[data-c=qout]').textContent = (palco.k + 1) + ' / ' + palco.quadros.length; const tira=alvo.querySelector('[data-c=frames]'); if(tira && tira.childElementCount!==palco.quadros.length){tira.innerHTML=palco.quadros.map((_,i)=>'<button type="button" class="mini-quadro" data-frame="'+i+'" aria-label="Quadro '+(i+1)+'">'+(i+1)+'</button>').join(''); tira.querySelectorAll('[data-frame]').forEach(b=>b.onclick=()=>{palco.tocando=false;palco.irPara(+b.dataset.frame);sinc()})} tira?.querySelectorAll('[data-frame]').forEach(b=>b.setAttribute('aria-current',+b.dataset.frame===palco.k?'true':'false')); }
     }
-    palco.aoMudarQuadro = () => { alvo.querySelector('[data-c=q]').textContent = (palco.k + 1) + '/' + palco.quadros.length; op.aoMudarQuadro && op.aoMudarQuadro(palco.k); };
+    palco.aoMudarQuadro = () => { sinc(); op.aoMudarQuadro && op.aoMudarQuadro(palco.k); };
     return sinc;
   }
 

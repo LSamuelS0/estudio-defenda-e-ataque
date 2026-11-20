@@ -175,8 +175,29 @@
     p.rig[anim] = p.rig[anim] || {};
     const a = await carregar(anim, dir); const k = anim + '/' + dir;
     if (!propostas[k]) propostas[k] = await Tarefas.rodar('landmarks', { quadros: a.quadros.map(bytesDe), opcoes: { corDestaque: [0.3, 0.55, 1] } });
-    if (!p.rig[anim][dir]) p.rig[anim][dir] = JSON.parse(JSON.stringify(propostas[k]));
+    if (!p.rig[anim][dir]) {
+      // o rig é um só: as outras vistas nascem girando o rig da frente
+      const girado = dir !== 'frente' ? await rigGirado(anim, dir) : null;
+      p.rig[anim][dir] = girado || JSON.parse(JSON.stringify(propostas[k]));
+    }
     return p.rig[anim][dir];
+  }
+  const medidas = {};
+  async function medidasDe(anim, dir) {
+    const k = anim + '/' + dir; if (medidas[k]) return medidas[k];
+    const a = await carregar(anim, dir); return (medidas[k] = a.quadros.map(c => N.medidasSilhueta(ImagemWeb.canvasParaNucleo(c))));
+  }
+  /** Rig da vista 'dir' girando o rig da frente (mesma animação), quadro a quadro. */
+  async function rigGirado(anim, dir) {
+    if (!p.animacoes[anim]) return null;
+    const frente = await landmarksDe(anim, 'frente'); const mf = await medidasDe(anim, 'frente'), ma = await medidasDe(anim, dir);
+    const out = ma.map((m, k) => { const fk = frente[k % frente.length], mk = mf[k % mf.length]; return fk && m && mk ? N.girarRig(fk, mk, m, dir) : null; });
+    return out.every(Boolean) ? out : null;
+  }
+  async function ocultosDe(anim, dir) {
+    if (dir !== 'esquerda' && dir !== 'direita') return new Set();
+    const frente = await landmarksDe(anim, 'frente'), mf = await medidasDe(anim, 'frente');
+    return new Set(N.ladoOculto(frente[0], mf[0], dir));
   }
   const visivel = n => p.camadasVisiveis[n] !== false;
   async function imagemItem(it, dir) {
@@ -215,7 +236,7 @@
     const a = await carregar(sel.anim, sel.dir); const L = await landmarksDe(sel.anim, sel.dir);
     const quadros = await compor(sel.anim, sel.dir); if (meu !== pedido) return;
     quadrosCompostos = quadros;
-    palco.revisados = revisados();
+    palco.revisados = revisados(); palco.ocultos = await ocultosDe(sel.anim, sel.dir);
     palco.definir({ quadros, fps: palco.fps && palco._fpsDe === sel.anim ? palco.fps : a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: L });
     palco._fpsDe = sel.anim; $('#bc-fps').value = palco.fps;
     sincLinhaTempo();
@@ -227,7 +248,7 @@
     const anims = Object.keys(p.animacoes || {});
     $('#bc-anim').innerHTML = anims.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join(''); $('#bc-anim').value = sel.anim;
     $('#bc-direcoes').innerHTML = DIRS.map(d => `<button type="button" data-dir="${d}" aria-pressed="${d === sel.dir}">${esc(Comum.DIRECOES[d])}</button>`).join('');
-    $('#bc-direcoes').querySelectorAll('[data-dir]').forEach(b => b.onclick = async () => { sel.dir = b.dataset.dir; $('#bc-direcoes').querySelectorAll('[data-dir]').forEach(x => x.setAttribute('aria-pressed', x === b)); await atualizarPalco(); desenharRig(); abrirProps(); });
+    $('#bc-direcoes').querySelectorAll('[data-dir]').forEach(b => b.onclick = async () => { sel.dir = b.dataset.dir; $('#bc-direcoes').querySelectorAll('[data-dir]').forEach(x => x.setAttribute('aria-pressed', x === b)); await atualizarPalco(); desenharRig(); abrirProps(); aplicarFerramenta(); });
     $('#bc-fundos').innerHTML = ['escuro', 'grama', 'xadrez', 'claro'].map(f => `<button type="button" data-fundo="${f}" aria-pressed="${palco.fundo === f}">${f}</button>`).join('');
     $('#bc-fundos').querySelectorAll('[data-fundo]').forEach(b => b.onclick = () => { palco.fundo = b.dataset.fundo; $('#bc-fundos').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); palco.desenhar(); });
   }
@@ -282,8 +303,9 @@
       $('#bc-cor').oninput = e => { corNota = e.target.value; };
       $('#bc-limpar-notas').onclick = () => { p.notas = p.notas.filter(n => !(n.anim === sel.anim && n.dir === sel.dir)); marcarSujo(); palco.desenhar(); };
     } else if (ferramenta === 'rig') {
-      op.innerHTML = '<button type="button" id="bc-rig-propor">Propor de novo</button><button type="button" id="bc-rig-copiar">Copiar correção p/ todos os quadros</button>';
+      op.innerHTML = (sel.dir !== 'frente' ? '<button type="button" id="bc-rig-girar" title="Refaz o rig desta vista girando o rig da frente">Girar rig da frente</button>' : '') + '<button type="button" id="bc-rig-propor">Proposta automática</button><button type="button" id="bc-rig-copiar">Copiar correção p/ todos os quadros</button>';
       $('#bc-rig-propor').onclick = proporDeNovo; $('#bc-rig-copiar').onclick = copiarCorrecao;
+      if ($('#bc-rig-girar')) $('#bc-rig-girar').onclick = girarDaFrente;
     } else op.innerHTML = '';
     $('#bc-dica').textContent = p ? DICAS[ferramenta] : '';
     if (ferramenta === 'roupa' && !itemSel && p) $('#bc-dica').textContent = 'Roupa: primeiro selecione uma peça na hierarquia de Camadas (à direita).';
@@ -527,7 +549,7 @@
     const mostrar = palco.mostrarMalha || palco.editavel;
     $('#bc-rig').innerHTML = `<div class="bc-no"><span class="bc-seta"></span><button type="button" class="bc-olho" id="bc-rig-olho" aria-pressed="${mostrar}" title="Mostrar esqueleto no palco">👁</button><span class="bc-no-nome">Esqueleto<small>${rv.size}/${N.LANDMARKS.length} pontos corrigidos</small></span><span class="bc-tag">${esc(sel.anim)} · ${esc(Comum.DIRECOES[sel.dir])}</span></div>` +
       H.map(h => `<div class="bc-no" aria-selected="${h.id === ossoSel}" style="padding-left:${4 + prof(h) * 10}px"><span class="bc-seta">${prof(h) ? '└' : '●'}</span><span class="bc-olho" style="color:${rv.has(h.id) ? 'var(--bc-verde)' : 'var(--bc-violeta)'}">●</span>
-        <button type="button" class="bc-no-nome" data-osso="${h.id}">${esc(h.nome)}</button><span class="bc-tag">${h.id === 'root' ? 'raiz' : rv.has(h.id) ? 'ok' : 'auto'}</span></div>`).join('');
+        <button type="button" class="bc-no-nome" data-osso="${h.id}">${esc(h.nome)}</button><span class="bc-tag">${h.id === 'root' ? 'raiz' : (palco.ocultos && palco.ocultos.has(h.id)) ? 'atrás' : rv.has(h.id) ? 'ok' : 'auto'}</span></div>`).join('');
     $('#bc-rig-olho').onclick = () => { palco.mostrarMalha = !palco.mostrarMalha; palco.desenhar(); desenharRig(); };
     $('#bc-rig').querySelectorAll('[data-osso]').forEach(b => b.onclick = () => selecionarOsso(b.dataset.osso));
     desenharRigProps();
@@ -551,6 +573,11 @@
   async function proporDeNovo() {
     const k = sel.anim + '/' + sel.dir; if (!propostas[k] || !confirm('Descartar as correções do rig desta animação e direção?')) return;
     p.rig[sel.anim][sel.dir] = JSON.parse(JSON.stringify(propostas[k])); p.revisado[sel.anim][sel.dir] = []; marcarSujo(); await atualizarPalco(); desenharRig();
+  }
+  async function girarDaFrente() {
+    if (sel.dir === 'frente' || !confirm('Refazer o rig da vista ' + Comum.DIRECOES[sel.dir] + ' girando o rig da frente? As correções desta vista serão substituídas.')) return;
+    const g = await rigGirado(sel.anim, sel.dir); if (!g) { avisoTemporario('Não consegui girar: falta o rig da frente'); return; }
+    p.rig[sel.anim][sel.dir] = g; p.revisado[sel.anim] = p.revisado[sel.anim] || {}; p.revisado[sel.anim][sel.dir] = []; marcarSujo(); await atualizarPalco(); desenharRig(); avisoTemporario('Rig girado a partir da frente ✔');
   }
   function copiarCorrecao() {
     const n = ossoSel; if (!n || n === 'root') { avisoTemporario('Selecione um osso primeiro'); return; }

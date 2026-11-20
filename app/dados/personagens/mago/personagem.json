@@ -1,6 +1,6 @@
 {
  "id": "mago",
- "versaoBase": 3,
+ "versaoBase": 4,
  "nome": "Mago",
  "categoria": "heroi",
  "especie": "mago",
@@ -34,704 +34,2108 @@
    "frente": [
     {
      "head_center": [
-      119.4,
-      111.5
+      120.2,
+      109.8
      ],
      "neck_base": [
-      119.6,
-      144.1
+      120.4,
+      142.7
      ],
      "shoulder_left": [
-      98.5,
-      144.5
+      99.1,
+      143.1
      ],
      "shoulder_right": [
-      139.6,
-      144.8
-     ],
-     "elbow_left": [
-      88.4,
-      174.1
-     ],
-     "elbow_right": [
-      151.7,
-      173.2
-     ],
-     "wrist_left": [
-      80.9,
-      198.6
-     ],
-     "wrist_right": [
-      156.8,
-      198.6
-     ],
-     "hand_main": [
-      156.6,
-      210.7
-     ],
-     "chest_center": [
-      119.5,
-      173.8
-     ],
-     "waist_center": [
-      119.9,
-      197.8
-     ],
-     "hip_center": [
-      119.5,
-      224.2
-     ],
-     "knee_left": [
-      100.9,
-      256.4
-     ],
-     "knee_right": [
-      138.4,
-      257.2
-     ],
-     "ankle_left": [
-      94.9,
-      299.0
-     ],
-     "ankle_right": [
-      145.3,
-      299.3
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      75.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      111.5
-     ],
-     "neck_base": [
-      119.6,
-      144.1
-     ],
-     "shoulder_left": [
-      98.5,
-      144.5
-     ],
-     "shoulder_right": [
-      139.6,
-      144.8
-     ],
-     "elbow_left": [
-      88.4,
-      174.1
-     ],
-     "elbow_right": [
-      151.7,
-      173.2
-     ],
-     "wrist_left": [
-      80.9,
-      198.6
-     ],
-     "wrist_right": [
-      156.8,
-      198.6
-     ],
-     "hand_main": [
-      156.6,
-      210.7
-     ],
-     "chest_center": [
-      119.5,
-      173.8
-     ],
-     "waist_center": [
-      119.9,
-      197.8
-     ],
-     "hip_center": [
-      119.5,
-      224.2
-     ],
-     "knee_left": [
-      100.9,
-      256.4
-     ],
-     "knee_right": [
-      138.4,
-      257.2
-     ],
-     "ankle_left": [
-      94.9,
-      299.0
-     ],
-     "ankle_right": [
-      145.3,
-      299.3
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      75.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      111.5
-     ],
-     "neck_base": [
-      119.6,
-      144.1
-     ],
-     "shoulder_left": [
-      98.5,
-      144.5
-     ],
-     "shoulder_right": [
-      139.6,
-      144.8
-     ],
-     "elbow_left": [
-      88.4,
-      174.1
-     ],
-     "elbow_right": [
-      151.7,
-      173.2
-     ],
-     "wrist_left": [
-      80.9,
-      198.6
-     ],
-     "wrist_right": [
-      156.8,
-      198.6
-     ],
-     "hand_main": [
-      156.6,
-      210.7
-     ],
-     "chest_center": [
-      119.5,
-      173.8
-     ],
-     "waist_center": [
-      119.9,
-      197.8
-     ],
-     "hip_center": [
-      119.5,
-      224.2
-     ],
-     "knee_left": [
-      100.9,
-      256.4
-     ],
-     "knee_right": [
-      138.4,
-      257.2
-     ],
-     "ankle_left": [
-      94.9,
-      299.0
-     ],
-     "ankle_right": [
-      145.3,
-      299.3
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      75.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      111.5
-     ],
-     "neck_base": [
-      119.6,
-      144.1
-     ],
-     "shoulder_left": [
-      98.5,
-      144.5
-     ],
-     "shoulder_right": [
-      139.6,
-      144.8
-     ],
-     "elbow_left": [
-      88.4,
-      174.1
-     ],
-     "elbow_right": [
-      151.7,
-      173.2
-     ],
-     "wrist_left": [
-      80.9,
-      198.6
-     ],
-     "wrist_right": [
-      156.8,
-      198.6
-     ],
-     "hand_main": [
-      156.6,
-      210.7
-     ],
-     "chest_center": [
-      119.5,
-      173.8
-     ],
-     "waist_center": [
-      119.9,
-      197.8
-     ],
-     "hip_center": [
-      119.5,
-      224.2
-     ],
-     "knee_left": [
-      100.9,
-      256.4
-     ],
-     "knee_right": [
-      138.4,
-      257.2
-     ],
-     "ankle_left": [
-      94.9,
-      299.0
-     ],
-     "ankle_right": [
-      145.3,
-      299.3
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      75.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      111.5
-     ],
-     "neck_base": [
-      119.6,
-      144.1
-     ],
-     "shoulder_left": [
-      98.5,
-      144.5
-     ],
-     "shoulder_right": [
-      139.6,
-      144.8
-     ],
-     "elbow_left": [
-      88.4,
-      174.1
-     ],
-     "elbow_right": [
-      151.7,
-      173.2
-     ],
-     "wrist_left": [
-      80.9,
-      198.6
-     ],
-     "wrist_right": [
-      156.8,
-      198.6
-     ],
-     "hand_main": [
-      156.6,
-      210.7
-     ],
-     "chest_center": [
-      119.5,
-      173.8
-     ],
-     "waist_center": [
-      119.9,
-      197.8
-     ],
-     "hip_center": [
-      119.5,
-      224.2
-     ],
-     "knee_left": [
-      100.9,
-      256.4
-     ],
-     "knee_right": [
-      138.4,
-      257.2
-     ],
-     "ankle_left": [
-      94.9,
-      299.0
-     ],
-     "ankle_right": [
-      145.3,
-      299.3
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      75.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      111.5
-     ],
-     "neck_base": [
-      119.6,
-      144.1
-     ],
-     "shoulder_left": [
-      98.5,
-      144.5
-     ],
-     "shoulder_right": [
-      139.6,
-      144.8
-     ],
-     "elbow_left": [
-      88.4,
-      174.1
-     ],
-     "elbow_right": [
-      151.7,
-      173.2
-     ],
-     "wrist_left": [
-      80.9,
-      198.6
-     ],
-     "wrist_right": [
-      156.8,
-      198.6
-     ],
-     "hand_main": [
-      156.6,
-      210.7
-     ],
-     "chest_center": [
-      119.5,
-      173.8
-     ],
-     "waist_center": [
-      119.9,
-      197.8
-     ],
-     "hip_center": [
-      119.5,
-      224.2
-     ],
-     "knee_left": [
-      100.9,
-      256.4
-     ],
-     "knee_right": [
-      138.4,
-      257.2
-     ],
-     "ankle_left": [
-      94.9,
-      299.0
-     ],
-     "ankle_right": [
-      145.3,
-      299.3
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      75.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      110.7
-     ],
-     "neck_base": [
-      119.6,
+      140.5,
       143.4
      ],
-     "shoulder_left": [
-      98.5,
-      143.8
-     ],
-     "shoulder_right": [
-      139.6,
-      144.1
-     ],
      "elbow_left": [
-      88.4,
-      173.5
+      88.9,
+      172.9
      ],
      "elbow_right": [
-      151.7,
-      172.6
+      152.7,
+      172
      ],
      "wrist_left": [
-      80.9,
-      198.1
+      81.3,
+      197.6
      ],
      "wrist_right": [
-      156.8,
-      198.1
+      157.9,
+      197.6
      ],
      "hand_main": [
-      156.6,
-      210.3
+      157.7,
+      209.8
      ],
      "chest_center": [
-      119.5,
-      173.2
+      120.3,
+      172.6
      ],
      "waist_center": [
-      119.9,
-      197.3
+      120.7,
+      196.8
      ],
      "hip_center": [
-      119.5,
-      223.8
+      120.3,
+      223.4
      ],
      "knee_left": [
-      100.9,
-      256.2
+      101.5,
+      255.9
      ],
      "knee_right": [
-      138.4,
-      257.0
+      139.3,
+      256.7
      ],
      "ankle_left": [
-      94.9,
+      95.4,
       298.9
      ],
      "ankle_right": [
-      145.3,
+      146.3,
       299.2
      ],
      "foot_contact_left": [
-      93.6,
+      94.1,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      149.8,
       310.1
      ],
      "head_top": [
-      119.5,
-      74.0
+      120.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      120.2,
+      109.8
+     ],
+     "neck_base": [
+      120.4,
+      142.7
+     ],
+     "shoulder_left": [
+      99.1,
+      143.1
+     ],
+     "shoulder_right": [
+      140.5,
+      143.4
+     ],
+     "elbow_left": [
+      88.9,
+      172.9
+     ],
+     "elbow_right": [
+      152.7,
+      172
+     ],
+     "wrist_left": [
+      81.3,
+      197.6
+     ],
+     "wrist_right": [
+      157.9,
+      197.6
+     ],
+     "hand_main": [
+      157.7,
+      209.8
+     ],
+     "chest_center": [
+      120.3,
+      172.6
+     ],
+     "waist_center": [
+      120.7,
+      196.8
+     ],
+     "hip_center": [
+      120.3,
+      223.4
+     ],
+     "knee_left": [
+      101.5,
+      255.9
+     ],
+     "knee_right": [
+      139.3,
+      256.7
+     ],
+     "ankle_left": [
+      95.4,
+      298.9
+     ],
+     "ankle_right": [
+      146.3,
+      299.2
+     ],
+     "foot_contact_left": [
+      94.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      149.8,
+      310.1
+     ],
+     "head_top": [
+      120.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      120.4,
+      109.8
+     ],
+     "neck_base": [
+      120.6,
+      142.7
+     ],
+     "shoulder_left": [
+      99.3,
+      143.1
+     ],
+     "shoulder_right": [
+      140.8,
+      143.4
+     ],
+     "elbow_left": [
+      89.1,
+      172.9
+     ],
+     "elbow_right": [
+      153,
+      172
+     ],
+     "wrist_left": [
+      81.6,
+      197.6
+     ],
+     "wrist_right": [
+      158.1,
+      197.6
+     ],
+     "hand_main": [
+      157.9,
+      209.8
+     ],
+     "chest_center": [
+      120.5,
+      172.6
+     ],
+     "waist_center": [
+      120.9,
+      196.8
+     ],
+     "hip_center": [
+      120.5,
+      223.4
+     ],
+     "knee_left": [
+      101.7,
+      255.9
+     ],
+     "knee_right": [
+      139.6,
+      256.7
+     ],
+     "ankle_left": [
+      95.7,
+      298.9
+     ],
+     "ankle_right": [
+      146.5,
+      299.2
+     ],
+     "foot_contact_left": [
+      94.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      150,
+      310.1
+     ],
+     "head_top": [
+      120.5,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      110.6
+     ],
+     "neck_base": [
+      121.1,
+      143.4
+     ],
+     "shoulder_left": [
+      99.9,
+      143.8
+     ],
+     "shoulder_right": [
+      141.2,
+      144.1
+     ],
+     "elbow_left": [
+      89.8,
+      173.5
+     ],
+     "elbow_right": [
+      153.3,
+      172.6
+     ],
+     "wrist_left": [
+      82.2,
+      198.1
+     ],
+     "wrist_right": [
+      158.5,
+      198.1
+     ],
+     "hand_main": [
+      158.3,
+      210.3
+     ],
+     "chest_center": [
+      121,
+      173.2
+     ],
+     "waist_center": [
+      121.4,
+      197.3
+     ],
+     "hip_center": [
+      121,
+      223.8
+     ],
+     "knee_left": [
+      102.3,
+      256.2
+     ],
+     "knee_right": [
+      140,
+      257
+     ],
+     "ankle_left": [
+      96.3,
+      298.9
+     ],
+     "ankle_right": [
+      146.9,
+      299.2
+     ],
+     "foot_contact_left": [
+      95,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.4,
+      310.1
+     ],
+     "head_top": [
+      121,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      110.6
+     ],
+     "neck_base": [
+      121.1,
+      143.4
+     ],
+     "shoulder_left": [
+      99.9,
+      143.8
+     ],
+     "shoulder_right": [
+      141.2,
+      144.1
+     ],
+     "elbow_left": [
+      89.8,
+      173.5
+     ],
+     "elbow_right": [
+      153.3,
+      172.6
+     ],
+     "wrist_left": [
+      82.2,
+      198.1
+     ],
+     "wrist_right": [
+      158.5,
+      198.1
+     ],
+     "hand_main": [
+      158.3,
+      210.3
+     ],
+     "chest_center": [
+      121,
+      173.2
+     ],
+     "waist_center": [
+      121.4,
+      197.3
+     ],
+     "hip_center": [
+      121,
+      223.8
+     ],
+     "knee_left": [
+      102.3,
+      256.2
+     ],
+     "knee_right": [
+      140,
+      257
+     ],
+     "ankle_left": [
+      96.3,
+      298.9
+     ],
+     "ankle_right": [
+      146.9,
+      299.2
+     ],
+     "foot_contact_left": [
+      95,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.4,
+      310.1
+     ],
+     "head_top": [
+      121,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      110.6
+     ],
+     "neck_base": [
+      121.1,
+      143.4
+     ],
+     "shoulder_left": [
+      99.9,
+      143.8
+     ],
+     "shoulder_right": [
+      141.2,
+      144.1
+     ],
+     "elbow_left": [
+      89.8,
+      173.5
+     ],
+     "elbow_right": [
+      153.3,
+      172.6
+     ],
+     "wrist_left": [
+      82.2,
+      198.1
+     ],
+     "wrist_right": [
+      158.5,
+      198.1
+     ],
+     "hand_main": [
+      158.3,
+      210.3
+     ],
+     "chest_center": [
+      121,
+      173.2
+     ],
+     "waist_center": [
+      121.4,
+      197.3
+     ],
+     "hip_center": [
+      121,
+      223.8
+     ],
+     "knee_left": [
+      102.3,
+      256.2
+     ],
+     "knee_right": [
+      140,
+      257
+     ],
+     "ankle_left": [
+      96.3,
+      298.9
+     ],
+     "ankle_right": [
+      146.9,
+      299.2
+     ],
+     "foot_contact_left": [
+      95,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.4,
+      310.1
+     ],
+     "head_top": [
+      121,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      121.2,
+      111.5
+     ],
+     "neck_base": [
+      121.3,
+      144.1
+     ],
+     "shoulder_left": [
+      100.3,
+      144.5
+     ],
+     "shoulder_right": [
+      141.3,
+      144.8
+     ],
+     "elbow_left": [
+      90.2,
+      174.1
+     ],
+     "elbow_right": [
+      153.4,
+      173.2
+     ],
+     "wrist_left": [
+      82.7,
+      198.6
+     ],
+     "wrist_right": [
+      158.6,
+      198.6
+     ],
+     "hand_main": [
+      158.3,
+      210.7
+     ],
+     "chest_center": [
+      121.3,
+      173.8
+     ],
+     "waist_center": [
+      121.7,
+      197.8
+     ],
+     "hip_center": [
+      121.3,
+      224.2
+     ],
+     "knee_left": [
+      102.7,
+      256.4
+     ],
+     "knee_right": [
+      140.2,
+      257.2
+     ],
+     "ankle_left": [
+      96.7,
+      299
+     ],
+     "ankle_right": [
+      147.1,
+      299.3
+     ],
+     "foot_contact_left": [
+      95.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.6,
+      310.1
+     ],
+     "head_top": [
+      121.3,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      121.1,
+      112.4
+     ],
+     "neck_base": [
+      121.3,
+      144.8
+     ],
+     "shoulder_left": [
+      100.3,
+      145.2
+     ],
+     "shoulder_right": [
+      141.3,
+      145.5
+     ],
+     "elbow_left": [
+      90.3,
+      174.7
+     ],
+     "elbow_right": [
+      153.3,
+      173.8
+     ],
+     "wrist_left": [
+      82.8,
+      199.1
+     ],
+     "wrist_right": [
+      158.4,
+      199.1
+     ],
+     "hand_main": [
+      158.2,
+      211.1
+     ],
+     "chest_center": [
+      121.2,
+      174.4
+     ],
+     "waist_center": [
+      121.6,
+      198.3
+     ],
+     "hip_center": [
+      121.2,
+      224.6
+     ],
+     "knee_left": [
+      102.7,
+      256.6
+     ],
+     "knee_right": [
+      140.1,
+      257.4
+     ],
+     "ankle_left": [
+      96.8,
+      299.1
+     ],
+     "ankle_right": [
+      146.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      95.5,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.4,
+      310.1
+     ],
+     "head_top": [
+      121.2,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      112.4
+     ],
+     "neck_base": [
+      121.1,
+      144.8
+     ],
+     "shoulder_left": [
+      100.1,
+      145.2
+     ],
+     "shoulder_right": [
+      141,
+      145.5
+     ],
+     "elbow_left": [
+      90,
+      174.7
+     ],
+     "elbow_right": [
+      153.1,
+      173.8
+     ],
+     "wrist_left": [
+      82.6,
+      199.1
+     ],
+     "wrist_right": [
+      158.1,
+      199.1
+     ],
+     "hand_main": [
+      157.9,
+      211.1
+     ],
+     "chest_center": [
+      121,
+      174.4
+     ],
+     "waist_center": [
+      121.4,
+      198.3
+     ],
+     "hip_center": [
+      121,
+      224.6
+     ],
+     "knee_left": [
+      102.5,
+      256.6
+     ],
+     "knee_right": [
+      139.8,
+      257.4
+     ],
+     "ankle_left": [
+      96.5,
+      299.1
+     ],
+     "ankle_right": [
+      146.7,
+      299.4
+     ],
+     "foot_contact_left": [
+      95.2,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.2,
+      310.1
+     ],
+     "head_top": [
+      121,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      121.1,
+      113.2
+     ],
+     "neck_base": [
+      121.3,
+      145.5
+     ],
+     "shoulder_left": [
+      100.4,
+      145.9
+     ],
+     "shoulder_right": [
+      141.2,
+      146.2
+     ],
+     "elbow_left": [
+      90.4,
+      175.3
+     ],
+     "elbow_right": [
+      153.2,
+      174.4
+     ],
+     "wrist_left": [
+      83,
+      199.6
+     ],
+     "wrist_right": [
+      158.2,
+      199.6
+     ],
+     "hand_main": [
+      158,
+      211.6
+     ],
+     "chest_center": [
+      121.2,
+      175
+     ],
+     "waist_center": [
+      121.6,
+      198.8
+     ],
+     "hip_center": [
+      121.2,
+      225
+     ],
+     "knee_left": [
+      102.8,
+      256.9
+     ],
+     "knee_right": [
+      140,
+      257.7
+     ],
+     "ankle_left": [
+      96.9,
+      299.1
+     ],
+     "ankle_right": [
+      146.8,
+      299.4
+     ],
+     "foot_contact_left": [
+      95.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.3,
+      310.1
+     ],
+     "head_top": [
+      121.2,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      121.1,
+      113.2
+     ],
+     "neck_base": [
+      121.3,
+      145.5
+     ],
+     "shoulder_left": [
+      100.4,
+      145.9
+     ],
+     "shoulder_right": [
+      141.2,
+      146.2
+     ],
+     "elbow_left": [
+      90.4,
+      175.3
+     ],
+     "elbow_right": [
+      153.2,
+      174.4
+     ],
+     "wrist_left": [
+      83,
+      199.6
+     ],
+     "wrist_right": [
+      158.2,
+      199.6
+     ],
+     "hand_main": [
+      158,
+      211.6
+     ],
+     "chest_center": [
+      121.2,
+      175
+     ],
+     "waist_center": [
+      121.6,
+      198.8
+     ],
+     "hip_center": [
+      121.2,
+      225
+     ],
+     "knee_left": [
+      102.8,
+      256.9
+     ],
+     "knee_right": [
+      140,
+      257.7
+     ],
+     "ankle_left": [
+      96.9,
+      299.1
+     ],
+     "ankle_right": [
+      146.8,
+      299.4
+     ],
+     "foot_contact_left": [
+      95.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      150.3,
+      310.1
+     ],
+     "head_top": [
+      121.2,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      120.6,
+      114.1
+     ],
+     "neck_base": [
+      120.8,
+      146.2
+     ],
+     "shoulder_left": [
+      100,
+      146.6
+     ],
+     "shoulder_right": [
+      140.6,
+      146.9
+     ],
+     "elbow_left": [
+      90,
+      175.9
+     ],
+     "elbow_right": [
+      152.5,
+      175
+     ],
+     "wrist_left": [
+      82.6,
+      200.1
+     ],
+     "wrist_right": [
+      157.6,
+      200.1
+     ],
+     "hand_main": [
+      157.4,
+      212
+     ],
+     "chest_center": [
+      120.7,
+      175.6
+     ],
+     "waist_center": [
+      121.1,
+      199.3
+     ],
+     "hip_center": [
+      120.7,
+      225.3
+     ],
+     "knee_left": [
+      102.4,
+      257.1
+     ],
+     "knee_right": [
+      139.4,
+      257.9
+     ],
+     "ankle_left": [
+      96.5,
+      299.2
+     ],
+     "ankle_right": [
+      146.2,
+      299.5
+     ],
+     "foot_contact_left": [
+      95.2,
+      310.7
+     ],
+     "foot_contact_right": [
+      149.7,
+      310.2
+     ],
+     "head_top": [
+      120.7,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.6,
+      114.1
+     ],
+     "neck_base": [
+      120.8,
+      146.2
+     ],
+     "shoulder_left": [
+      100,
+      146.6
+     ],
+     "shoulder_right": [
+      140.6,
+      146.9
+     ],
+     "elbow_left": [
+      90,
+      175.9
+     ],
+     "elbow_right": [
+      152.5,
+      175
+     ],
+     "wrist_left": [
+      82.6,
+      200.1
+     ],
+     "wrist_right": [
+      157.6,
+      200.1
+     ],
+     "hand_main": [
+      157.4,
+      212
+     ],
+     "chest_center": [
+      120.7,
+      175.6
+     ],
+     "waist_center": [
+      121.1,
+      199.3
+     ],
+     "hip_center": [
+      120.7,
+      225.3
+     ],
+     "knee_left": [
+      102.4,
+      257.1
+     ],
+     "knee_right": [
+      139.4,
+      257.9
+     ],
+     "ankle_left": [
+      96.5,
+      299.2
+     ],
+     "ankle_right": [
+      146.2,
+      299.5
+     ],
+     "foot_contact_left": [
+      95.2,
+      310.7
+     ],
+     "foot_contact_right": [
+      149.7,
+      310.2
+     ],
+     "head_top": [
+      120.7,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.4,
+      114.1
+     ],
+     "neck_base": [
+      120.6,
+      146.2
+     ],
+     "shoulder_left": [
+      99.8,
+      146.6
+     ],
+     "shoulder_right": [
+      140.3,
+      146.9
+     ],
+     "elbow_left": [
+      89.8,
+      175.9
+     ],
+     "elbow_right": [
+      152.3,
+      175
+     ],
+     "wrist_left": [
+      82.4,
+      200.1
+     ],
+     "wrist_right": [
+      157.3,
+      200.1
+     ],
+     "hand_main": [
+      157.1,
+      212
+     ],
+     "chest_center": [
+      120.5,
+      175.6
+     ],
+     "waist_center": [
+      120.9,
+      199.3
+     ],
+     "hip_center": [
+      120.5,
+      225.3
+     ],
+     "knee_left": [
+      102.1,
+      257.1
+     ],
+     "knee_right": [
+      139.2,
+      257.9
+     ],
+     "ankle_left": [
+      96.2,
+      299.2
+     ],
+     "ankle_right": [
+      146,
+      299.5
+     ],
+     "foot_contact_left": [
+      94.9,
+      310.7
+     ],
+     "foot_contact_right": [
+      149.4,
+      310.2
+     ],
+     "head_top": [
+      120.5,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.1,
+      114.9
+     ],
+     "neck_base": [
+      120.3,
+      147
+     ],
+     "shoulder_left": [
+      99.6,
+      147.4
+     ],
+     "shoulder_right": [
+      140,
+      147.7
+     ],
+     "elbow_left": [
+      89.7,
+      176.5
+     ],
+     "elbow_right": [
+      151.9,
+      175.6
+     ],
+     "wrist_left": [
+      82.3,
+      200.6
+     ],
+     "wrist_right": [
+      156.9,
+      200.6
+     ],
+     "hand_main": [
+      156.7,
+      212.5
+     ],
+     "chest_center": [
+      120.2,
+      176.2
+     ],
+     "waist_center": [
+      120.6,
+      199.8
+     ],
+     "hip_center": [
+      120.2,
+      225.7
+     ],
+     "knee_left": [
+      102,
+      257.4
+     ],
+     "knee_right": [
+      138.8,
+      258.2
+     ],
+     "ankle_left": [
+      96.1,
+      299.3
+     ],
+     "ankle_right": [
+      145.6,
+      299.6
+     ],
+     "foot_contact_left": [
+      94.8,
+      310.7
+     ],
+     "foot_contact_right": [
+      149.1,
+      310.2
+     ],
+     "head_top": [
+      120.2,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      119.9,
+      114.9
+     ],
+     "neck_base": [
+      120.1,
+      147
+     ],
+     "shoulder_left": [
+      99.3,
+      147.4
+     ],
+     "shoulder_right": [
+      139.8,
+      147.7
+     ],
+     "elbow_left": [
+      89.4,
+      176.5
+     ],
+     "elbow_right": [
+      151.7,
+      175.6
+     ],
+     "wrist_left": [
+      82,
+      200.6
+     ],
+     "wrist_right": [
+      156.7,
+      200.6
+     ],
+     "hand_main": [
+      156.5,
+      212.5
+     ],
+     "chest_center": [
+      120,
+      176.2
+     ],
+     "waist_center": [
+      120.4,
+      199.8
+     ],
+     "hip_center": [
+      120,
+      225.7
+     ],
+     "knee_left": [
+      101.7,
+      257.4
+     ],
+     "knee_right": [
+      138.6,
+      258.2
+     ],
+     "ankle_left": [
+      95.8,
+      299.3
+     ],
+     "ankle_right": [
+      145.4,
+      299.6
+     ],
+     "foot_contact_left": [
+      94.5,
+      310.7
+     ],
+     "foot_contact_right": [
+      148.8,
+      310.2
+     ],
+     "head_top": [
+      120,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      119.6,
+      114.9
+     ],
+     "neck_base": [
+      119.8,
+      147
+     ],
+     "shoulder_left": [
+      99.1,
+      147.4
+     ],
+     "shoulder_right": [
+      139.5,
+      147.7
+     ],
+     "elbow_left": [
+      89.2,
+      176.5
+     ],
+     "elbow_right": [
+      151.4,
+      175.6
+     ],
+     "wrist_left": [
+      81.8,
+      200.6
+     ],
+     "wrist_right": [
+      156.4,
+      200.6
+     ],
+     "hand_main": [
+      156.2,
+      212.5
+     ],
+     "chest_center": [
+      119.7,
+      176.2
+     ],
+     "waist_center": [
+      120.1,
+      199.8
+     ],
+     "hip_center": [
+      119.7,
+      225.7
+     ],
+     "knee_left": [
+      101.5,
+      257.4
+     ],
+     "knee_right": [
+      138.3,
+      258.2
+     ],
+     "ankle_left": [
+      95.6,
+      299.3
+     ],
+     "ankle_right": [
+      145.1,
+      299.6
+     ],
+     "foot_contact_left": [
+      94.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      148.6,
+      310.2
+     ],
+     "head_top": [
+      119.7,
+      79
      ]
     },
     {
      "head_center": [
       119.4,
-      110.7
+      114.1
      ],
      "neck_base": [
       119.6,
-      143.4
+      146.2
      ],
      "shoulder_left": [
-      98.5,
-      143.8
+      98.8,
+      146.6
      ],
      "shoulder_right": [
-      139.6,
-      144.1
+      139.3,
+      146.9
      ],
      "elbow_left": [
-      88.4,
-      173.5
+      88.8,
+      175.9
      ],
      "elbow_right": [
-      151.7,
-      172.6
+      151.3,
+      175
      ],
      "wrist_left": [
-      80.9,
-      198.1
+      81.4,
+      200.1
      ],
      "wrist_right": [
-      156.8,
-      198.1
+      156.3,
+      200.1
      ],
      "hand_main": [
-      156.6,
-      210.3
+      156.1,
+      212
      ],
      "chest_center": [
       119.5,
-      173.2
+      175.6
      ],
      "waist_center": [
       119.9,
-      197.3
+      199.3
      ],
      "hip_center": [
       119.5,
-      223.8
+      225.3
      ],
      "knee_left": [
-      100.9,
-      256.2
+      101.1,
+      257.1
      ],
      "knee_right": [
-      138.4,
-      257.0
+      138.2,
+      257.9
      ],
      "ankle_left": [
-      94.9,
-      298.9
-     ],
-     "ankle_right": [
-      145.3,
+      95.2,
       299.2
      ],
+     "ankle_right": [
+      145,
+      299.5
+     ],
      "foot_contact_left": [
-      93.6,
-      310.6
+      93.9,
+      310.7
      ],
      "foot_contact_right": [
-      148.8,
-      310.1
+      148.4,
+      310.2
      ],
      "head_top": [
       119.5,
-      74.0
+      78
      ]
     },
     {
      "head_center": [
       119.4,
-      110.7
+      114.1
      ],
      "neck_base": [
       119.6,
-      143.4
+      146.2
      ],
      "shoulder_left": [
-      98.5,
-      143.8
+      98.8,
+      146.6
      ],
      "shoulder_right": [
-      139.6,
-      144.1
+      139.3,
+      146.9
      ],
      "elbow_left": [
-      88.4,
-      173.5
+      88.8,
+      175.9
      ],
      "elbow_right": [
-      151.7,
-      172.6
+      151.3,
+      175
      ],
      "wrist_left": [
-      80.9,
-      198.1
+      81.4,
+      200.1
      ],
      "wrist_right": [
-      156.8,
-      198.1
+      156.3,
+      200.1
      ],
      "hand_main": [
-      156.6,
-      210.3
+      156.1,
+      212
      ],
      "chest_center": [
       119.5,
-      173.2
+      175.6
      ],
      "waist_center": [
       119.9,
-      197.3
+      199.3
      ],
      "hip_center": [
       119.5,
-      223.8
+      225.3
+     ],
+     "knee_left": [
+      101.1,
+      257.1
+     ],
+     "knee_right": [
+      138.2,
+      257.9
+     ],
+     "ankle_left": [
+      95.2,
+      299.2
+     ],
+     "ankle_right": [
+      145,
+      299.5
+     ],
+     "foot_contact_left": [
+      93.9,
+      310.7
+     ],
+     "foot_contact_right": [
+      148.4,
+      310.2
+     ],
+     "head_top": [
+      119.5,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      114.1
+     ],
+     "neck_base": [
+      119.3,
+      146.2
+     ],
+     "shoulder_left": [
+      98.5,
+      146.6
+     ],
+     "shoulder_right": [
+      139.1,
+      146.9
+     ],
+     "elbow_left": [
+      88.5,
+      175.9
+     ],
+     "elbow_right": [
+      151,
+      175
+     ],
+     "wrist_left": [
+      81.1,
+      200.1
+     ],
+     "wrist_right": [
+      156.1,
+      200.1
+     ],
+     "hand_main": [
+      155.9,
+      212
+     ],
+     "chest_center": [
+      119.2,
+      175.6
+     ],
+     "waist_center": [
+      119.6,
+      199.3
+     ],
+     "hip_center": [
+      119.2,
+      225.3
      ],
      "knee_left": [
       100.9,
-      256.2
+      257.1
      ],
      "knee_right": [
-      138.4,
-      257.0
+      137.9,
+      257.9
+     ],
+     "ankle_left": [
+      95,
+      299.2
+     ],
+     "ankle_right": [
+      144.7,
+      299.5
+     ],
+     "foot_contact_left": [
+      93.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      148.2,
+      310.2
+     ],
+     "head_top": [
+      119.2,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      113.2
+     ],
+     "neck_base": [
+      119.3,
+      145.5
+     ],
+     "shoulder_left": [
+      98.4,
+      145.9
+     ],
+     "shoulder_right": [
+      139.2,
+      146.2
+     ],
+     "elbow_left": [
+      88.4,
+      175.3
+     ],
+     "elbow_right": [
+      151.2,
+      174.4
+     ],
+     "wrist_left": [
+      81,
+      199.6
+     ],
+     "wrist_right": [
+      156.2,
+      199.6
+     ],
+     "hand_main": [
+      156,
+      211.6
+     ],
+     "chest_center": [
+      119.2,
+      175
+     ],
+     "waist_center": [
+      119.6,
+      198.8
+     ],
+     "hip_center": [
+      119.2,
+      225
+     ],
+     "knee_left": [
+      100.8,
+      256.9
+     ],
+     "knee_right": [
+      138,
+      257.7
      ],
      "ankle_left": [
       94.9,
-      298.9
+      299.1
      ],
      "ankle_right": [
-      145.3,
-      299.2
+      144.8,
+      299.4
      ],
      "foot_contact_left": [
       93.6,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      148.3,
       310.1
      ],
      "head_top": [
-      119.5,
-      74.0
+      119.2,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      113.2
+     ],
+     "neck_base": [
+      119.3,
+      145.5
+     ],
+     "shoulder_left": [
+      98.4,
+      145.9
+     ],
+     "shoulder_right": [
+      139.2,
+      146.2
+     ],
+     "elbow_left": [
+      88.4,
+      175.3
+     ],
+     "elbow_right": [
+      151.2,
+      174.4
+     ],
+     "wrist_left": [
+      81,
+      199.6
+     ],
+     "wrist_right": [
+      156.2,
+      199.6
+     ],
+     "hand_main": [
+      156,
+      211.6
+     ],
+     "chest_center": [
+      119.2,
+      175
+     ],
+     "waist_center": [
+      119.6,
+      198.8
+     ],
+     "hip_center": [
+      119.2,
+      225
+     ],
+     "knee_left": [
+      100.8,
+      256.9
+     ],
+     "knee_right": [
+      138,
+      257.7
+     ],
+     "ankle_left": [
+      94.9,
+      299.1
+     ],
+     "ankle_right": [
+      144.8,
+      299.4
+     ],
+     "foot_contact_left": [
+      93.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      148.3,
+      310.1
+     ],
+     "head_top": [
+      119.2,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      118.9,
+      112.4
+     ],
+     "neck_base": [
+      119.1,
+      144.8
+     ],
+     "shoulder_left": [
+      98.1,
+      145.2
+     ],
+     "shoulder_right": [
+      139,
+      145.5
+     ],
+     "elbow_left": [
+      88,
+      174.7
+     ],
+     "elbow_right": [
+      151.1,
+      173.8
+     ],
+     "wrist_left": [
+      80.6,
+      199.1
+     ],
+     "wrist_right": [
+      156.1,
+      199.1
+     ],
+     "hand_main": [
+      155.9,
+      211.1
+     ],
+     "chest_center": [
+      119,
+      174.4
+     ],
+     "waist_center": [
+      119.4,
+      198.3
+     ],
+     "hip_center": [
+      119,
+      224.6
+     ],
+     "knee_left": [
+      100.5,
+      256.6
+     ],
+     "knee_right": [
+      137.8,
+      257.4
+     ],
+     "ankle_left": [
+      94.5,
+      299.1
+     ],
+     "ankle_right": [
+      144.7,
+      299.4
+     ],
+     "foot_contact_left": [
+      93.2,
+      310.6
+     ],
+     "foot_contact_right": [
+      148.2,
+      310.1
+     ],
+     "head_top": [
+      119,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      118.9,
+      111.5
+     ],
+     "neck_base": [
+      119.1,
+      144.1
+     ],
+     "shoulder_left": [
+      98,
+      144.5
+     ],
+     "shoulder_right": [
+      139.1,
+      144.8
+     ],
+     "elbow_left": [
+      87.9,
+      174.1
+     ],
+     "elbow_right": [
+      151.2,
+      173.2
+     ],
+     "wrist_left": [
+      80.4,
+      198.6
+     ],
+     "wrist_right": [
+      156.3,
+      198.6
+     ],
+     "hand_main": [
+      156.1,
+      210.7
+     ],
+     "chest_center": [
+      119,
+      173.8
+     ],
+     "waist_center": [
+      119.4,
+      197.8
+     ],
+     "hip_center": [
+      119,
+      224.2
+     ],
+     "knee_left": [
+      100.4,
+      256.4
+     ],
+     "knee_right": [
+      137.9,
+      257.2
+     ],
+     "ankle_left": [
+      94.4,
+      299
+     ],
+     "ankle_right": [
+      144.8,
+      299.3
+     ],
+     "foot_contact_left": [
+      93.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      148.3,
+      310.1
+     ],
+     "head_top": [
+      119,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      119.2,
+      111.5
+     ],
+     "neck_base": [
+      119.3,
+      144.1
+     ],
+     "shoulder_left": [
+      98.3,
+      144.5
+     ],
+     "shoulder_right": [
+      139.3,
+      144.8
+     ],
+     "elbow_left": [
+      88.2,
+      174.1
+     ],
+     "elbow_right": [
+      151.4,
+      173.2
+     ],
+     "wrist_left": [
+      80.7,
+      198.6
+     ],
+     "wrist_right": [
+      156.6,
+      198.6
+     ],
+     "hand_main": [
+      156.3,
+      210.7
+     ],
+     "chest_center": [
+      119.3,
+      173.8
+     ],
+     "waist_center": [
+      119.7,
+      197.8
+     ],
+     "hip_center": [
+      119.3,
+      224.2
+     ],
+     "knee_left": [
+      100.7,
+      256.4
+     ],
+     "knee_right": [
+      138.2,
+      257.2
+     ],
+     "ankle_left": [
+      94.7,
+      299
+     ],
+     "ankle_right": [
+      145.1,
+      299.3
+     ],
+     "foot_contact_left": [
+      93.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      148.6,
+      310.1
+     ],
+     "head_top": [
+      119.3,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      118.9,
+      110.6
+     ],
+     "neck_base": [
+      119.1,
+      143.4
+     ],
+     "shoulder_left": [
+      97.9,
+      143.8
+     ],
+     "shoulder_right": [
+      139.2,
+      144.1
+     ],
+     "elbow_left": [
+      87.8,
+      173.5
+     ],
+     "elbow_right": [
+      151.3,
+      172.6
+     ],
+     "wrist_left": [
+      80.2,
+      198.1
+     ],
+     "wrist_right": [
+      156.5,
+      198.1
+     ],
+     "hand_main": [
+      156.3,
+      210.3
+     ],
+     "chest_center": [
+      119,
+      173.2
+     ],
+     "waist_center": [
+      119.4,
+      197.3
+     ],
+     "hip_center": [
+      119,
+      223.8
+     ],
+     "knee_left": [
+      100.3,
+      256.2
+     ],
+     "knee_right": [
+      138,
+      257
+     ],
+     "ankle_left": [
+      94.3,
+      298.9
+     ],
+     "ankle_right": [
+      144.9,
+      299.2
+     ],
+     "foot_contact_left": [
+      93,
+      310.6
+     ],
+     "foot_contact_right": [
+      148.4,
+      310.1
+     ],
+     "head_top": [
+      119,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      119.2,
+      110.6
+     ],
+     "neck_base": [
+      119.4,
+      143.4
+     ],
+     "shoulder_left": [
+      98.2,
+      143.8
+     ],
+     "shoulder_right": [
+      139.4,
+      144.1
+     ],
+     "elbow_left": [
+      88,
+      173.5
+     ],
+     "elbow_right": [
+      151.6,
+      172.6
+     ],
+     "wrist_left": [
+      80.5,
+      198.1
+     ],
+     "wrist_right": [
+      156.7,
+      198.1
+     ],
+     "hand_main": [
+      156.5,
+      210.3
+     ],
+     "chest_center": [
+      119.3,
+      173.2
+     ],
+     "waist_center": [
+      119.7,
+      197.3
+     ],
+     "hip_center": [
+      119.3,
+      223.8
+     ],
+     "knee_left": [
+      100.6,
+      256.2
+     ],
+     "knee_right": [
+      138.2,
+      257
+     ],
+     "ankle_left": [
+      94.5,
+      298.9
+     ],
+     "ankle_right": [
+      145.2,
+      299.2
+     ],
+     "foot_contact_left": [
+      93.2,
+      310.6
+     ],
+     "foot_contact_right": [
+      148.7,
+      310.1
+     ],
+     "head_top": [
+      119.3,
+      74
      ]
     },
     {
@@ -744,31 +2148,31 @@
       142.7
      ],
      "shoulder_left": [
-      98.5,
+      98.3,
       143.1
      ],
      "shoulder_right": [
-      139.6,
+      139.8,
       143.4
      ],
      "elbow_left": [
-      88.4,
+      88.1,
       172.9
      ],
      "elbow_right": [
-      151.7,
-      172.0
+      152,
+      172
      ],
      "wrist_left": [
-      80.9,
+      80.6,
       197.6
      ],
      "wrist_right": [
-      156.8,
+      157.1,
       197.6
      ],
      "hand_main": [
-      156.6,
+      156.9,
       209.8
      ],
      "chest_center": [
@@ -784,32 +2188,32 @@
       223.4
      ],
      "knee_left": [
-      100.9,
+      100.7,
       255.9
      ],
      "knee_right": [
-      138.4,
+      138.6,
       256.7
      ],
      "ankle_left": [
-      94.9,
+      94.7,
       298.9
      ],
      "ankle_right": [
-      145.3,
+      145.5,
       299.2
      ],
      "foot_contact_left": [
-      93.6,
+      93.4,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      149,
       310.1
      ],
      "head_top": [
       119.5,
-      73.0
+      73
      ]
     },
     {
@@ -822,31 +2226,31 @@
       142.7
      ],
      "shoulder_left": [
-      98.5,
+      98.3,
       143.1
      ],
      "shoulder_right": [
-      139.6,
+      139.8,
       143.4
      ],
      "elbow_left": [
-      88.4,
+      88.1,
       172.9
      ],
      "elbow_right": [
-      151.7,
-      172.0
+      152,
+      172
      ],
      "wrist_left": [
-      80.9,
+      80.6,
       197.6
      ],
      "wrist_right": [
-      156.8,
+      157.1,
       197.6
      ],
      "hand_main": [
-      156.6,
+      156.9,
       209.8
      ],
      "chest_center": [
@@ -862,927 +2266,149 @@
       223.4
      ],
      "knee_left": [
-      100.9,
+      100.7,
       255.9
      ],
      "knee_right": [
-      138.4,
+      138.6,
       256.7
      ],
      "ankle_left": [
-      94.9,
+      94.7,
       298.9
      ],
      "ankle_right": [
-      145.3,
+      145.5,
       299.2
      ],
      "foot_contact_left": [
-      93.6,
+      93.4,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      149,
       310.1
      ],
      "head_top": [
       119.5,
-      73.0
+      73
      ]
     },
     {
      "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
       119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      108.1
-     ],
-     "neck_base": [
-      119.6,
-      141.2
-     ],
-     "shoulder_left": [
-      98.5,
-      141.7
-     ],
-     "shoulder_right": [
-      139.6,
-      142.0
-     ],
-     "elbow_left": [
-      88.4,
-      171.7
-     ],
-     "elbow_right": [
-      151.7,
-      170.8
-     ],
-     "wrist_left": [
-      80.9,
-      196.7
-     ],
-     "wrist_right": [
-      156.8,
-      196.7
-     ],
-     "hand_main": [
-      156.6,
-      209.0
-     ],
-     "chest_center": [
-      119.5,
-      171.4
-     ],
-     "waist_center": [
-      119.9,
-      195.8
-     ],
-     "hip_center": [
-      119.5,
-      222.7
-     ],
-     "knee_left": [
-      100.9,
-      255.4
-     ],
-     "knee_right": [
-      138.4,
-      256.2
-     ],
-     "ankle_left": [
-      94.9,
-      298.7
-     ],
-     "ankle_right": [
-      145.3,
-      299.0
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      71.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      108.1
-     ],
-     "neck_base": [
-      119.6,
-      141.2
-     ],
-     "shoulder_left": [
-      98.5,
-      141.7
-     ],
-     "shoulder_right": [
-      139.6,
-      142.0
-     ],
-     "elbow_left": [
-      88.4,
-      171.7
-     ],
-     "elbow_right": [
-      151.7,
-      170.8
-     ],
-     "wrist_left": [
-      80.9,
-      196.7
-     ],
-     "wrist_right": [
-      156.8,
-      196.7
-     ],
-     "hand_main": [
-      156.6,
-      209.0
-     ],
-     "chest_center": [
-      119.5,
-      171.4
-     ],
-     "waist_center": [
-      119.9,
-      195.8
-     ],
-     "hip_center": [
-      119.5,
-      222.7
-     ],
-     "knee_left": [
-      100.9,
-      255.4
-     ],
-     "knee_right": [
-      138.4,
-      256.2
-     ],
-     "ankle_left": [
-      94.9,
-      298.7
-     ],
-     "ankle_right": [
-      145.3,
-      299.0
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      71.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      108.1
-     ],
-     "neck_base": [
-      119.6,
-      141.2
-     ],
-     "shoulder_left": [
-      98.5,
-      141.7
-     ],
-     "shoulder_right": [
-      139.6,
-      142.0
-     ],
-     "elbow_left": [
-      88.4,
-      171.7
-     ],
-     "elbow_right": [
-      151.7,
-      170.8
-     ],
-     "wrist_left": [
-      80.9,
-      196.7
-     ],
-     "wrist_right": [
-      156.8,
-      196.7
-     ],
-     "hand_main": [
-      156.6,
-      209.0
-     ],
-     "chest_center": [
-      119.5,
-      171.4
-     ],
-     "waist_center": [
-      119.9,
-      195.8
-     ],
-     "hip_center": [
-      119.5,
-      222.7
-     ],
-     "knee_left": [
-      100.9,
-      255.4
-     ],
-     "knee_right": [
-      138.4,
-      256.2
-     ],
-     "ankle_left": [
-      94.9,
-      298.7
-     ],
-     "ankle_right": [
-      145.3,
-      299.0
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      71.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      109.0
-     ],
-     "neck_base": [
-      119.6,
-      142.0
-     ],
-     "shoulder_left": [
-      98.5,
-      142.4
-     ],
-     "shoulder_right": [
-      139.6,
-      142.7
-     ],
-     "elbow_left": [
-      88.4,
-      172.3
-     ],
-     "elbow_right": [
-      151.7,
-      171.4
-     ],
-     "wrist_left": [
-      80.9,
-      197.1
-     ],
-     "wrist_right": [
-      156.8,
-      197.1
-     ],
-     "hand_main": [
-      156.6,
-      209.4
-     ],
-     "chest_center": [
-      119.5,
-      172.0
-     ],
-     "waist_center": [
-      119.9,
-      196.3
-     ],
-     "hip_center": [
-      119.5,
-      223.1
-     ],
-     "knee_left": [
-      100.9,
-      255.7
-     ],
-     "knee_right": [
-      138.4,
-      256.5
-     ],
-     "ankle_left": [
-      94.9,
-      298.8
-     ],
-     "ankle_right": [
-      145.3,
-      299.1
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.5
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.0
-     ],
-     "head_top": [
-      119.5,
-      72.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
       109.8
      ],
      "neck_base": [
-      119.6,
+      120.1,
       142.7
      ],
      "shoulder_left": [
-      98.5,
+      98.8,
       143.1
      ],
      "shoulder_right": [
-      139.6,
+      140.3,
       143.4
      ],
      "elbow_left": [
-      88.4,
+      88.6,
       172.9
      ],
      "elbow_right": [
-      151.7,
-      172.0
+      152.5,
+      172
      ],
      "wrist_left": [
-      80.9,
+      81.1,
       197.6
      ],
      "wrist_right": [
-      156.8,
+      157.6,
       197.6
      ],
      "hand_main": [
-      156.6,
+      157.4,
+      209.8
+     ],
+     "chest_center": [
+      120,
+      172.6
+     ],
+     "waist_center": [
+      120.4,
+      196.8
+     ],
+     "hip_center": [
+      120,
+      223.4
+     ],
+     "knee_left": [
+      101.2,
+      255.9
+     ],
+     "knee_right": [
+      139.1,
+      256.7
+     ],
+     "ankle_left": [
+      95.2,
+      298.9
+     ],
+     "ankle_right": [
+      146,
+      299.2
+     ],
+     "foot_contact_left": [
+      93.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      149.5,
+      310.1
+     ],
+     "head_top": [
+      120,
+      73
+     ]
+    }
+   ],
+   "costas": [
+    {
+     "head_center": [
+      119.5,
+      109.8
+     ],
+     "neck_base": [
+      119.3,
+      142.7
+     ],
+     "shoulder_left": [
+      140.7,
+      143.1
+     ],
+     "shoulder_right": [
+      99.3,
+      143.4
+     ],
+     "elbow_left": [
+      150.8,
+      172.9
+     ],
+     "elbow_right": [
+      87.1,
+      172
+     ],
+     "wrist_left": [
+      158.4,
+      197.6
+     ],
+     "wrist_right": [
+      81.8,
+      197.6
+     ],
+     "hand_main": [
+      82.1,
       209.8
      ],
      "chest_center": [
@@ -1790,7 +2416,7 @@
       172.6
      ],
      "waist_center": [
-      119.9,
+      119,
       196.8
      ],
      "hip_center": [
@@ -1798,69 +2424,2175 @@
       223.4
      ],
      "knee_left": [
-      100.9,
+      138.3,
       255.9
      ],
      "knee_right": [
-      138.4,
+      100.4,
       256.7
      ],
      "ankle_left": [
-      94.9,
+      144.3,
       298.9
      ],
      "ankle_right": [
-      145.3,
+      93.4,
       299.2
      ],
      "foot_contact_left": [
-      93.6,
+      145.7,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      89.9,
       310.1
      ],
      "head_top": [
       119.5,
-      73.0
+      73
      ]
     },
     {
      "head_center": [
-      119.4,
+      120.3,
       109.8
      ],
      "neck_base": [
-      119.6,
+      120.1,
       142.7
      ],
      "shoulder_left": [
-      98.5,
+      141.4,
       143.1
      ],
      "shoulder_right": [
-      139.6,
+      100,
       143.4
      ],
      "elbow_left": [
-      88.4,
+      151.6,
       172.9
      ],
      "elbow_right": [
-      151.7,
-      172.0
+      87.8,
+      172
      ],
      "wrist_left": [
-      80.9,
+      159.2,
       197.6
      ],
      "wrist_right": [
-      156.8,
+      82.6,
       197.6
      ],
      "hand_main": [
-      156.6,
+      82.8,
+      209.8
+     ],
+     "chest_center": [
+      120.2,
+      172.6
+     ],
+     "waist_center": [
+      119.8,
+      196.8
+     ],
+     "hip_center": [
+      120.2,
+      223.4
+     ],
+     "knee_left": [
+      139,
+      255.9
+     ],
+     "knee_right": [
+      101.2,
+      256.7
+     ],
+     "ankle_left": [
+      145.1,
+      298.9
+     ],
+     "ankle_right": [
+      94.2,
+      299.2
+     ],
+     "foot_contact_left": [
+      146.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      90.7,
+      310.1
+     ],
+     "head_top": [
+      120.2,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      120.3,
+      109.8
+     ],
+     "neck_base": [
+      120.2,
+      142.7
+     ],
+     "shoulder_left": [
+      141.4,
+      143.1
+     ],
+     "shoulder_right": [
+      99.9,
+      143.4
+     ],
+     "elbow_left": [
+      151.7,
+      172.9
+     ],
+     "elbow_right": [
+      87.8,
+      172
+     ],
+     "wrist_left": [
+      159.2,
+      197.6
+     ],
+     "wrist_right": [
+      82.7,
+      197.6
+     ],
+     "hand_main": [
+      82.8,
+      209.8
+     ],
+     "chest_center": [
+      120.3,
+      172.6
+     ],
+     "waist_center": [
+      119.8,
+      196.8
+     ],
+     "hip_center": [
+      120.3,
+      223.4
+     ],
+     "knee_left": [
+      139.1,
+      255.9
+     ],
+     "knee_right": [
+      101.2,
+      256.7
+     ],
+     "ankle_left": [
+      145.1,
+      298.9
+     ],
+     "ankle_right": [
+      94.3,
+      299.2
+     ],
+     "foot_contact_left": [
+      146.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      90.8,
+      310.1
+     ],
+     "head_top": [
+      120.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      120.6,
+      110.6
+     ],
+     "neck_base": [
+      120.4,
+      143.4
+     ],
+     "shoulder_left": [
+      141.6,
+      143.8
+     ],
+     "shoulder_right": [
+      100.3,
+      144.1
+     ],
+     "elbow_left": [
+      151.7,
+      173.5
+     ],
+     "elbow_right": [
+      88.2,
+      172.6
+     ],
+     "wrist_left": [
+      159.3,
+      198.1
+     ],
+     "wrist_right": [
+      83,
+      198.1
+     ],
+     "hand_main": [
+      83.2,
+      210.3
+     ],
+     "chest_center": [
+      120.5,
+      173.2
+     ],
+     "waist_center": [
+      120.1,
+      197.3
+     ],
+     "hip_center": [
+      120.5,
+      223.8
+     ],
+     "knee_left": [
+      139.2,
+      256.2
+     ],
+     "knee_right": [
+      101.5,
+      257
+     ],
+     "ankle_left": [
+      145.2,
+      298.9
+     ],
+     "ankle_right": [
+      94.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      146.5,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.1,
+      310.1
+     ],
+     "head_top": [
+      120.5,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      120.8,
+      110.6
+     ],
+     "neck_base": [
+      120.7,
+      143.4
+     ],
+     "shoulder_left": [
+      141.8,
+      143.8
+     ],
+     "shoulder_right": [
+      100.6,
+      144.1
+     ],
+     "elbow_left": [
+      151.9,
+      173.5
+     ],
+     "elbow_right": [
+      88.4,
+      172.6
+     ],
+     "wrist_left": [
+      159.6,
+      198.1
+     ],
+     "wrist_right": [
+      83.3,
+      198.1
+     ],
+     "hand_main": [
+      83.4,
+      210.3
+     ],
+     "chest_center": [
+      120.8,
+      173.2
+     ],
+     "waist_center": [
+      120.3,
+      197.3
+     ],
+     "hip_center": [
+      120.8,
+      223.8
+     ],
+     "knee_left": [
+      139.4,
+      256.2
+     ],
+     "knee_right": [
+      101.8,
+      257
+     ],
+     "ankle_left": [
+      145.4,
+      298.9
+     ],
+     "ankle_right": [
+      94.8,
+      299.2
+     ],
+     "foot_contact_left": [
+      146.8,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.3,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      121.1,
+      110.6
+     ],
+     "neck_base": [
+      120.9,
+      143.4
+     ],
+     "shoulder_left": [
+      142.1,
+      143.8
+     ],
+     "shoulder_right": [
+      100.8,
+      144.1
+     ],
+     "elbow_left": [
+      152.2,
+      173.5
+     ],
+     "elbow_right": [
+      88.7,
+      172.6
+     ],
+     "wrist_left": [
+      159.8,
+      198.1
+     ],
+     "wrist_right": [
+      83.5,
+      198.1
+     ],
+     "hand_main": [
+      83.7,
+      210.3
+     ],
+     "chest_center": [
+      121,
+      173.2
+     ],
+     "waist_center": [
+      120.6,
+      197.3
+     ],
+     "hip_center": [
+      121,
+      223.8
+     ],
+     "knee_left": [
+      139.7,
+      256.2
+     ],
+     "knee_right": [
+      102,
+      257
+     ],
+     "ankle_left": [
+      145.7,
+      298.9
+     ],
+     "ankle_right": [
+      95.1,
+      299.2
+     ],
+     "foot_contact_left": [
+      147,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.6,
+      310.1
+     ],
+     "head_top": [
+      121,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      120.8,
+      111.5
+     ],
+     "neck_base": [
+      120.7,
+      144.1
+     ],
+     "shoulder_left": [
+      141.7,
+      144.5
+     ],
+     "shoulder_right": [
+      100.7,
+      144.8
+     ],
+     "elbow_left": [
+      151.8,
+      174.1
+     ],
+     "elbow_right": [
+      88.6,
+      173.2
+     ],
+     "wrist_left": [
+      159.3,
+      198.6
+     ],
+     "wrist_right": [
+      83.4,
+      198.6
+     ],
+     "hand_main": [
+      83.7,
+      210.7
+     ],
+     "chest_center": [
+      120.7,
+      173.8
+     ],
+     "waist_center": [
+      120.3,
+      197.8
+     ],
+     "hip_center": [
+      120.7,
+      224.2
+     ],
+     "knee_left": [
+      139.3,
+      256.4
+     ],
+     "knee_right": [
+      101.8,
+      257.2
+     ],
+     "ankle_left": [
+      145.3,
+      299
+     ],
+     "ankle_right": [
+      94.9,
+      299.3
+     ],
+     "foot_contact_left": [
+      146.7,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.4,
+      310.1
+     ],
+     "head_top": [
+      120.7,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      112.4
+     ],
+     "neck_base": [
+      120.7,
+      144.8
+     ],
+     "shoulder_left": [
+      141.7,
+      145.2
+     ],
+     "shoulder_right": [
+      100.7,
+      145.5
+     ],
+     "elbow_left": [
+      151.7,
+      174.7
+     ],
+     "elbow_right": [
+      88.7,
+      173.8
+     ],
+     "wrist_left": [
+      159.2,
+      199.1
+     ],
+     "wrist_right": [
+      83.6,
+      199.1
+     ],
+     "hand_main": [
+      83.8,
+      211.1
+     ],
+     "chest_center": [
+      120.8,
+      174.4
+     ],
+     "waist_center": [
+      120.4,
+      198.3
+     ],
+     "hip_center": [
+      120.8,
+      224.6
+     ],
+     "knee_left": [
+      139.3,
+      256.6
+     ],
+     "knee_right": [
+      101.9,
+      257.4
+     ],
+     "ankle_left": [
+      145.2,
+      299.1
+     ],
+     "ankle_right": [
+      95.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      146.5,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.6,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      121.1,
+      112.4
+     ],
+     "neck_base": [
+      120.9,
+      144.8
+     ],
+     "shoulder_left": [
+      141.9,
+      145.2
+     ],
+     "shoulder_right": [
+      101,
+      145.5
+     ],
+     "elbow_left": [
+      152,
+      174.7
+     ],
+     "elbow_right": [
+      88.9,
+      173.8
+     ],
+     "wrist_left": [
+      159.4,
+      199.1
+     ],
+     "wrist_right": [
+      83.9,
+      199.1
+     ],
+     "hand_main": [
+      84.1,
+      211.1
+     ],
+     "chest_center": [
+      121,
+      174.4
+     ],
+     "waist_center": [
+      120.6,
+      198.3
+     ],
+     "hip_center": [
+      121,
+      224.6
+     ],
+     "knee_left": [
+      139.5,
+      256.6
+     ],
+     "knee_right": [
+      102.2,
+      257.4
+     ],
+     "ankle_left": [
+      145.5,
+      299.1
+     ],
+     "ankle_right": [
+      95.3,
+      299.4
+     ],
+     "foot_contact_left": [
+      146.8,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.8,
+      310.1
+     ],
+     "head_top": [
+      121,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      113.2
+     ],
+     "neck_base": [
+      120.7,
+      145.5
+     ],
+     "shoulder_left": [
+      141.6,
+      145.9
+     ],
+     "shoulder_right": [
+      100.8,
+      146.2
+     ],
+     "elbow_left": [
+      151.6,
+      175.3
+     ],
+     "elbow_right": [
+      88.8,
+      174.4
+     ],
+     "wrist_left": [
+      159,
+      199.6
+     ],
+     "wrist_right": [
+      83.8,
+      199.6
+     ],
+     "hand_main": [
+      84,
+      211.6
+     ],
+     "chest_center": [
+      120.8,
+      175
+     ],
+     "waist_center": [
+      120.4,
+      198.8
+     ],
+     "hip_center": [
+      120.8,
+      225
+     ],
+     "knee_left": [
+      139.2,
+      256.9
+     ],
+     "knee_right": [
+      102,
+      257.7
+     ],
+     "ankle_left": [
+      145.1,
+      299.1
+     ],
+     "ankle_right": [
+      95.2,
+      299.4
+     ],
+     "foot_contact_left": [
+      146.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.7,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      113.2
+     ],
+     "neck_base": [
+      120.7,
+      145.5
+     ],
+     "shoulder_left": [
+      141.6,
+      145.9
+     ],
+     "shoulder_right": [
+      100.8,
+      146.2
+     ],
+     "elbow_left": [
+      151.6,
+      175.3
+     ],
+     "elbow_right": [
+      88.8,
+      174.4
+     ],
+     "wrist_left": [
+      159,
+      199.6
+     ],
+     "wrist_right": [
+      83.8,
+      199.6
+     ],
+     "hand_main": [
+      84,
+      211.6
+     ],
+     "chest_center": [
+      120.8,
+      175
+     ],
+     "waist_center": [
+      120.4,
+      198.8
+     ],
+     "hip_center": [
+      120.8,
+      225
+     ],
+     "knee_left": [
+      139.2,
+      256.9
+     ],
+     "knee_right": [
+      102,
+      257.7
+     ],
+     "ankle_left": [
+      145.1,
+      299.1
+     ],
+     "ankle_right": [
+      95.2,
+      299.4
+     ],
+     "foot_contact_left": [
+      146.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      91.7,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      120.4,
+      114.1
+     ],
+     "neck_base": [
+      120.2,
+      146.2
+     ],
+     "shoulder_left": [
+      141,
+      146.6
+     ],
+     "shoulder_right": [
+      100.4,
+      146.9
+     ],
+     "elbow_left": [
+      151,
+      175.9
+     ],
+     "elbow_right": [
+      88.5,
+      175
+     ],
+     "wrist_left": [
+      158.4,
+      200.1
+     ],
+     "wrist_right": [
+      83.4,
+      200.1
+     ],
+     "hand_main": [
+      83.6,
+      212
+     ],
+     "chest_center": [
+      120.3,
+      175.6
+     ],
+     "waist_center": [
+      119.9,
+      199.3
+     ],
+     "hip_center": [
+      120.3,
+      225.3
+     ],
+     "knee_left": [
+      138.6,
+      257.1
+     ],
+     "knee_right": [
+      101.6,
+      257.9
+     ],
+     "ankle_left": [
+      144.5,
+      299.2
+     ],
+     "ankle_right": [
+      94.8,
+      299.5
+     ],
+     "foot_contact_left": [
+      145.8,
+      310.7
+     ],
+     "foot_contact_right": [
+      91.3,
+      310.2
+     ],
+     "head_top": [
+      120.3,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.2,
+      114.1
+     ],
+     "neck_base": [
+      120,
+      146.2
+     ],
+     "shoulder_left": [
+      140.8,
+      146.6
+     ],
+     "shoulder_right": [
+      100.2,
+      146.9
+     ],
+     "elbow_left": [
+      150.8,
+      175.9
+     ],
+     "elbow_right": [
+      88.3,
+      175
+     ],
+     "wrist_left": [
+      158.2,
+      200.1
+     ],
+     "wrist_right": [
+      83.2,
+      200.1
+     ],
+     "hand_main": [
+      83.3,
+      212
+     ],
+     "chest_center": [
+      120,
+      175.6
+     ],
+     "waist_center": [
+      119.7,
+      199.3
+     ],
+     "hip_center": [
+      120,
+      225.3
+     ],
+     "knee_left": [
+      138.3,
+      257.1
+     ],
+     "knee_right": [
+      101.3,
+      257.9
+     ],
+     "ankle_left": [
+      144.3,
+      299.2
+     ],
+     "ankle_right": [
+      94.6,
+      299.5
+     ],
+     "foot_contact_left": [
+      145.6,
+      310.7
+     ],
+     "foot_contact_right": [
+      91.1,
+      310.2
+     ],
+     "head_top": [
+      120,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.1,
+      114.1
+     ],
+     "neck_base": [
+      119.9,
+      146.2
+     ],
+     "shoulder_left": [
+      140.7,
+      146.6
+     ],
+     "shoulder_right": [
+      100.2,
+      146.9
+     ],
+     "elbow_left": [
+      150.7,
+      175.9
+     ],
+     "elbow_right": [
+      88.2,
+      175
+     ],
+     "wrist_left": [
+      158.1,
+      200.1
+     ],
+     "wrist_right": [
+      83.2,
+      200.1
+     ],
+     "hand_main": [
+      83.4,
+      212
+     ],
+     "chest_center": [
+      120,
+      175.6
+     ],
+     "waist_center": [
+      119.6,
+      199.3
+     ],
+     "hip_center": [
+      120,
+      225.3
+     ],
+     "knee_left": [
+      138.4,
+      257.1
+     ],
+     "knee_right": [
+      101.3,
+      257.9
+     ],
+     "ankle_left": [
+      144.3,
+      299.2
+     ],
+     "ankle_right": [
+      94.5,
+      299.5
+     ],
+     "foot_contact_left": [
+      145.6,
+      310.7
+     ],
+     "foot_contact_right": [
+      91.1,
+      310.2
+     ],
+     "head_top": [
+      120,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.2,
+      114.9
+     ],
+     "neck_base": [
+      120,
+      147
+     ],
+     "shoulder_left": [
+      140.7,
+      147.4
+     ],
+     "shoulder_right": [
+      100.3,
+      147.7
+     ],
+     "elbow_left": [
+      150.6,
+      176.5
+     ],
+     "elbow_right": [
+      88.3,
+      175.6
+     ],
+     "wrist_left": [
+      157.9,
+      200.6
+     ],
+     "wrist_right": [
+      83.3,
+      200.6
+     ],
+     "hand_main": [
+      83.6,
+      212.5
+     ],
+     "chest_center": [
+      120,
+      176.2
+     ],
+     "waist_center": [
+      119.7,
+      199.8
+     ],
+     "hip_center": [
+      120,
+      225.7
+     ],
+     "knee_left": [
+      138.3,
+      257.4
+     ],
+     "knee_right": [
+      101.4,
+      258.2
+     ],
+     "ankle_left": [
+      144.2,
+      299.3
+     ],
+     "ankle_right": [
+      94.7,
+      299.6
+     ],
+     "foot_contact_left": [
+      145.4,
+      310.7
+     ],
+     "foot_contact_right": [
+      91.2,
+      310.2
+     ],
+     "head_top": [
+      120,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      119.8,
+      114.9
+     ],
+     "neck_base": [
+      119.7,
+      147
+     ],
+     "shoulder_left": [
+      140.4,
+      147.4
+     ],
+     "shoulder_right": [
+      99.9,
+      147.7
+     ],
+     "elbow_left": [
+      150.3,
+      176.5
+     ],
+     "elbow_right": [
+      88.1,
+      175.6
+     ],
+     "wrist_left": [
+      157.8,
+      200.6
+     ],
+     "wrist_right": [
+      83.1,
+      200.6
+     ],
+     "hand_main": [
+      83.3,
+      212.5
+     ],
+     "chest_center": [
+      119.8,
+      176.2
+     ],
+     "waist_center": [
+      119.3,
+      199.8
+     ],
+     "hip_center": [
+      119.8,
+      225.7
+     ],
+     "knee_left": [
+      138.1,
+      257.4
+     ],
+     "knee_right": [
+      101.2,
+      258.2
+     ],
+     "ankle_left": [
+      143.9,
+      299.3
+     ],
+     "ankle_right": [
+      94.3,
+      299.6
+     ],
+     "foot_contact_left": [
+      145.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      90.9,
+      310.2
+     ],
+     "head_top": [
+      119.8,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      119.9,
+      114.9
+     ],
+     "neck_base": [
+      119.7,
+      147
+     ],
+     "shoulder_left": [
+      140.4,
+      147.4
+     ],
+     "shoulder_right": [
+      100,
+      147.7
+     ],
+     "elbow_left": [
+      150.3,
+      176.5
+     ],
+     "elbow_right": [
+      88.1,
+      175.6
+     ],
+     "wrist_left": [
+      157.7,
+      200.6
+     ],
+     "wrist_right": [
+      83.1,
+      200.6
+     ],
+     "hand_main": [
+      83.3,
+      212.5
+     ],
+     "chest_center": [
+      119.8,
+      176.2
+     ],
+     "waist_center": [
+      119.4,
+      199.8
+     ],
+     "hip_center": [
+      119.8,
+      225.7
+     ],
+     "knee_left": [
+      138,
+      257.4
+     ],
+     "knee_right": [
+      101.2,
+      258.2
+     ],
+     "ankle_left": [
+      143.9,
+      299.3
+     ],
+     "ankle_right": [
+      94.4,
+      299.6
+     ],
+     "foot_contact_left": [
+      145.2,
+      310.7
+     ],
+     "foot_contact_right": [
+      90.9,
+      310.2
+     ],
+     "head_top": [
+      119.8,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      114.1
+     ],
+     "neck_base": [
+      118.9,
+      146.2
+     ],
+     "shoulder_left": [
+      139.7,
+      146.6
+     ],
+     "shoulder_right": [
+      99.2,
+      146.9
+     ],
+     "elbow_left": [
+      149.7,
+      175.9
+     ],
+     "elbow_right": [
+      87.2,
+      175
+     ],
+     "wrist_left": [
+      157.1,
+      200.1
+     ],
+     "wrist_right": [
+      82.2,
+      200.1
+     ],
+     "hand_main": [
+      82.4,
+      212
+     ],
+     "chest_center": [
+      119,
+      175.6
+     ],
+     "waist_center": [
+      118.6,
+      199.3
+     ],
+     "hip_center": [
+      119,
+      225.3
+     ],
+     "knee_left": [
+      137.4,
+      257.1
+     ],
+     "knee_right": [
+      100.3,
+      257.9
+     ],
+     "ankle_left": [
+      143.3,
+      299.2
+     ],
+     "ankle_right": [
+      93.5,
+      299.5
+     ],
+     "foot_contact_left": [
+      144.6,
+      310.7
+     ],
+     "foot_contact_right": [
+      90.1,
+      310.2
+     ],
+     "head_top": [
+      119,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      114.1
+     ],
+     "neck_base": [
+      118.9,
+      146.2
+     ],
+     "shoulder_left": [
+      139.7,
+      146.6
+     ],
+     "shoulder_right": [
+      99.2,
+      146.9
+     ],
+     "elbow_left": [
+      149.7,
+      175.9
+     ],
+     "elbow_right": [
+      87.2,
+      175
+     ],
+     "wrist_left": [
+      157.1,
+      200.1
+     ],
+     "wrist_right": [
+      82.2,
+      200.1
+     ],
+     "hand_main": [
+      82.4,
+      212
+     ],
+     "chest_center": [
+      119,
+      175.6
+     ],
+     "waist_center": [
+      118.6,
+      199.3
+     ],
+     "hip_center": [
+      119,
+      225.3
+     ],
+     "knee_left": [
+      137.4,
+      257.1
+     ],
+     "knee_right": [
+      100.3,
+      257.9
+     ],
+     "ankle_left": [
+      143.3,
+      299.2
+     ],
+     "ankle_right": [
+      93.5,
+      299.5
+     ],
+     "foot_contact_left": [
+      144.6,
+      310.7
+     ],
+     "foot_contact_right": [
+      90.1,
+      310.2
+     ],
+     "head_top": [
+      119,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      119.2,
+      114.1
+     ],
+     "neck_base": [
+      119,
+      146.2
+     ],
+     "shoulder_left": [
+      139.8,
+      146.6
+     ],
+     "shoulder_right": [
+      99.2,
+      146.9
+     ],
+     "elbow_left": [
+      149.8,
+      175.9
+     ],
+     "elbow_right": [
+      87.3,
+      175
+     ],
+     "wrist_left": [
+      157.2,
+      200.1
+     ],
+     "wrist_right": [
+      82.2,
+      200.1
+     ],
+     "hand_main": [
+      82.3,
+      212
+     ],
+     "chest_center": [
+      119,
+      175.6
+     ],
+     "waist_center": [
+      118.7,
+      199.3
+     ],
+     "hip_center": [
+      119,
+      225.3
+     ],
+     "knee_left": [
+      137.3,
+      257.1
+     ],
+     "knee_right": [
+      100.3,
+      257.9
+     ],
+     "ankle_left": [
+      143.3,
+      299.2
+     ],
+     "ankle_right": [
+      93.6,
+      299.5
+     ],
+     "foot_contact_left": [
+      144.6,
+      310.7
+     ],
+     "foot_contact_right": [
+      90.1,
+      310.2
+     ],
+     "head_top": [
+      119,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      118.9,
+      113.2
+     ],
+     "neck_base": [
+      118.7,
+      145.5
+     ],
+     "shoulder_left": [
+      139.6,
+      145.9
+     ],
+     "shoulder_right": [
+      98.8,
+      146.2
+     ],
+     "elbow_left": [
+      149.6,
+      175.3
+     ],
+     "elbow_right": [
+      86.8,
+      174.4
+     ],
+     "wrist_left": [
+      157,
+      199.6
+     ],
+     "wrist_right": [
+      81.8,
+      199.6
+     ],
+     "hand_main": [
+      82,
+      211.6
+     ],
+     "chest_center": [
+      118.8,
+      175
+     ],
+     "waist_center": [
+      118.4,
+      198.8
+     ],
+     "hip_center": [
+      118.8,
+      225
+     ],
+     "knee_left": [
+      137.2,
+      256.9
+     ],
+     "knee_right": [
+      100,
+      257.7
+     ],
+     "ankle_left": [
+      143.1,
+      299.1
+     ],
+     "ankle_right": [
+      93.2,
+      299.4
+     ],
+     "foot_contact_left": [
+      144.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.7,
+      310.1
+     ],
+     "head_top": [
+      118.8,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      118.7,
+      113.2
+     ],
+     "neck_base": [
+      118.5,
+      145.5
+     ],
+     "shoulder_left": [
+      139.3,
+      145.9
+     ],
+     "shoulder_right": [
+      98.6,
+      146.2
+     ],
+     "elbow_left": [
+      149.3,
+      175.3
+     ],
+     "elbow_right": [
+      86.6,
+      174.4
+     ],
+     "wrist_left": [
+      156.8,
+      199.6
+     ],
+     "wrist_right": [
+      81.6,
+      199.6
+     ],
+     "hand_main": [
+      81.8,
+      211.6
+     ],
+     "chest_center": [
+      118.5,
+      175
+     ],
+     "waist_center": [
+      118.2,
+      198.8
+     ],
+     "hip_center": [
+      118.5,
+      225
+     ],
+     "knee_left": [
+      136.9,
+      256.9
+     ],
+     "knee_right": [
+      99.8,
+      257.7
+     ],
+     "ankle_left": [
+      142.8,
+      299.1
+     ],
+     "ankle_right": [
+      92.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      144.2,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.4,
+      310.1
+     ],
+     "head_top": [
+      118.5,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      118.8,
+      112.4
+     ],
+     "neck_base": [
+      118.7,
+      144.8
+     ],
+     "shoulder_left": [
+      139.7,
+      145.2
+     ],
+     "shoulder_right": [
+      98.8,
+      145.5
+     ],
+     "elbow_left": [
+      149.8,
+      174.7
+     ],
+     "elbow_right": [
+      86.7,
+      173.8
+     ],
+     "wrist_left": [
+      157.2,
+      199.1
+     ],
+     "wrist_right": [
+      81.7,
+      199.1
+     ],
+     "hand_main": [
+      81.8,
+      211.1
+     ],
+     "chest_center": [
+      118.8,
+      174.4
+     ],
+     "waist_center": [
+      118.3,
+      198.3
+     ],
+     "hip_center": [
+      118.8,
+      224.6
+     ],
+     "knee_left": [
+      137.3,
+      256.6
+     ],
+     "knee_right": [
+      99.9,
+      257.4
+     ],
+     "ankle_left": [
+      143.3,
+      299.1
+     ],
+     "ankle_right": [
+      93.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      144.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.6,
+      310.1
+     ],
+     "head_top": [
+      118.8,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      118.8,
+      111.5
+     ],
+     "neck_base": [
+      118.7,
+      144.1
+     ],
+     "shoulder_left": [
+      139.8,
+      144.5
+     ],
+     "shoulder_right": [
+      98.7,
+      144.8
+     ],
+     "elbow_left": [
+      149.8,
+      174.1
+     ],
+     "elbow_right": [
+      86.6,
+      173.2
+     ],
+     "wrist_left": [
+      157.3,
+      198.6
+     ],
+     "wrist_right": [
+      81.4,
+      198.6
+     ],
+     "hand_main": [
+      81.7,
+      210.7
+     ],
+     "chest_center": [
+      118.8,
+      173.8
+     ],
+     "waist_center": [
+      118.3,
+      197.8
+     ],
+     "hip_center": [
+      118.8,
+      224.2
+     ],
+     "knee_left": [
+      137.3,
+      256.4
+     ],
+     "knee_right": [
+      99.8,
+      257.2
+     ],
+     "ankle_left": [
+      143.3,
+      299
+     ],
+     "ankle_right": [
+      92.9,
+      299.3
+     ],
+     "foot_contact_left": [
+      144.7,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.4,
+      310.1
+     ],
+     "head_top": [
+      118.8,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      118.5,
+      111.5
+     ],
+     "neck_base": [
+      118.5,
+      144.1
+     ],
+     "shoulder_left": [
+      139.4,
+      144.5
+     ],
+     "shoulder_right": [
+      98.4,
+      144.8
+     ],
+     "elbow_left": [
+      149.6,
+      174.1
+     ],
+     "elbow_right": [
+      86.3,
+      173.2
+     ],
+     "wrist_left": [
+      157.1,
+      198.6
+     ],
+     "wrist_right": [
+      81.2,
+      198.6
+     ],
+     "hand_main": [
+      81.4,
+      210.7
+     ],
+     "chest_center": [
+      118.5,
+      173.8
+     ],
+     "waist_center": [
+      118,
+      197.8
+     ],
+     "hip_center": [
+      118.5,
+      224.2
+     ],
+     "knee_left": [
+      137.1,
+      256.4
+     ],
+     "knee_right": [
+      99.6,
+      257.2
+     ],
+     "ankle_left": [
+      143.1,
+      299
+     ],
+     "ankle_right": [
+      92.7,
+      299.3
+     ],
+     "foot_contact_left": [
+      144.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.2,
+      310.1
+     ],
+     "head_top": [
+      118.5,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      110.6
+     ],
+     "neck_base": [
+      118.9,
+      143.4
+     ],
+     "shoulder_left": [
+      140.1,
+      143.8
+     ],
+     "shoulder_right": [
+      98.8,
+      144.1
+     ],
+     "elbow_left": [
+      150.2,
+      173.5
+     ],
+     "elbow_right": [
+      86.7,
+      172.6
+     ],
+     "wrist_left": [
+      157.8,
+      198.1
+     ],
+     "wrist_right": [
+      81.5,
+      198.1
+     ],
+     "hand_main": [
+      81.7,
+      210.3
+     ],
+     "chest_center": [
+      119,
+      173.2
+     ],
+     "waist_center": [
+      118.6,
+      197.3
+     ],
+     "hip_center": [
+      119,
+      223.8
+     ],
+     "knee_left": [
+      137.7,
+      256.2
+     ],
+     "knee_right": [
+      100,
+      257
+     ],
+     "ankle_left": [
+      143.7,
+      298.9
+     ],
+     "ankle_right": [
+      93.1,
+      299.2
+     ],
+     "foot_contact_left": [
+      145,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.6,
+      310.1
+     ],
+     "head_top": [
+      119,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      119,
+      110.6
+     ],
+     "neck_base": [
+      118.8,
+      143.4
+     ],
+     "shoulder_left": [
+      140.1,
+      143.8
+     ],
+     "shoulder_right": [
+      98.8,
+      144.1
+     ],
+     "elbow_left": [
+      150.3,
+      173.5
+     ],
+     "elbow_right": [
+      86.7,
+      172.6
+     ],
+     "wrist_left": [
+      157.8,
+      198.1
+     ],
+     "wrist_right": [
+      81.6,
+      198.1
+     ],
+     "hand_main": [
+      81.8,
+      210.3
+     ],
+     "chest_center": [
+      119,
+      173.2
+     ],
+     "waist_center": [
+      118.5,
+      197.3
+     ],
+     "hip_center": [
+      119,
+      223.8
+     ],
+     "knee_left": [
+      137.7,
+      256.2
+     ],
+     "knee_right": [
+      100.1,
+      257
+     ],
+     "ankle_left": [
+      143.8,
+      298.9
+     ],
+     "ankle_right": [
+      93.1,
+      299.2
+     ],
+     "foot_contact_left": [
+      145.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.6,
+      310.1
+     ],
+     "head_top": [
+      119,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      119.3,
+      109.8
+     ],
+     "neck_base": [
+      119.2,
+      142.7
+     ],
+     "shoulder_left": [
+      140.4,
+      143.1
+     ],
+     "shoulder_right": [
+      98.9,
+      143.4
+     ],
+     "elbow_left": [
+      150.7,
+      172.9
+     ],
+     "elbow_right": [
+      86.8,
+      172
+     ],
+     "wrist_left": [
+      158.2,
+      197.6
+     ],
+     "wrist_right": [
+      81.7,
+      197.6
+     ],
+     "hand_main": [
+      81.8,
+      209.8
+     ],
+     "chest_center": [
+      119.3,
+      172.6
+     ],
+     "waist_center": [
+      118.8,
+      196.8
+     ],
+     "hip_center": [
+      119.3,
+      223.4
+     ],
+     "knee_left": [
+      138.1,
+      255.9
+     ],
+     "knee_right": [
+      100.2,
+      256.7
+     ],
+     "ankle_left": [
+      144.1,
+      298.9
+     ],
+     "ankle_right": [
+      93.3,
+      299.2
+     ],
+     "foot_contact_left": [
+      145.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      89.8,
+      310.1
+     ],
+     "head_top": [
+      119.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      119.6,
+      109.8
+     ],
+     "neck_base": [
+      119.4,
+      142.7
+     ],
+     "shoulder_left": [
+      140.7,
+      143.1
+     ],
+     "shoulder_right": [
+      99.2,
+      143.4
+     ],
+     "elbow_left": [
+      150.9,
+      172.9
+     ],
+     "elbow_right": [
+      87,
+      172
+     ],
+     "wrist_left": [
+      158.4,
+      197.6
+     ],
+     "wrist_right": [
+      81.9,
+      197.6
+     ],
+     "hand_main": [
+      82.1,
       209.8
      ],
      "chest_center": [
@@ -1868,7 +4600,7 @@
       172.6
      ],
      "waist_center": [
-      119.9,
+      119.1,
       196.8
      ],
      "hip_center": [
@@ -1876,266 +4608,1984 @@
       223.4
      ],
      "knee_left": [
-      100.9,
+      138.3,
       255.9
      ],
      "knee_right": [
-      138.4,
+      100.4,
       256.7
      ],
      "ankle_left": [
-      94.9,
+      144.3,
       298.9
      ],
      "ankle_right": [
-      145.3,
+      93.5,
       299.2
      ],
      "foot_contact_left": [
-      93.6,
+      145.6,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      90,
       310.1
      ],
      "head_top": [
       119.5,
-      73.0
+      73
+     ]
+    },
+    {
+     "head_center": [
+      119.6,
+      109.8
+     ],
+     "neck_base": [
+      119.4,
+      142.7
+     ],
+     "shoulder_left": [
+      140.7,
+      143.1
+     ],
+     "shoulder_right": [
+      99.2,
+      143.4
+     ],
+     "elbow_left": [
+      150.9,
+      172.9
+     ],
+     "elbow_right": [
+      87,
+      172
+     ],
+     "wrist_left": [
+      158.4,
+      197.6
+     ],
+     "wrist_right": [
+      81.9,
+      197.6
+     ],
+     "hand_main": [
+      82.1,
+      209.8
+     ],
+     "chest_center": [
+      119.5,
+      172.6
+     ],
+     "waist_center": [
+      119.1,
+      196.8
+     ],
+     "hip_center": [
+      119.5,
+      223.4
+     ],
+     "knee_left": [
+      138.3,
+      255.9
+     ],
+     "knee_right": [
+      100.4,
+      256.7
+     ],
+     "ankle_left": [
+      144.3,
+      298.9
+     ],
+     "ankle_right": [
+      93.5,
+      299.2
+     ],
+     "foot_contact_left": [
+      145.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      90,
+      310.1
+     ],
+     "head_top": [
+      119.5,
+      73
+     ]
+    }
+   ],
+   "esquerda": [
+    {
+     "head_center": [
+      121.4,
+      109.8
+     ],
+     "neck_base": [
+      126,
+      142.7
+     ],
+     "shoulder_left": [
+      128.4,
+      143.1
+     ],
+     "shoulder_right": [
+      128.4,
+      143.4
+     ],
+     "elbow_left": [
+      126.1,
+      172.9
+     ],
+     "elbow_right": [
+      125.6,
+      172
+     ],
+     "wrist_left": [
+      119.8,
+      197.6
+     ],
+     "wrist_right": [
+      119.8,
+      197.6
+     ],
+     "hand_main": [
+      117.4,
+      209.8
+     ],
+     "chest_center": [
+      111.6,
+      172.6
+     ],
+     "waist_center": [
+      112.5,
+      196.8
+     ],
+     "hip_center": [
+      115.9,
+      223.4
+     ],
+     "knee_left": [
+      118.7,
+      255.9
+     ],
+     "knee_right": [
+      119.7,
+      256.7
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111,
+      310.6
+     ],
+     "foot_contact_right": [
+      111,
+      310.1
+     ],
+     "head_top": [
+      121.8,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      121.9,
+      109.8
+     ],
+     "neck_base": [
+      127,
+      142.7
+     ],
+     "shoulder_left": [
+      129.4,
+      143.1
+     ],
+     "shoulder_right": [
+      129.4,
+      143.4
+     ],
+     "elbow_left": [
+      126.1,
+      172.9
+     ],
+     "elbow_right": [
+      126.1,
+      172
+     ],
+     "wrist_left": [
+      120.3,
+      197.6
+     ],
+     "wrist_right": [
+      120.3,
+      197.6
+     ],
+     "hand_main": [
+      117.9,
+      209.8
+     ],
+     "chest_center": [
+      111.6,
+      172.6
+     ],
+     "waist_center": [
+      113,
+      196.8
+     ],
+     "hip_center": [
+      115.9,
+      223.4
+     ],
+     "knee_left": [
+      118.7,
+      255.9
+     ],
+     "knee_right": [
+      119.7,
+      256.7
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111,
+      310.6
+     ],
+     "foot_contact_right": [
+      111,
+      310.1
+     ],
+     "head_top": [
+      121.8,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      109.8
+     ],
+     "neck_base": [
+      127,
+      142.7
+     ],
+     "shoulder_left": [
+      129.4,
+      143.1
+     ],
+     "shoulder_right": [
+      129.4,
+      143.4
+     ],
+     "elbow_left": [
+      126.1,
+      172.9
+     ],
+     "elbow_right": [
+      126.1,
+      172
+     ],
+     "wrist_left": [
+      120.3,
+      197.6
+     ],
+     "wrist_right": [
+      120.3,
+      197.6
+     ],
+     "hand_main": [
+      117.9,
+      209.8
+     ],
+     "chest_center": [
+      111.6,
+      172.6
+     ],
+     "waist_center": [
+      113,
+      196.8
+     ],
+     "hip_center": [
+      115.9,
+      223.4
+     ],
+     "knee_left": [
+      119.2,
+      255.9
+     ],
+     "knee_right": [
+      119.7,
+      256.7
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111,
+      310.6
+     ],
+     "foot_contact_right": [
+      111,
+      310.1
+     ],
+     "head_top": [
+      122.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      110.6
+     ],
+     "neck_base": [
+      127.5,
+      143.4
+     ],
+     "shoulder_left": [
+      129.9,
+      143.8
+     ],
+     "shoulder_right": [
+      129.9,
+      144.1
+     ],
+     "elbow_left": [
+      127.1,
+      173.5
+     ],
+     "elbow_right": [
+      126.6,
+      172.6
+     ],
+     "wrist_left": [
+      120.3,
+      198.1
+     ],
+     "wrist_right": [
+      120.3,
+      198.1
+     ],
+     "hand_main": [
+      118.4,
+      210.3
+     ],
+     "chest_center": [
+      112.2,
+      173.2
+     ],
+     "waist_center": [
+      113.1,
+      197.3
+     ],
+     "hip_center": [
+      116.4,
+      223.8
+     ],
+     "knee_left": [
+      119.2,
+      256.2
+     ],
+     "knee_right": [
+      119.7,
+      257
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.1,
+      310.1
+     ],
+     "head_top": [
+      122.3,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      110.6
+     ],
+     "neck_base": [
+      127.5,
+      143.4
+     ],
+     "shoulder_left": [
+      129.9,
+      143.8
+     ],
+     "shoulder_right": [
+      129.9,
+      144.1
+     ],
+     "elbow_left": [
+      127.1,
+      173.5
+     ],
+     "elbow_right": [
+      126.6,
+      172.6
+     ],
+     "wrist_left": [
+      120.3,
+      198.1
+     ],
+     "wrist_right": [
+      120.3,
+      198.1
+     ],
+     "hand_main": [
+      118.4,
+      210.3
+     ],
+     "chest_center": [
+      112.2,
+      173.2
+     ],
+     "waist_center": [
+      113.1,
+      197.3
+     ],
+     "hip_center": [
+      116.4,
+      223.8
+     ],
+     "knee_left": [
+      119.2,
+      256.2
+     ],
+     "knee_right": [
+      119.7,
+      257
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.1,
+      310.1
+     ],
+     "head_top": [
+      122.5,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      111.5
+     ],
+     "neck_base": [
+      127.5,
+      144.1
+     ],
+     "shoulder_left": [
+      130.4,
+      144.5
+     ],
+     "shoulder_right": [
+      130.4,
+      144.8
+     ],
+     "elbow_left": [
+      127.1,
+      174.1
+     ],
+     "elbow_right": [
+      126.6,
+      173.2
+     ],
+     "wrist_left": [
+      120.3,
+      198.6
+     ],
+     "wrist_right": [
+      120.3,
+      198.6
+     ],
+     "hand_main": [
+      118.4,
+      210.7
+     ],
+     "chest_center": [
+      112.7,
+      173.8
+     ],
+     "waist_center": [
+      113.1,
+      197.8
+     ],
+     "hip_center": [
+      116.9,
+      224.2
+     ],
+     "knee_left": [
+      119.2,
+      256.4
+     ],
+     "knee_right": [
+      119.7,
+      257.2
+     ],
+     "ankle_left": [
+      130.9,
+      299
+     ],
+     "ankle_right": [
+      130.9,
+      299.3
+     ],
+     "foot_contact_left": [
+      111.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.6,
+      310.1
+     ],
+     "head_top": [
+      122.5,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      123.4,
+      111.5
+     ],
+     "neck_base": [
+      127.5,
+      144.1
+     ],
+     "shoulder_left": [
+      130.4,
+      144.5
+     ],
+     "shoulder_right": [
+      130.4,
+      144.8
+     ],
+     "elbow_left": [
+      127.1,
+      174.1
+     ],
+     "elbow_right": [
+      126.6,
+      173.2
+     ],
+     "wrist_left": [
+      120.3,
+      198.6
+     ],
+     "wrist_right": [
+      120.3,
+      198.6
+     ],
+     "hand_main": [
+      118.4,
+      210.7
+     ],
+     "chest_center": [
+      112.7,
+      173.8
+     ],
+     "waist_center": [
+      113.1,
+      197.8
+     ],
+     "hip_center": [
+      116.9,
+      224.2
+     ],
+     "knee_left": [
+      119.2,
+      256.4
+     ],
+     "knee_right": [
+      119.7,
+      257.2
+     ],
+     "ankle_left": [
+      130.9,
+      299
+     ],
+     "ankle_right": [
+      130.9,
+      299.3
+     ],
+     "foot_contact_left": [
+      111.1,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.6,
+      310.1
+     ],
+     "head_top": [
+      122.5,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      123.4,
+      112.4
+     ],
+     "neck_base": [
+      128,
+      144.8
+     ],
+     "shoulder_left": [
+      130.4,
+      145.2
+     ],
+     "shoulder_right": [
+      130.4,
+      145.5
+     ],
+     "elbow_left": [
+      127.1,
+      174.7
+     ],
+     "elbow_right": [
+      126.6,
+      173.8
+     ],
+     "wrist_left": [
+      120.3,
+      199.1
+     ],
+     "wrist_right": [
+      120.3,
+      199.1
+     ],
+     "hand_main": [
+      118.4,
+      211.1
+     ],
+     "chest_center": [
+      112.2,
+      174.4
+     ],
+     "waist_center": [
+      113.1,
+      198.3
+     ],
+     "hip_center": [
+      116.9,
+      224.6
+     ],
+     "knee_left": [
+      119.7,
+      256.6
+     ],
+     "knee_right": [
+      119.7,
+      257.4
+     ],
+     "ankle_left": [
+      130.9,
+      299.1
+     ],
+     "ankle_right": [
+      130.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      111.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.6,
+      310.1
+     ],
+     "head_top": [
+      122.8,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      123.4,
+      112.4
+     ],
+     "neck_base": [
+      128,
+      144.8
+     ],
+     "shoulder_left": [
+      130.4,
+      145.2
+     ],
+     "shoulder_right": [
+      130.4,
+      145.5
+     ],
+     "elbow_left": [
+      127.1,
+      174.7
+     ],
+     "elbow_right": [
+      126.6,
+      173.8
+     ],
+     "wrist_left": [
+      120.3,
+      199.1
+     ],
+     "wrist_right": [
+      120.3,
+      199.1
+     ],
+     "hand_main": [
+      118.4,
+      211.1
+     ],
+     "chest_center": [
+      112.2,
+      174.4
+     ],
+     "waist_center": [
+      113.6,
+      198.3
+     ],
+     "hip_center": [
+      116.9,
+      224.6
+     ],
+     "knee_left": [
+      119.7,
+      256.6
+     ],
+     "knee_right": [
+      119.7,
+      257.4
+     ],
+     "ankle_left": [
+      130.9,
+      299.1
+     ],
+     "ankle_right": [
+      130.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      111.6,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.6,
+      310.1
+     ],
+     "head_top": [
+      122.8,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      122.9,
+      113.2
+     ],
+     "neck_base": [
+      127.5,
+      145.5
+     ],
+     "shoulder_left": [
+      129.9,
+      145.9
+     ],
+     "shoulder_right": [
+      129.9,
+      146.2
+     ],
+     "elbow_left": [
+      126.6,
+      175.3
+     ],
+     "elbow_right": [
+      126.6,
+      174.4
+     ],
+     "wrist_left": [
+      120.3,
+      199.6
+     ],
+     "wrist_right": [
+      120.3,
+      199.6
+     ],
+     "hand_main": [
+      118.4,
+      211.6
+     ],
+     "chest_center": [
+      112.3,
+      175
+     ],
+     "waist_center": [
+      113.2,
+      198.8
+     ],
+     "hip_center": [
+      116.9,
+      225
+     ],
+     "knee_left": [
+      119.2,
+      256.9
+     ],
+     "knee_right": [
+      119.7,
+      257.7
+     ],
+     "ankle_left": [
+      130.9,
+      299.1
+     ],
+     "ankle_right": [
+      130.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.1
+     ],
+     "head_top": [
+      122.5,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      113.2
+     ],
+     "neck_base": [
+      127.5,
+      145.5
+     ],
+     "shoulder_left": [
+      129.9,
+      145.9
+     ],
+     "shoulder_right": [
+      129.9,
+      146.2
+     ],
+     "elbow_left": [
+      126.6,
+      175.3
+     ],
+     "elbow_right": [
+      126.6,
+      174.4
+     ],
+     "wrist_left": [
+      120.3,
+      199.6
+     ],
+     "wrist_right": [
+      120.3,
+      199.6
+     ],
+     "hand_main": [
+      118.4,
+      211.6
+     ],
+     "chest_center": [
+      112.3,
+      175
+     ],
+     "waist_center": [
+      113.2,
+      198.8
+     ],
+     "hip_center": [
+      116.9,
+      225
+     ],
+     "knee_left": [
+      119.2,
+      256.9
+     ],
+     "knee_right": [
+      119.7,
+      257.7
+     ],
+     "ankle_left": [
+      130.9,
+      299.1
+     ],
+     "ankle_right": [
+      130.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.1
+     ],
+     "head_top": [
+      122.3,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      114.1
+     ],
+     "neck_base": [
+      127.5,
+      146.2
+     ],
+     "shoulder_left": [
+      130.4,
+      146.6
+     ],
+     "shoulder_right": [
+      130.4,
+      146.9
+     ],
+     "elbow_left": [
+      126.6,
+      175.9
+     ],
+     "elbow_right": [
+      126.6,
+      175
+     ],
+     "wrist_left": [
+      120.3,
+      200.1
+     ],
+     "wrist_right": [
+      120.3,
+      200.1
+     ],
+     "hand_main": [
+      118.4,
+      212
+     ],
+     "chest_center": [
+      112.3,
+      175.6
+     ],
+     "waist_center": [
+      113.2,
+      199.3
+     ],
+     "hip_center": [
+      116.4,
+      225.3
+     ],
+     "knee_left": [
+      119.3,
+      257.1
+     ],
+     "knee_right": [
+      119.8,
+      257.9
+     ],
+     "ankle_left": [
+      130.8,
+      299.2
+     ],
+     "ankle_right": [
+      130.3,
+      299.5
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      122.3,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      122.4,
+      114.1
+     ],
+     "neck_base": [
+      127.5,
+      146.2
+     ],
+     "shoulder_left": [
+      129.4,
+      146.6
+     ],
+     "shoulder_right": [
+      129.4,
+      146.9
+     ],
+     "elbow_left": [
+      126.6,
+      175.9
+     ],
+     "elbow_right": [
+      126.6,
+      175
+     ],
+     "wrist_left": [
+      120.3,
+      200.1
+     ],
+     "wrist_right": [
+      120.3,
+      200.1
+     ],
+     "hand_main": [
+      118.4,
+      212
+     ],
+     "chest_center": [
+      112.3,
+      175.6
+     ],
+     "waist_center": [
+      113.2,
+      199.3
+     ],
+     "hip_center": [
+      115.9,
+      225.3
+     ],
+     "knee_left": [
+      119.3,
+      257.1
+     ],
+     "knee_right": [
+      119.8,
+      257.9
+     ],
+     "ankle_left": [
+      130.8,
+      299.2
+     ],
+     "ankle_right": [
+      130.3,
+      299.5
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      122,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      122,
+      115
+     ],
+     "neck_base": [
+      127,
+      146.9
+     ],
+     "shoulder_left": [
+      129.4,
+      147.3
+     ],
+     "shoulder_right": [
+      129.9,
+      147.6
+     ],
+     "elbow_left": [
+      126.5,
+      176.5
+     ],
+     "elbow_right": [
+      126.5,
+      175.6
+     ],
+     "wrist_left": [
+      120.3,
+      200.6
+     ],
+     "wrist_right": [
+      120.3,
+      200.6
+     ],
+     "hand_main": [
+      118.5,
+      212.4
+     ],
+     "chest_center": [
+      112.4,
+      176.2
+     ],
+     "waist_center": [
+      113.2,
+      199.8
+     ],
+     "hip_center": [
+      116.5,
+      225.7
+     ],
+     "knee_left": [
+      119.3,
+      257.3
+     ],
+     "knee_right": [
+      119.3,
+      258.1
+     ],
+     "ankle_left": [
+      130.8,
+      299.3
+     ],
+     "ankle_right": [
+      130.3,
+      299.6
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      122,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      121.5,
+      114.9
+     ],
+     "neck_base": [
+      127,
+      147
+     ],
+     "shoulder_left": [
+      129.4,
+      147.4
+     ],
+     "shoulder_right": [
+      129.4,
+      147.7
+     ],
+     "elbow_left": [
+      126,
+      176.5
+     ],
+     "elbow_right": [
+      125.5,
+      175.6
+     ],
+     "wrist_left": [
+      120.3,
+      200.6
+     ],
+     "wrist_right": [
+      120.3,
+      200.6
+     ],
+     "hand_main": [
+      117.5,
+      212.5
+     ],
+     "chest_center": [
+      111.4,
+      176.2
+     ],
+     "waist_center": [
+      112.7,
+      199.8
+     ],
+     "hip_center": [
+      116,
+      225.7
+     ],
+     "knee_left": [
+      119.3,
+      257.4
+     ],
+     "knee_right": [
+      119.3,
+      258.2
+     ],
+     "ankle_left": [
+      130.8,
+      299.3
+     ],
+     "ankle_right": [
+      130.3,
+      299.6
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      121.8,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      121.5,
+      114.9
+     ],
+     "neck_base": [
+      126,
+      147
+     ],
+     "shoulder_left": [
+      128.4,
+      147.4
+     ],
+     "shoulder_right": [
+      128.9,
+      147.7
+     ],
+     "elbow_left": [
+      126,
+      176.5
+     ],
+     "elbow_right": [
+      125.5,
+      175.6
+     ],
+     "wrist_left": [
+      119.8,
+      200.6
+     ],
+     "wrist_right": [
+      119.8,
+      200.6
+     ],
+     "hand_main": [
+      117.5,
+      212.5
+     ],
+     "chest_center": [
+      111.4,
+      176.2
+     ],
+     "waist_center": [
+      112.2,
+      199.8
+     ],
+     "hip_center": [
+      116,
+      225.7
+     ],
+     "knee_left": [
+      118.8,
+      257.4
+     ],
+     "knee_right": [
+      118.8,
+      258.2
+     ],
+     "ankle_left": [
+      130.8,
+      299.3
+     ],
+     "ankle_right": [
+      130.3,
+      299.6
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      121.8,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      121,
+      114.9
+     ],
+     "neck_base": [
+      126,
+      147
+     ],
+     "shoulder_left": [
+      128.4,
+      147.4
+     ],
+     "shoulder_right": [
+      128.9,
+      147.7
+     ],
+     "elbow_left": [
+      125.5,
+      176.5
+     ],
+     "elbow_right": [
+      125.5,
+      175.6
+     ],
+     "wrist_left": [
+      119.8,
+      200.6
+     ],
+     "wrist_right": [
+      119.8,
+      200.6
+     ],
+     "hand_main": [
+      117.5,
+      212.5
+     ],
+     "chest_center": [
+      111.4,
+      176.2
+     ],
+     "waist_center": [
+      112.2,
+      199.8
+     ],
+     "hip_center": [
+      116,
+      225.7
+     ],
+     "knee_left": [
+      118.8,
+      257.4
+     ],
+     "knee_right": [
+      118.8,
+      258.2
+     ],
+     "ankle_left": [
+      130.8,
+      299.3
+     ],
+     "ankle_right": [
+      130.3,
+      299.6
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      121.3,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      120.5,
+      115
+     ],
+     "neck_base": [
+      126,
+      146.9
+     ],
+     "shoulder_left": [
+      128.4,
+      147.3
+     ],
+     "shoulder_right": [
+      128.9,
+      147.6
+     ],
+     "elbow_left": [
+      125.5,
+      176.5
+     ],
+     "elbow_right": [
+      125.5,
+      175.6
+     ],
+     "wrist_left": [
+      119.3,
+      200.6
+     ],
+     "wrist_right": [
+      119.3,
+      200.6
+     ],
+     "hand_main": [
+      117.5,
+      212.4
+     ],
+     "chest_center": [
+      111.4,
+      176.2
+     ],
+     "waist_center": [
+      112.2,
+      199.8
+     ],
+     "hip_center": [
+      116,
+      225.7
+     ],
+     "knee_left": [
+      118.8,
+      257.3
+     ],
+     "knee_right": [
+      118.8,
+      258.1
+     ],
+     "ankle_left": [
+      130.8,
+      299.3
+     ],
+     "ankle_right": [
+      130.3,
+      299.6
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      121,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      120.4,
+      114.1
+     ],
+     "neck_base": [
+      125.5,
+      146.2
+     ],
+     "shoulder_left": [
+      128.4,
+      146.6
+     ],
+     "shoulder_right": [
+      128.4,
+      146.9
+     ],
+     "elbow_left": [
+      125.1,
+      175.9
+     ],
+     "elbow_right": [
+      124.6,
+      175
+     ],
+     "wrist_left": [
+      119.3,
+      200.1
+     ],
+     "wrist_right": [
+      119.3,
+      200.1
+     ],
+     "hand_main": [
+      117.4,
+      212
+     ],
+     "chest_center": [
+      110.8,
+      175.6
+     ],
+     "waist_center": [
+      112.2,
+      199.3
+     ],
+     "hip_center": [
+      115.4,
+      225.3
+     ],
+     "knee_left": [
+      118.8,
+      257.1
+     ],
+     "knee_right": [
+      118.8,
+      257.9
+     ],
+     "ankle_left": [
+      130.8,
+      299.2
+     ],
+     "ankle_right": [
+      130.3,
+      299.5
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      121,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      120.4,
+      114.1
+     ],
+     "neck_base": [
+      125.5,
+      146.2
+     ],
+     "shoulder_left": [
+      128.4,
+      146.6
+     ],
+     "shoulder_right": [
+      128.4,
+      146.9
+     ],
+     "elbow_left": [
+      125.1,
+      175.9
+     ],
+     "elbow_right": [
+      124.6,
+      175
+     ],
+     "wrist_left": [
+      119.3,
+      200.1
+     ],
+     "wrist_right": [
+      119.3,
+      200.1
+     ],
+     "hand_main": [
+      117.4,
+      212
+     ],
+     "chest_center": [
+      110.8,
+      175.6
+     ],
+     "waist_center": [
+      112.2,
+      199.3
+     ],
+     "hip_center": [
+      114.9,
+      225.3
+     ],
+     "knee_left": [
+      118.8,
+      257.1
+     ],
+     "knee_right": [
+      118.8,
+      257.9
+     ],
+     "ankle_left": [
+      130.8,
+      299.2
+     ],
+     "ankle_right": [
+      129.8,
+      299.5
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.7
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.2
+     ],
+     "head_top": [
+      120.8,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      119.9,
+      113.2
+     ],
+     "neck_base": [
+      125,
+      145.5
+     ],
+     "shoulder_left": [
+      127.4,
+      145.9
+     ],
+     "shoulder_right": [
+      127.4,
+      146.2
+     ],
+     "elbow_left": [
+      124.6,
+      175.3
+     ],
+     "elbow_right": [
+      124.6,
+      174.4
+     ],
+     "wrist_left": [
+      119.3,
+      199.6
+     ],
+     "wrist_right": [
+      119.3,
+      199.6
+     ],
+     "hand_main": [
+      116.4,
+      211.6
+     ],
+     "chest_center": [
+      110.3,
+      175
+     ],
+     "waist_center": [
+      112.2,
+      198.8
+     ],
+     "hip_center": [
+      114.9,
+      225
+     ],
+     "knee_left": [
+      118.7,
+      256.9
+     ],
+     "knee_right": [
+      118.7,
+      257.7
+     ],
+     "ankle_left": [
+      130.9,
+      299.1
+     ],
+     "ankle_right": [
+      130.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      111.7,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      119.9,
+      113.2
+     ],
+     "neck_base": [
+      125.5,
+      145.5
+     ],
+     "shoulder_left": [
+      127.9,
+      145.9
+     ],
+     "shoulder_right": [
+      127.9,
+      146.2
+     ],
+     "elbow_left": [
+      124.6,
+      175.3
+     ],
+     "elbow_right": [
+      124.6,
+      174.4
+     ],
+     "wrist_left": [
+      119.3,
+      199.6
+     ],
+     "wrist_right": [
+      119.3,
+      199.6
+     ],
+     "hand_main": [
+      116.4,
+      211.6
+     ],
+     "chest_center": [
+      110.3,
+      175
+     ],
+     "waist_center": [
+      111.7,
+      198.8
+     ],
+     "hip_center": [
+      114.9,
+      225
+     ],
+     "knee_left": [
+      118.7,
+      256.9
+     ],
+     "knee_right": [
+      118.7,
+      257.7
+     ],
+     "ankle_left": [
+      130.9,
+      299.1
+     ],
+     "ankle_right": [
+      130.9,
+      299.4
+     ],
+     "foot_contact_left": [
+      111.2,
+      310.6
+     ],
+     "foot_contact_right": [
+      111.7,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      77
      ]
     },
     {
      "head_center": [
       119.4,
-      110.7
+      112.4
      ],
      "neck_base": [
-      119.6,
-      143.4
+      125,
+      144.8
      ],
      "shoulder_left": [
-      98.5,
-      143.8
+      127.4,
+      145.2
      ],
      "shoulder_right": [
-      139.6,
-      144.1
+      127.9,
+      145.5
      ],
      "elbow_left": [
-      88.4,
-      173.5
+      124.6,
+      174.7
      ],
      "elbow_right": [
-      151.7,
-      172.6
+      124.6,
+      173.8
      ],
      "wrist_left": [
-      80.9,
-      198.1
+      118.3,
+      199.1
      ],
      "wrist_right": [
-      156.8,
-      198.1
+      118.3,
+      199.1
      ],
      "hand_main": [
-      156.6,
-      210.3
+      116.9,
+      211.1
      ],
      "chest_center": [
-      119.5,
-      173.2
+      110.2,
+      174.4
      ],
      "waist_center": [
-      119.9,
-      197.3
+      111.6,
+      198.3
      ],
      "hip_center": [
-      119.5,
-      223.8
+      115.4,
+      224.6
      ],
      "knee_left": [
-      100.9,
-      256.2
+      118.7,
+      256.6
      ],
      "knee_right": [
-      138.4,
-      257.0
+      118.7,
+      257.4
      ],
      "ankle_left": [
-      94.9,
-      298.9
+      130.4,
+      299.1
      ],
      "ankle_right": [
-      145.3,
-      299.2
+      130.4,
+      299.4
      ],
      "foot_contact_left": [
-      93.6,
+      111.1,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      111.1,
       310.1
      ],
      "head_top": [
-      119.5,
-      74.0
+      120.8,
+      76
      ]
     },
     {
      "head_center": [
       119.4,
-      110.7
+      112.4
      ],
      "neck_base": [
-      119.6,
-      143.4
+      125,
+      144.8
      ],
      "shoulder_left": [
-      98.5,
-      143.8
+      127.4,
+      145.2
      ],
      "shoulder_right": [
-      139.6,
-      144.1
+      127.9,
+      145.5
      ],
      "elbow_left": [
-      88.4,
-      173.5
+      125.1,
+      174.7
      ],
      "elbow_right": [
-      151.7,
-      172.6
+      124.6,
+      173.8
      ],
      "wrist_left": [
-      80.9,
-      198.1
+      118.8,
+      199.1
      ],
      "wrist_right": [
-      156.8,
-      198.1
+      118.8,
+      199.1
      ],
      "hand_main": [
-      156.6,
-      210.3
+      116.9,
+      211.1
      ],
      "chest_center": [
-      119.5,
-      173.2
+      110.2,
+      174.4
      ],
      "waist_center": [
-      119.9,
-      197.3
+      111.6,
+      198.3
      ],
      "hip_center": [
-      119.5,
-      223.8
+      115.4,
+      224.6
      ],
      "knee_left": [
-      100.9,
-      256.2
+      118.7,
+      256.6
      ],
      "knee_right": [
-      138.4,
-      257.0
+      118.7,
+      257.4
      ],
      "ankle_left": [
-      94.9,
-      298.9
+      130.4,
+      299.1
      ],
      "ankle_right": [
-      145.3,
-      299.2
+      130.4,
+      299.4
      ],
      "foot_contact_left": [
-      93.6,
+      111.1,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      111.1,
       310.1
      ],
      "head_top": [
-      119.5,
-      74.0
-     ]
-    },
-    {
-     "head_center": [
-      119.4,
-      110.7
-     ],
-     "neck_base": [
-      119.6,
-      143.4
-     ],
-     "shoulder_left": [
-      98.5,
-      143.8
-     ],
-     "shoulder_right": [
-      139.6,
-      144.1
-     ],
-     "elbow_left": [
-      88.4,
-      173.5
-     ],
-     "elbow_right": [
-      151.7,
-      172.6
-     ],
-     "wrist_left": [
-      80.9,
-      198.1
-     ],
-     "wrist_right": [
-      156.8,
-      198.1
-     ],
-     "hand_main": [
-      156.6,
-      210.3
-     ],
-     "chest_center": [
-      119.5,
-      173.2
-     ],
-     "waist_center": [
-      119.9,
-      197.3
-     ],
-     "hip_center": [
-      119.5,
-      223.8
-     ],
-     "knee_left": [
-      100.9,
-      256.2
-     ],
-     "knee_right": [
-      138.4,
-      257.0
-     ],
-     "ankle_left": [
-      94.9,
-      298.9
-     ],
-     "ankle_right": [
-      145.3,
-      299.2
-     ],
-     "foot_contact_left": [
-      93.6,
-      310.6
-     ],
-     "foot_contact_right": [
-      148.8,
-      310.1
-     ],
-     "head_top": [
-      119.5,
-      74.0
+      120.8,
+      76
      ]
     },
     {
@@ -2144,232 +6594,2808 @@
       111.5
      ],
      "neck_base": [
-      119.6,
+      125,
       144.1
      ],
      "shoulder_left": [
-      98.5,
+      127.4,
       144.5
      ],
      "shoulder_right": [
-      139.6,
+      127.4,
       144.8
      ],
      "elbow_left": [
-      88.4,
+      124.6,
       174.1
      ],
      "elbow_right": [
-      151.7,
+      124.6,
       173.2
      ],
      "wrist_left": [
-      80.9,
+      119.3,
       198.6
      ],
      "wrist_right": [
-      156.8,
+      119.3,
       198.6
      ],
      "hand_main": [
-      156.6,
+      116.4,
       210.7
      ],
      "chest_center": [
-      119.5,
+      110.2,
       173.8
      ],
      "waist_center": [
-      119.9,
+      111.6,
       197.8
      ],
      "hip_center": [
-      119.5,
+      114.9,
       224.2
      ],
      "knee_left": [
-      100.9,
+      118.2,
       256.4
      ],
      "knee_right": [
-      138.4,
+      118.7,
       257.2
      ],
      "ankle_left": [
-      94.9,
-      299.0
+      130.4,
+      299
      ],
      "ankle_right": [
-      145.3,
+      130.4,
       299.3
      ],
      "foot_contact_left": [
-      93.6,
+      111.1,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      111.1,
       310.1
      ],
      "head_top": [
-      119.5,
-      75.0
+      120.8,
+      75
      ]
     },
     {
      "head_center": [
-      119.4,
-      111.5
+      120.4,
+      110.6
      ],
      "neck_base": [
-      119.6,
-      144.1
+      125.5,
+      143.4
      ],
      "shoulder_left": [
-      98.5,
-      144.5
+      127.4,
+      143.8
      ],
      "shoulder_right": [
-      139.6,
-      144.8
+      127.4,
+      144.1
      ],
      "elbow_left": [
-      88.4,
-      174.1
+      125.1,
+      173.5
      ],
      "elbow_right": [
-      151.7,
-      173.2
+      124.6,
+      172.6
      ],
      "wrist_left": [
-      80.9,
-      198.6
+      118.8,
+      198.1
      ],
      "wrist_right": [
-      156.8,
-      198.6
+      118.8,
+      198.1
      ],
      "hand_main": [
-      156.6,
-      210.7
+      116.9,
+      210.3
      ],
      "chest_center": [
-      119.5,
-      173.8
+      110.2,
+      173.2
      ],
      "waist_center": [
-      119.9,
-      197.8
+      112.1,
+      197.3
      ],
      "hip_center": [
-      119.5,
-      224.2
+      115.4,
+      223.8
      ],
      "knee_left": [
-      100.9,
-      256.4
+      118.7,
+      256.2
      ],
      "knee_right": [
-      138.4,
-      257.2
+      118.7,
+      257
      ],
      "ankle_left": [
-      94.9,
-      299.0
+      130.4,
+      298.9
      ],
      "ankle_right": [
-      145.3,
-      299.3
+      130.4,
+      299.2
      ],
      "foot_contact_left": [
-      93.6,
+      111.1,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      111.1,
       310.1
      ],
      "head_top": [
-      119.5,
-      75.0
+      120.8,
+      74
      ]
     },
     {
      "head_center": [
-      119.4,
-      111.5
+      120.4,
+      110.6
      ],
      "neck_base": [
-      119.6,
-      144.1
+      125.5,
+      143.4
      ],
      "shoulder_left": [
-      98.5,
-      144.5
+      127.9,
+      143.8
      ],
      "shoulder_right": [
-      139.6,
-      144.8
+      127.9,
+      144.1
      ],
      "elbow_left": [
-      88.4,
-      174.1
+      125.1,
+      173.5
      ],
      "elbow_right": [
-      151.7,
-      173.2
+      125.1,
+      172.6
      ],
      "wrist_left": [
-      80.9,
-      198.6
+      119.3,
+      198.1
      ],
      "wrist_right": [
-      156.8,
-      198.6
+      119.3,
+      198.1
      ],
      "hand_main": [
-      156.6,
-      210.7
+      116.9,
+      210.3
      ],
      "chest_center": [
-      119.5,
-      173.8
+      110.7,
+      173.2
      ],
      "waist_center": [
-      119.9,
-      197.8
+      112.1,
+      197.3
      ],
      "hip_center": [
-      119.5,
-      224.2
+      115.4,
+      223.8
      ],
      "knee_left": [
-      100.9,
-      256.4
+      118.7,
+      256.2
      ],
      "knee_right": [
-      138.4,
-      257.2
+      118.7,
+      257
      ],
      "ankle_left": [
-      94.9,
-      299.0
+      130.4,
+      298.9
      ],
      "ankle_right": [
-      145.3,
-      299.3
+      130.4,
+      299.2
      ],
      "foot_contact_left": [
-      93.6,
+      111.1,
       310.6
      ],
      "foot_contact_right": [
-      148.8,
+      111.1,
       310.1
      ],
      "head_top": [
-      119.5,
-      75.0
+      120.8,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      120.4,
+      109.8
+     ],
+     "neck_base": [
+      125.5,
+      142.7
+     ],
+     "shoulder_left": [
+      127.9,
+      143.1
+     ],
+     "shoulder_right": [
+      127.9,
+      143.4
+     ],
+     "elbow_left": [
+      125.1,
+      172.9
+     ],
+     "elbow_right": [
+      125.1,
+      172
+     ],
+     "wrist_left": [
+      119.3,
+      197.6
+     ],
+     "wrist_right": [
+      119.3,
+      197.6
+     ],
+     "hand_main": [
+      117.4,
+      209.8
+     ],
+     "chest_center": [
+      110.6,
+      172.6
+     ],
+     "waist_center": [
+      112,
+      196.8
+     ],
+     "hip_center": [
+      114.9,
+      223.4
+     ],
+     "knee_left": [
+      118.7,
+      255.9
+     ],
+     "knee_right": [
+      118.7,
+      256.7
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111,
+      310.6
+     ],
+     "foot_contact_right": [
+      111,
+      310.1
+     ],
+     "head_top": [
+      120.8,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      120.9,
+      109.8
+     ],
+     "neck_base": [
+      126,
+      142.7
+     ],
+     "shoulder_left": [
+      128.4,
+      143.1
+     ],
+     "shoulder_right": [
+      128.4,
+      143.4
+     ],
+     "elbow_left": [
+      125.6,
+      172.9
+     ],
+     "elbow_right": [
+      125.6,
+      172
+     ],
+     "wrist_left": [
+      119.3,
+      197.6
+     ],
+     "wrist_right": [
+      119.3,
+      197.6
+     ],
+     "hand_main": [
+      117.4,
+      209.8
+     ],
+     "chest_center": [
+      111.1,
+      172.6
+     ],
+     "waist_center": [
+      112,
+      196.8
+     ],
+     "hip_center": [
+      115.9,
+      223.4
+     ],
+     "knee_left": [
+      118.7,
+      255.9
+     ],
+     "knee_right": [
+      118.7,
+      256.7
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111,
+      310.6
+     ],
+     "foot_contact_right": [
+      111,
+      310.1
+     ],
+     "head_top": [
+      121.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      121.4,
+      109.8
+     ],
+     "neck_base": [
+      126,
+      142.7
+     ],
+     "shoulder_left": [
+      128.4,
+      143.1
+     ],
+     "shoulder_right": [
+      128.4,
+      143.4
+     ],
+     "elbow_left": [
+      125.6,
+      172.9
+     ],
+     "elbow_right": [
+      125.6,
+      172
+     ],
+     "wrist_left": [
+      119.3,
+      197.6
+     ],
+     "wrist_right": [
+      119.3,
+      197.6
+     ],
+     "hand_main": [
+      117.4,
+      209.8
+     ],
+     "chest_center": [
+      111.1,
+      172.6
+     ],
+     "waist_center": [
+      112,
+      196.8
+     ],
+     "hip_center": [
+      115.9,
+      223.4
+     ],
+     "knee_left": [
+      118.7,
+      255.9
+     ],
+     "knee_right": [
+      119.7,
+      256.7
+     ],
+     "ankle_left": [
+      130.4,
+      298.9
+     ],
+     "ankle_right": [
+      130.4,
+      299.2
+     ],
+     "foot_contact_left": [
+      111,
+      310.6
+     ],
+     "foot_contact_right": [
+      111,
+      310.1
+     ],
+     "head_top": [
+      121.5,
+      73
+     ]
+    }
+   ],
+   "direita": [
+    {
+     "head_center": [
+      117.6,
+      109.8
+     ],
+     "neck_base": [
+      113,
+      142.7
+     ],
+     "shoulder_left": [
+      110.6,
+      143.1
+     ],
+     "shoulder_right": [
+      110.6,
+      143.4
+     ],
+     "elbow_left": [
+      112.9,
+      172.9
+     ],
+     "elbow_right": [
+      113.4,
+      172
+     ],
+     "wrist_left": [
+      119.7,
+      197.6
+     ],
+     "wrist_right": [
+      119.7,
+      197.6
+     ],
+     "hand_main": [
+      121.6,
+      209.8
+     ],
+     "chest_center": [
+      127.4,
+      172.6
+     ],
+     "waist_center": [
+      126.5,
+      196.8
+     ],
+     "hip_center": [
+      123.1,
+      223.4
+     ],
+     "knee_left": [
+      120.3,
+      255.9
+     ],
+     "knee_right": [
+      119.3,
+      256.7
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      128,
+      310.6
+     ],
+     "foot_contact_right": [
+      128,
+      310.1
+     ],
+     "head_top": [
+      117.5,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      118.1,
+      109.8
+     ],
+     "neck_base": [
+      113,
+      142.7
+     ],
+     "shoulder_left": [
+      110.6,
+      143.1
+     ],
+     "shoulder_right": [
+      110.6,
+      143.4
+     ],
+     "elbow_left": [
+      113.4,
+      172.9
+     ],
+     "elbow_right": [
+      113.4,
+      172
+     ],
+     "wrist_left": [
+      119.7,
+      197.6
+     ],
+     "wrist_right": [
+      119.7,
+      197.6
+     ],
+     "hand_main": [
+      121.6,
+      209.8
+     ],
+     "chest_center": [
+      127.9,
+      172.6
+     ],
+     "waist_center": [
+      127,
+      196.8
+     ],
+     "hip_center": [
+      123.1,
+      223.4
+     ],
+     "knee_left": [
+      120.3,
+      255.9
+     ],
+     "knee_right": [
+      119.8,
+      256.7
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      128,
+      310.6
+     ],
+     "foot_contact_right": [
+      128,
+      310.1
+     ],
+     "head_top": [
+      117.5,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      118.6,
+      109.8
+     ],
+     "neck_base": [
+      113,
+      142.7
+     ],
+     "shoulder_left": [
+      110.6,
+      143.1
+     ],
+     "shoulder_right": [
+      110.6,
+      143.4
+     ],
+     "elbow_left": [
+      113.9,
+      172.9
+     ],
+     "elbow_right": [
+      113.9,
+      172
+     ],
+     "wrist_left": [
+      119.7,
+      197.6
+     ],
+     "wrist_right": [
+      119.7,
+      197.6
+     ],
+     "hand_main": [
+      121.6,
+      209.8
+     ],
+     "chest_center": [
+      128.4,
+      172.6
+     ],
+     "waist_center": [
+      127,
+      196.8
+     ],
+     "hip_center": [
+      123.6,
+      223.4
+     ],
+     "knee_left": [
+      120.3,
+      255.9
+     ],
+     "knee_right": [
+      120.3,
+      256.7
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      128,
+      310.6
+     ],
+     "foot_contact_right": [
+      128,
+      310.1
+     ],
+     "head_top": [
+      117.8,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      118.6,
+      110.6
+     ],
+     "neck_base": [
+      113.5,
+      143.4
+     ],
+     "shoulder_left": [
+      110.6,
+      143.8
+     ],
+     "shoulder_right": [
+      110.6,
+      144.1
+     ],
+     "elbow_left": [
+      113.9,
+      173.5
+     ],
+     "elbow_right": [
+      113.9,
+      172.6
+     ],
+     "wrist_left": [
+      119.7,
+      198.1
+     ],
+     "wrist_right": [
+      119.7,
+      198.1
+     ],
+     "hand_main": [
+      121.6,
+      210.3
+     ],
+     "chest_center": [
+      128.3,
+      173.2
+     ],
+     "waist_center": [
+      126.9,
+      197.3
+     ],
+     "hip_center": [
+      123.6,
+      223.8
+     ],
+     "knee_left": [
+      120.3,
+      256.2
+     ],
+     "knee_right": [
+      120.3,
+      257
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      118.6,
+      110.6
+     ],
+     "neck_base": [
+      113.5,
+      143.4
+     ],
+     "shoulder_left": [
+      111.6,
+      143.8
+     ],
+     "shoulder_right": [
+      111.6,
+      144.1
+     ],
+     "elbow_left": [
+      113.9,
+      173.5
+     ],
+     "elbow_right": [
+      114.4,
+      172.6
+     ],
+     "wrist_left": [
+      119.7,
+      198.1
+     ],
+     "wrist_right": [
+      119.7,
+      198.1
+     ],
+     "hand_main": [
+      122.1,
+      210.3
+     ],
+     "chest_center": [
+      128.8,
+      173.2
+     ],
+     "waist_center": [
+      126.9,
+      197.3
+     ],
+     "hip_center": [
+      123.6,
+      223.8
+     ],
+     "knee_left": [
+      120.3,
+      256.2
+     ],
+     "knee_right": [
+      120.3,
+      257
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      118.6,
+      111.5
+     ],
+     "neck_base": [
+      114,
+      144.1
+     ],
+     "shoulder_left": [
+      111.1,
+      144.5
+     ],
+     "shoulder_right": [
+      111.1,
+      144.8
+     ],
+     "elbow_left": [
+      113.9,
+      174.1
+     ],
+     "elbow_right": [
+      114.4,
+      173.2
+     ],
+     "wrist_left": [
+      119.7,
+      198.6
+     ],
+     "wrist_right": [
+      119.7,
+      198.6
+     ],
+     "hand_main": [
+      122.6,
+      210.7
+     ],
+     "chest_center": [
+      128.3,
+      173.8
+     ],
+     "waist_center": [
+      127.4,
+      197.8
+     ],
+     "hip_center": [
+      124.1,
+      224.2
+     ],
+     "knee_left": [
+      120.8,
+      256.4
+     ],
+     "knee_right": [
+      120.3,
+      257.2
+     ],
+     "ankle_left": [
+      108.6,
+      299
+     ],
+     "ankle_right": [
+      108.6,
+      299.3
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      119.6,
+      111.5
+     ],
+     "neck_base": [
+      113.5,
+      144.1
+     ],
+     "shoulder_left": [
+      111.1,
+      144.5
+     ],
+     "shoulder_right": [
+      111.1,
+      144.8
+     ],
+     "elbow_left": [
+      114.4,
+      174.1
+     ],
+     "elbow_right": [
+      114.4,
+      173.2
+     ],
+     "wrist_left": [
+      119.7,
+      198.6
+     ],
+     "wrist_right": [
+      119.7,
+      198.6
+     ],
+     "hand_main": [
+      122.6,
+      210.7
+     ],
+     "chest_center": [
+      128.8,
+      173.8
+     ],
+     "waist_center": [
+      127.4,
+      197.8
+     ],
+     "hip_center": [
+      124.1,
+      224.2
+     ],
+     "knee_left": [
+      120.8,
+      256.4
+     ],
+     "knee_right": [
+      120.3,
+      257.2
+     ],
+     "ankle_left": [
+      108.6,
+      299
+     ],
+     "ankle_right": [
+      108.6,
+      299.3
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      119.6,
+      112.4
+     ],
+     "neck_base": [
+      114,
+      144.8
+     ],
+     "shoulder_left": [
+      111.6,
+      145.2
+     ],
+     "shoulder_right": [
+      111.1,
+      145.5
+     ],
+     "elbow_left": [
+      113.9,
+      174.7
+     ],
+     "elbow_right": [
+      114.4,
+      173.8
+     ],
+     "wrist_left": [
+      120.7,
+      199.1
+     ],
+     "wrist_right": [
+      120.7,
+      199.1
+     ],
+     "hand_main": [
+      122.1,
+      211.1
+     ],
+     "chest_center": [
+      128.8,
+      174.4
+     ],
+     "waist_center": [
+      127.4,
+      198.3
+     ],
+     "hip_center": [
+      123.6,
+      224.6
+     ],
+     "knee_left": [
+      120.3,
+      256.6
+     ],
+     "knee_right": [
+      120.3,
+      257.4
+     ],
+     "ankle_left": [
+      108.6,
+      299.1
+     ],
+     "ankle_right": [
+      108.6,
+      299.4
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      119.6,
+      112.4
+     ],
+     "neck_base": [
+      114,
+      144.8
+     ],
+     "shoulder_left": [
+      111.6,
+      145.2
+     ],
+     "shoulder_right": [
+      111.6,
+      145.5
+     ],
+     "elbow_left": [
+      114.4,
+      174.7
+     ],
+     "elbow_right": [
+      114.4,
+      173.8
+     ],
+     "wrist_left": [
+      120.7,
+      199.1
+     ],
+     "wrist_right": [
+      120.7,
+      199.1
+     ],
+     "hand_main": [
+      122.1,
+      211.1
+     ],
+     "chest_center": [
+      128.8,
+      174.4
+     ],
+     "waist_center": [
+      127.4,
+      198.3
+     ],
+     "hip_center": [
+      123.6,
+      224.6
+     ],
+     "knee_left": [
+      120.3,
+      256.6
+     ],
+     "knee_right": [
+      120.3,
+      257.4
+     ],
+     "ankle_left": [
+      108.1,
+      299.1
+     ],
+     "ankle_right": [
+      108.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.4,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      113.2
+     ],
+     "neck_base": [
+      114,
+      145.5
+     ],
+     "shoulder_left": [
+      111.6,
+      145.9
+     ],
+     "shoulder_right": [
+      111.6,
+      146.2
+     ],
+     "elbow_left": [
+      114.4,
+      175.3
+     ],
+     "elbow_right": [
+      114.4,
+      174.4
+     ],
+     "wrist_left": [
+      119.7,
+      199.6
+     ],
+     "wrist_right": [
+      119.7,
+      199.6
+     ],
+     "hand_main": [
+      122.6,
+      211.6
+     ],
+     "chest_center": [
+      128.7,
+      175
+     ],
+     "waist_center": [
+      126.8,
+      198.8
+     ],
+     "hip_center": [
+      124.1,
+      225
+     ],
+     "knee_left": [
+      120.3,
+      256.9
+     ],
+     "knee_right": [
+      120.3,
+      257.7
+     ],
+     "ankle_left": [
+      108.1,
+      299.1
+     ],
+     "ankle_right": [
+      108.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      127.8,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      119.1,
+      114.1
+     ],
+     "neck_base": [
+      114,
+      146.2
+     ],
+     "shoulder_left": [
+      111.1,
+      146.6
+     ],
+     "shoulder_right": [
+      111.1,
+      146.9
+     ],
+     "elbow_left": [
+      113.9,
+      175.9
+     ],
+     "elbow_right": [
+      114.4,
+      175
+     ],
+     "wrist_left": [
+      119.7,
+      200.1
+     ],
+     "wrist_right": [
+      119.7,
+      200.1
+     ],
+     "hand_main": [
+      122.6,
+      212
+     ],
+     "chest_center": [
+      128.2,
+      175.6
+     ],
+     "waist_center": [
+      126.8,
+      199.3
+     ],
+     "hip_center": [
+      124.1,
+      225.4
+     ],
+     "knee_left": [
+      120.2,
+      257.1
+     ],
+     "knee_right": [
+      120.2,
+      257.9
+     ],
+     "ankle_left": [
+      108.2,
+      299.2
+     ],
+     "ankle_right": [
+      108.2,
+      299.5
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.1
+     ],
+     "head_top": [
+      118.3,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      118.6,
+      114.1
+     ],
+     "neck_base": [
+      113.5,
+      146.2
+     ],
+     "shoulder_left": [
+      110.6,
+      146.6
+     ],
+     "shoulder_right": [
+      110.6,
+      146.9
+     ],
+     "elbow_left": [
+      113.9,
+      175.9
+     ],
+     "elbow_right": [
+      114.4,
+      175
+     ],
+     "wrist_left": [
+      119.7,
+      200.1
+     ],
+     "wrist_right": [
+      119.7,
+      200.1
+     ],
+     "hand_main": [
+      121.6,
+      212
+     ],
+     "chest_center": [
+      128.2,
+      175.6
+     ],
+     "waist_center": [
+      126.8,
+      199.3
+     ],
+     "hip_center": [
+      124.1,
+      225.3
+     ],
+     "knee_left": [
+      120.2,
+      257.1
+     ],
+     "knee_right": [
+      120.2,
+      257.9
+     ],
+     "ankle_left": [
+      108.2,
+      299.2
+     ],
+     "ankle_right": [
+      109.2,
+      299.5
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      118.3,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      118.6,
+      114.1
+     ],
+     "neck_base": [
+      113,
+      146.2
+     ],
+     "shoulder_left": [
+      111.1,
+      146.6
+     ],
+     "shoulder_right": [
+      111.1,
+      146.9
+     ],
+     "elbow_left": [
+      113.4,
+      175.9
+     ],
+     "elbow_right": [
+      113.9,
+      175
+     ],
+     "wrist_left": [
+      119.7,
+      200.1
+     ],
+     "wrist_right": [
+      119.7,
+      200.1
+     ],
+     "hand_main": [
+      121.6,
+      212
+     ],
+     "chest_center": [
+      127.7,
+      175.6
+     ],
+     "waist_center": [
+      126.8,
+      199.3
+     ],
+     "hip_center": [
+      123.6,
+      225.3
+     ],
+     "knee_left": [
+      120.2,
+      257.1
+     ],
+     "knee_right": [
+      120.2,
+      257.9
+     ],
+     "ankle_left": [
+      108.2,
+      299.2
+     ],
+     "ankle_right": [
+      108.7,
+      299.5
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      118,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      118,
+      115
+     ],
+     "neck_base": [
+      113,
+      146.9
+     ],
+     "shoulder_left": [
+      110.6,
+      147.3
+     ],
+     "shoulder_right": [
+      110.1,
+      147.6
+     ],
+     "elbow_left": [
+      113.5,
+      176.5
+     ],
+     "elbow_right": [
+      113.5,
+      175.6
+     ],
+     "wrist_left": [
+      119.7,
+      200.6
+     ],
+     "wrist_right": [
+      119.7,
+      200.6
+     ],
+     "hand_main": [
+      121.5,
+      212.4
+     ],
+     "chest_center": [
+      127.6,
+      176.2
+     ],
+     "waist_center": [
+      126.8,
+      199.8
+     ],
+     "hip_center": [
+      123,
+      225.7
+     ],
+     "knee_left": [
+      120.2,
+      257.3
+     ],
+     "knee_right": [
+      120.2,
+      258.1
+     ],
+     "ankle_left": [
+      108.2,
+      299.3
+     ],
+     "ankle_right": [
+      108.7,
+      299.6
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      118,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      117.5,
+      114.9
+     ],
+     "neck_base": [
+      113,
+      147
+     ],
+     "shoulder_left": [
+      110.6,
+      147.4
+     ],
+     "shoulder_right": [
+      110.1,
+      147.7
+     ],
+     "elbow_left": [
+      113,
+      176.5
+     ],
+     "elbow_right": [
+      113.5,
+      175.6
+     ],
+     "wrist_left": [
+      119.2,
+      200.6
+     ],
+     "wrist_right": [
+      119.2,
+      200.6
+     ],
+     "hand_main": [
+      121.5,
+      212.5
+     ],
+     "chest_center": [
+      127.6,
+      176.2
+     ],
+     "waist_center": [
+      126.8,
+      199.8
+     ],
+     "hip_center": [
+      123,
+      225.7
+     ],
+     "knee_left": [
+      120.2,
+      257.4
+     ],
+     "knee_right": [
+      120.2,
+      258.2
+     ],
+     "ankle_left": [
+      108.2,
+      299.3
+     ],
+     "ankle_right": [
+      108.7,
+      299.6
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      117.5,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      117.5,
+      114.9
+     ],
+     "neck_base": [
+      112.5,
+      147
+     ],
+     "shoulder_left": [
+      110.1,
+      147.4
+     ],
+     "shoulder_right": [
+      109.6,
+      147.7
+     ],
+     "elbow_left": [
+      113,
+      176.5
+     ],
+     "elbow_right": [
+      113.5,
+      175.6
+     ],
+     "wrist_left": [
+      119.2,
+      200.6
+     ],
+     "wrist_right": [
+      119.2,
+      200.6
+     ],
+     "hand_main": [
+      121.5,
+      212.5
+     ],
+     "chest_center": [
+      127.6,
+      176.2
+     ],
+     "waist_center": [
+      126.8,
+      199.8
+     ],
+     "hip_center": [
+      123,
+      225.7
+     ],
+     "knee_left": [
+      120.2,
+      257.4
+     ],
+     "knee_right": [
+      119.7,
+      258.2
+     ],
+     "ankle_left": [
+      108.2,
+      299.3
+     ],
+     "ankle_right": [
+      108.7,
+      299.6
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      117.3,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      117,
+      114.9
+     ],
+     "neck_base": [
+      112,
+      147
+     ],
+     "shoulder_left": [
+      109.6,
+      147.4
+     ],
+     "shoulder_right": [
+      109.6,
+      147.7
+     ],
+     "elbow_left": [
+      113,
+      176.5
+     ],
+     "elbow_right": [
+      113,
+      175.6
+     ],
+     "wrist_left": [
+      118.7,
+      200.6
+     ],
+     "wrist_right": [
+      118.7,
+      200.6
+     ],
+     "hand_main": [
+      121.5,
+      212.5
+     ],
+     "chest_center": [
+      127.1,
+      176.2
+     ],
+     "waist_center": [
+      125.8,
+      199.8
+     ],
+     "hip_center": [
+      122.5,
+      225.7
+     ],
+     "knee_left": [
+      119.7,
+      257.4
+     ],
+     "knee_right": [
+      119.7,
+      258.2
+     ],
+     "ankle_left": [
+      108.2,
+      299.3
+     ],
+     "ankle_right": [
+      108.7,
+      299.6
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      117,
+      79
+     ]
+    },
+    {
+     "head_center": [
+      116.6,
+      114.1
+     ],
+     "neck_base": [
+      111.5,
+      146.2
+     ],
+     "shoulder_left": [
+      109.6,
+      146.6
+     ],
+     "shoulder_right": [
+      109.6,
+      146.9
+     ],
+     "elbow_left": [
+      112.4,
+      175.9
+     ],
+     "elbow_right": [
+      112.4,
+      175
+     ],
+     "wrist_left": [
+      118.7,
+      200.1
+     ],
+     "wrist_right": [
+      118.7,
+      200.1
+     ],
+     "hand_main": [
+      120.6,
+      212
+     ],
+     "chest_center": [
+      126.7,
+      175.6
+     ],
+     "waist_center": [
+      125.8,
+      199.3
+     ],
+     "hip_center": [
+      123.1,
+      225.3
+     ],
+     "knee_left": [
+      119.7,
+      257.1
+     ],
+     "knee_right": [
+      119.2,
+      257.9
+     ],
+     "ankle_left": [
+      108.2,
+      299.2
+     ],
+     "ankle_right": [
+      108.7,
+      299.5
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      117,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      116.6,
+      114.1
+     ],
+     "neck_base": [
+      111.5,
+      146.2
+     ],
+     "shoulder_left": [
+      109.1,
+      146.6
+     ],
+     "shoulder_right": [
+      109.1,
+      146.9
+     ],
+     "elbow_left": [
+      112.4,
+      175.9
+     ],
+     "elbow_right": [
+      112.4,
+      175
+     ],
+     "wrist_left": [
+      118.7,
+      200.1
+     ],
+     "wrist_right": [
+      118.7,
+      200.1
+     ],
+     "hand_main": [
+      120.6,
+      212
+     ],
+     "chest_center": [
+      126.7,
+      175.6
+     ],
+     "waist_center": [
+      125.8,
+      199.3
+     ],
+     "hip_center": [
+      123.1,
+      225.3
+     ],
+     "knee_left": [
+      119.7,
+      257.1
+     ],
+     "knee_right": [
+      119.2,
+      257.9
+     ],
+     "ankle_left": [
+      108.2,
+      299.2
+     ],
+     "ankle_right": [
+      108.7,
+      299.5
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      116.8,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      116.6,
+      114.1
+     ],
+     "neck_base": [
+      111.5,
+      146.2
+     ],
+     "shoulder_left": [
+      108.6,
+      146.6
+     ],
+     "shoulder_right": [
+      108.6,
+      146.9
+     ],
+     "elbow_left": [
+      112.4,
+      175.9
+     ],
+     "elbow_right": [
+      112.4,
+      175
+     ],
+     "wrist_left": [
+      118.7,
+      200.1
+     ],
+     "wrist_right": [
+      118.7,
+      200.1
+     ],
+     "hand_main": [
+      120.6,
+      212
+     ],
+     "chest_center": [
+      126.7,
+      175.6
+     ],
+     "waist_center": [
+      125.8,
+      199.3
+     ],
+     "hip_center": [
+      122.6,
+      225.3
+     ],
+     "knee_left": [
+      119.7,
+      257.1
+     ],
+     "knee_right": [
+      119.2,
+      257.9
+     ],
+     "ankle_left": [
+      108.2,
+      299.2
+     ],
+     "ankle_right": [
+      108.7,
+      299.5
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.7
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.2
+     ],
+     "head_top": [
+      116.5,
+      78
+     ]
+    },
+    {
+     "head_center": [
+      116.1,
+      113.2
+     ],
+     "neck_base": [
+      111,
+      145.5
+     ],
+     "shoulder_left": [
+      108.6,
+      145.9
+     ],
+     "shoulder_right": [
+      108.6,
+      146.2
+     ],
+     "elbow_left": [
+      112.4,
+      175.3
+     ],
+     "elbow_right": [
+      112.4,
+      174.4
+     ],
+     "wrist_left": [
+      118.7,
+      199.6
+     ],
+     "wrist_right": [
+      118.7,
+      199.6
+     ],
+     "hand_main": [
+      120.6,
+      211.6
+     ],
+     "chest_center": [
+      126.7,
+      175
+     ],
+     "waist_center": [
+      125.8,
+      198.8
+     ],
+     "hip_center": [
+      122.1,
+      225
+     ],
+     "knee_left": [
+      119.8,
+      256.9
+     ],
+     "knee_right": [
+      119.3,
+      257.7
+     ],
+     "ankle_left": [
+      108.1,
+      299.1
+     ],
+     "ankle_right": [
+      108.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.1
+     ],
+     "head_top": [
+      116.5,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      116.1,
+      113.2
+     ],
+     "neck_base": [
+      111,
+      145.5
+     ],
+     "shoulder_left": [
+      108.6,
+      145.9
+     ],
+     "shoulder_right": [
+      108.6,
+      146.2
+     ],
+     "elbow_left": [
+      111.9,
+      175.3
+     ],
+     "elbow_right": [
+      112.4,
+      174.4
+     ],
+     "wrist_left": [
+      118.2,
+      199.6
+     ],
+     "wrist_right": [
+      118.2,
+      199.6
+     ],
+     "hand_main": [
+      120.6,
+      211.6
+     ],
+     "chest_center": [
+      126.2,
+      175
+     ],
+     "waist_center": [
+      125.8,
+      198.8
+     ],
+     "hip_center": [
+      122.1,
+      225
+     ],
+     "knee_left": [
+      119.3,
+      256.9
+     ],
+     "knee_right": [
+      119.3,
+      257.7
+     ],
+     "ankle_left": [
+      108.1,
+      299.1
+     ],
+     "ankle_right": [
+      108.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      127.3,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.3,
+      310.1
+     ],
+     "head_top": [
+      116.3,
+      77
+     ]
+    },
+    {
+     "head_center": [
+      115.6,
+      112.4
+     ],
+     "neck_base": [
+      111,
+      144.8
+     ],
+     "shoulder_left": [
+      108.6,
+      145.2
+     ],
+     "shoulder_right": [
+      108.6,
+      145.5
+     ],
+     "elbow_left": [
+      111.9,
+      174.7
+     ],
+     "elbow_right": [
+      112.4,
+      173.8
+     ],
+     "wrist_left": [
+      118.7,
+      199.1
+     ],
+     "wrist_right": [
+      118.7,
+      199.1
+     ],
+     "hand_main": [
+      120.6,
+      211.1
+     ],
+     "chest_center": [
+      126.8,
+      174.4
+     ],
+     "waist_center": [
+      125.4,
+      198.3
+     ],
+     "hip_center": [
+      122.1,
+      224.6
+     ],
+     "knee_left": [
+      119.3,
+      256.6
+     ],
+     "knee_right": [
+      119.3,
+      257.4
+     ],
+     "ankle_left": [
+      108.1,
+      299.1
+     ],
+     "ankle_right": [
+      108.1,
+      299.4
+     ],
+     "foot_contact_left": [
+      127.4,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.4,
+      310.1
+     ],
+     "head_top": [
+      116.3,
+      76
+     ]
+    },
+    {
+     "head_center": [
+      115.6,
+      111.5
+     ],
+     "neck_base": [
+      111,
+      144.1
+     ],
+     "shoulder_left": [
+      109.1,
+      144.5
+     ],
+     "shoulder_right": [
+      109.1,
+      144.8
+     ],
+     "elbow_left": [
+      112.4,
+      174.1
+     ],
+     "elbow_right": [
+      112.4,
+      173.2
+     ],
+     "wrist_left": [
+      118.7,
+      198.6
+     ],
+     "wrist_right": [
+      118.7,
+      198.6
+     ],
+     "hand_main": [
+      120.6,
+      210.7
+     ],
+     "chest_center": [
+      126.8,
+      173.8
+     ],
+     "waist_center": [
+      125.9,
+      197.8
+     ],
+     "hip_center": [
+      122.1,
+      224.2
+     ],
+     "knee_left": [
+      119.8,
+      256.4
+     ],
+     "knee_right": [
+      119.3,
+      257.2
+     ],
+     "ankle_left": [
+      108.1,
+      299
+     ],
+     "ankle_right": [
+      108.1,
+      299.3
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.4,
+      310.1
+     ],
+     "head_top": [
+      116.3,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      116.1,
+      111.5
+     ],
+     "neck_base": [
+      111.5,
+      144.1
+     ],
+     "shoulder_left": [
+      108.6,
+      144.5
+     ],
+     "shoulder_right": [
+      108.6,
+      144.8
+     ],
+     "elbow_left": [
+      111.9,
+      174.1
+     ],
+     "elbow_right": [
+      112.4,
+      173.2
+     ],
+     "wrist_left": [
+      118.7,
+      198.6
+     ],
+     "wrist_right": [
+      118.7,
+      198.6
+     ],
+     "hand_main": [
+      120.6,
+      210.7
+     ],
+     "chest_center": [
+      126.3,
+      173.8
+     ],
+     "waist_center": [
+      125.9,
+      197.8
+     ],
+     "hip_center": [
+      122.1,
+      224.2
+     ],
+     "knee_left": [
+      119.8,
+      256.4
+     ],
+     "knee_right": [
+      119.3,
+      257.2
+     ],
+     "ankle_left": [
+      108.1,
+      299
+     ],
+     "ankle_right": [
+      108.1,
+      299.3
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.4,
+      310.1
+     ],
+     "head_top": [
+      116.5,
+      75
+     ]
+    },
+    {
+     "head_center": [
+      116.6,
+      110.6
+     ],
+     "neck_base": [
+      111.5,
+      143.4
+     ],
+     "shoulder_left": [
+      109.1,
+      143.8
+     ],
+     "shoulder_right": [
+      109.1,
+      144.1
+     ],
+     "elbow_left": [
+      111.9,
+      173.5
+     ],
+     "elbow_right": [
+      112.4,
+      172.6
+     ],
+     "wrist_left": [
+      118.7,
+      198.1
+     ],
+     "wrist_right": [
+      118.7,
+      198.1
+     ],
+     "hand_main": [
+      120.6,
+      210.3
+     ],
+     "chest_center": [
+      126.8,
+      173.2
+     ],
+     "waist_center": [
+      125.9,
+      197.3
+     ],
+     "hip_center": [
+      122.6,
+      223.8
+     ],
+     "knee_left": [
+      119.8,
+      256.2
+     ],
+     "knee_right": [
+      119.3,
+      257
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.4,
+      310.1
+     ],
+     "head_top": [
+      116.5,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      116.6,
+      110.6
+     ],
+     "neck_base": [
+      111.5,
+      143.4
+     ],
+     "shoulder_left": [
+      109.1,
+      143.8
+     ],
+     "shoulder_right": [
+      109.1,
+      144.1
+     ],
+     "elbow_left": [
+      111.9,
+      173.5
+     ],
+     "elbow_right": [
+      112.4,
+      172.6
+     ],
+     "wrist_left": [
+      118.7,
+      198.1
+     ],
+     "wrist_right": [
+      118.7,
+      198.1
+     ],
+     "hand_main": [
+      120.6,
+      210.3
+     ],
+     "chest_center": [
+      126.8,
+      173.2
+     ],
+     "waist_center": [
+      125.9,
+      197.3
+     ],
+     "hip_center": [
+      122.6,
+      223.8
+     ],
+     "knee_left": [
+      119.8,
+      256.2
+     ],
+     "knee_right": [
+      119.3,
+      257
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      116.8,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      116.6,
+      110.7
+     ],
+     "neck_base": [
+      112,
+      143.4
+     ],
+     "shoulder_left": [
+      109.6,
+      143.8
+     ],
+     "shoulder_right": [
+      109.6,
+      144.1
+     ],
+     "elbow_left": [
+      112.4,
+      173.5
+     ],
+     "elbow_right": [
+      112.4,
+      172.6
+     ],
+     "wrist_left": [
+      118.7,
+      198.1
+     ],
+     "wrist_right": [
+      118.7,
+      198.1
+     ],
+     "hand_main": [
+      120.6,
+      210.2
+     ],
+     "chest_center": [
+      126.8,
+      173.2
+     ],
+     "waist_center": [
+      125.9,
+      197.3
+     ],
+     "hip_center": [
+      122.6,
+      223.8
+     ],
+     "knee_left": [
+      119.8,
+      256.1
+     ],
+     "knee_right": [
+      119.3,
+      256.9
+     ],
+     "ankle_left": [
+      108.6,
+      299
+     ],
+     "ankle_right": [
+      108.6,
+      299.3
+     ],
+     "foot_contact_left": [
+      127.9,
+      310.6
+     ],
+     "foot_contact_right": [
+      127.9,
+      310.1
+     ],
+     "head_top": [
+      116.8,
+      74
+     ]
+    },
+    {
+     "head_center": [
+      117.1,
+      109.8
+     ],
+     "neck_base": [
+      112,
+      142.7
+     ],
+     "shoulder_left": [
+      109.6,
+      143.1
+     ],
+     "shoulder_right": [
+      109.6,
+      143.4
+     ],
+     "elbow_left": [
+      112.9,
+      172.9
+     ],
+     "elbow_right": [
+      112.9,
+      172
+     ],
+     "wrist_left": [
+      118.7,
+      197.6
+     ],
+     "wrist_right": [
+      118.7,
+      197.6
+     ],
+     "hand_main": [
+      121.1,
+      209.8
+     ],
+     "chest_center": [
+      127.4,
+      172.6
+     ],
+     "waist_center": [
+      126,
+      196.8
+     ],
+     "hip_center": [
+      123.1,
+      223.4
+     ],
+     "knee_left": [
+      120.3,
+      255.9
+     ],
+     "knee_right": [
+      119.3,
+      256.7
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      128,
+      310.6
+     ],
+     "foot_contact_right": [
+      128,
+      310.1
+     ],
+     "head_top": [
+      117.3,
+      73
+     ]
+    },
+    {
+     "head_center": [
+      117.6,
+      109.8
+     ],
+     "neck_base": [
+      112.5,
+      142.7
+     ],
+     "shoulder_left": [
+      110.1,
+      143.1
+     ],
+     "shoulder_right": [
+      110.1,
+      143.4
+     ],
+     "elbow_left": [
+      112.9,
+      172.9
+     ],
+     "elbow_right": [
+      113.4,
+      172
+     ],
+     "wrist_left": [
+      118.7,
+      197.6
+     ],
+     "wrist_right": [
+      118.7,
+      197.6
+     ],
+     "hand_main": [
+      121.1,
+      209.8
+     ],
+     "chest_center": [
+      127.4,
+      172.6
+     ],
+     "waist_center": [
+      126.5,
+      196.8
+     ],
+     "hip_center": [
+      123.1,
+      223.4
+     ],
+     "knee_left": [
+      120.3,
+      255.9
+     ],
+     "knee_right": [
+      119.3,
+      256.7
+     ],
+     "ankle_left": [
+      108.6,
+      298.9
+     ],
+     "ankle_right": [
+      108.6,
+      299.2
+     ],
+     "foot_contact_left": [
+      128,
+      310.6
+     ],
+     "foot_contact_right": [
+      128,
+      310.1
+     ],
+     "head_top": [
+      117.3,
+      73
      ]
     }
    ]
@@ -2440,7 +9466,6 @@
   "fonte/referencia_corpo_nu.png",
   "fonte/mago_nu_frente.png",
   "fonte/mago_nu_costas.png",
-  "fonte/mago_nu_esquerda.png",
   "fonte/mago_nu_direita.png"
  ],
  "slotsNoDesenho": [],
@@ -2448,7 +9473,11 @@
   {
    "data": "2026-11-20T17:50:00Z",
    "acao": "Mago v3: corpo base nu (4 direções + idle respirando) e rig da frente a partir do Mapa Corporal"
+  },
+  {
+   "data": "2026-11-20T18:40:00Z",
+   "acao": "Texturas refeitas (alfa suave, sem franja nem linhas guia, reamostragem Lanczos); esquerda = direita espelhada; rig das 4 vistas girado a partir da frente"
   }
  ],
- "observacao": "Camada 0 = este corpo. O rig da frente vem do Mapa Corporal da referência (mão da arma = lado direito da tela); costas e laterais usam a proposta automática até serem revisadas."
+ "observacao": "Camada 0 = este corpo. Rig único: o da frente vem do Mapa Corporal (mão da arma = lado direito da tela); costas e laterais foram giradas a partir dele e aguardam o pente-fino. A vista esquerda é a direita espelhada (mesmo rosto e cabelo)."
 }

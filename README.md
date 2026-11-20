@@ -20,4 +20,8 @@ https://lsamuels0.github.io/estudio-defenda-e-ataque/app/
 - **Efeitos:** mantém o estúdio dedicado a efeitos e magias.
 - **Skills:** as referências de produção continuam versionadas no diretório `skills/`.
 
-Os arquivos base dos personagens continuam em `app/dados/personagens/`. A remoção da antiga ferramenta do Mago não removeu seus dados nem seus sprites.
+Os arquivos base dos personagens continuam em `app/dados/personagens/`.
+
+## Regras de importação
+- **Textura em qualidade excelente:** sem serrilhado que não seja da textura, sem franja branca, restos de fundo, linhas guia ou marcas de edição, sem deformar. Esquerda e direita olham para lados opostos, com o mesmo rosto e o mesmo cabelo. Detalhes na seção 2.1 de `skills/animacao-2d-pincel/SKILL.md`; processo de referência em `app/cli/importacao/`.
+- **Rig único:** definido na frente, com todos os pontos ligados. Costas e laterais nascem girando o rig da frente ("Girar rig da frente" na ferramenta Rig) e depois recebem o pente-fino. A remoção da antiga ferramenta do Mago não removeu seus dados nem seus sprites.

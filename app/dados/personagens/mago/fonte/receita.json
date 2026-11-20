@@ -4,7 +4,7 @@
  "folhas": {
   "frente": "mago_nu_frente.png",
   "costas": "mago_nu_costas.png",
-  "esquerda": "mago_nu_esquerda.png",
+  "esquerda": "mago_nu_direita.png",
   "direita": "mago_nu_direita.png"
  },
  "alturaCorpo": 240,
@@ -14,5 +14,8 @@
  "gerarIdle": true,
  "quadrosIdle": 30,
  "duracaoIdle": 3.0,
- "observacao": "Corpo base (nu) recortado das Vistas de Referência. A saída da linha de produção foi ampliada para 240×330 (pivô 120,316) para caber manto e cajado."
+ "observacao": "Corpo base recortado com app/cli/importacao/recortar_prancha_mago_v3.py (alfa suave, cor sem franja, linhas guia removidas) e animado com idle_alta_qualidade.py (reamostragem Lanczos pré-multiplicada, respiração com volume constante + balanço leve). A vista esquerda é a direita espelhada. Quadro 240×330, pivô (120,316).",
+ "espelhar": {
+  "esquerda": true
+ }
 }

@@ -773,6 +773,55 @@
    * Proposta de landmarks a partir da silhueta (a pessoa revisa depois — skill de equipamentos, item 5.3).
    * Usa proporções do herói (cabeça grande) e a largura real da silhueta em cada altura.
    */
+  // ---------------------------------------------------------------- 10b. rig girado a partir da frente
+  // O rig é um só: o da frente. Costas e laterais saem dele girando o corpo em torno do eixo vertical
+  // e encaixando na silhueta da vista. Depois a pessoa faz o pente-fino.
+  // Profundidade de cada ponto (fração da altura do corpo; + = para a frente do personagem).
+  const PROFUNDIDADE = {
+    head_top: 0, head_center: 0.015, neck_base: 0, shoulder_left: -0.01, shoulder_right: -0.01,
+    elbow_left: -0.015, elbow_right: -0.015, wrist_left: 0.005, wrist_right: 0.005, hand_main: 0.015,
+    chest_center: 0.045, waist_center: 0.035, hip_center: 0.015, knee_left: 0.02, knee_right: 0.02,
+    ankle_left: -0.012, ankle_right: -0.012, foot_contact_left: 0.035, foot_contact_right: 0.035,
+  };
+  /** Medidas da silhueta de um quadro: topo, base e centro do tronco (linha do peito). */
+  function medidasSilhueta(im) {
+    const w = im.w, h = im.h; let topo = h, base = -1;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (im.d[(y * w + x) * 4 + 3] > 0.3) { if (y < topo) topo = y; base = y; break; }
+    if (base < 0) return null;
+    const centro = f => { const y = Math.round(topo + (base - topo) * f); let a = -1, b = -1; for (let x = 0; x < w; x++) if (im.d[(y * w + x) * 4 + 3] > 0.3) { if (a < 0) a = x; b = x; } return a < 0 ? w / 2 : (a + b) / 2; };
+    // centro da silhueta em cada linha (para encaixar os pontos de perfil no corpo)
+    const centros = new Array(h).fill(null);
+    for (let y = topo; y <= base; y++) { let a = -1, b = -1; for (let x = 0; x < w; x++) if (im.d[(y * w + x) * 4 + 3] > 0.3) { if (a < 0) a = x; b = x; } if (a >= 0) centros[y] = (a + b) / 2; }
+    return { topo, base, alt: base - topo, cx: (centro(0.42) + centro(0.5)) / 2, centros };
+  }
+  /** Pontos que ficam atrás do corpo na vista de perfil: o lado do corpo que fica longe da câmera. */
+  function ladoOculto(frente, mf, vista) {
+    if (vista !== 'direita' && vista !== 'esquerda') return [];
+    const limite = mf.alt * 0.04;
+    // olhando para a direita da tela, o lado que estava à direita na frente vai para trás (e vice-versa)
+    return Object.keys(frente).filter(n => { const lat = frente[n][0] - mf.cx; return vista === 'direita' ? lat > limite : lat < -limite; });
+  }
+  /**
+   * Gira o rig da frente (um quadro) para outra vista e encaixa na silhueta.
+   * frente: { ponto: [x,y] }, mf / ma: medidasSilhueta da frente e da vista alvo.
+   */
+  function girarRig(frente, mf, ma, vista) {
+    const s = ma.alt / mf.alt, P = {};
+    for (const n in frente) {
+      const [x, y] = frente[n]; const lat = x - mf.cx, prof = (PROFUNDIDADE[n] || 0) * mf.alt;
+      let nx;
+      if (vista === 'costas') nx = ma.cx - lat * s;            // meia-volta: o lado esquerdo da tela vira o direito
+      const ny = ma.topo + (y - mf.topo) * s;
+      // de perfil, cada ponto vai para o centro do corpo na sua altura e avança/recua conforme a profundidade
+      const linha = ma.centros ? ma.centros[Math.max(0, Math.min(ma.centros.length - 1, Math.round(ny)))] : null;
+      const meio = linha != null ? linha : ma.cx;
+      if (vista === 'direita') nx = meio + prof * s;            // olhando para a direita da tela
+      else if (vista === 'esquerda') nx = meio - prof * s;      // olhando para a esquerda da tela
+      else if (vista !== 'costas') nx = ma.cx + lat * s;
+      P[n] = [+nx.toFixed(1), +ny.toFixed(1)];
+    }
+    return P;
+  }
   function proporLandmarks(q, op = {}) {
     const m = medir(q, op); if (!m) return null;
     const w = q.w; const linha = f => {
@@ -1235,5 +1284,6 @@
     gerarIdle, quadroMaisNeutro, conferir, fluxo, intervalo, interpolarCiclo, proporLandmarks, posicionarItem, comporQuadro, separarPecas,
     trilhaSegmentos, conferirTrilha, mascaraRigida, separarCamada, deformar, transformarRigido, animarSegmentos, andarProcedural, esticamento, GESTOS,
     jsonGodot, adivinharDirecao, produzir,
+    PROFUNDIDADE, medidasSilhueta, ladoOculto, girarRig,
   };
 });

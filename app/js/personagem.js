@@ -28,7 +28,7 @@
   window.__studioSave = async () => { await salvar({}, 'Workspace salvo'); return true; };
   window.__studioSetTool = (modo, cor) => { if (!emStudio) return; studioTool = modo; window.__studioApplyTool?.(modo, cor); };
   window.__studioSaveFrame = async () => { await salvar({}, 'Quadro ' + ((document.querySelector('#palco-ver') && window.__studioFrameNumber ? window.__studioFrameNumber() : 1)) + ' salvo'); return true; };
-  if (emStudio) { $('#studio-body-visible').checked = bodyVisible; $('#studio-body-note').textContent = 'O Mago está em uma única imagem-base; partes do corpo ainda não são camadas separadas.'; $('#studio-body-visible').onchange = () => { bodyVisible = $('#studio-body-visible').checked; p.studioBodyVisible = bodyVisible; window.__studioDirty = true; atualizarVer(); }; }
+  if (emStudio) { $('#studio-body-visible').checked = bodyVisible; $('#studio-body-note').textContent = p.id === 'mago' ? 'Mago: imagem-base achatada. O corpo não pode ser separado em peças nesta versão.' : 'O corpo-base está em uma imagem; a hierarquia controla os pontos do rig.'; $('#studio-body-visible').onchange = () => { bodyVisible = $('#studio-body-visible').checked; p.studioBodyVisible = bodyVisible; window.__studioDirty = true; atualizarVer(); }; }
   document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
   document.addEventListener('change', e => { if (e.target.closest('#eq-editor') || e.target.id === 'eq-arquivo') window.__studioDirty = true; }, true);
   $('#palco-rig')?.addEventListener('pointerdown', () => { window.__studioDirty = true; });
@@ -101,6 +101,8 @@
   // ------------------------------------------------ 01 visualização
   const palcoVer = new Palco($('#palco-ver'));
   if (emStudio) {
+    palcoVer.aoMoverLandmark = () => { window.__studioDirty=true; palcoRig?.desenhar?.(); window.__studioInk?.redraw(); clearTimeout(window.__studioPoseTimer); window.__studioPoseTimer=setTimeout(()=>atualizarVer(),120); };
+    palcoVer.aoSelecionar = () => window.__studioInk?.redraw();
     const base=$('#palco-ver'), host=base.parentElement, ink=document.createElement('canvas');
     ink.className='studio-ink'; ink.setAttribute('aria-label','Anotações e transformações da camada selecionada'); host.insertBefore(ink,$('#ctl-ver'));
     const ctx=ink.getContext('2d'); let modoInk='select', corInk='#e4be70', desenhando=false, tx=0, ty=0, pan=null, drag=null, timerInk=0;
@@ -213,7 +215,7 @@
     const meu = ++pedidoEq; const a = await carregar(sel.anim, sel.dir);
     const quadros = verComItens && (p.equipamentos.length || !bodyVisible) ? await comporAnimacao(sel.anim, sel.dir, bodyVisible) : a.quadros;
     if (meu !== pedidoEq) return;
-    palcoEq.definir({ quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: null }); sincEq(); listaItens();
+    palcoEq.definir({ quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: null }); sincEq(); listaItens(); if (emStudio && itemSel) abrirItem(itemSel);
     if (verComItens && p.equipamentos.length) { const r = await Tarefas.rodar('conferir', { quadros: quadros.map(bytesDe) }); if (meu === pedidoEq) mostrarConferencia($('#conf-equip'), r); }
   }
   function listaItens() {

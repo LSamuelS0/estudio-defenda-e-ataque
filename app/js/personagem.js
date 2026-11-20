@@ -8,6 +8,7 @@
   let ab; try { ab = await Armazem.abrir(id); } catch (e) { $('#p-nome').textContent = e.message; return; }
   let p = ab.p;
   const sel = { anim: Object.keys(p.animacoes || {})[0], dir: 'frente' };
+  let studioTool = 'select', bodyVisible = p.studioBodyVisible !== false, itemSel = null;
   const cache = {};
   p.rig = p.rig || {}; p.revisado = p.revisado || {}; p.equipamentos = p.equipamentos || []; p.habilidades = p.habilidades || []; p.drops = p.drops || [];
 
@@ -25,7 +26,9 @@
   window.__studioDirty = false;
   p.anotacoes = p.anotacoes || [];
   window.__studioSave = async () => { await salvar({}, 'Workspace salvo'); return true; };
-  window.__studioSetTool = (modo, cor) => { if (!emStudio || !window.__studioInk) return; window.__studioInk.setTool(modo, cor); };
+  window.__studioSetTool = (modo, cor) => { if (!emStudio) return; studioTool = modo; window.__studioApplyTool?.(modo, cor); };
+  window.__studioSaveFrame = async () => { await salvar({}, 'Quadro ' + ((window.Palco && document.querySelector('#palco-ver') ? 1 : 1)) + ' salvo'); return true; };
+  if (emStudio) { $('#studio-body-visible').checked = bodyVisible; $('#studio-body-note').textContent = 'O Mago está em uma única imagem-base; partes do corpo ainda não são camadas separadas.'; $('#studio-body-visible').onchange = () => { bodyVisible = $('#studio-body-visible').checked; p.studioBodyVisible = bodyVisible; window.__studioDirty = true; atualizarVer(); }; }
   document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
   document.addEventListener('change', e => { if (e.target.closest('#eq-editor') || e.target.id === 'eq-arquivo') window.__studioDirty = true; }, true);
   $('#palco-rig')?.addEventListener('pointerdown', () => { window.__studioDirty = true; });
@@ -98,15 +101,19 @@
   // ------------------------------------------------ 01 visualização
   const palcoVer = new Palco($('#palco-ver'));
   if (emStudio) {
-    const base=$('#palco-ver'), host=base.parentElement, ink=document.createElement('canvas'); ink.className='studio-ink'; ink.setAttribute('aria-label','Camada de anotações'); host.insertBefore(ink,$('#ctl-ver'));
-    const ctx=ink.getContext('2d'); let modoInk='select', corInk='#e4be70', desenhando=false, tx=0, ty=0, pan=null;
+    const base=$('#palco-ver'), host=base.parentElement, ink=document.createElement('canvas');
+    ink.className='studio-ink'; ink.setAttribute('aria-label','Anotações e transformações da camada selecionada'); host.insertBefore(ink,$('#ctl-ver'));
+    const ctx=ink.getContext('2d'); let modoInk='select', corInk='#e4be70', desenhando=false, tx=0, ty=0, pan=null, drag=null, timerInk=0;
     function ajustarInk(){const d=window.devicePixelRatio||1;ink.width=Math.max(1,Math.round(base.clientWidth*d));ink.height=Math.max(1,Math.round(base.clientHeight*d));ink.style.width=base.clientWidth+'px';ink.style.height=base.clientHeight+'px';desenharInk()}
-    function desenharInk(){const d=window.devicePixelRatio||1;ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,ink.width/d,ink.height/d);for(const marca of p.anotacoes){const pts=marca.pontos||[];if(pts.length<1)continue;ctx.strokeStyle=marca.cor||'#e4be70';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(pts[0][0]*base.clientWidth,pts[0][1]*base.clientHeight);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0]*base.clientWidth,pts[i][1]*base.clientHeight);if(pts.length===1){ctx.arc(pts[0][0]*base.clientWidth,pts[0][1]*base.clientHeight,1.5,0,Math.PI*2);ctx.fill()}else ctx.stroke()}}
-    window.__studioInk={setTool(m,c){modoInk=m;corInk=c||corInk;ink.style.pointerEvents=m==='paint'||m==='pan'?'auto':'none';ink.style.cursor=m==='paint'?'crosshair':m==='pan'?'grab':'default'},redraw:desenharInk};
+    function desenharInk(){const d=window.devicePixelRatio||1;ctx.setTransform(d,0,0,d,0,0);ctx.clearRect(0,0,ink.width/d,ink.height/d);for(const marca of p.anotacoes){const pts=marca.pontos||[];if(pts.length<1)continue;ctx.strokeStyle=marca.cor||'#e4be70';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(pts[0][0]*base.clientWidth,pts[0][1]*base.clientHeight);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0]*base.clientWidth,pts[i][1]*base.clientHeight);if(pts.length===1){ctx.arc(pts[0][0]*base.clientWidth,pts[0][1]*base.clientHeight,1.5,0,Math.PI*2);ctx.fill()}else ctx.stroke()}
+      if(itemSel&&palcoVer.landmarks&&palcoVer.landmarks[palcoVer.k]){const L=palcoVer.landmarks[palcoVer.k],a=(itemSel.anchors||[])[0]||'hand_main';if(L[a]){const pose=poseQuadroLido(itemSel,sel.dir,palcoVer.k),o=palcoVer._origem(),x=o[0]+(L[a][0]+(pose.offsetX||0))*o[2],y=o[1]+(L[a][1]+(pose.offsetY||0))*o[2];ctx.strokeStyle='#65d8eb';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.moveTo(x-15,y);ctx.lineTo(x+15,y);ctx.moveTo(x,y-15);ctx.lineTo(x,y+15);ctx.stroke()}}
+    }
+    window.__studioInk={setTool(m,c){modoInk=m;corInk=c||corInk;ink.style.pointerEvents=['paint','pan','move-object','rotate-object'].includes(m)?'auto':'none';ink.style.cursor=m==='paint'?'crosshair':m==='pan'?'grab':m==='move-object'?'move':m==='rotate-object'?'alias':'default'},redraw:desenharInk};
+    window.__studioApplyTool=async(m,c)=>{studioTool=m;window.__studioInk.setTool(m,c);palcoVer.editavel=m==='rig';palcoVer.mostrarMalha=m==='rig';const L=(m==='rig'||itemSel)?await landmarksDe(sel.anim,sel.dir):null;const a=await carregar(sel.anim,sel.dir);palcoVer.definir({quadros:palcoVer.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L});desenharInk()};
     const ponto=e=>{const r=ink.getBoundingClientRect();return[(e.clientX-r.left)/Math.max(1,base.clientWidth),(e.clientY-r.top)/Math.max(1,base.clientHeight)]};
-    ink.addEventListener('pointerdown',e=>{if(modoInk==='paint'){desenhando=true;ink.setPointerCapture(e.pointerId);p.anotacoes.push({cor:corInk,pontos:[ponto(e)]});window.__studioDirty=true;desenharInk()}else if(modoInk==='pan'){pan=[e.clientX-tx,e.clientY-ty];ink.setPointerCapture(e.pointerId);ink.style.cursor='grabbing'}});
-    ink.addEventListener('pointermove',e=>{if(desenhando){p.anotacoes[p.anotacoes.length-1].pontos.push(ponto(e));desenharInk()}else if(pan){tx=e.clientX-pan[0];ty=e.clientY-pan[1];const tr='translate('+tx+'px,'+ty+'px)';base.style.transform=tr;ink.style.transform=tr}});
-    const end=()=>{desenhando=false;pan=null;if(modoInk==='pan')ink.style.cursor='grab'};ink.addEventListener('pointerup',end);ink.addEventListener('pointercancel',end);new ResizeObserver(ajustarInk).observe(base);ajustarInk();
+    ink.addEventListener('pointerdown',e=>{if(modoInk==='paint'){desenhando=true;ink.setPointerCapture(e.pointerId);p.anotacoes.push({cor:corInk,pontos:[ponto(e)]});window.__studioDirty=true;desenharInk()}else if(modoInk==='pan'){pan=[e.clientX-tx,e.clientY-ty];ink.setPointerCapture(e.pointerId);ink.style.cursor='grabbing'}else if((modoInk==='move-object'||modoInk==='rotate-object')&&itemSel){const pose=poseQuadroLido(itemSel,sel.dir,palcoVer.k);drag={x:e.clientX,y:e.clientY,x0:pose.offsetX||0,y0:pose.offsetY||0,a0:pose.angulo||0,scale:palcoVer._origem()[2]||1};ink.setPointerCapture(e.pointerId);window.__studioDirty=true}});
+    ink.addEventListener('pointermove',e=>{if(desenhando){p.anotacoes[p.anotacoes.length-1].pontos.push(ponto(e));desenharInk()}else if(pan){tx=e.clientX-pan[0];ty=e.clientY-pan[1];const tr='translate('+tx+'px,'+ty+'px)';base.style.transform=tr;ink.style.transform=tr}else if(drag&&itemSel){const dx=e.clientX-drag.x,dy=e.clientY-drag.y,pose=poseQuadro(itemSel,sel.dir,palcoVer.k);if(modoInk==='move-object'){pose.offsetX=+(drag.x0+dx/drag.scale).toFixed(1);pose.offsetY=+(drag.y0+dy/drag.scale).toFixed(1);$('#eq-x').value=pose.offsetX;$('#eq-y').value=pose.offsetY}else{pose.angulo=+(drag.a0+(dx-dy)*.7).toFixed(1);$('#eq-angulo').value=pose.angulo;$('#eq-angulo-v').textContent=pose.angulo+'°'}desenharInk();clearTimeout(timerInk);timerInk=setTimeout(()=>atualizarVer(),100)}});
+    const end=()=>{desenhando=false;pan=null;drag=null;if(modoInk==='pan')ink.style.cursor='grab'};ink.addEventListener('pointerup',end);ink.addEventListener('pointercancel',end);new ResizeObserver(ajustarInk).observe(base);ajustarInk();
   }
   const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:a.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
   const confCache = {};

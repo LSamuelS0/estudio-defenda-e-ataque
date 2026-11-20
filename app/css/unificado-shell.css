@@ -16,7 +16,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);c
 .estudio-rodape button span{font-size:17px;line-height:1;color:var(--gold)}
 .estudio-rodape button:hover{color:var(--text);background:#ffffff08}
 .estudio-rodape button[aria-current=page]{color:var(--gold-ink,#1b1608);background:var(--gold);border-color:var(--gold);font-weight:700}
-.estudio-rodape button[aria-pressed=true] span{color:var(--gold-ink,#1b1608)}
+.estudio-rodape button[aria-current=page] span{color:var(--gold-ink,#1b1608)}
 .estudio-rodape button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 @media(max-width:700px){.estudio-shell{grid-template-rows:58px minmax(0,1fr) auto}.estudio-topo{padding-inline:12px}.estudio-rodape{justify-content:flex-start}.estudio-rodape button{min-width:78px;padding-inline:7px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}

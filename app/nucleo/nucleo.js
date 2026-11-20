@@ -819,7 +819,7 @@
     let ang = (item.anguloExtra || 0) * Math.PI / 180;
     if (item.mira && P[item.mira]) {
       const b = P[item.mira]; const base = item.miraBase != null ? item.miraBase : -90;
-      ang += Math.atan2(b[1] - a[1], b[0] - a[0]) - base * Math.PI / 180;
+      ang += Math.atan2(b[1] - ancoraBase[1], b[0] - ancoraBase[0]) - base * Math.PI / 180;
     }
     const esc = (item.escala || 1) * (op.escala || 1); const cs = Math.cos(-ang), sn = Math.sin(-ang);
     const im = item.imagem; const [gx, gy] = item.pega;

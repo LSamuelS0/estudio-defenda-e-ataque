@@ -2,6 +2,12 @@
 
 Programa de Windows para criar os personagens, animações, equipamentos e efeitos do jogo **Defenda e Ataque** (Godot 4). Funciona sem internet.
 
+## Testar no navegador
+
+Abra o [Estúdio HTML no GitHub Pages](https://lsamuels0.github.io/estudio-defenda-e-ataque/app/) para testar a versão web. Os projetos criados no navegador ficam armazenados localmente neste navegador.
+
+O site está publicado a partir da branch `main`; por isso, o endereço inclui `/app/`, onde está o arquivo `index.html`.
+
 O que ele faz sozinho:
 
 - **Linha de produção**: você arrasta as folhas desenhadas (uma por direção) e ele tira o fundo branco, separa os quadros, alinha pelo pé, deixa as 4 direções na mesma escala, suaviza a borda, gera o idle respirando e exporta PNG + JSON no formato que o jogo lê.

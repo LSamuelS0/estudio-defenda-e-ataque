@@ -24,13 +24,16 @@
 
   // ------------------------------------------------ abas
   const paineis = ['ver', 'rig', 'equip', 'adicao', 'inv'];
-  let abaAtual = 'ver';
-  document.querySelectorAll('.aba').forEach(b => b.onclick = () => {
-    abaAtual = b.dataset.aba;
-    document.querySelectorAll('.aba').forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
-    paineis.forEach(n => $('#painel-' + n).hidden = n !== abaAtual);
+  let abaAtual = new URLSearchParams(location.search).get('aba');
+  if (!paineis.includes(abaAtual)) abaAtual = 'ver';
+  function selecionarAba(nome) {
+    abaAtual = nome;
+    document.querySelectorAll('.aba').forEach(x => x.setAttribute('aria-selected', x.dataset.aba === nome ? 'true' : 'false'));
+    paineis.forEach(n => $('#painel-' + n).hidden = n !== nome);
     atualizar();
-  });
+  }
+  document.querySelectorAll('.aba').forEach(b => b.onclick = () => selecionarAba(b.dataset.aba));
+  selecionarAba(abaAtual);
 
   // ------------------------------------------------ animações
   async function carregar(anim, dir) {

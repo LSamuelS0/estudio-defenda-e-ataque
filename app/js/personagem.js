@@ -56,7 +56,9 @@
       <label class="grupo mudo">fps <input type="number" data-c="fps" min="1" max="30" style="width:58px"></label>
       <div class="grupo">${['escuro', 'grama', 'xadrez', 'claro'].map(f => `<button class="chip" data-fundo="${f}">${f}</button>`).join('')}</div>
       <button class="chip" data-c="cebola">casca de cebola</button>
+      ${op.visualizacao ? '<button class="chip" data-c="malha">malha</button><button class="chip" data-c="silhueta">silhueta</button><button class="chip" data-c="trajetoria">trajetória</button>' : ''}
       ${op.extra || ''}`;
+    if (op.visualizacao) { const bM=alvo.querySelector('[data-c=malha]'), bS=alvo.querySelector('[data-c=silhueta]'), bT=alvo.querySelector('[data-c=trajetoria]'); bM.onclick=()=>{palco.mostrarMalha=!palco.mostrarMalha;bM.setAttribute('aria-pressed',palco.mostrarMalha);op.alterarMalha&&op.alterarMalha(palco.mostrarMalha)}; bS.onclick=()=>{palco.silhueta=!palco.silhueta;bS.setAttribute('aria-pressed',palco.silhueta);palco.desenhar()}; bT.onclick=()=>{palco.mostrarTrajetoria=!palco.mostrarTrajetoria;bT.setAttribute('aria-pressed',palco.mostrarTrajetoria);palco.desenhar()}; }
     const s = alvo.querySelector('[data-c=anim]'); s.value = sel.anim; s.onchange = () => { sel.anim = s.value; atualizar(); };
     alvo.querySelectorAll('[data-dir]').forEach(b => b.onclick = () => { sel.dir = b.dataset.dir; atualizar(); });
     alvo.querySelector('[data-c=ant]').onclick = () => { palco.tocando = false; palco.irPara(palco.k - 1); sinc(); };
@@ -85,7 +87,7 @@
 
   // ------------------------------------------------ 01 visualização
   const palcoVer = new Palco($('#palco-ver'));
-  const sincVer = montarControles($('#ctl-ver'), palcoVer);
+  const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:a.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
   const confCache = {};
   async function atualizarVer() {
     const a = await carregar(sel.anim, sel.dir);

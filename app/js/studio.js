@@ -9,6 +9,6 @@ save.onclick=async()=>{try{await editor.contentWindow.__studioSave?.();$("#studi
 for(const el of [search,type,element]){el.addEventListener("input",render);el.addEventListener("change",render)}
 editor.addEventListener("load",()=>{try{const child=editor.contentWindow;if(child.__studioDirty){$("#studio-dirty").textContent="Alterações pendentes"}else $("#studio-dirty").textContent=""}catch{}});
 try{const [ps,cat]=await Promise.all([Armazem.listar(),fetch("dados/entidades.json").then(r=>r.json())]);entries=ps.map(p=>({key:p.id,id:p.id,name:p.nome,kind:p.categoria==="heroi"?"heroi":"monstro",element:(p.especie||"").toLowerCase(),color:"#9d8bd0"}));for(const a of cat.atalhos||[]){const m=a.especie==="slime"?/agua|fogo|terra|ar/.exec(a.id)?.[0]||"comum":"todos";entries.push({key:a.id,id:a.id,name:a.nome,kind:a.especie==="slime"?"slime":"monstro",element:m,color:a.cor||"#8ebd87"})}render();if(!entries.length)list.innerHTML='<p class="mudo">Nenhum personagem cadastrado.</p>';const inicial=new URLSearchParams(location.search).get("id");if(inicial){const alvo=entries.find(x=>x.id===inicial);if(alvo)load(alvo)}}catch(e){list.innerHTML='<p class="mudo">'+esc(e.message)+'</p>'}
-setInterval(()=>{if(state())$("#studio-dirty").textContent="Alterações pendentes"},500);
+setInterval(()=>{const d=$("#studio-dirty");if(state())d.textContent="Alterações pendentes";else if(d.textContent==="Alterações pendentes")d.textContent=""},500);
 window.addEventListener("beforeunload",e=>{if(state()){e.preventDefault();e.returnValue=""}})
 })().catch(e=>console.error(e));

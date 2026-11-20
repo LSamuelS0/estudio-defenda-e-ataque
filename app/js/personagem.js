@@ -115,12 +115,14 @@
     ink.addEventListener('pointermove',e=>{if(desenhando){p.anotacoes[p.anotacoes.length-1].pontos.push(ponto(e));desenharInk()}else if(pan){tx=e.clientX-pan[0];ty=e.clientY-pan[1];const tr='translate('+tx+'px,'+ty+'px)';base.style.transform=tr;ink.style.transform=tr}else if(drag&&itemSel){const dx=e.clientX-drag.x,dy=e.clientY-drag.y,pose=poseQuadro(itemSel,sel.dir,palcoVer.k);if(modoInk==='move-object'){pose.offsetX=+(drag.x0+dx/drag.scale).toFixed(1);pose.offsetY=+(drag.y0+dy/drag.scale).toFixed(1);$('#eq-x').value=pose.offsetX;$('#eq-y').value=pose.offsetY}else{pose.angulo=+(drag.a0+(dx-dy)*.7).toFixed(1);$('#eq-angulo').value=pose.angulo;$('#eq-angulo-v').textContent=pose.angulo+'°'}desenharInk();clearTimeout(timerInk);timerInk=setTimeout(()=>atualizarVer(),100)}});
     const end=()=>{desenhando=false;pan=null;drag=null;if(modoInk==='pan')ink.style.cursor='grab'};ink.addEventListener('pointerup',end);ink.addEventListener('pointercancel',end);new ResizeObserver(ajustarInk).observe(base);ajustarInk();
   }
-  const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:a.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
+  window.__studioFrameNumber = () => palcoVer.k + 1;
+  const sincVer = montarControles($('#ctl-ver'), palcoVer, { visualizacao: true, aoMudarQuadro: () => { window.__studioInk?.redraw(); if (itemSel) abrirItem(itemSel); }, alterarMalha: async (ativa) => { const a=await carregar(sel.anim,sel.dir); const L=ativa?await landmarksDe(sel.anim,sel.dir):null; palcoVer.definir({quadros:palcoVer.quadros,fps:a.fps,pivo:a.meta.pivo_px,pontos:a.pontos,landmarks:L}); } });
   const confCache = {};
   async function atualizarVer() {
     const a = await carregar(sel.anim, sel.dir);
-    const quadrosVer = emStudio && p.equipamentos.some(it => it.equipado !== false) ? await comporAnimacao(sel.anim, sel.dir) : a.quadros;
-    palcoVer.definir({ quadros: quadrosVer, fps: a.fps, pivo: a.meta.pivo_px, pontos: a.pontos, landmarks: palcoVer.mostrarMalha ? await landmarksDe(sel.anim, sel.dir) : null }); sincVer();
+    const quadrosVer = emStudio && (p.equipamentos.some(it => it.equipado !== false) || !bodyVisible) ? await comporAnimacao(sel.anim, sel.dir, bodyVisible) : a.quadros;
+    const L = (palcoVer.mostrarMalha || studioTool === 'rig' || itemSel) ? await landmarksDe(sel.anim, sel.dir) : null;
+    palcoVer.definir({ quadros: quadrosVer, fps: a.fps, pivo: a.meta.pivo_px, pontos: a.pontos, landmarks: L }); sincVer(); window.__studioInk?.redraw();
     const m = a.meta;
     $('#ficha-ver').innerHTML = [['Animação', sel.anim + ' · ' + Comum.DIRECOES[sel.dir]], ['Quadros', m.quadros], ['Quadro (px)', m.largura_quadro + ' × ' + m.altura_quadro], ['Pivô (pé)', m.pivo_px.join(', ')], ['Escala no jogo', m.escala_jogo], ['FPS', m.fps || m.fps_ref || '—'], ['Arquivo', m.direcoes[sel.dir] ? m.direcoes[sel.dir].arquivo : '—'], ['Gerado por', m.gerado_por || '—']]
       .map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('');
@@ -146,7 +148,8 @@
     const L = await landmarksDe(sel.anim, sel.dir);
     palcoRig.revisados = revisados();
     palcoRig.definir({ quadros: a.quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: L }); sincRig(); listaRig();
-    $('#rig-arvore').innerHTML = N.HIERARQUIA.map(h => { let d = 0, x = h; while (x.pai) { d++; x = N.HIERARQUIA.find(y => y.id === x.pai); } return `<div style="padding-left:${d * 14}px">${d ? '└ ' : '● '}${esc(h.nome)}</div>`; }).join('');
+    $('#rig-arvore').innerHTML = N.HIERARQUIA.map(h => { let d = 0, x = h; while (x.pai) { d++; x = N.HIERARQUIA.find(y => y.id === x.pai); } return `<button type="button" class="studio-rig-node" data-bone="${esc(h.id)}" style="padding-left:${d * 12 + 6}px" aria-selected="${palcoVer.selecionado === h.id}">${d ? '└ ' : '● '}${esc(h.nome)}</button>`; }).join('');
+    $('#rig-arvore').querySelectorAll('[data-bone]').forEach(b => b.onclick = () => { palcoVer.selecionado=b.dataset.bone; window.__studioSetTool?.('rig'); palcoVer.desenhar(); window.__studioInk?.redraw(); });
   }
   function listaRig() {
     const L = palcoRig.landmarks && palcoRig.landmarks[palcoRig.k]; if (!L) return; const rv = revisados();
@@ -195,20 +198,20 @@
     const out = [];
     for (const it of p.equipamentos.filter(x => x.equipado !== false)) {
       const c = await imagemItem(it, dir); if (!c) continue; const aj = ajuste(it, dir);
-      out.push({ imagem: bytesDe(c), pega: aj.pega, ancora: (it.anchors || [])[0] || 'hand_main', mira: (it.anchors || [])[1] || null, anguloExtra: aj.angulo, escala: aj.escala, ordem: aj.ordem, mascara: !!it.ocultarCorpo, folga: 1 });
+      out.push({ imagem: bytesDe(c), pega: aj.pega, ancora: (it.anchors || [])[0] || 'hand_main', mira: (it.anchors || [])[1] || null, anguloExtra: aj.angulo, escala: aj.escala, ordem: aj.ordem, offsetX: aj.offsetX || 0, offsetY: aj.offsetY || 0, poses: aj.quadros || {}, mascara: !!it.ocultarCorpo, folga: 1 });
     }
     return out;
   }
   let pedidoEq = 0;
-  async function comporAnimacao(anim, dir) {
+  async function comporAnimacao(anim, dir, corpoVisivel = true) {
     const a = await carregar(anim, dir); const L = await landmarksDe(anim, dir); const itens = await itensParaCompor(dir);
-    if (!itens.length) return a.quadros;
-    const res = await Tarefas.rodar('compor', { quadros: a.quadros.map(bytesDe), landmarks: L, itens });
+    if (!itens.length && corpoVisivel) return a.quadros;
+    const res = await Tarefas.rodar('compor', { quadros: a.quadros.map(bytesDe), landmarks: L, itens, corpoVisivel });
     return res.map(r => ImagemWeb.bytesParaCanvas(r.w, r.h, r.bytes));
   }
   async function atualizarEquip() {
     const meu = ++pedidoEq; const a = await carregar(sel.anim, sel.dir);
-    const quadros = verComItens && p.equipamentos.length ? await comporAnimacao(sel.anim, sel.dir) : a.quadros;
+    const quadros = verComItens && (p.equipamentos.length || !bodyVisible) ? await comporAnimacao(sel.anim, sel.dir, bodyVisible) : a.quadros;
     if (meu !== pedidoEq) return;
     palcoEq.definir({ quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: null }); sincEq(); listaItens();
     if (verComItens && p.equipamentos.length) { const r = await Tarefas.rodar('conferir', { quadros: quadros.map(bytesDe) }); if (meu === pedidoEq) mostrarConferencia($('#conf-equip'), r); }
@@ -371,7 +374,8 @@
   // ------------------------------------------------
   async function atualizar() {
     try {
-      if (abaAtual === 'ver') await atualizarVer();
+      if (emStudio) { await Promise.all([atualizarVer(), atualizarRig(), atualizarEquip()]); }
+      else if (abaAtual === 'ver') await atualizarVer();
       else if (abaAtual === 'rig') await atualizarRig();
       else if (abaAtual === 'equip') await atualizarEquip();
       else if (abaAtual === 'inv') atualizarInv();

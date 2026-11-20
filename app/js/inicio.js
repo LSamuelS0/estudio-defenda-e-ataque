@@ -13,10 +13,9 @@
       <div class="miniatura" style="color:${esc(a.cor)};font-size:34px">◉</div>
       <div><span class="tipo">CRIATURA · ${esc(a.especie.toUpperCase())}</span><h3>${esc(a.nome)}</h3><p class="mudo">${esc(a.descricao)}</p>
       <span class="selo">gerador de slimes ↗</span></div></a>`;
-  const novo = cat => `<a class="cartao personagem novo" href="producao.html?categoria=${cat}"><div><b>＋ Novo ${cat === 'heroi' ? 'herói' : 'monstro'}</b><p class="mudo">Arraste as folhas desenhadas e o Estúdio faz o resto.</p></div></a>`;
   const herois = lista.filter(p => p.categoria === 'heroi'), monstros = lista.filter(p => p.categoria !== 'heroi');
-  document.getElementById('lista-herois').innerHTML = herois.map(cartao).join('') + novo('heroi');
-  document.getElementById('lista-monstros').innerHTML = monstros.map(cartao).join('') + atalhos.map(atalho).join('') + novo('monstro');
+  document.getElementById('lista-herois').innerHTML = herois.map(cartao).join('');
+  document.getElementById('lista-monstros').innerHTML = monstros.map(cartao).join('') + atalhos.map(atalho).join('');
   document.getElementById('n-herois').textContent = herois.length + ' personagem(ns)';
   document.getElementById('n-monstros').textContent = (monstros.length + atalhos.length) + ' criatura(s)';
   for (const p of lista) { const alvo = document.querySelector(`[data-mini="${CSS.escape(p.id)}"]`); if (alvo) Comum.miniatura(p, alvo); }

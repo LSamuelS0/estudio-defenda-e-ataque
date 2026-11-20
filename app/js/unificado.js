@@ -29,6 +29,7 @@
   function identificar(url) {
     const caminho = url.pathname.toLowerCase();
     if (caminho.endsWith("/visao-geral.html")) return "visao";
+    if (caminho.endsWith("/inicio.html") || caminho.endsWith("/personagem.html")) return "personagens";
     if (caminho.endsWith("/producao.html")) return "producao";
     if (caminho.endsWith("/biblioteca.html")) return "animacoes";
     if (caminho.endsWith("/efeitos.html")) return "efeitos";
@@ -61,8 +62,11 @@
   });
 
   botoes.forEach(b => b.addEventListener("click", () => selecionar(b.dataset.rota)));
+  document.querySelector(".estudio-marca")?.addEventListener("click", evento => {
+    evento.preventDefault();
+    selecionar("visao");
+  });
   window.addEventListener("popstate", () => selecionar(location.hash.slice(1), false));
-  window.addEventListener("hashchange", () => selecionar(location.hash.slice(1), false));
   const inicial = rotas[location.hash.slice(1)] ? location.hash.slice(1) : "visao";
   selecionar(inicial, !location.hash);
 })();

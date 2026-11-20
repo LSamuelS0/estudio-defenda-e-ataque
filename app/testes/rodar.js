@@ -97,6 +97,17 @@ if (fs.existsSync(pranchaPecas)) teste('Recortar peças: prancha de equipamentos
   const pecas = N.separarPecas(ler(pranchaPecas)); assert.strictEqual(pecas.length, 5);
 });
 
+teste('Rig girado: costas espelha, perfil empilha e esconde o lado de trás', () => {
+  // corpo simples: retângulo de 20×80 com cabeça, num quadro 60×100
+  const im = N.criar(60, 100); for (let y = 10; y < 90; y++) for (let x = 20; x < 40; x++) im.d.set([0.5, 0.4, 0.3, 1], (y * 60 + x) * 4);
+  const m = N.medidasSilhueta(im); assert.strictEqual(m.topo, 10); assert.strictEqual(m.base, 89); assert.ok(Math.abs(m.cx - 29.5) < 0.6);
+  const F = { shoulder_left: [22, 30], shoulder_right: [37, 30], head_center: [29.5, 15], hip_center: [29.5, 55] };
+  const C = N.girarRig(F, m, m, 'costas'); assert.ok(C.shoulder_left[0] > C.shoulder_right[0], 'de costas o lado troca');
+  const D = N.girarRig(F, m, m, 'direita'); assert.ok(Math.abs(D.shoulder_left[0] - D.shoulder_right[0]) < 1, 'de perfil os ombros se sobrepõem');
+  assert.strictEqual(D.head_center[1], F.head_center[1], 'altura preservada');
+  assert.deepStrictEqual(N.ladoOculto(F, m, 'direita'), ['shoulder_right']); assert.deepStrictEqual(N.ladoOculto(F, m, 'esquerda'), ['shoulder_left']);
+});
+
 console.log((total - falhas) + '/' + total + ' testes ok');
 process.exitCode = falhas ? 1 : 0;
 void os;

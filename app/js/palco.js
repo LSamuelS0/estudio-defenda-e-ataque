@@ -66,14 +66,21 @@ window.Palco = class Palco {
     if (this.mostrarPontos && pt) { g.strokeStyle = '#7fc3ff'; g.beginPath(); g.arc(ox + (this.pivo[0] + pt[0]) * e, oy + (this.pivo[1] + pt[1]) * e, 6, 0, 7); g.stroke(); }
     const L = (this.mostrarMalha || this.editavel) && this.landmarks && this.landmarks[this.k];
     if (L) {
-      const ligar = [['head_top', 'head_center'], ['head_center', 'neck_base'], ['neck_base', 'shoulder_left'], ['neck_base', 'shoulder_right'], ['neck_base', 'chest_center'], ['chest_center', 'waist_center'], ['waist_center', 'hip_center'], ['hip_center', 'knee_left'], ['hip_center', 'knee_right'], ['knee_left', 'foot_contact_left'], ['knee_right', 'foot_contact_right'], ['shoulder_right', 'hand_main']];
-      g.strokeStyle = 'rgba(157,139,208,.7)'; g.lineWidth = 1.5; g.beginPath();
-      for (const [a, b] of ligar) if (L[a] && L[b]) { g.moveTo(ox + L[a][0] * e, oy + L[a][1] * e); g.lineTo(ox + L[b][0] * e, oy + L[b][1] * e); }
-      g.stroke();
+      // todos os pontos ligados pela hierarquia do esqueleto (raiz → quadril → tronco → pescoço → cabeça; ombros → cotovelos → punhos → mão; quadril → joelhos → tornozelos → pés)
+      const H = window.EstudioNucleo && window.EstudioNucleo.HIERARQUIA;
+      const ligar = H ? H.filter(h => h.pai && h.pai !== 'root').map(h => [h.pai, h.id]) : [['head_top', 'head_center'], ['head_center', 'neck_base'], ['neck_base', 'chest_center'], ['chest_center', 'waist_center'], ['waist_center', 'hip_center']];
+      const oc = this.ocultos || new Set();
+      for (const atras of [true, false]) {
+        g.strokeStyle = atras ? 'rgba(157,139,208,.25)' : 'rgba(157,139,208,.8)'; g.lineWidth = atras ? 1 : 1.6; g.setLineDash(atras ? [3, 3] : []); g.beginPath();
+        for (const [a, b] of ligar) if (L[a] && L[b] && (oc.has(a) || oc.has(b)) === atras) { g.moveTo(ox + L[a][0] * e, oy + L[a][1] * e); g.lineTo(ox + L[b][0] * e, oy + L[b][1] * e); }
+        g.stroke();
+      }
+      g.setLineDash([]);
       for (const nome in L) {
         const [x, y] = L[nome]; const sel = nome === this.selecionado;
+        g.globalAlpha = oc.has(nome) && !sel ? 0.35 : 1;
         g.fillStyle = sel ? '#c9a96e' : (this.revisados && this.revisados.has(nome) ? '#8ebd87' : '#9d8bd0');
-        g.beginPath(); g.arc(ox + x * e, oy + y * e, sel ? 6 : 4.5, 0, 7); g.fill(); g.strokeStyle = '#11131a'; g.lineWidth = 1.5; g.stroke();
+        g.beginPath(); g.arc(ox + x * e, oy + y * e, sel ? 6 : (oc.has(nome) ? 3.5 : 4.5), 0, 7); g.fill(); g.strokeStyle = '#11131a'; g.lineWidth = 1.5; g.stroke(); g.globalAlpha = 1;
       }
     }
     if (this.aoDesenhar) this.aoDesenhar(g, ox, oy, e);
@@ -84,7 +91,7 @@ window.Palco = class Palco {
     this.c.addEventListener('pointerdown', ev => {
       if (!this.editavel || !this.landmarks) { this.quadros.length && this.aoPonteiro && this.aoPonteiro('down', ev, pos(ev)); return; } const L = this.landmarks[this.k]; if (!L) return;
       const [x, y, e] = pos(ev); let melhor = null, d = 12 / e;
-      for (const n in L) { const dd = Math.hypot(L[n][0] - x, L[n][1] - y); if (dd < d) { d = dd; melhor = n; } }
+      for (const n in L) { const dd = Math.hypot(L[n][0] - x, L[n][1] - y) * (this.ocultos && this.ocultos.has(n) ? 1.6 : 1); if (dd < d) { d = dd; melhor = n; } } // ponto da frente ganha do que está atrás
       if (melhor) { arrastando = melhor; this.selecionado = melhor; this.tocando = false; this.c.setPointerCapture(ev.pointerId); this.desenhar(); this.aoSelecionar && this.aoSelecionar(melhor); }
     });
     this.c.addEventListener('pointermove', ev => {

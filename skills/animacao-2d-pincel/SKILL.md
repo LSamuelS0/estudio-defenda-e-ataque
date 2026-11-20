@@ -31,6 +31,15 @@ Base: 12 princípios da animação (Thomas & Johnston, *The Illusion of Life*), 
 
 Conferir sempre em **fundo escuro e em fundo claro** (o claro denuncia franja branca, o escuro denuncia frestas de papel).
 
+## 2.1 Qualidade de textura na importação (regra do Lucas, 20/11/2026)
+Todo personagem, roupa, arma ou efeito importado para o Estúdio/jogo entra com **qualidade excelente**. Reprovar e refazer se houver:
+- **Serrilhado que não é da textura**: borda em escada, contorno quebrado, pixel duro onde o desenho é suave. A borda tem alfa suave (meio-tom) e o contorno escuro do desenho fica **fechado**; onde uma marca da prancha cortou o traço, o traço é refeito.
+- **Marcas de edição**: franja branca/clara do papel, halo, restos de fundo, linhas guia ou tracejados da prancha, sombra do chão, setas, textos, pontos soltos. A cor da borda é descontaminada (sem cor de papel misturada).
+- **Deformação**: esticar, achatar ou distorcer o desenho. Escala só proporcional, com reamostragem de alta qualidade (Lanczos em alfa pré-multiplicado); nunca vizinho mais próximo nem reduções em cadeia.
+- **Vistas que não batem**: rosto, cabelo (cor e forma), proporção e paleta iguais em todas as vistas. **Esquerda e direita olham para lados opostos.** Se a prancha trouxer as duas laterais olhando para o mesmo lado ou com cor diferente, a vista errada é substituída pela outra espelhada (corpo-base sem assimetria; peça assimétrica precisa da vista própria).
+- **Conferir à vista, sempre**: abrir o resultado ampliado (2–3×) sobre fundo escuro, fundo claro e grama do jogo antes de aceitar; a conferência automática (7 regras) é obrigatória, mas não substitui olhar.
+- Processo de referência: `app/cli/importacao/recortar_prancha_mago_v3.py` (recorte) e `idle_alta_qualidade.py` (escala + idle). A linha de produção do núcleo serve para folhas desenhadas em papel branco; para pranchas de referência coloridas, usar o processo de alta qualidade.
+
 ## 3. Personagens — os 12 princípios na prática
 | Princípio | Como aplicar |
 |---|---|
@@ -86,9 +95,11 @@ Técnicas que funcionam: partículas com trajetória pré-calculada e nascimento
 ## 6. Corpo-base, vistas e rig
 - **Vistas mínimas**: frente, costas, perfil esquerdo, perfil direito — mesma altura, escala, proporção, iluminação e pose neutra comparável. 3/4 complementa, não substitui.
 - **Não espelhar automaticamente** se houver assimetria, arma numa mão, detalhe lateral ou luz de um lado.
+- **Esquerda ≠ direita**: as duas laterais sempre olham para lados opostos. Corpo-base simétrico pode ter uma lateral espelhada da outra para garantir o mesmo rosto e cabelo.
 - **Landmarks** (por vista e por quadro): topo e centro da cabeça, base do pescoço, ombros, cotovelos, punhos, mão da arma, centro do peito, cintura, quadril, joelhos, tornozelos, apoios dos pés. Hierarquia: Raiz → Quadril → Cintura → Tronco → Pescoço → Cabeça; Tronco → Ombro → Cotovelo → Punho → Mão; Quadril → Joelho → Tornozelo → Pé.
 - Guia de proporção do corpo-base humano: cabeça 15%, tronco 30%, braços 25%, pernas 30% (personagens chibi/encapuzados têm cabeça maior — medir no desenho real).
 - Coordenadas em pixels do quadro (ou normalizadas 0–1), **sempre com a resolução de referência**. Não misturar sistemas.
+- **Rig único, conectado e girado** (regra do Lucas, 20/11/2026): o rig é um só, definido na **frente** (de preferência a partir do Mapa Corporal da referência). Todos os pontos ficam ligados pela hierarquia. Costas, esquerda e direita **nascem girando o rig da frente** em torno do eixo vertical e encaixando na silhueta da vista (`N.girarRig`; botão "Girar rig da frente" na Bancada); depois vem o pente-fino. De perfil, o lado do corpo longe da câmera continua existindo (os dois braços e as duas pernas), mas aparece esmaecido e tracejado; costas mostram o rig inteiro.
 - A IA/Estúdio pode **propor** landmarks pela silhueta; uma pessoa **revisa**. Cotovelos e punhos quase sempre precisam de correção. Nunca inventar anatomia escondida pela perspectiva.
 - **Prancha conceitual não é spritesheet** e mapa esquemático não é coordenada calibrada.
 
@@ -184,6 +195,7 @@ Nunca: alegar precisão anatômica sem revisar landmarks; dizer que equipamento 
 Conflito entre regras: segurança e integridade do projeto primeiro; depois a direção de arte desta skill; registrar a divergência.
 
 ## 14. Lições aprendidas (atualizar sempre)
+- 20/11/2026 · Mago v3: a linha de produção do núcleo (feita para papel branco) degradou o recorte de uma prancha colorida — serrilhado e pontos claros no pescoço. Recorte com alfa suave + reamostragem Lanczos pré-multiplicada resolveu. As linhas guia da prancha cortavam o contorno do ombro: limpar antes de aceitar.
 - 08/11 — **Frestas de papel**: o branco preso entre cajado e capuz/manto não encosta na borda da folha, então não sai como "fundo". Tirar manchas brancas internas, exceto olhos (pequenos, pouco alongados, na faixa do rosto) e miolo de brilho (cercado de cor, ex.: cristal). Conferir em fundo escuro.
 - 08/11 — **Olhos somem** se o recorte trata todo branco fechado como papel; o brilho em volta dos olhos engana a regra de "anel escuro".
 - 08/11 — **Cajado duplicado**: equipar um cajado num mago que já tem cajado desenhado. Regra 7.3.

@@ -11,6 +11,7 @@
   let studioTool = 'select', bodyVisible = p.studioBodyVisible !== false, itemSel = null;
   const cache = {};
   p.rig = p.rig || {}; p.revisado = p.revisado || {}; p.equipamentos = p.equipamentos || []; p.habilidades = p.habilidades || []; p.drops = p.drops || [];
+  p.anotacoes = p.anotacoes || []; p.studioBodyVisible = p.studioBodyVisible !== false;
 
   // ------------------------------------------------ cabeçalho
   function cabecalho() {
@@ -24,10 +25,9 @@
   if (Armazem.desktop) { $('#b-pasta').hidden = false; $('#b-pasta').onclick = () => window.estudioDesktop.dados.abrirPasta('personagens/' + p.id); }
   async function salvar(arquivos, acao) { p = await Armazem.salvar(p, arquivos, acao); ab = await Armazem.abrir(p.id); window.__studioDirty = false; return p; }
   window.__studioDirty = false;
-  p.anotacoes = p.anotacoes || [];
   window.__studioSave = async () => { await salvar({}, 'Workspace salvo'); return true; };
   window.__studioSetTool = (modo, cor) => { if (!emStudio) return; studioTool = modo; window.__studioApplyTool?.(modo, cor); };
-  window.__studioSaveFrame = async () => { await salvar({}, 'Quadro ' + ((window.Palco && document.querySelector('#palco-ver') ? 1 : 1)) + ' salvo'); return true; };
+  window.__studioSaveFrame = async () => { await salvar({}, 'Quadro ' + ((document.querySelector('#palco-ver') && window.__studioFrameNumber ? window.__studioFrameNumber() : 1)) + ' salvo'); return true; };
   if (emStudio) { $('#studio-body-visible').checked = bodyVisible; $('#studio-body-note').textContent = 'O Mago está em uma única imagem-base; partes do corpo ainda não são camadas separadas.'; $('#studio-body-visible').onchange = () => { bodyVisible = $('#studio-body-visible').checked; p.studioBodyVisible = bodyVisible; window.__studioDirty = true; atualizarVer(); }; }
   document.addEventListener('input', e => { if (e.target.closest('#eq-editor')) window.__studioDirty = true; }, true);
   document.addEventListener('change', e => { if (e.target.closest('#eq-editor') || e.target.id === 'eq-arquivo') window.__studioDirty = true; }, true);
@@ -189,6 +189,8 @@
     if (!it.ajustes[dir]) it.ajustes[dir] = JSON.parse(JSON.stringify(it.ajustes.frente || { pega: [0, 0], angulo: 0, escala: 0.3, ordem: 'frente' }));
     return it.ajustes[dir];
   }
+  function poseQuadroLido(it, dir, k) { const base=ajuste(it,dir); return base.quadros && base.quadros[k] ? base.quadros[k] : base; }
+  function poseQuadro(it, dir, k) { const base=ajuste(it,dir); base.quadros=base.quadros||{}; if(!base.quadros[k])base.quadros[k]={offsetX:base.offsetX||0,offsetY:base.offsetY||0,angulo:base.angulo||0,escala:base.escala||0.3,ordem:base.ordem||'frente'}; return base.quadros[k]; }
   async function itensParaCompor(dir) {
     const out = [];
     for (const it of p.equipamentos.filter(x => x.equipado !== false)) {
@@ -211,7 +213,6 @@
     palcoEq.definir({ quadros, fps: a.fps, pivo: a.meta.pivo_px, pontos: null, landmarks: null }); sincEq(); listaItens();
     if (verComItens && p.equipamentos.length) { const r = await Tarefas.rodar('conferir', { quadros: quadros.map(bytesDe) }); if (meu === pedidoEq) mostrarConferencia($('#conf-equip'), r); }
   }
-  let itemSel = null;
   function listaItens() {
     $('#eq-lista').innerHTML = p.equipamentos.length ? p.equipamentos.map((it, i) => `<div class="regra ${it === itemSel ? 'ok' : ''}"><input type="checkbox" data-eq="${i}" ${it.equipado !== false ? 'checked' : ''} title="Equipado"><div style="flex:1;cursor:pointer" data-abrir="${i}"><b>${esc(it.name)}</b><span>${jaDesenhado(it.slot) ? '⚠ já desenhado no corpo · ' : ''}${esc(Comum.SLOTS[it.slot] || it.slot)} · âncora ${esc(N.NOMES_LANDMARK[(it.anchors || [])[0]] || '—')}</span></div><span class="selo">${esc(it.validation_status)}</span></div>`).join('') : '<p class="mudo">Nenhum item ainda. Adicione uma imagem ou recorte peças na aba Adição.</p>';
     $('#eq-lista').querySelectorAll('[data-eq]').forEach(c => c.onchange = () => {

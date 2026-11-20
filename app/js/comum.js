@@ -16,7 +16,7 @@ window.Comum = (() => {
   };
   function esc(v) { return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
   function topo(atual) {
-    const links = [['index.html', 'Personagens', 'inicio'], ['producao.html', 'Linha de produção', 'producao'], ['ferramentas/index.html', 'Ferramentas', 'ferramentas'], ['guia.html', 'Guia', 'guia']];
+    const links = [['studio.html', 'Estúdio', 'inicio'], ['producao.html', 'Produção', 'producao'], ['ferramentas/efeitos.html', 'Efeitos', 'efeitos']];
     const h = document.createElement('header'); h.className = 'topo';
     h.innerHTML = `<a class="marca" href="index.html"><span class="marca-simbolo">✦</span><span><b>DEFENDA E ATAQUE</b><small>ESTÚDIO</small></span></a>
       <nav aria-label="Seções">${links.map(([u, t, id]) => `<a href="${u}"${id === atual ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>`;

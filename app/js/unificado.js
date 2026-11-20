@@ -20,7 +20,6 @@
     titulo.textContent = rotas[nome].titulo;
     botoes.forEach(b => {
       const ativo = b.dataset.rota === nome;
-      b.setAttribute("aria-pressed", String(ativo));
       if (ativo) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
     });
     if (historico) history.pushState({ rota: nome }, "", "#" + nome);
@@ -52,7 +51,6 @@
       titulo.textContent = nomes[rotaInterna];
       botoes.forEach(b => {
         const ativo = b.dataset.rota === rotaInterna;
-        b.setAttribute("aria-pressed", String(ativo));
         if (ativo) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
       });
     } catch (erro) {

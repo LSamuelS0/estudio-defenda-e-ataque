@@ -38,7 +38,8 @@
     try {
       const doc = palco.contentDocument;
       if (!doc || !doc.head) return;
-      if (!doc.getElementById("estudio-unificado-css")) {
+      // a Bancada tem tema próprio no estilo Blender; não recebe o tema das telas antigas
+      if (!doc.body.classList.contains("bancada") && !doc.getElementById("estudio-unificado-css")) {
         const link = doc.createElement("link");
         link.id = "estudio-unificado-css";
         link.rel = "stylesheet";

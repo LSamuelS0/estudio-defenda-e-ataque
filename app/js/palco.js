@@ -28,7 +28,7 @@ window.Palco = class Palco {
     const W = this.c.clientWidth, H = this.c.clientHeight;
     return this.zoom || Math.max(0.25, Math.min(W / q.width, H / q.height) * 0.92);
   }
-  _origem() { const q = this.quadros[0], e = this._escala(); return [(this.c.clientWidth - q.width * e) / 2, (this.c.clientHeight - q.height * e) / 2, e]; }
+  _origem() { const q = this.quadros[0], e = this._escala(), d = this.desloc || [0, 0]; return [(this.c.clientWidth - q.width * e) / 2 + d[0], (this.c.clientHeight - q.height * e) / 2 + d[1], e]; }
   desenhar() {
     const dpr = window.devicePixelRatio || 1; const W = this.c.clientWidth, H = this.c.clientHeight;
     if (this.c.width !== Math.round(W * dpr) || this.c.height !== Math.round(H * dpr)) { this.c.width = Math.round(W * dpr); this.c.height = Math.round(H * dpr); }
@@ -76,19 +76,20 @@ window.Palco = class Palco {
         g.beginPath(); g.arc(ox + x * e, oy + y * e, sel ? 6 : 4.5, 0, 7); g.fill(); g.strokeStyle = '#11131a'; g.lineWidth = 1.5; g.stroke();
       }
     }
+    if (this.aoDesenhar) this.aoDesenhar(g, ox, oy, e);
   }
   _eventos() {
     const pos = ev => { const r = this.c.getBoundingClientRect(); const [ox, oy, e] = this._origem(); return [(ev.clientX - r.left - ox) / e, (ev.clientY - r.top - oy) / e, e]; };
     let arrastando = null;
     this.c.addEventListener('pointerdown', ev => {
-      if (!this.editavel || !this.landmarks) return; const L = this.landmarks[this.k]; if (!L) return;
+      if (!this.editavel || !this.landmarks) { this.quadros.length && this.aoPonteiro && this.aoPonteiro('down', ev, pos(ev)); return; } const L = this.landmarks[this.k]; if (!L) return;
       const [x, y, e] = pos(ev); let melhor = null, d = 12 / e;
       for (const n in L) { const dd = Math.hypot(L[n][0] - x, L[n][1] - y); if (dd < d) { d = dd; melhor = n; } }
       if (melhor) { arrastando = melhor; this.selecionado = melhor; this.tocando = false; this.c.setPointerCapture(ev.pointerId); this.desenhar(); this.aoSelecionar && this.aoSelecionar(melhor); }
     });
     this.c.addEventListener('pointermove', ev => {
-      if (!arrastando) return; const [x, y] = pos(ev); this.landmarks[this.k][arrastando] = [+x.toFixed(1), +y.toFixed(1)]; this.desenhar();
+      if (!arrastando) { this.quadros.length && this.aoPonteiro && this.aoPonteiro('move', ev, pos(ev)); return; } const [x, y] = pos(ev); this.landmarks[this.k][arrastando] = [+x.toFixed(1), +y.toFixed(1)]; this.desenhar();
     });
-    this.c.addEventListener('pointerup', () => { if (arrastando) { const n = arrastando; arrastando = null; this.aoMoverLandmark && this.aoMoverLandmark(this.k, n, this.landmarks[this.k][n]); } });
+    this.c.addEventListener('pointerup', ev => { if (!arrastando) this.quadros.length && this.aoPonteiro && this.aoPonteiro('up', ev, pos(ev)); if (arrastando) { const n = arrastando; arrastando = null; this.aoMoverLandmark && this.aoMoverLandmark(this.k, n, this.landmarks[this.k][n]); } });
   }
 };

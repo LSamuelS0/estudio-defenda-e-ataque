@@ -815,7 +815,8 @@
    * item: { imagem, pega:[x,y], ancora:'hand_main', mira:'head_top'|null, anguloExtra:graus, escala }
    */
   function posicionarItem(item, P, W, H, op = {}) {
-    const out = criar(W, H); const ancoraBase = P[item.ancora]; if (!ancoraBase) return out;\n    const a = [ancoraBase[0] + (item.offsetX || 0), ancoraBase[1] + (item.offsetY || 0)];
+    const out = criar(W, H); const ancoraBase = P[item.ancora]; if (!ancoraBase) return out;
+    const a = [ancoraBase[0] + (item.offsetX || 0), ancoraBase[1] + (item.offsetY || 0)];
     let ang = (item.anguloExtra || 0) * Math.PI / 180;
     if (item.mira && P[item.mira]) {
       const b = P[item.mira]; const base = item.miraBase != null ? item.miraBase : -90;
